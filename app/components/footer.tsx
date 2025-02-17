@@ -1,73 +1,112 @@
+'use client';
+
 import Image from 'next/image';
-import { logoRowGreen } from '../lib/utils/image';
+import { logoRowWhite, logoColWhite } from '../lib/utils/image';
+import { HiOutlineArrowUp, HiOutlineArrowRight } from 'react-icons/hi';
+import { FaEnvelope, FaMapMarkerAlt, FaYoutube, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
+import { IoLogoWhatsapp } from 'react-icons/io';
 
 export default function Footer() {
-  // interface menuTypes {
-  //   id: number
-  //   menu: string
-  //   href: string
-  // }
-
-  // const menu: menuTypes[] =[
-  //   { id: 1, menu: "Tentang Kami", href: "/about" },
-  //   { id: 2, menu: "Kritik Saran", href: "/suggestion" },
-  //   { id: 3, menu: "Kontak", href: "/contact" },
-  // ]
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <footer className="flex flex-col items-center justify-center py-14 px-5 bg-primary lg:py-[70px] lg:px-[400px]">
-      <div className="flex justify-center flex-col items-center">
-        <Image src={logoRowGreen} alt="Logo" width={170} height={77} className="object-contain" />
-        <h2 className="text-white opacity-50 text-center text-[16px]">
-          SD Muhammadiyah Birrul Walidain Kudus didirikan untuk mewujudkan generasi birrul walidain dan memenuhi
-          kebutuhan akan pendidikan setelah TK
-        </h2>
-      </div>
-      {/* <ul className="flex flex-col lg:flex-row text-base font-normal  gap-3 text-white pt-12 items-center justify-center">
-              {menu.map((item: menuTypes) => (
-                <li key={item.id}>
-                  <Link href={item.href}>
-                    <h3 className="hover-underline-footer">{item.menu}</h3>
-                  </Link>
-                </li>
-              ))}
+    <footer className="w-screen flex flex-col items-center justify-center pt-14 px-8 bg-primary lg:pt-[70px] md:px-[80px]">
+      <div className="flex w-full flex-col lg:flex-row lg:justify-between lg:items-start lg:gap-8">
+        {/* Logo & Scroll Up */}
+        <div className="flex w-full md:w-max md:flex-1 justify-between items-center mb-6">
+          {/* Logo for Mobile */}
+          <Image src={logoRowWhite} alt="Logo" width={160} height={77} className="object-contain md:hidden" />
+          {/* Logo for Desktop */}
+          <Image
+            src={logoColWhite}
+            alt="Logo"
+            width={130}
+            height={77}
+            className="object-contain hidden md:block"
+          />{' '}
+          <HiOutlineArrowUp onClick={scrollToTop} className="text-white text-3xl cursor-pointer mt-2 md:hidden" />
+        </div>
 
-            </ul> */}
-      {/* <ul className="flex gap-4 flex-row justify-center items-center pt-12">
-        <li>
-          <Link href="">
-            <Image
-              src="assets/svg/facebook.svg"
-              width={10}
-              height={20}
-              alt="facebook"
-              className="social-icon"
+        {/* Contact */}
+        <div className="text-white space-y-4 md:w-max md:flex-1 ">
+          <div className="flex items-center gap-3">
+            <IoLogoWhatsapp className="text-xl opacity-60" />
+            <span>+62 811 703 8868</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <FaEnvelope className="text-xl opacity-60" />
+            <span>info@centralgroup.com</span>
+          </div>
+        </div>
+
+        {/* Work Address */}
+        <div className="mt-6 md:mt-0 text-white space-y-4 md:w-max md:flex-1 ">
+          <div>
+            <div className="flex items-center gap-3">
+              <FaMapMarkerAlt className="text-xl opacity-60" />
+              <span className="font-bold">Central Group Head Office</span>
+            </div>
+            <p className="ml-8 opacity-80">
+              Jl. Central Raya No.1, Sukajadi, Kec. Batam Kota, Kota Batam, Kepulauan Riau 29432
+            </p>
+          </div>
+
+          <div>
+            <div className="flex items-center gap-3">
+              <FaMapMarkerAlt className="text-xl opacity-60" />
+              <span className="font-bold">Representative Office</span>
+            </div>
+            <p className="ml-8 opacity-80">
+              Ruko Campton A-03, Jl. Raya Cisauk Lapan, Sampora, Tangerang - Banten 15345
+            </p>
+          </div>
+        </div>
+
+        {/* Newsletter */}
+        <div className="mt-8 md:mt-0 w-full md:w-max md:flex-1 ">
+          <h3 className="text-white text-lg font-semibold mb-4">NEWSLETTER</h3>
+          <div className="flex  rounded-lg overflow-hidden">
+            <input
+              type="email"
+              placeholder="Type your email"
+              className="w-full px-4 py-4  bg-black bg-opacity-5 text-white outline-none"
             />
-          </Link>
-        </li>
-        <li>
-          <Link href="">
-            <Image
-              src="assets/svg/twitter.svg"
-              width={22}
-              height={17}
-              alt="twitter"
-              className="social-icon"
-            />
-          </Link>
-        </li>
-        <li>
-          <Link href="">
-            <Image
-              src="assets/svg/instagram.svg"
-              width={22}
-              height={22}
-              alt="instagram"
-              className="social-icon"
-            />
-          </Link>
-        </li>
-      </ul> */}
+            <button className="bg-black bg-opacity-5 text-sm tracking-wider  text-white px-5 py-4 flex items-center gap-2">
+              SUBMIT <HiOutlineArrowRight />
+            </button>
+          </div>
+        </div>
+
+        {/* Social Media */}
+        <div className="flex w-full md:hidden justify-center gap-8 mt-8 text-white text-2xl">
+          <FaYoutube />
+          <FaLinkedinIn />
+          <FaInstagram />
+        </div>
+
+        {/* Divider */}
+        <div className="border-t md:hidden border-white mt-6 opacity-20" />
+
+        {/* Copyright */}
+        <p className="text-white md:hidden opacity-70 text-sm my-6 text-center">© 2025 Central Group Development</p>
+      </div>
+
+      {/* Divider */}
+      <div className="w-full border-t md:flex hidden border-white mt-6 opacity-20" />
+
+      <div className="flex w-full justify-between items-center my-6">
+        {/* Copyright */}
+        <p className="text-white hidden md:flex opacity-70 text-sm  text-center">© 2025 Central Group Development</p>
+
+        {/* Social Media */}
+        <div className="hidden  md:flex  justify-center gap-8 md:mt-0 mt-8 text-white text-2xl">
+          <FaYoutube />
+          <FaLinkedinIn />
+          <FaInstagram />
+        </div>
+      </div>
     </footer>
   );
 }
