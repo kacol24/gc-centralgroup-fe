@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Montserrat } from 'next/font/google';
+import { Geist, Geist_Mono, Montserrat, Aboreto, Marcellus } from 'next/font/google';
 import './globals.css';
 
 const geistSans = Geist({
@@ -12,6 +12,8 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+const marcellus = Marcellus({ subsets: ['latin'], weight: '400' });
+const aboreto = Aboreto({ subsets: ['latin'], weight: '400' });
 const montserrat = Montserrat({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -26,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.className} ${geistMono.variable} ${montserrat.className} antialiased`}>
+      <body
+        className={`${geistSans.className} ${geistMono.variable} ${montserrat.className} ${marcellus.className} ${aboreto.className} antialiased`}
+      >
         {children}
       </body>
     </html>
