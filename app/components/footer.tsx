@@ -12,10 +12,10 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-screen flex flex-col items-center justify-center pt-14 px-8 bg-primary lg:pt-[72px] md:px-[80px]">
-      <div className="flex w-full flex-col lg:flex-row lg:justify-between lg:items-start lg:gap-8">
+    <footer className="w-full flex flex-col items-center justify-center pt-14 px-8 bg-primary lg:pt-[72px] lg:px-[80px]">
+      <div className="flex w-full flex-col lg:flex-row lg:justify-between lg:items-start gap-4 lg:gap-8">
         {/* Logo & Scroll Up */}
-        <div className="flex w-full md:w-max md:flex-1 justify-between items-center mb-6">
+        <div className="flex w-full md:flex-1 justify-between items-center mb-6">
           {/* Logo for Mobile */}
           <Image
             src={logoRowWhite}
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
 
         {/* Contact */}
-        <div className="text-white space-y-4 md:w-max md:flex-1 ">
+        <div className="text-white space-y-4 md:flex-1 ">
           <div className="flex items-center gap-3">
             <IoLogoWhatsapp className="text-xl opacity-60" />
             <span>+62 811 703 8868</span>
@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
 
         {/* Work Address */}
-        <div className="mt-6 md:mt-0 text-white space-y-4 md:w-max md:flex-1 ">
+        <div className="mt-6 md:mt-0 text-white space-y-4 md:flex-1 ">
           <div>
             <div className="flex items-center gap-3">
               <FaMapMarkerAlt className="text-xl opacity-60" />
@@ -73,7 +73,7 @@ export default function Footer() {
         </div>
 
         {/* Newsletter */}
-        <div className="mt-8 md:mt-0 w-full md:w-max md:flex-1 ">
+        <div className="mt-8 md:mt-0 w-full md:flex-1 ">
           <h3 className="text-white text-lg font-marcellus mb-4 tracking-wider">NEWSLETTER</h3>
           <div className="flex  rounded-lg overflow-hidden">
             <input
