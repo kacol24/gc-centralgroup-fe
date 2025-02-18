@@ -65,9 +65,9 @@ export default function Navbar() {
                 className="w-[90px] md:w-[150px]"
                 src={isScrolled ? logoRowGreen : logoColWhite}
                 alt="CG Logo"
-                height={50}
-                width={50}
-                unoptimized
+                height={1000}
+                width={1000}
+                unoptimized={true}
               />
             </Link>
           </div>
@@ -92,7 +92,7 @@ export default function Navbar() {
 
             <div className="w-px h-6 bg-gray-400"></div>
 
-            <button className="uppercase font-bold tracking-wide ">Enquire</button>
+            <button className="uppercase font-medium tracking-wide ">Enquire</button>
           </div>
 
           <div className="flex-1 md:hidden justify-end items-center gap-6"></div>
@@ -118,7 +118,7 @@ export default function Navbar() {
         <ul className="pl-16 pt-4 space-y-6 text-textPrimary">
           {/* DEVELOPMENT */}
           <li
-            className="font-semibold flex justify-start gap-2 items-center cursor-pointer text-[18px]"
+            className="font-aboreto text-textPrimary flex justify-start gap-2 items-center cursor-pointer text-[18px]"
             onClick={() => toggleMenu('development')}
           >
             DEVELOPMENT
@@ -153,7 +153,7 @@ export default function Navbar() {
 
           {/* COMMUNITY ECOSYSTEM */}
           <li
-            className="font-semibold flex justify-start items-center gap-2 cursor-pointer text-[18px]"
+            className="font-aboreto text-textPrimary flex justify-start items-center gap-2 cursor-pointer text-[18px]"
             onClick={() => toggleMenu('community')}
           >
             COMMUNITY ECOSYSTEM
@@ -184,9 +184,9 @@ export default function Navbar() {
             </ul>
           )}
 
-          <li className="font-semibold cursor-pointer text-[18px]">NEWS & UPDATE</li>
-          <li className="font-semibold cursor-pointer text-[18px] ">CAREERS</li>
-          <li className="font-semibold cursor-pointer text-[18px]">ENQUIRE</li>
+          <li className="font-aboreto text-textPrimary cursor-pointer text-[18px]">NEWS & UPDATE</li>
+          <li className="font-aboreto text-textPrimary cursor-pointer text-[18px] ">CAREERS</li>
+          <li className="font-aboreto text-textPrimary cursor-pointer text-[18px]">ENQUIRE</li>
         </ul>
       </div>
 
