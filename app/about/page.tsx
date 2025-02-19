@@ -30,7 +30,7 @@ export default function About() {
             dengan total lahan lebih dari 200 Ha di Kota Batam, beberapa diantaranya bekerjasama dengan developer
             bertaraf nasional seperti afiliasi Alam Sutera dan TDW Property.
           </p>
-          <p className="mb-48 text-sm text-center md:w-[80%] md:mx-auto">
+          <p className="mb-[25%] text-sm text-center md:w-[80%] md:mx-auto">
             Central Group berpegang pada nilai dan tanggung jawab terhadap pemilik properti, investor, management,
             masyarakat, lingkungan sekitar dan seluruh jajaran staff.
           </p>
@@ -76,7 +76,7 @@ export default function About() {
                 height={0}
                 className="w-full h-auto object-contain aspect-square"
               />
-              <p className="mt-2 text-[9px] text-center text-[#233F3F] font-bold md:text-xs">{award.alt}</p>
+              <p className="mt-2 text-[9px] text-center text-textPrimary font-bold md:text-xs">{award.alt}</p>
             </div>
           ))}
         </div>
@@ -86,9 +86,9 @@ export default function About() {
         <Image src={principMuljadi} alt="Princip Muljadi" className="w-full" />
         <div className="container w-auto h-fit mx-8 relative -top-8 bg-white shadow-lg md:mx-0 md:top-4 md:-left-8 lg:top-8">
           <div className="p-8 lg:p-16">
-            <p className="mb-2 text-xs text-[#016241] font-semibold">OUR CEO</p>
-            <h2 className="mb-4 text-4xl text-[#233F3F]">PRINCIP MULJADI</h2>
-            <p className="text-[#514231] font-medium">
+            <p className="mb-2 text-xs text-primary font-semibold">OUR CEO</p>
+            <h2 className="mb-4 text-4xl text-textPrimary">PRINCIP MULJADI</h2>
+            <p className="text-textSecondary font-medium">
               Princip Muljadi merupakan lulusan University of Technology Sidney Australia jurusan Finance and Banking.
               Selama lebih dari 7 tahun, malang melintang di dunia Finance dan perbankan, di tahun 1999, ia kembali ke
               Batam, dan tepat pada tahun 2005 fokus memajukan Central Group, hingga akhirnya saat ini Central Group
@@ -96,7 +96,7 @@ export default function About() {
               Batuaji, Central Raya Tanjunguncang, Central Laguna Hills dan Central Hills
             </p>
           </div>
-          <div className="p-8 bg-[#016241] lg:p-16">
+          <div className="p-8 bg-primary lg:p-16">
             <p className="mb-2 text-lg">"FULFILLING DREAMS, BUILDING HOMES AND CREATING COMMUNITIES"</p>
             <p className="text-xs text-[#7AAF1C] font-semibold uppercase">Princip Muljadi</p>
           </div>
@@ -107,8 +107,8 @@ export default function About() {
         <Image src={backgroundGoalPageAbout} alt="Backgound Beach" className="w-full" />
         <div className="container w-auto mx-8 p-6 relative -top-8 bg-white shadow-lg md:p-12 md:flex md:gap-12 md:-top-32 lg:m-auto lg:px-20 lg:py-16 lg:gap-16">
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-[#016241]">VISION</h3>
-            <p className="text-[#514231] font-medium">
+            <h3 className="mb-6 text-2xl text-primary">VISION</h3>
+            <p className="text-textSecondary font-medium">
               Aliquam malesuada enim ut risus vulputate pretium morbi molestie. Sit non morbi libero nibh morbi in
               aliquet. Auctor quis nisl pretium leo mauris aliquet enim quis.
             </p>
@@ -118,8 +118,8 @@ export default function About() {
           <div className="hidden md:block w-[1px] bg-gray-300 h-100"></div>
 
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-[#016241]">MISSION</h3>
-            <p className="text-[#514231] font-medium">
+            <h3 className="mb-6 text-2xl text-primary">MISSION</h3>
+            <p className="text-textSecondary font-medium">
               Cursus at pellentesque viverra convallis. Tincidunt turpis tincidunt purus luctus commodo pellentesque.
               Sit pellentesque sit molestie ultrices lefensa indanese.
             </p>
@@ -129,8 +129,8 @@ export default function About() {
           <div className="hidden md:block w-[1px] bg-gray-300 h-100"></div>
 
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-[#016241]">PURPOSE</h3>
-            <p className="text-[#514231] font-medium">
+            <h3 className="mb-6 text-2xl text-primary">PURPOSE</h3>
+            <p className="text-textSecondary font-medium">
               Turpis eu accumsan platea malesuada aliquet sed egestas posuere vestibulum. Consectetur risus nascetur at
               id nibh ullamcorper. Euismod semper diam lacinia ut placerat massa.
             </p>
@@ -140,7 +140,7 @@ export default function About() {
 
       <section className="bg-[#FAFAFA]">
         <div className="container w-auto mx-8 pb-10 lg:m-auto">
-          <p className="mb-5 text-xs text-[#016241] font-semibold">OUR PATNERS</p>
+          <p className="mb-5 text-xs text-primary font-semibold">OUR PATNERS</p>
           <div className="grid grid-cols-3 gap-8 md:flex md:justify-between md:gap-0">
             {patnerLogoAsArray?.map((patner, index) => (
               <Image
