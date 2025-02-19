@@ -89,6 +89,17 @@ const centralAcitivityAsArray = [
   { src: centralActivity15, alt: 'Central Activity 15' },
 ];
 
+import imgProperty1 from '@/public/assets/image/property-1.png';
+import logoPartner1 from '@/public/assets/image/logo-partner-1.png';
+import logoPartner2 from '@/public/assets/image/logo-partner-2.png';
+import logoPartner3 from '@/public/assets/image/logo-partner-3.png';
+import logoPartner4 from '@/public/assets/image/logo-partner-4.png';
+import logoPartner5 from '@/public/assets/image/logo-partner-5.png';
+import logoPartner6 from '@/public/assets/image/logo-partner-6.png';
+import logoPartner7 from '@/public/assets/image/logo-partner-7.png';
+import logoPartner8 from '@/public/assets/image/logo-partner-8.png';
+import logoPartner9 from '@/public/assets/image/logo-partner-9.png';
+
 export {
   logoColGreen,
   logoRowGreen,
@@ -112,4 +123,14 @@ export {
   backgroundTopBannerPageCentralHome,
   backgroundBottomBannerPageCentralHome,
   centralAcitivityAsArray,
+  imgProperty1,
+  logoPartner1,
+  logoPartner2,
+  logoPartner3,
+  logoPartner4,
+  logoPartner5,
+  logoPartner6,
+  logoPartner7,
+  logoPartner8,
+  logoPartner9,
 };
