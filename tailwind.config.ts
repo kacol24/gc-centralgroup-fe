@@ -21,33 +21,6 @@ const config: Config = {
         backgroundWhite: '#FAFAFA',
       },
     },
-  	extend: {
-  		fontFamily: {
-  			inter: [
-  				'Inter',
-  				'sans-serif'
-  			],
-  			aboreto: [
-  				'Aboreto',
-  				'cursive'
-  			],
-  			marcellus: [
-  				'Marcellus',
-  				'serif'
-  			]
-  		},
-  		colors: {
-  			bgPrimary: '#FAFAFA',
-  			primary: '#016241',
-  			textPrimary: '#233F3F',
-  			textSecondary: '#514231'
-  		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		}
-  	}
   },
   plugins: [],
 };

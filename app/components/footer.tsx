@@ -41,10 +41,6 @@ export default function Footer() {
             height={1000}
             className="object-contain hidden md:block w-[130px]"
             unoptimized={true}
-            width={1000}
-            height={1000}
-            className="object-contain hidden md:block w-[130px]"
-            unoptimized={true}
           />{' '}
           <HiOutlineArrowUp onClick={scrollToTop} className="text-white text-3xl cursor-pointer mt-2 md:hidden" />
         </div>
