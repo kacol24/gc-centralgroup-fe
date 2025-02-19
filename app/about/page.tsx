@@ -67,8 +67,8 @@ export default function About() {
 
       <section className="bg-[#FAFAFA]">
         <div className="w-full p-8 flex gap-6 overflow-x-auto md:align-middle md:justify-center md:gap-8 md:overflow-x-hidden lg:px-0 lg:gap-10">
-          {awardImageAsArray?.map((award) => (
-            <div className="w-[120px] min-w-[120px] grow relative">
+          {awardImageAsArray?.map((award, index) => (
+            <div key={index} className="w-[120px] min-w-[120px] grow relative">
               <Image
                 src={award.src}
                 alt={award.alt}
@@ -142,8 +142,9 @@ export default function About() {
         <div className="container w-auto mx-8 pb-10 lg:m-auto">
           <p className="mb-5 text-xs text-[#016241] font-semibold">OUR PATNERS</p>
           <div className="grid grid-cols-3 gap-8 md:flex md:justify-between md:gap-0">
-            {patnerLogoAsArray?.map((patner) => (
+            {patnerLogoAsArray?.map((patner, index) => (
               <Image
+                key={index}
                 src={patner.src}
                 alt={patner.alt}
                 width={0}
