@@ -65,7 +65,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-[#FAFAFA]">
+      <section className="bg-backgroundWhite">
         <div className="w-full p-8 flex gap-6 overflow-x-auto md:align-middle md:justify-center md:gap-8 md:overflow-x-hidden lg:px-0 lg:gap-10">
           {awardImageAsArray?.map((award, index) => (
             <div key={index} className="w-[120px] min-w-[120px] grow relative">
@@ -82,7 +82,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-[#FAFAFA] md:p-16 md:pb-24 md:grid md:grid-cols-[5fr_6fr] lg:px-40 lg:grid-cols-[4fr_5fr]">
+      <section className="bg-backgroundWhite md:p-16 md:pb-24 md:grid md:grid-cols-[5fr_6fr] lg:px-40 lg:grid-cols-[4fr_5fr]">
         <Image src={principMuljadi} alt="Princip Muljadi" className="w-full" />
         <div className="container w-auto h-fit mx-8 relative -top-8 bg-white shadow-lg md:mx-0 md:top-4 md:-left-8 lg:top-8">
           <div className="p-8 lg:p-16">
@@ -98,12 +98,12 @@ export default function About() {
           </div>
           <div className="p-8 bg-primary lg:p-16">
             <p className="mb-2 text-lg">"FULFILLING DREAMS, BUILDING HOMES AND CREATING COMMUNITIES"</p>
-            <p className="text-xs text-[#7AAF1C] font-semibold uppercase">Princip Muljadi</p>
+            <p className="text-xs text-textTertiary font-semibold uppercase">Princip Muljadi</p>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#FAFAFA]">
+      <section className="bg-backgroundWhite">
         <Image src={backgroundGoalPageAbout} alt="Backgound Beach" className="w-full" />
         <div className="container w-auto mx-8 p-6 relative -top-8 bg-white shadow-lg md:p-12 md:flex md:gap-12 md:-top-32 lg:m-auto lg:px-20 lg:py-16 lg:gap-16">
           <div className="text-center">
@@ -138,7 +138,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-[#FAFAFA]">
+      <section className="bg-backgroundWhite">
         <div className="container w-auto mx-8 pb-10 lg:m-auto">
           <p className="mb-5 text-xs text-primary font-semibold">OUR PATNERS</p>
           <div className="grid grid-cols-3 gap-8 md:flex md:justify-between md:gap-0">
