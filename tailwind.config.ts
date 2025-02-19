@@ -17,6 +17,8 @@ const config: Config = {
         primary: '#016241',
         textPrimary: '#233F3F',
         textSecondary: '#514231',
+        textTertiary: '#7AAF1C',
+        backgroundWhite: '#FAFAFA',
       },
     },
   },
