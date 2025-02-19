@@ -39,19 +39,19 @@ export default function Navbar() {
     <>
       {/* Navbar */}
       <nav
-        className={`w-screen fixed z-50 transition-all duration-300 ${
-          isScrolled ? 'pt-[34px] px-[44px] w-[100%]' : ''
+        className={`w-full fixed z-50 transition-all duration-300 ${
+          isScrolled ? 'pt-[34px] px-8 lg:px-20 w-[100%]' : ''
         }`}
       >
         <div
           className={`flex w-full items-center ${
             isScrolled
-              ? 'bg-white px-8 lg:px-12 py-4 lg:py-4 text-black'
-              : 'px-8 lg:px-12 py-6 lg:py-8 bg-transparent text-white'
+              ? 'bg-white px-8 py-2 lg:px-12 lg:py-4 text-black'
+              : 'px-8 lg:px-20 py-6 lg:py-8 bg-transparent text-white'
           }`}
         >
           {/* Left Side */}
-          <div className="flex-1">
+          <div className="flex-1 p-4 pl-0">
             <button onClick={() => setIsOpen(true)} className="flex items-center gap-3">
               <h1 className="hidden md:flex">MENU</h1>
               <Image src={isScrolled ? iconMenu : iconMenuWhite} alt="Menu Icon" height={24} width={24} />
@@ -65,15 +65,15 @@ export default function Navbar() {
                 className="w-[90px] md:w-[150px]"
                 src={isScrolled ? logoRowGreen : logoColWhite}
                 alt="CG Logo"
-                height={1000}
-                width={1000}
-                unoptimized={true}
+                height={50}
+                width={50}
+                unoptimized
               />
             </Link>
           </div>
 
           {/* Right Side */}
-          <div className="md:flex-1 hidden md:flex justify-end items-center gap-6 p-4">
+          <div className="md:flex-1 hidden md:flex justify-end items-center gap-6 p-4 pr-0">
             <a href="https://wa.me/6287835712129" target="_blank" rel="noopener noreferrer">
               <Image src={isScrolled ? iconWhatsApp : iconWhatsAppWhite} alt="WhatsApp Icon" width={24} height={24} />
             </a>
@@ -147,7 +147,9 @@ export default function Navbar() {
           )}
 
           {/* ABOUT US */}
-          <li className="font-aboreto text-textPrimary cursor-pointer text-[18px]">ABOUT US</li>
+          <li className="font-semibold cursor-pointer text-[18px]">
+            <a href="/about">ABOUT US</a>
+          </li>
 
           {/* COMMUNITY ECOSYSTEM */}
           <li
