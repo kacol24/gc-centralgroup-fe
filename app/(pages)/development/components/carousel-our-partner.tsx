@@ -30,8 +30,8 @@ const logos = [
 
 export default function CarouselOurPartner() {
   return (
-    <>
-        {/* Carousel Desktop */}
+    <section>
+      {/* Carousel Desktop */}
       <div className="w-full py-8 px-0 lg:py-20 lg:px-0 xl:py-20 2xl:px-28 hidden lg:block container mx-auto">
         <h4 className="text-primary text-xs font-semibold lg:text-sm text-start mb-6 ">Our Partners</h4>
 
@@ -62,14 +62,14 @@ export default function CarouselOurPartner() {
         </div>
       </div>
 
-        {/* Carousel Mobile */}
+      {/* Carousel Mobile */}
       <div className="w-full p-8 lg:p-20 block lg:hidden">
         <h4 className="text-primary text-xs font-semibold lg:text-sm text-start mb-6 ">Our Partners</h4>
 
         <div className="grid grid-cols-3 gap-0 sm:gap-6 p-0 ">
           {logos.map((logo, key) => (
             <Image
-                key={key}
+              key={key}
               src={logo}
               alt={`logo` + key + 1}
               width={1000}
@@ -79,6 +79,6 @@ export default function CarouselOurPartner() {
           ))}
         </div>
       </div>
-    </>
+    </section>
   );
 }

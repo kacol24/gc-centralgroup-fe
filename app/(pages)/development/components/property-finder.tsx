@@ -73,14 +73,13 @@ const propertyTypes = [
 ];
 
 const facilities = [
-    { id: "security", value: "Security 24/7" },
-    { id: "jogging", value: "Jogging Track" },
-    { id: "swimming", value: "Swimming Pool" },
-    { id: "market", value: "Fresh Modern Market" },
-    { id: "garden", value: "Green Spaced Garden" },
-    { id: "clubhouse", value: "Club House" },
-  ];
-  
+  { id: 'security', value: 'Security 24/7' },
+  { id: 'jogging', value: 'Jogging Track' },
+  { id: 'swimming', value: 'Swimming Pool' },
+  { id: 'market', value: 'Fresh Modern Market' },
+  { id: 'garden', value: 'Green Spaced Garden' },
+  { id: 'clubhouse', value: 'Club House' },
+];
 
 const citiesData: { name: string; image: string | StaticImageData; coords: [number, number] }[] = [
   {
@@ -121,9 +120,7 @@ export default function PropertyFinder() {
 
   const toggleFacility = (facility: string) => {
     setSelectedFacilities((prev) =>
-      prev.includes(facility)
-        ? prev.filter((f) => f !== facility)
-        : [...prev, facility]
+      prev.includes(facility) ? prev.filter((f) => f !== facility) : [...prev, facility],
     );
   };
 
@@ -137,15 +134,14 @@ export default function PropertyFinder() {
   }, []);
 
   return (
-    <div className="w-full h-auto lg:h-[740px] lg:flex">
-      
+    <section className="w-full h-auto lg:h-[740px] lg:flex">
       {/* Property Maps */}
       <div className="w-full h-[295px] lg:h-full lg:flex-grow">
         <MapContainer
           center={[-6.914744, 107.60981]}
           zoom={7}
           scrollWheelZoom={false}
-          style={{ height: "100%", width: "100%" }}
+          style={{ height: '100%', width: '100%', zIndex: 0 }}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -163,9 +159,7 @@ export default function PropertyFinder() {
 
       {/* Property Form */}
       <div className="w-full lg:w-[580px] p-8 lg:p-20 bg-[#2E2E2E] text-white">
-        <h2 className="text-2xl font-marcellus text-start lg:text-center mb-4">
-          PROPERTY FINDER
-        </h2>
+        <h2 className="text-2xl font-marcellus text-start lg:text-center mb-4">PROPERTY FINDER</h2>
 
         <div className="mb-4">
           <ComboboxDemo
@@ -219,6 +213,6 @@ export default function PropertyFinder() {
           FIND PROPERTY
         </button>
       </div>
-    </div>
+    </section>
   );
 }
