@@ -147,7 +147,9 @@ export default function Navbar() {
           )}
 
           {/* ABOUT US */}
-          <li className="font-semibold cursor-pointer text-[18px]">ABOUT US</li>
+          <li className="font-semibold cursor-pointer text-[18px]">
+            <a href="/about">ABOUT US</a>
+          </li>
 
           {/* COMMUNITY ECOSYSTEM */}
           <li
