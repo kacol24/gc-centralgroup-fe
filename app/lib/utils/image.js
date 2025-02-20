@@ -31,15 +31,6 @@ import propertyGuruIndonesiaPropertyAward2023 from '@/public/assets/image/proper
 import indonesiaAwardMagazine2021 from '@/public/assets/image/indonesia-award-magazine-2021.png';
 import propertyAndBankReward2022 from '@/public/assets/image/property-and-bank-reward-xvi-2022.png';
 import indonesiaInnovationGala2021 from '@/public/assets/image/indonesia-innovation-gala-70-2021.png';
-const awardImageAsArray = [
-  { src: indonesiaMyHomeAward2022, alt: 'Indonesia My Home Award 2022' },
-  { src: propertyGuruIndonesiaPropertyAward2023, alt: 'Propertyguru Indonesia Property Award 2023' },
-  { src: indonesiaAwardMagazine2021, alt: 'Indonesia Award Magazine 2021' },
-  { src: propertyAndBankReward2022, alt: 'Property And Bank Reward XVI 2022' },
-  { src: indonesiaMyHomeAward2022, alt: 'Indonesia My Home Award 2022' },
-  { src: propertyGuruIndonesiaPropertyAward2023, alt: 'Propertyguru Indonesia Property Award 2023' },
-  { src: indonesiaInnovationGala2021, alt: 'Indonesia Innovation Gala 70 2021' },
-];
 
 import logoDpa from '@/public/assets/image/logo-dpa.png';
 import logoCoen from '@/public/assets/image/logo-coen.png';
@@ -50,17 +41,6 @@ import logoGeniusLoci from '@/public/assets/image/logo-genius-loci.png';
 import logoQuadratura from '@/public/assets/image/logo-quadratura.png';
 import logoRire from '@/public/assets/image/logo-rire.png';
 import logoPtangStudio from '@/public/assets/image/logo-ptang-studio.png';
-const patnerLogoAsArray = [
-  { src: logoDpa, alt: 'Logo DPA' },
-  { src: logoCoen, alt: 'Logo COEN' },
-  { src: logoPdw, alt: 'Logo PDW' },
-  { src: logoMeinhardt, alt: 'Logo Meinhardt' },
-  { src: logoHataneka, alt: 'Logo Hataneka' },
-  { src: logoGeniusLoci, alt: 'Logo Genius Loci' },
-  { src: logoQuadratura, alt: 'Logo Quadratura' },
-  { src: logoRire, alt: 'Logo Rire' },
-  { src: logoPtangStudio, alt: 'Logo Ptang Studio' },
-];
 
 import backgroundTopBannerPageCentralBerbagi from '@/public/assets/image/bg-top-banner-page-central-berbagi.png';
 import backgroundBottomBannerPageCentralBerbagi from '@/public/assets/image/bg-bottom-banner-page-central-berbagi.png';
@@ -86,6 +66,39 @@ import centralActivity12 from '@/public/assets/image/central-activity-12.png';
 import centralActivity13 from '@/public/assets/image/central-activity-13.png';
 import centralActivity14 from '@/public/assets/image/central-activity-14.png';
 import centralActivity15 from '@/public/assets/image/central-activity-15.png';
+
+import development1 from '@/public/assets/image/1.png';
+import development2 from '@/public/assets/image/2.png';
+import development3 from '@/public/assets/image/3.png';
+import development4 from '@/public/assets/image/4.png';
+import development5 from '@/public/assets/image/5.png';
+import development6 from '@/public/assets/image/6.png';
+import development7 from '@/public/assets/image/7.png';
+import development8 from '@/public/assets/image/8.png';
+import development9 from '@/public/assets/image/9.png';
+
+const awardImageAsArray = [
+  { src: indonesiaMyHomeAward2022, alt: 'Indonesia My Home Award 2022' },
+  { src: propertyGuruIndonesiaPropertyAward2023, alt: 'Propertyguru Indonesia Property Award 2023' },
+  { src: indonesiaAwardMagazine2021, alt: 'Indonesia Award Magazine 2021' },
+  { src: propertyAndBankReward2022, alt: 'Property And Bank Reward XVI 2022' },
+  { src: indonesiaMyHomeAward2022, alt: 'Indonesia My Home Award 2022' },
+  { src: propertyGuruIndonesiaPropertyAward2023, alt: 'Propertyguru Indonesia Property Award 2023' },
+  { src: indonesiaInnovationGala2021, alt: 'Indonesia Innovation Gala 70 2021' },
+];
+
+const patnerLogoAsArray = [
+  { src: logoDpa, alt: 'Logo DPA' },
+  { src: logoCoen, alt: 'Logo COEN' },
+  { src: logoPdw, alt: 'Logo PDW' },
+  { src: logoMeinhardt, alt: 'Logo Meinhardt' },
+  { src: logoHataneka, alt: 'Logo Hataneka' },
+  { src: logoGeniusLoci, alt: 'Logo Genius Loci' },
+  { src: logoQuadratura, alt: 'Logo Quadratura' },
+  { src: logoRire, alt: 'Logo Rire' },
+  { src: logoPtangStudio, alt: 'Logo Ptang Studio' },
+];
+
 const centralAcitivityAsArray = [
   { src: centralActivity1, alt: 'Central Activity 1' },
   { src: centralActivity2, alt: 'Central Activity 2' },
@@ -103,17 +116,6 @@ const centralAcitivityAsArray = [
   { src: centralActivity14, alt: 'Central Activity 14' },
   { src: centralActivity15, alt: 'Central Activity 15' },
 ];
-
-import imgProperty1 from '@/public/assets/image/property-1.png';
-import logoPartner1 from '@/public/assets/image/logo-partner-1.png';
-import logoPartner2 from '@/public/assets/image/logo-partner-2.png';
-import logoPartner3 from '@/public/assets/image/logo-partner-3.png';
-import logoPartner4 from '@/public/assets/image/logo-partner-4.png';
-import logoPartner5 from '@/public/assets/image/logo-partner-5.png';
-import logoPartner6 from '@/public/assets/image/logo-partner-6.png';
-import logoPartner7 from '@/public/assets/image/logo-partner-7.png';
-import logoPartner8 from '@/public/assets/image/logo-partner-8.png';
-import logoPartner9 from '@/public/assets/image/logo-partner-9.png';
 
 export {
   logoColGreen,
@@ -139,7 +141,6 @@ export {
   backgroundTopBannerPageCentralHome,
   backgroundBottomBannerPageCentralHome,
   centralAcitivityAsArray,
-  imgProperty1,
   logoPartner1,
   logoPartner2,
   logoPartner3,
@@ -154,4 +155,13 @@ export {
   imgSliderProperty2,
   imgSliderProperty3,
   imgBackgroundHeroDetailDev,
+  development1,
+  development2,
+  development3,
+  development4,
+  development5,
+  development6,
+  development7,
+  development8,
+  development9,
 };

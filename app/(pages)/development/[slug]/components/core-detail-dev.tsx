@@ -35,6 +35,8 @@ import L from 'leaflet';
 import markerIconPng from 'leaflet/dist/images/marker-icon.png';
 import markerShadowPng from 'leaflet/dist/images/marker-shadow.png';
 import { StaticImageData } from 'next/image';
+import { DevelopmentModel } from '@/app/lib/utils/developments';
+import Link from 'next/link';
 
 const defaultIcon = L.icon({
   iconUrl: markerIconPng.src,
@@ -99,7 +101,7 @@ const facilities = [
   },
 ];
 
-export default function CoreDetailDevelopment() {
+export default function CoreDetailDevelopment({ detail }: { detail: DevelopmentModel | undefined }) {
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -110,7 +112,7 @@ export default function CoreDetailDevelopment() {
   }, []);
 
   return (
-    <div className="w-full flex lg:px-20 p-0 lg:pt-20">
+    <div className="container mx-auto flex px-4 p-0 lg:pt-20">
       <div className="flex flex-col flex-grow">
         <div className="p-8 pb-0 lg:pl-0 lg:pt-0 lg:pb-0 lg:pr-[75px] ">
           <div className="flex items-start mb-0 lg:mb-10">
@@ -118,14 +120,13 @@ export default function CoreDetailDevelopment() {
               <Image src={logoProperty} alt="Logo Property" unoptimized className="w-full h-full object-contain" />
             </div>
             <div className="ml-0 lg:ml-14">
-              <div className="flex items-center gap-2 lg:gap-4 mb-4">
+              <Link href="/development" className="flex items-center gap-2 lg:gap-4 mb-4">
                 <HiOutlineArrowLeft className="text-primary text-lg lg:text-xl" />
                 <p className="text-primary font-semibold text-sm lg:text-xs uppercase">All Development</p>
-              </div>
+              </Link>
 
               <h1 className="font-marcellus text-textPrimary lg:leading-none lg:text-[64px] text-4xl uppercase lg:mb-0 mb-4">
-                Serenity <br />
-                Central City
+                {detail?.title}
               </h1>
             </div>
           </div>
@@ -135,11 +136,11 @@ export default function CoreDetailDevelopment() {
           <div className="flex text-textPrimary items-center gap-4  text-sm">
             <span className="flex items-center gap-1 text-[10px] font-bold uppercase">
               <RiBuildingFill className="text-sm" />
-              Residential
+              {detail?.type}
             </span>
             <span className="flex items-center gap-1 text-[10px] font-bold uppercase">
               <MdLocationOn className="text-sm" />
-              Batam Kota
+              {detail?.location}
             </span>
             <div className="hidden lg:flex items-center text-textPrimary gap-1 text-[10px] font-bold uppercase ">
               <FaWallet className="text-xs" />
@@ -154,11 +155,7 @@ export default function CoreDetailDevelopment() {
             Starts from Rp 800.000.000
           </div>
 
-          <p className="text-sm mt-6 mb-12 text-textSecondary">
-            Inspired by the natural beauty, Serenity Central City, an exclusive resort area surrounded by mountains,
-            beaches, also forests, offers a harmonious, natural, and peaceful atmosphere where you can find happiness
-            and build beautiful memories with loved ones.
-          </p>
+          <p className="text-sm mt-6 mb-12 text-textSecondary">{detail?.description}</p>
 
           <div className="w-full lg:max-w-fit flex gap-4 mb-10">
             <Button variant="outline" className="flex-1 rounded-none text-xs py-[17px] px-[15px] lg:px-6">

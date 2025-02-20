@@ -30,10 +30,10 @@ const logos = [
 
 export default function CarouselOurPartner() {
   return (
-    <section>
+    <section className="w-full">
       {/* Carousel Desktop */}
-      <div className="w-full py-8 px-0 lg:py-20 lg:px-0 xl:py-20 2xl:px-28 hidden lg:block container mx-auto">
-        <h4 className="text-primary text-xs font-semibold lg:text-sm text-start mb-6 ">Our Partners</h4>
+      <div className="w-full px-4 lg:py-20 xl:py-20 hidden lg:block container mx-auto">
+        <h4 className="text-primary text-xs font-semibold lg:text-sm text-start mb-6 ">OUR PATNERS</h4>
 
         <div className="container mx-auto">
           <Carousel
@@ -63,22 +63,16 @@ export default function CarouselOurPartner() {
       </div>
 
       {/* Carousel Mobile */}
-      <div className="w-full p-8 lg:p-20 block lg:hidden">
-        <h4 className="text-primary text-xs font-semibold lg:text-sm text-start mb-6 ">Our Partners</h4>
-
-        <div className="grid grid-cols-3 gap-0 sm:gap-6 p-0 ">
-          {logos.map((logo, key) => (
-            <Image
-              key={key}
-              src={logo}
-              alt={`logo` + key + 1}
-              width={1000}
-              height={1000}
-              className="w-[84px] h-full object-cover"
-            />
-          ))}
+      <section className="bg-backgroundWhite w-full block lg:hidden">
+        <div className="container mx-auto px-4 py-8 lg:m-auto">
+          <p className="mb-5 text-xs text-primary font-semibold">OUR PATNERS</p>
+          <div className="grid grid-cols-3 gap-8 md:flex md:justify-between md:gap-0">
+            {logos.map((logo, key) => (
+              <Image key={key} src={logo} alt={`logo` + key + 1} width={0} className="w-[84px] h-full object-cover" />
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </section>
   );
 }

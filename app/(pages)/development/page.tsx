@@ -16,13 +16,15 @@ export default function Development() {
 
   return (
     <div className="h-auto bg-bgPrimary flex flex-col justify-center items-center ">
-      <h1 className="text-[64px] leading-[70px]  text-center mt-56 mb-28 font-marcellus text-textPrimary uppercase sm:flex hidden">
+      <h1 className="text-[64px] leading-[70px]  text-center mt-56 mb-28 font-marcellus text-textPrimary uppercase lg:flex hidden">
         Find tHe Perfect Property <br /> for your lifestyle
       </h1>
-      <h1 className="text-[36px] leading-[70px]  text-center mt-44 mb-20  font-marcellus text-textPrimary uppercase sm:hidden flex">
+      <h1 className="text-[32px] leading-[1.5]  text-center mt-44 mb-20  font-marcellus text-textPrimary uppercase lg:hidden flex">
         Find tHe Perfect <br /> Property for <br /> your lifestyle
       </h1>
-      <CardListDevelopment />
+      <div className="container mx-auto md:px-4">
+        <CardListDevelopment />
+      </div>
       <CarouselOurPartner />
       <PropertyFinder />
     </div>
