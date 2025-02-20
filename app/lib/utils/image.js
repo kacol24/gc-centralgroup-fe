@@ -47,6 +47,48 @@ const patnerLogoAsArray = [
   { src: logoPtangStudio, alt: 'Logo Ptang Studio' },
 ];
 
+import backgroundTopBannerPageCentralBerbagi from '@/public/assets/image/bg-top-banner-page-central-berbagi.png';
+import backgroundBottomBannerPageCentralBerbagi from '@/public/assets/image/bg-bottom-banner-page-central-berbagi.png';
+import backgroundTopBannerPageCentralPropertyAcademy from '@/public/assets/image/bg-top-banner-page-central-property-academy.png';
+import backgroundBottomBannerPageCentralPropertyAcademy from '@/public/assets/image/bg-bottom-banner-page-central-property-academy.png';
+import backgroundTopBannerPageCentralConnect from '@/public/assets/image/bg-top-banner-page-central-connect.png';
+import backgroundBottomBannerPageCentralConnect from '@/public/assets/image/bg-bottom-banner-page-central-connect.png';
+import backgroundTopBannerPageCentralHome from '@/public/assets/image/bg-top-banner-page-central-home.png';
+import backgroundBottomBannerPageCentralHome from '@/public/assets/image/bg-bottom-banner-page-central-home.png';
+
+import centralActivity1 from '@/public/assets/image/central-activity-1.png';
+import centralActivity2 from '@/public/assets/image/central-activity-2.png';
+import centralActivity3 from '@/public/assets/image/central-activity-3.png';
+import centralActivity4 from '@/public/assets/image/central-activity-4.png';
+import centralActivity5 from '@/public/assets/image/central-activity-5.png';
+import centralActivity6 from '@/public/assets/image/central-activity-6.png';
+import centralActivity7 from '@/public/assets/image/central-activity-7.png';
+import centralActivity8 from '@/public/assets/image/central-activity-8.png';
+import centralActivity9 from '@/public/assets/image/central-activity-9.png';
+import centralActivity10 from '@/public/assets/image/central-activity-10.png';
+import centralActivity11 from '@/public/assets/image/central-activity-11.png';
+import centralActivity12 from '@/public/assets/image/central-activity-12.png';
+import centralActivity13 from '@/public/assets/image/central-activity-13.png';
+import centralActivity14 from '@/public/assets/image/central-activity-14.png';
+import centralActivity15 from '@/public/assets/image/central-activity-15.png';
+const centralAcitivityAsArray = [
+  { src: centralActivity1, alt: 'Central Activity 1' },
+  { src: centralActivity2, alt: 'Central Activity 2' },
+  { src: centralActivity3, alt: 'Central Activity 3' },
+  { src: centralActivity4, alt: 'Central Activity 4' },
+  { src: centralActivity5, alt: 'Central Activity 5' },
+  { src: centralActivity6, alt: 'Central Activity 6' },
+  { src: centralActivity7, alt: 'Central Activity 7' },
+  { src: centralActivity8, alt: 'Central Activity 8' },
+  { src: centralActivity9, alt: 'Central Activity 9' },
+  { src: centralActivity10, alt: 'Central Activity 10' },
+  { src: centralActivity11, alt: 'Central Activity 11' },
+  { src: centralActivity12, alt: 'Central Activity 12' },
+  { src: centralActivity13, alt: 'Central Activity 13' },
+  { src: centralActivity14, alt: 'Central Activity 14' },
+  { src: centralActivity15, alt: 'Central Activity 15' },
+];
+
 export {
   logoColGreen,
   logoRowGreen,
@@ -61,4 +103,13 @@ export {
   principMuljadi,
   backgroundGoalPageAbout,
   patnerLogoAsArray,
+  backgroundTopBannerPageCentralBerbagi,
+  backgroundBottomBannerPageCentralBerbagi,
+  backgroundTopBannerPageCentralPropertyAcademy,
+  backgroundBottomBannerPageCentralPropertyAcademy,
+  backgroundTopBannerPageCentralConnect,
+  backgroundBottomBannerPageCentralConnect,
+  backgroundTopBannerPageCentralHome,
+  backgroundBottomBannerPageCentralHome,
+  centralAcitivityAsArray,
 };

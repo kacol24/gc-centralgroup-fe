@@ -169,10 +169,18 @@ export default function Navbar() {
           </li>
           {openMenus['community'] && (
             <ul className="pl-4 space-y-6 text-textPrimary font-medium uppercase text-sm">
-              <li>Central Berbagi</li>
-              <li>Central Property Academy</li>
-              <li>Central Connect</li>
-              <li>Central Home</li>
+              <li>
+                <a href="/central/berbagi">Central Berbagi</a>
+              </li>
+              <li>
+                <a href="/central/property-academy">Central Property Academy</a>
+              </li>
+              <li>
+                <a href="/central/connect">Central Connect</a>
+              </li>
+              <li>
+                <a href="/central/home">Central Home</a>
+              </li>
             </ul>
           )}
 

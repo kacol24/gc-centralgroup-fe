@@ -19,6 +19,7 @@ const config: Config = {
         textSecondary: '#514231',
         textTertiary: '#7AAF1C',
         backgroundWhite: '#FAFAFA',
+        backgroundGray: '#2E2E2E',
       },
     },
   },
