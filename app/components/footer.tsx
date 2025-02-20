@@ -103,8 +103,6 @@ export default function Footer() {
 
       {/* isDesktop */}
 
-      {/* isDesktop */}
-
       {/* Divider */}
       <div className="w-full border-t md:flex hidden border-white mt-[72px] opacity-20" />
       <div className="w-full border-t md:flex hidden border-white mt-[72px] opacity-20" />
