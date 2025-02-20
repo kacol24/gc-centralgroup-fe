@@ -16,6 +16,7 @@ import imgSliderProperty1 from '@/public/assets/image/img-slider-property-1.png'
 import imgSliderProperty2 from '@/public/assets/image/img-slider-property-2.png';
 import imgSliderProperty3 from '@/public/assets/image/img-slider-property-3.jpeg';
 import imgBackgroundHeroDetailDev from '@/public/assets/image/bg-top-detail-dev.png';
+import imgDummyArticle from '@/public/assets/image/img-dummy-article.png';
 import imgProperty1 from '@/public/assets/image/property-1.png';
 import backgroundBannerPageAbout from '@/public/assets/image/bg-banner-page-about.png';
 import principMuljadi from '@/public/assets/image/princip-muljadi.png';
@@ -91,4 +92,5 @@ export {
   imgSliderProperty2,
   imgSliderProperty3,
   imgBackgroundHeroDetailDev,
+  imgDummyArticle,
 };
