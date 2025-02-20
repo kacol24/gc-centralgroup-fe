@@ -25,14 +25,6 @@ export default function Footer() {
             unoptimized={true}
             className="object-contain md:hidden w-[160px]"
           />
-          <Image
-            src={logoRowWhite}
-            alt="Logo"
-            width={1000}
-            height={1000}
-            unoptimized={true}
-            className="object-contain md:hidden w-[160px]"
-          />
           {/* Logo for Desktop */}
           <Image
             src={logoColWhite}

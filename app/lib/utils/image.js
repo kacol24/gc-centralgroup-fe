@@ -12,6 +12,9 @@ import logoPartner7 from '@/public/assets/image/logo-partner-7.png';
 import logoPartner8 from '@/public/assets/image/logo-partner-8.png';
 import logoPartner9 from '@/public/assets/image/logo-partner-9.png';
 import logoProperty from '@/public/assets/image/logo-property.png';
+import imgSliderProperty1 from '@/public/assets/image/img-slider-property-1.png';
+import imgSliderProperty2 from '@/public/assets/image/img-slider-property-2.png';
+import imgSliderProperty3 from '@/public/assets/image/img-slider-property-3.jpeg';
 import imgBackgroundHeroDetailDev from '@/public/assets/image/bg-top-detail-dev.png';
 import imgProperty1 from '@/public/assets/image/property-1.png';
 import backgroundBannerPageAbout from '@/public/assets/image/bg-banner-page-about.png';
@@ -84,5 +87,8 @@ export {
   logoPartner8,
   logoPartner9,
   logoProperty,
+  imgSliderProperty1,
+  imgSliderProperty2,
+  imgSliderProperty3,
   imgBackgroundHeroDetailDev,
 };
