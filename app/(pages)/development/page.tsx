@@ -11,7 +11,7 @@ export default function Development() {
         loading: () => <p>A map is loading</p>,
         ssr: false,
       }),
-    []
+    [],
   );
 
   return (
