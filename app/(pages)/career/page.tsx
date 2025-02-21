@@ -5,6 +5,7 @@ import { careerPageBanner } from '@/app/lib/utils/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { TbGridDots } from 'react-icons/tb';
+import { IoMdArrowDropdown } from 'react-icons/io';
 
 export default function Career() {
   const [careersData, setCareersData] = useState<CareerModel[]>([]);
@@ -45,17 +46,21 @@ export default function Career() {
             Saat ini Central Group membutuhkan beberapa posisi sebagai berikut. Kunjungi secara berkala halaman ini,
             untuk mendapatkan informasi karir di Central Group
           </p>
-          <select
-            className="w-full mt-8 p-4 text-textPrimary focus:outline-none focus:ring-0 md:w-[50%]"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            {categories.map((category) => (
-              <option key={category} value={category} className="p-4 text-textPrimary">
-                {category}
-              </option>
-            ))}
-          </select>
+          <div className="relative md:w-[50%] w-full mt-8 mx-auto">
+            <select
+              className="w-full p-4 text-textPrimary rounded-sm focus:outline-none focus:ring-0 appearance-none bg-white border border-gray-300"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
+              {categories.map((category) => (
+                <option key={category} value={category} className="p-4 text-textPrimary">
+                  {category}
+                </option>
+              ))}
+            </select>
+
+            <IoMdArrowDropdown className="absolute top-[50%] -translate-y-1/2 right-4 text-textPrimary flex items-center pointer-events-none" />
+          </div>
         </div>
       </section>
 
