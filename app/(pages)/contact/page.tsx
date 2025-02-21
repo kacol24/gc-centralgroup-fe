@@ -19,7 +19,7 @@ export default function Contact() {
     [],
   );
   return (
-    <section className="w-screen h-auto pt-[170px] lg:pt-[223px] bg-backgroundWhite px-0 lg:px-20 lg:pb-[90px] pb-0">
+    <section className="w-full container mx-auto px-4 h-auto pt-[170px] lg:pt-[223px] bg-backgroundWhite lg:pb-[90px] pb-0">
       <h1 className="lg:text-[64px] lg:leading-[70px] items-center justify-center text-center lg:mb-12 font-marcellus text-textPrimary uppercase sm:flex hidden">
         The Trusted Real Estate <br /> Authority For Those <br /> Seeking The Best.
       </h1>
