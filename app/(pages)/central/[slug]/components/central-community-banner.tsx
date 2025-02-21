@@ -30,7 +30,7 @@ export default function CentralCommunityBanner({
   return (
     <section>
       <div
-        className="h-screen relative flex flex-col justify-center bg-cover bg-center"
+        className="min-h-[50rem] h-screen relative flex flex-col justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${bannerImageTop?.src})` }}
       >
         <div className={`absolute top-0 bottom-0 left-0 right-0 opacity-95 ${bannerColor}`} />
@@ -38,7 +38,7 @@ export default function CentralCommunityBanner({
 
         <div className="z-20 container w-[80%] m-auto text-center">
           <h1 className="mb-12 text-4xl text-center uppercase lg:text-6xl text-white font-aboreto">{bannerTitle}</h1>
-          <p className="mb-20 text-sm text-center md:w-[80%] md:mx-auto text-white">{bannerDescription}</p>
+          <p className="mb-40 text-sm text-center md:w-[80%] md:mx-auto text-white">{bannerDescription}</p>
         </div>
       </div>
 
