@@ -1,5 +1,6 @@
-import Image from 'next/image';
+'use client';
 
+import Image from 'next/image';
 import {
   backgroundBannerPageAbout,
   aboutPageBannerAttachmentTopLeft,
@@ -11,6 +12,8 @@ import {
   backgroundGoalPageAbout,
   patnerLogoAsArray,
 } from '@/app/lib/utils/image';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 
 export default function About() {
   return (
@@ -65,19 +68,36 @@ export default function About() {
       </section>
 
       <section className="bg-backgroundWhite">
-        <div className="w-full p-8 flex gap-6 overflow-x-auto md:align-middle md:justify-center md:gap-8 md:overflow-x-hidden lg:px-0 lg:gap-10">
-          {awardImageAsArray?.map((award, index) => (
-            <div key={index} className="w-[120px] min-w-[120px] grow relative">
-              <Image
-                src={award.src}
-                alt={award.alt}
-                width={120}
-                height={0}
-                className="w-full h-auto object-contain aspect-square"
-              />
-              <p className="mt-2 text-[9px] text-center text-textPrimary font-bold md:text-xs">{award.alt}</p>
-            </div>
-          ))}
+        <div className="w-full py-8">
+          <Carousel
+            opts={{
+              align: 'start',
+              loop: true,
+              slidesToScroll: 1,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 2000,
+              }),
+            ]}
+          >
+            <CarouselContent className="flex gap-4">
+              {awardImageAsArray?.map((award, index) => (
+                <CarouselItem key={index} className="basis-1/2 lg:basis-1/6">
+                  <div className="flex flex-col items-center justify-center p-1 w-[120px] min-w-[120px] grow relative">
+                    <Image
+                      src={award.src}
+                      alt={award.alt}
+                      width={120}
+                      height={0}
+                      className="w-full h-auto object-contain aspect-square"
+                    />
+                    <p className="mt-2 text-[9px] text-center text-textPrimary font-bold md:text-xs">{award.alt}</p>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </section>
 

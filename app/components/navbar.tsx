@@ -256,7 +256,9 @@ export default function Navbar({ type = 'fixed' }: NavbarPropsModel) {
             <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">NEWS & UPDATE</div>
           </li>
           <li>
-            <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">CAREERS</div>
+            <Link href="/career" className={menuStyle('/career')} onClick={() => setIsOpen(false)}>
+              CAREERS
+            </Link>
           </li>
           <li>
             <Link href="/contact" className={menuStyle('/contact')} onClick={() => setIsOpen(false)}>

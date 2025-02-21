@@ -78,6 +78,8 @@ import development7 from '@/public/assets/image/7.png';
 import development8 from '@/public/assets/image/8.png';
 import development9 from '@/public/assets/image/9.png';
 
+import careerPageBanner from '@/public/assets/image/career-page-banner.png';
+
 const awardImageAsArray = [
   { src: indonesiaMyHomeAward2022, alt: 'Indonesia My Home Award 2022' },
   { src: propertyGuruIndonesiaPropertyAward2023, alt: 'Propertyguru Indonesia Property Award 2023' },
@@ -166,4 +168,5 @@ export {
   development8,
   development9,
   imgDummyArticle,
+  careerPageBanner,
 };
