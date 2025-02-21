@@ -39,7 +39,7 @@ export default function Contact() {
           <h3 className="text-2xl text-backgroundWhite tracking-wider font-marcellus uppercase">
             Central Group Development
           </h3>
-          <div className="w-full lg:w-[55%] lg:flex items-start gap-28 mt-10">
+          <div className="w-full xl:w-[55%] lg:flex items-start gap-28 mt-10">
             <div className="text-white space-y-4">
               <div className="flex items-center gap-3">
                 <IoLogoWhatsapp className="text-xl opacity-60" />
@@ -77,7 +77,7 @@ export default function Contact() {
         </div>
         <MapContact />
 
-        <div className="w-full flex-col flex lg:hidden lg:flex-col ">
+        <div className="w-full flex-col flex xl:hidden xl:flex-col ">
           <div className="p-12 bg-white shadow-xl rounded-sm">
             <h1 className="font-marcellus text-textPrimary text-2xl uppercase mb-8">GEt In touch</h1>
 
@@ -164,7 +164,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="absolute top-1/2 -translate-y-[60%] right-20">
+        <div className="absolute top-1/2 -translate-y-[60%] right-20 hidden xl:block">
           <div className="w-[405px] hidden lg:flex lg:flex-col ">
             <div className="p-12 bg-white shadow-xl rounded-sm">
               <h1 className="font-marcellus text-textPrimary text-2xl uppercase mb-8">GEt In touch</h1>
