@@ -14,19 +14,19 @@ import { logoColGreen, logoColWhite } from '@/app/lib/utils/image';
 import { useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import { developments } from '../lib/utils/developments';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { central } from '../lib/utils/cental';
 
-interface NavbarPropsModel {
-  type?: 'sticky' | 'fixed';
-}
-
-export default function Navbar({ type = 'fixed' }: NavbarPropsModel) {
+export default function Navbar() {
   const pathname = usePathname();
   const allowPath = ['/development', '/contact'];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
+
+  const searchParams = useSearchParams();
+
+  const nav = searchParams.get('nav') || 'fixed';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,18 +45,18 @@ export default function Navbar({ type = 'fixed' }: NavbarPropsModel) {
   };
 
   const navbarStyle = () => {
-    switch (type) {
+    switch (nav) {
       case 'fixed':
         return 'bg-white shadow';
       case 'sticky':
         return 'fixed md:pt-[34px] px-8 lg:px-20 w-[100%] ';
       default:
-        return 'bg-white';
+        return 'bg-white shadow';
     }
   };
 
   const navbarContainerStyle = () => {
-    switch (type) {
+    switch (nav) {
       case 'fixed':
         return 'py-2 lg:py-4 text-black';
       case 'sticky':
