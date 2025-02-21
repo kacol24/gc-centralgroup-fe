@@ -33,7 +33,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.className} ${geistMono.variable} ${montserrat.className} ${marcellus.className} ${aboreto.className} antialiased`}
       >
-        <Navbar />
+        <Navbar type="fixed" />
         {children}
         <Footer />
       </body>

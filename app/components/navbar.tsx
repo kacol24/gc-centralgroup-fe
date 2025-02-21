@@ -23,7 +23,7 @@ interface NavbarPropsModel {
 
 export default function Navbar({ type = 'fixed' }: NavbarPropsModel) {
   const pathname = usePathname();
-
+  const allowPath = ['/development', '/contact'];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
@@ -67,7 +67,7 @@ export default function Navbar({ type = 'fixed' }: NavbarPropsModel) {
   };
 
   const variantStyle = () => {
-    if (pathname === '/development') {
+    if (allowPath.includes(pathname)) {
       return { text: 'text-black', logo: logoColGreen, iconMenu, iconWhatsApp, iconCaretDown };
     }
     return {
@@ -259,7 +259,9 @@ export default function Navbar({ type = 'fixed' }: NavbarPropsModel) {
             <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">CAREERS</div>
           </li>
           <li>
-            <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">ENQUIRE</div>
+            <Link href="/contact" className={menuStyle('/contact')} onClick={() => setIsOpen(false)}>
+              <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">ENQUIRE</div>
+            </Link>
           </li>
         </ul>
       </div>
