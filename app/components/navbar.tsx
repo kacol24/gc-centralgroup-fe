@@ -10,18 +10,27 @@ import {
   iconCaretDownWhite,
   iconMenuWhite,
 } from '@/app/lib/utils/svg';
-import { logoRowGreen, logoColWhite } from '@/app/lib/utils/image';
+import { logoColGreen, logoColWhite } from '@/app/lib/utils/image';
 import { useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
+import { developments } from '../lib/utils/developments';
+import { usePathname } from 'next/navigation';
+import { central } from '../lib/utils/cental';
 
-export default function Navbar() {
+interface NavbarPropsModel {
+  type?: 'sticky' | 'fixed';
+}
+
+export default function Navbar({ type = 'fixed' }: NavbarPropsModel) {
+  const pathname = usePathname();
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      setIsScrolled(window.scrollY > 100);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -35,67 +44,119 @@ export default function Navbar() {
     }));
   };
 
+  const navbarStyle = () => {
+    switch (type) {
+      case 'fixed':
+        return 'bg-white shadow';
+      case 'sticky':
+        return 'fixed md:pt-[34px] px-8 lg:px-20 w-[100%] ';
+      default:
+        return 'bg-white';
+    }
+  };
+
+  const navbarContainerStyle = () => {
+    switch (type) {
+      case 'fixed':
+        return 'py-2 lg:py-4 text-black';
+      case 'sticky':
+        return 'bg-white py-2 lg:py-4 text-black shadow';
+      default:
+        return 'py-2 lg:py-4 text-black';
+    }
+  };
+
+  const variantStyle = () => {
+    if (pathname === '/development') {
+      return { text: 'text-black', logo: logoColGreen, iconMenu, iconWhatsApp, iconCaretDown };
+    }
+    return {
+      text: 'text-white',
+      logo: logoColWhite,
+      iconMenu: iconMenuWhite,
+      iconWhatsApp: iconWhatsAppWhite,
+      iconCaretDown: iconCaretDownWhite,
+    };
+  };
+
+  const menuStyle = (path: string) => {
+    if (pathname === path) {
+      return 'py-3 font-semibold cursor-pointer text-[18px]';
+    } else {
+      return 'py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]';
+    }
+  };
+
+  const subMenuStyle = (path: string) => {
+    if (pathname === path) {
+      return 'text-black font-semibold uppercase text-sm py-3 block';
+    } else {
+      return 'text-textPrimary font-medium uppercase text-sm py-3 block';
+    }
+  };
+
   return (
     <>
       {/* Navbar */}
-      <nav
-        className={`w-full fixed z-50 transition-all duration-300 ${
-          isScrolled ? 'pt-[34px] px-8 lg:px-20 w-[100%]' : ''
-        }`}
-      >
+      <nav className={`w-full fixed z-50 transition-all duration-300 ${isScrolled ? navbarStyle() : ''}`}>
         <div
-          className={`flex w-full items-center ${
-            isScrolled
-              ? 'bg-white px-8 py-2 lg:px-12 lg:py-4 text-black'
-              : 'px-8 lg:px-20 py-6 lg:py-8 bg-transparent text-white'
+          className={` w-full container mx-auto px-4   ${
+            isScrolled ? navbarContainerStyle() : ` py-6 lg:py-8 bg-transparent ${variantStyle().text}`
           }`}
         >
-          {/* Left Side */}
-          <div className="flex-1 p-4 pl-0">
-            <button onClick={() => setIsOpen(true)} className="flex items-center gap-3">
-              <h1 className="hidden md:flex">MENU</h1>
-              <Image src={isScrolled ? iconMenu : iconMenuWhite} alt="Menu Icon" height={24} width={24} />
-            </button>
-          </div>
-
-          {/* Center Side (Logo) */}
-          <div>
-            <Link href={'/'}>
-              <Image
-                className="w-[90px] md:w-[150px]"
-                src={isScrolled ? logoRowGreen : logoColWhite}
-                alt="CG Logo"
-                height={50}
-                width={50}
-                unoptimized
-              />
-            </Link>
-          </div>
-
-          {/* Right Side */}
-          <div className="md:flex-1 hidden md:flex justify-end items-center gap-6 p-4 pr-0">
-            <a href="https://wa.me/6287835712129" target="_blank" rel="noopener noreferrer">
-              <Image src={isScrolled ? iconWhatsApp : iconWhatsAppWhite} alt="WhatsApp Icon" width={24} height={24} />
-            </a>
-
-            <div className="w-px h-6 bg-gray-400"></div>
-
-            <div className="flex items-center gap-1 cursor-pointer">
-              <span>EN</span>
-              <Image
-                src={isScrolled ? iconCaretDown : iconCaretDownWhite}
-                alt="Caret Down Icon"
-                width={16}
-                height={16}
-              />
+          <div className="flex items-center">
+            {/* Left Side */}
+            <div className="flex-1 p-4 pl-0">
+              <button onClick={() => setIsOpen(true)} className="flex items-center gap-3">
+                <h1 className="hidden md:flex">MENU</h1>
+                <Image src={isScrolled ? iconMenu : variantStyle().iconMenu} alt="Menu Icon" height={24} width={24} />
+              </button>
             </div>
 
-            <div className="w-px h-6 bg-gray-400"></div>
+            {/* Center Side (Logo) */}
+            <div>
+              <Link href={'/'}>
+                <Image
+                  className="w-[90px] md:w-[100px]"
+                  src={isScrolled ? logoColGreen : variantStyle().logo}
+                  alt="CG Logo"
+                  height={1000}
+                  width={1000}
+                  unoptimized={true}
+                />
+              </Link>
+            </div>
 
-            <button className="uppercase font-bold tracking-wide ">Enquire</button>
+            {/* Right Side */}
+            <div className="md:flex-1 hidden md:flex justify-end items-center gap-6 p-4 pr-0">
+              <a href="https://wa.me/6287835712129" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={isScrolled ? iconWhatsApp : variantStyle().iconWhatsApp}
+                  alt="WhatsApp Icon"
+                  width={24}
+                  height={24}
+                />
+              </a>
+
+              <div className="w-px h-6 bg-gray-400"></div>
+
+              <div className="flex items-center gap-1 cursor-pointer">
+                <span>EN</span>
+                <Image
+                  src={isScrolled ? iconCaretDown : variantStyle().iconCaretDown}
+                  alt="Caret Down Icon"
+                  width={16}
+                  height={16}
+                />
+              </div>
+
+              <div className="w-px h-6 bg-gray-400"></div>
+
+              <button className="uppercase font-medium tracking-wide ">Enquire</button>
+            </div>
+
+            <div className="flex-1 md:hidden justify-end items-center gap-6"></div>
           </div>
-
-          <div className="flex-1 md:hidden justify-end items-center gap-6"></div>
         </div>
       </nav>
 
@@ -115,70 +176,91 @@ export default function Navbar() {
         </div>
 
         {/* Menu List */}
-        <ul className="pl-16 pt-4 space-y-6 text-textPrimary">
+        <ul className="pl-16 pt-4 text-textPrimary">
           {/* DEVELOPMENT */}
-          <li
-            className="font-semibold flex justify-start gap-2 items-center cursor-pointer text-[18px]"
-            onClick={() => toggleMenu('development')}
-          >
-            DEVELOPMENT
-            <span>
-              <Image
-                src={iconCaretDown}
-                alt="Caret Down Icon"
-                width={16}
-                height={16}
-                className={`transform transition-transform ${openMenus['development'] ? 'rotate-180' : 'rotate-0'}`}
-              />
-            </span>
+          <li>
+            <div
+              className="py-3 font-aboreto text-textPrimary flex justify-start gap-2 items-center cursor-pointer text-[18px]"
+              onClick={() => toggleMenu('development')}
+            >
+              DEVELOPMENT
+              <span>
+                <Image
+                  src={iconCaretDown}
+                  alt="Caret Down Icon"
+                  width={16}
+                  height={16}
+                  className={`transform transition-transform ${openMenus['development'] ? 'rotate-180' : 'rotate-0'}`}
+                />
+              </span>
+            </div>
           </li>
           {openMenus['development'] && (
-            <ul className="pl-4 space-y-6 text-textPrimary font-medium uppercase text-sm">
-              <li>Serenity Central City</li>
-              <li>The Icon</li>
-              <li>Central Tiban</li>
-              <li>Central Raya Batu Aji</li>
-              <li>Central Batu Aji</li>
-              <li>Central Laguna Hills</li>
-              <li>Central Raja Tiban</li>
-              <li>Central Hills</li>
-              <li>Perumahan Barelang</li>
+            <ul className="pl-4  ">
+              {developments.map((item) => (
+                <li key={item.id}>
+                  <Link
+                    href={`/development/${item.slug}`}
+                    className={subMenuStyle(`/development/${item.slug}`)}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           )}
 
           {/* ABOUT US */}
-          <li className="font-semibold cursor-pointer text-[18px]">
-            <a href="/about">ABOUT US</a>
+          <li>
+            <Link href="/about" className={menuStyle('/about')} onClick={() => setIsOpen(false)}>
+              ABOUT US
+            </Link>
           </li>
 
           {/* COMMUNITY ECOSYSTEM */}
-          <li
-            className="font-semibold flex justify-start items-center gap-2 cursor-pointer text-[18px]"
-            onClick={() => toggleMenu('community')}
-          >
-            COMMUNITY ECOSYSTEM
-            <span>
-              <Image
-                src={iconCaretDown}
-                alt="Caret Down Icon"
-                width={16}
-                height={16}
-                className={`transform transition-transform ${openMenus['community'] ? 'rotate-180' : 'rotate-0'}`}
-              />
-            </span>
+          <li>
+            <div
+              className="py-3 font-aboreto text-textPrimary flex justify-start items-center gap-2 cursor-pointer text-[18px]"
+              onClick={() => toggleMenu('community')}
+            >
+              COMMUNITY ECOSYSTEM
+              <span>
+                <Image
+                  src={iconCaretDown}
+                  alt="Caret Down Icon"
+                  width={16}
+                  height={16}
+                  className={`transform transition-transform ${openMenus['community'] ? 'rotate-180' : 'rotate-0'}`}
+                />
+              </span>
+            </div>
           </li>
           {openMenus['community'] && (
-            <ul className="pl-4 space-y-6 text-textPrimary font-medium uppercase text-sm">
-              <li>Central Berbagi</li>
-              <li>Central Property Academy</li>
-              <li>Central Connect</li>
-              <li>Central Home</li>
+            <ul className="pl-4">
+              {central.map((item) => (
+                <li key={item.slug}>
+                  <Link
+                    href={`/central/${item.slug}`}
+                    className={subMenuStyle(`/central/${item.slug}`)}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.bannerTitle}
+                  </Link>
+                </li>
+              ))}
             </ul>
           )}
 
-          <li className="font-semibold cursor-pointer text-[18px]">NEWS & UPDATE</li>
-          <li className="font-semibold cursor-pointer text-[18px] ">CAREERS</li>
-          <li className="font-semibold cursor-pointer text-[18px]">ENQUIRE</li>
+          <li>
+            <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">NEWS & UPDATE</div>
+          </li>
+          <li>
+            <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">CAREERS</div>
+          </li>
+          <li>
+            <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">ENQUIRE</div>
+          </li>
         </ul>
       </div>
 

@@ -1,0 +1,32 @@
+'use client';
+import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
+import CardListDevelopment from './components/card-list-development';
+import CarouselOurPartner from './components/carousel-our-partner';
+
+export default function Development() {
+  const PropertyFinder = useMemo(
+    () =>
+      dynamic(() => import('./components/property-finder'), {
+        loading: () => <p>A map is loading</p>,
+        ssr: false,
+      }),
+    [],
+  );
+
+  return (
+    <div className="h-auto bg-bgPrimary flex flex-col justify-center items-center ">
+      <h1 className="text-[64px] leading-[70px]  text-center mt-56 mb-28 font-marcellus text-textPrimary uppercase lg:flex hidden">
+        Find tHe Perfect Property <br /> for your lifestyle
+      </h1>
+      <h1 className="text-[32px] leading-[1.5]  text-center mt-44 mb-20  font-marcellus text-textPrimary uppercase lg:hidden flex">
+        Find tHe Perfect <br /> Property for <br /> your lifestyle
+      </h1>
+      <div className="container mx-auto md:px-4">
+        <CardListDevelopment />
+      </div>
+      <CarouselOurPartner />
+      <PropertyFinder />
+    </div>
+  );
+}
