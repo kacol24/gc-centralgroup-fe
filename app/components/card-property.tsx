@@ -16,7 +16,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ image, title, location }) =
       <Image src={image} alt={title} width={1000} height={1000} className="w-full h-full object-cover" />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-8 text-white">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
         <h1 className="text-2xl font-aboreto">{title}</h1>
 
         <div className="flex justify-between mt-2">
