@@ -19,22 +19,24 @@ export default function Contact() {
     [],
   );
   return (
-    <section className="w-full container mx-auto px-4 h-auto pt-[170px] lg:pt-[223px] bg-backgroundWhite lg:pb-[90px] pb-0">
-      <h1 className="lg:text-[64px] lg:leading-[70px] items-center justify-center text-center lg:mb-12 font-marcellus text-textPrimary uppercase sm:flex hidden">
-        The Trusted Real Estate <br /> Authority For Those <br /> Seeking The Best.
-      </h1>
-      <h1 className="text-4xl px-6  items-center justify-center text-center font-marcellus mb-8 text-textPrimary uppercase sm:hidden flex">
-        The Trusted Real <br /> Estate Authority <br /> For Those <br /> Seeking The Best.
-      </h1>
-      <p className="text-sm px-6 font-medium text-center text-textPrimary mb-[60px] lg:mb-20">
-        Thank you for visiting our site. As a dynamic digital platform, it will continuously update with new property{' '}
-        <br className="hidden lg:block" />
-        listings, sales outcomes, news articles, market trends and special Forbes event notifications. We encourage you
-        to <br className="hidden lg:block" /> visit regularly to ensure you remain up to date with our ever changing
-        sphere of influence.
-      </p>
+    <section className="w-full h-auto pt-[170px] lg:pt-[223px] bg-backgroundWhite lg:pb-[90px] pb-0">
+      <div className="container mx-auto px-4">
+        <h1 className="text-[64px] leading-[70px] items-center justify-center text-center lg:mb-12 font-marcellus text-textPrimary uppercase sm:flex hidden">
+          The Trusted Real Estate <br /> Authority For Those <br /> Seeking The Best.
+        </h1>
+        <h1 className="text-4xl px-6  items-center justify-center text-center font-marcellus mb-8 text-textPrimary uppercase sm:hidden flex">
+          The Trusted Real <br /> Estate Authority <br /> For Those <br /> Seeking The Best.
+        </h1>
+        <p className="text-sm px-6 font-medium text-center text-textPrimary mb-[60px] lg:mb-20">
+          Thank you for visiting our site. As a dynamic digital platform, it will continuously update with new property{' '}
+          <br className="hidden lg:block" />
+          listings, sales outcomes, news articles, market trends and special Forbes event notifications. We encourage
+          you to <br className="hidden lg:block" /> visit regularly to ensure you remain up to date with our ever
+          changing sphere of influence.
+        </p>
+      </div>
 
-      <div className="w-full relative">
+      <div className="w-full relative lg:container lg:mx-auto lg:px-4 ">
         <div className="w-full px-8 py-12  lg:p-20 bg-[#192E2E] flex flex-col justify-start">
           <h3 className="text-2xl text-backgroundWhite tracking-wider font-marcellus uppercase">
             Central Group Development
