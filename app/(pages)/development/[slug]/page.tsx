@@ -31,11 +31,13 @@ export default function DevelopmentDetailPage({ params }: { params: Promise<{ sl
     getData();
   });
 
+  const nextSectionId = 'next-section';
+
   return (
     <section className="w-full h-auto bg-backgroundWhite">
-      <HeroDetailDevelopment />
-      <CoreDetailDevelopment detail={detailDevelopment} />
-      <CarouselDetailDevelopment />
+      <HeroDetailDevelopment id={nextSectionId} />
+      <CoreDetailDevelopment nextSectionId={nextSectionId} detail={detailDevelopment} />
+      <CarouselDetailDevelopment id="last-section" />
       <CardListDetailDevelopment />
     </section>
   );

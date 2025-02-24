@@ -10,7 +10,7 @@ import {
   iconCaretDownWhite,
   iconMenuWhite,
 } from '@/app/lib/utils/svg';
-import { logoColGreen, logoColWhite } from '@/app/lib/utils/image';
+import { logoColGreen, logoColWhite, logoRowGreen } from '@/app/lib/utils/image';
 import { useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import { developments } from '../lib/utils/developments';
@@ -83,7 +83,7 @@ export default function Navbar() {
     if (pathname === path) {
       return 'py-3 font-semibold cursor-pointer text-[18px]';
     } else {
-      return 'py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]';
+      return 'py-3 font-marcellus text-textPrimary cursor-pointer text-[18px]';
     }
   };
 
@@ -118,7 +118,7 @@ export default function Navbar() {
               <Link href={'/'}>
                 <Image
                   className="w-[90px] md:w-[100px]"
-                  src={isScrolled ? logoColGreen : variantStyle().logo}
+                  src={isScrolled ? logoRowGreen : variantStyle().logo}
                   alt="CG Logo"
                   height={1000}
                   width={1000}
@@ -180,7 +180,7 @@ export default function Navbar() {
           {/* DEVELOPMENT */}
           <li>
             <div
-              className="py-3 font-aboreto text-textPrimary flex justify-start gap-2 items-center cursor-pointer text-[18px]"
+              className="py-3 font-marcellus  text-textPrimary flex justify-start gap-2 items-center cursor-pointer text-[18px]"
               onClick={() => toggleMenu('development')}
             >
               DEVELOPMENT
@@ -221,7 +221,7 @@ export default function Navbar() {
           {/* COMMUNITY ECOSYSTEM */}
           <li>
             <div
-              className="py-3 font-aboreto text-textPrimary flex justify-start items-center gap-2 cursor-pointer text-[18px]"
+              className="py-3 font-marcellus text-textPrimary flex justify-start items-center gap-2 cursor-pointer text-[18px]"
               onClick={() => toggleMenu('community')}
             >
               COMMUNITY ECOSYSTEM
@@ -253,7 +253,9 @@ export default function Navbar() {
           )}
 
           <li>
-            <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">NEWS & UPDATE</div>
+            <Link href="/article" className={menuStyle('/article')} onClick={() => setIsOpen(false)}>
+              NEWS & UPDATE
+            </Link>
           </li>
           <li>
             <Link href="/career" className={menuStyle('/career')} onClick={() => setIsOpen(false)}>
@@ -262,7 +264,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link href="/contact" className={menuStyle('/contact')} onClick={() => setIsOpen(false)}>
-              <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">ENQUIRE</div>
+              <div className="py-3 font-marcellus text-textPrimary cursor-pointer text-[18px]">ENQUIRE</div>
             </Link>
           </li>
         </ul>

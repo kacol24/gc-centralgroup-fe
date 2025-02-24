@@ -32,6 +32,13 @@ export default function ArticleCore() {
             dataPropertys={propertyTypes}
             placeholder="Property Types"
             icon={<RiBuildingFill className="text-white" />}
+            customClassName={{
+              button: 'bg-black text-white hover:bg-black hover:opacity-80 py-6',
+              popoverContent: 'bg-gray-800 text-white',
+              input: 'border-gray-400',
+              item: 'text-gray-700',
+              itemActive: 'bg-blue-300 text-black',
+            }}
           />
         </div>
       </div>

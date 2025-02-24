@@ -26,7 +26,7 @@ export default function ArticleHero() {
 
           <div className="">
             <div className="border-t lg:flex hidden  w-full flex-none  border-white mb-7 md:mt-0 opacity-20 " />
-            <div className=" w-full block lg:flex lg:flex-row">
+            <div className=" w-full block items-center lg:flex lg:flex-row">
               <div className="w-full flex gap-4 items-start">
                 <div className="w-14 h-14  ">
                   <Image src={imgDummyArticle} alt="Hero Article" className="w-full h-full object-cover rounded-full" />
@@ -41,7 +41,7 @@ export default function ArticleHero() {
 
               <Button
                 variant="filled"
-                className="rounded-none bg w-full !bg-white !text-primary lg:w-auto lg:h-full  font-medium text-xs px-0 lg:px-11 py-[16px] uppercase"
+                className="rounded-none bg w-full !bg-white !text-primary lg:w-auto   font-medium text-xs px-0 lg:px-11 py-[24px] uppercase"
               >
                 Learn More
               </Button>

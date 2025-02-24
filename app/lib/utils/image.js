@@ -20,6 +20,7 @@ import imgProperty1 from '@/public/assets/image/property-1.png';
 import backgroundBannerPageAbout from '@/public/assets/image/bg-banner-page-about.png';
 import principMuljadi from '@/public/assets/image/princip-muljadi.png';
 import imgDummyArticle from '@/public/assets/image/img-dummy-article.png';
+import imgBgContactUs from '@/public/assets/image/img-background-contactus.jpeg';
 
 import backgroundGoalPageAbout from '@/public/assets/image/bg-goal-page-about.png';
 import aboutPageBannerAttachmentTopLeft from '@/public/assets/image/about-page-banner-attachment-top-left.png';
@@ -169,4 +170,5 @@ export {
   development9,
   imgDummyArticle,
   careerPageBanner,
+  imgBgContactUs,
 };

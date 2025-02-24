@@ -48,7 +48,7 @@ export default function Career() {
           </p>
           <div className="relative md:w-[50%] w-full mt-8 mx-auto">
             <select
-              className="w-full p-4 text-textPrimary rounded-sm focus:outline-none focus:ring-0 appearance-none bg-white border border-gray-300"
+              className="w-full p-3 text-textPrimary rounded-sm focus:outline-none focus:ring-0 appearance-none bg-white border border-gray-300"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
@@ -132,7 +132,7 @@ export default function Career() {
                 <p className="p-4 pb-8 text-textPrimary font-medium md:px-8">{item.jobDescription}</p>
                 <h4 className="px-4 text-primary font-semibold md:px-8">Requirements</h4>
                 <p className="p-4 pb-8 text-textPrimary font-medium md:px-8">{item.requirement}</p>
-                <Link href="#" className="w-fit mx-auto mb-8 px-12 py-4 block text-white bg-primary">
+                <Link href="#" className="w-fit mx-auto mb-8 px-12 py-3 block text-white bg-primary">
                   APPLY JOB
                 </Link>
               </div>
