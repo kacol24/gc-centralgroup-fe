@@ -1,9 +1,11 @@
+import ArticleCore from './components/core-article';
 import ArticleHero from './components/hero-article';
 
 export default function Article() {
   return (
-    <section className="w-screen h-screen bg-primary pt-[137px] px-8 pb-8">
+    <section className="w-full lg:container lg:mx-auto  pb-8">
       <ArticleHero />
+      <ArticleCore />
     </section>
   );
 }

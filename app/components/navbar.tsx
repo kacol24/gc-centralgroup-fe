@@ -23,7 +23,7 @@ interface NavbarPropsModel {
 
 export default function Navbar({ type = 'fixed' }: NavbarPropsModel) {
   const pathname = usePathname();
-  const allowPath = ['/development', '/contact'];
+  const allowPath = ['/development', '/contact', '/article'];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
