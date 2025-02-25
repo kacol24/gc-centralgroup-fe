@@ -14,7 +14,7 @@ interface ActivityImage {
 
 export default function CentralCommunityActivity({
   activityImages,
-  initialVisible = 8,
+  initialVisible = 12,
   loadMoreCount = 4,
 }: CentralCommunityActivityProps) {
   const [visibleCount, setVisibleCount] = useState(initialVisible);
@@ -25,7 +25,7 @@ export default function CentralCommunityActivity({
   return (
     <section className="bg-backgroundWhite">
       <div className="container mx-auto px-4 pt-[3.5rem] pb-10  md:pt-20 md:pb-12 lg:mx-auto lg:pt-28 lg:pb-20">
-        <h2 className="mb-8 text-xl text-center text-textPrimary md:mb-12 md:text-2xl lg:mb-20 lg:text-4xl font-aboreto">
+        <h2 className="mb-8 text-xl text-center text-textPrimary md:mb-12 md:text-2xl lg:mb-20 lg:text-4xl font-marcellus">
           Our Activities
         </h2>
         <div className="relative columns-2 gap-4 space-y-4 md:columns-4">
