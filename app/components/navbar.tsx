@@ -83,7 +83,7 @@ export default function Navbar() {
     if (pathname === path) {
       return 'py-3 font-semibold cursor-pointer text-[18px]';
     } else {
-      return 'py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]';
+      return 'py-3 font-marcellus text-textPrimary cursor-pointer text-[18px]';
     }
   };
 
@@ -180,7 +180,7 @@ export default function Navbar() {
           {/* DEVELOPMENT */}
           <li>
             <div
-              className="py-3 font-aboreto text-textPrimary flex justify-start gap-2 items-center cursor-pointer text-[18px]"
+              className="py-3 font-marcellus text-textPrimary flex justify-start gap-2 items-center cursor-pointer text-[18px]"
               onClick={() => toggleMenu('development')}
             >
               DEVELOPMENT
@@ -221,7 +221,7 @@ export default function Navbar() {
           {/* COMMUNITY ECOSYSTEM */}
           <li>
             <div
-              className="py-3 font-aboreto text-textPrimary flex justify-start items-center gap-2 cursor-pointer text-[18px]"
+              className="py-3 font-marcellus text-textPrimary flex justify-start items-center gap-2 cursor-pointer text-[18px]"
               onClick={() => toggleMenu('community')}
             >
               COMMUNITY ECOSYSTEM
@@ -253,7 +253,7 @@ export default function Navbar() {
           )}
 
           <li>
-            <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">NEWS & UPDATE</div>
+            <div className="py-3 font-marcellus text-textPrimary cursor-pointer text-[18px]">NEWS & UPDATE</div>
           </li>
           <li>
             <Link href="/career" className={menuStyle('/career')} onClick={() => setIsOpen(false)}>
@@ -262,7 +262,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link href="/contact" className={menuStyle('/contact')} onClick={() => setIsOpen(false)}>
-              <div className="py-3 font-aboreto text-textPrimary cursor-pointer text-[18px]">ENQUIRE</div>
+              <div className="py-3 font-marcellus text-textPrimary cursor-pointer text-[18px]">ENQUIRE</div>
             </Link>
           </li>
         </ul>

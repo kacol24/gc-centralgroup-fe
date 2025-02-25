@@ -24,7 +24,7 @@ export default function About() {
         style={{ backgroundImage: `url(${backgroundBannerPageAbout.src})` }}
       >
         <div className="z-10 container w-[80%] mt-36 mx-auto md:w-[60%] md:mt-0 lg:w-[50%] text-white">
-          <h1 className="mb-10 text-4xl text-center uppercase lg:text-6xl  font-aboreto">
+          <h1 className="mb-10 text-4xl text-center uppercase lg:text-6xl  font-marcellus">
             The Best Developer in Batam
           </h1>
           <p className="mb-6 text-sm/6 text-center md:w-[80%] md:mx-auto text-white">
@@ -104,7 +104,7 @@ export default function About() {
           <div className="container w-auto h-fit mx-8 relative -top-8 bg-white shadow-custom md:mx-0 md:top-4 md:-left-8 lg:top-8">
             <div className="p-8 lg:p-16">
               <p className="mb-2 text-xs text-primary font-semibold">OUR CEO</p>
-              <h2 className="mb-4 text-4xl text-textPrimary  font-aboreto">PRINCIP MULJADI</h2>
+              <h2 className="mb-4 text-4xl text-textPrimary font-marcellus">PRINCIP MULJADI</h2>
               <p className="text-sm/6 text-textSecondary font-medium">
                 Princip Muljadi merupakan lulusan University of Technology Sidney Australia jurusan Finance and Banking.
                 Selama lebih dari 7 tahun, malang melintang di dunia Finance dan perbankan, di tahun 1999, ia kembali ke
@@ -117,7 +117,7 @@ export default function About() {
               className="p-8 bg-primary bg-contain bg-repeat lg:p-16"
               style={{ backgroundImage: `url(${backgroundWaveTile.src})` }}
             >
-              <p className="mb-2 text-lg  font-aboreto text-white">
+              <p className="mb-2 text-lg font-marcellus text-white">
                 &quot;FULFILLING DREAMS, BUILDING HOMES AND CREATING COMMUNITIES&quot;
               </p>
               <p className="text-xs text-textTertiary font-semibold uppercase">Princip Muljadi</p>
@@ -130,7 +130,7 @@ export default function About() {
         <Image src={backgroundGoalPageAbout} alt="Backgound Beach" className="w-full" />
         <div className="container w-auto mx-4 mb-4 p-6 relative -top-8 bg-white shadow-custom md:-mb-12 md:p-12 md:flex md:gap-12 md:-top-32 lg:mx-auto lg:px-20 lg:py-16 lg:gap-16">
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-primary  font-aboreto">VISION</h3>
+            <h3 className="mb-6 text-2xl text-primary font-marcellus">VISION</h3>
             <p className="text-textSecondary font-medium">
               Aliquam malesuada enim ut risus vulputate pretium morbi molestie. Sit non morbi libero nibh morbi in
               aliquet. Auctor quis nisl pretium leo mauris aliquet enim quis.
@@ -141,7 +141,7 @@ export default function About() {
           <div className="hidden md:block w-[1px] bg-gray-300 h-100"></div>
 
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-primary  font-aboreto">MISSION</h3>
+            <h3 className="mb-6 text-2xl text-primary font-marcellus">MISSION</h3>
             <p className="text-textSecondary font-medium">
               Cursus at pellentesque viverra convallis. Tincidunt turpis tincidunt purus luctus commodo pellentesque.
               Sit pellentesque sit molestie ultrices lefensa indanese.
@@ -152,7 +152,7 @@ export default function About() {
           <div className="hidden md:block w-[1px] bg-gray-300 h-100"></div>
 
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-primary  font-aboreto">PURPOSE</h3>
+            <h3 className="mb-6 text-2xl text-primary font-marcellus">PURPOSE</h3>
             <p className="text-textSecondary font-medium">
               Turpis eu accumsan platea malesuada aliquet sed egestas posuere vestibulum. Consectetur risus nascetur at
               id nibh ullamcorper. Euismod semper diam lacinia ut placerat massa.
@@ -162,7 +162,7 @@ export default function About() {
       </section>
 
       <section className="bg-backgroundWhite">
-        <div className="container mx-auto px-4 pb-10 lg:m-auto">
+        <div className="container mx-auto px-4 pb-10 lg:m-auto lg:pb-16">
           <p className="mb-5 text-xs text-primary font-semibold">OUR PROJECTS</p>
           <div className="grid grid-cols-3 gap-8 md:grid-cols-9">
             {patnerLogoAsArray?.map((patner, index) => (
