@@ -11,9 +11,21 @@ interface ComboboxDemoProps {
   dataPropertys: Array<{ value: string; label: string }>;
   placeholder?: string;
   icon?: React.ReactNode;
+  customClassName?: {
+    button?: string;
+    popoverContent?: string;
+    input?: string;
+    item?: string;
+    itemActive?: string;
+  };
 }
 
-export const ComboboxDemo: React.FC<ComboboxDemoProps> = ({ dataPropertys, placeholder = 'Select...', icon }) => {
+export const ComboboxDemo: React.FC<ComboboxDemoProps> = ({
+  dataPropertys,
+  placeholder = 'Select...',
+  icon,
+  customClassName = {},
+}) => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
 
@@ -24,15 +36,15 @@ export const ComboboxDemo: React.FC<ComboboxDemoProps> = ({ dataPropertys, place
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between bg-gray-700 border-none"
+          className={cn('w-full justify-between', customClassName.button)}
         >
           {value ? dataPropertys.find((item) => item.value === value)?.label : placeholder}
           {icon && <span className="ml-2">{icon}</span>}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full p-0">
+      <PopoverContent className={cn('w-full p-0', customClassName.popoverContent)}>
         <Command>
-          <CommandInput placeholder={placeholder} className="h-9" />
+          <CommandInput placeholder={placeholder} className={cn('h-9', customClassName.input)} />
           <CommandList>
             <CommandEmpty>No data found.</CommandEmpty>
             <CommandGroup>
@@ -40,6 +52,9 @@ export const ComboboxDemo: React.FC<ComboboxDemoProps> = ({ dataPropertys, place
                 <CommandItem
                   key={item.value}
                   value={item.value}
+                  className={cn('cursor-pointer px-3 py-2 hover:bg-gray-200', customClassName.item, {
+                    [customClassName.itemActive ?? 'bg-gray-300']: value === item.value,
+                  })}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? '' : currentValue);
                     setOpen(false);

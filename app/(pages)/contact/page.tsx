@@ -95,6 +95,8 @@ export default function Contact() {
                     borderColor: '#E1E1E1',
                     borderRadius: '0px',
                     fontSize: '12px',
+                    paddingTop: '23px',
+                    paddingBottom: '23px',
                   }}
                   className=" text-gray-900"
                 />
@@ -117,6 +119,8 @@ export default function Contact() {
                       borderRadius: '0px',
                       fontSize: '12px',
                       paddingLeft: '40px',
+                      paddingTop: '23px',
+                      paddingBottom: '23px',
                     }}
                     className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
                   />
@@ -135,6 +139,8 @@ export default function Contact() {
                     borderColor: '#E1E1E1',
                     borderRadius: '0px',
                     fontSize: '12px',
+                    paddingTop: '23px',
+                    paddingBottom: '23px',
                   }}
                   className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
                 />
@@ -158,7 +164,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <Button variant="filled" className="rounded-none w-full font-medium text-xs py-[16px] uppercase">
+            <Button variant="filled" className="rounded-none w-full font-medium text-xs py-[24px] uppercase">
               Send Message
             </Button>
           </div>
@@ -183,6 +189,8 @@ export default function Contact() {
                       borderColor: '#E1E1E1',
                       borderRadius: '0px',
                       fontSize: '12px',
+                      paddingTop: '23px',
+                      paddingBottom: '23px',
                     }}
                     className=" text-gray-900"
                   />
@@ -205,6 +213,8 @@ export default function Contact() {
                         borderRadius: '0px',
                         fontSize: '12px',
                         paddingLeft: '40px',
+                        paddingTop: '23px',
+                        paddingBottom: '23px',
                       }}
                       className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
                     />
@@ -223,6 +233,8 @@ export default function Contact() {
                       borderColor: '#E1E1E1',
                       borderRadius: '0px',
                       fontSize: '12px',
+                      paddingTop: '23px',
+                      paddingBottom: '23px',
                     }}
                     className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
                   />
@@ -246,7 +258,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <Button variant="filled" className="rounded-none w-full font-medium text-xs py-[16px] uppercase">
+              <Button variant="filled" className="rounded-none w-full font-medium text-xs py-[24px] uppercase">
                 Send Message
               </Button>
             </div>

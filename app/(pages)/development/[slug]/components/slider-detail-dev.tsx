@@ -9,9 +9,9 @@ import { imgSliderProperty1, imgSliderProperty2, imgSliderProperty3 } from '@/ap
 
 const logos = [imgSliderProperty1, imgSliderProperty2, imgSliderProperty3];
 
-export default function CarouselDetailDevelopment() {
+export default function CarouselDetailDevelopment({ id }: { id: string }) {
   return (
-    <section className="relative w-full mb-14">
+    <section id={id} className="relative w-full mb-14">
       <div className="w-full  mx-auto relative">
         <Carousel
           opts={{

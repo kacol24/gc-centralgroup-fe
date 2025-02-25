@@ -7,7 +7,7 @@ import { developments } from '@/app/lib/utils/developments';
 export default function CardListDetailDevelopment() {
   return (
     <section className="container mx-auto px-4 ">
-      <div className="hidden w-auto lg:block border-t border-black border-opacity-30 mb-8 mt-20" />
+      <div className="hidden w-auto lg:block border-t border-textPrimary border-opacity-10 mb-8 mt-20" />
 
       <h1 className="text-[22px] lg:text-start tracking-wide text-center font-marcellus text-textPrimary mb-6 uppercase">
         Other developments
@@ -29,7 +29,7 @@ export default function CardListDetailDevelopment() {
       </div>
 
       <div className="px-24 block lg:hidden">
-        <Button variant="filled" className="w-full my-8  rounded-none text-xs py-[16px]">
+        <Button variant="filled" className="w-full my-8  rounded-none text-xs py-[24px]">
           ALL DEVELOPMENT
         </Button>
       </div>
