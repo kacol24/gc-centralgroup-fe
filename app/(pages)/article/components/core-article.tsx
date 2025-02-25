@@ -46,11 +46,11 @@ export default function ArticleCore() {
   const currentNews = newsCards.slice(startIndex, endIndex);
 
   return (
-    <section className="w-full lg:container lg:mx-auto bg-white px-4 pb-8">
+    <section className="w-full lg:container lg:mx-auto bg-white px-4 pb-8 pt-12 lg:pt-0">
       {/* Header */}
       <div className="w-full flex flex-col lg:flex-row lg:justify-between items-center">
         <h1 className="text-[28px] font-marcellus uppercase text-textPrimary">News & Update</h1>
-        <div className="w-full lg:w-auto">
+        <div className="w-full lg:w-auto lg:pt-0 pt-6">
           <ComboboxDemo
             dataPropertys={propertyTypes}
             placeholder="Semua Topik"
