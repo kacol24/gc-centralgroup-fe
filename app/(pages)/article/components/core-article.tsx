@@ -2,7 +2,7 @@
 
 import { ComboboxDemo } from '@/components/ui/combobox';
 import { useState } from 'react';
-import { RiBuildingFill } from 'react-icons/ri';
+import { IoIosArrowDown } from 'react-icons/io';
 import {
   Pagination,
   PaginationContent,
@@ -16,12 +16,12 @@ import { newsCards } from '@/app/lib/utils/article';
 
 const propertyTypes = [
   {
-    value: 'apartment',
-    label: 'Apartment',
+    value: 'economy',
+    label: 'Ecomony',
   },
   {
-    value: 'house',
-    label: 'House',
+    value: 'politic',
+    label: 'Political',
   },
   {
     value: 'villa',
@@ -45,18 +45,6 @@ export default function ArticleCore() {
   const endIndex = startIndex + itemsPerPage;
   const currentNews = newsCards.slice(startIndex, endIndex);
 
-  // const handleNextPage = () => {
-  //   if (currentPage < totalPages) {
-  //     setCurrentPage(currentPage + 1);
-  //   }
-  // };
-
-  // const handlePreviousPage = () => {
-  //   if (currentPage > 1) {
-  //     setCurrentPage(currentPage - 1);
-  //   }
-  // };
-
   return (
     <section className="w-full lg:container lg:mx-auto bg-white px-4 pb-8">
       {/* Header */}
@@ -65,10 +53,11 @@ export default function ArticleCore() {
         <div className="w-full lg:w-auto">
           <ComboboxDemo
             dataPropertys={propertyTypes}
-            placeholder="Property Types"
-            icon={<RiBuildingFill className="text-white" />}
+            placeholder="Semua Topik"
+            icon={<IoIosArrowDown className="text-textPrimary ml-24" />}
             customClassName={{
-              button: 'bg-black text-white hover:bg-black hover:opacity-80 py-6',
+              button:
+                'bg-white border border-[#E1E1E1] text-textPrimary hover:bg-white hover:opacity-80 hover:!text-textPrimary py-6',
               popoverContent: 'bg-gray-800 text-white',
               input: 'border-gray-400',
               item: 'text-gray-700',

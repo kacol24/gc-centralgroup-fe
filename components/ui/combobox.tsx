@@ -36,7 +36,7 @@ export const ComboboxDemo: React.FC<ComboboxDemoProps> = ({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn('w-full justify-between bg-gray-700 border-none', customClassName.button)}
+          className={cn('w-full justify-between', customClassName.button)}
         >
           {value ? dataPropertys.find((item) => item.value === value)?.label : placeholder}
           {icon && <span className="ml-2">{icon}</span>}
