@@ -79,6 +79,8 @@ import development8 from '@/public/assets/image/8.png';
 import development9 from '@/public/assets/image/9.png';
 
 import careerPageBanner from '@/public/assets/image/career-page-banner.png';
+import articleDetailDummy from '@/public/assets/image/article-detail-dummy.png';
+import articleAuthorDummy from '@/public/assets/image/article-author-dummy.png';
 
 const awardImageAsArray = [
   { src: indonesiaMyHomeAward2022, alt: 'Indonesia My Home Award 2022' },
@@ -169,4 +171,6 @@ export {
   development9,
   imgDummyArticle,
   careerPageBanner,
+  articleDetailDummy,
+  articleAuthorDummy,
 };

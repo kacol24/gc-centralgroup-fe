@@ -2,8 +2,10 @@ import Image, { StaticImageData } from 'next/image';
 import { RiLayoutGridFill } from 'react-icons/ri';
 import { FaUserCircle } from 'react-icons/fa';
 import { FiArrowUpRight } from 'react-icons/fi';
+import Link from 'next/link';
 
 interface NewsCardProps {
+  id: number;
   date: string;
   category: string;
   author: string;
@@ -12,7 +14,7 @@ interface NewsCardProps {
   image: string | StaticImageData;
 }
 
-export default function NewsCard({ date, category, author, title, description, image }: NewsCardProps) {
+export default function CardArticle({ id, date, category, author, title, description, image }: NewsCardProps) {
   return (
     <div className="bg-white overflow-hidden min-h-[580px] flex flex-col">
       {/* Image Section */}
@@ -38,12 +40,12 @@ export default function NewsCard({ date, category, author, title, description, i
 
         <div>
           <div className="border-t w-full flex-none border-textPrimary mb-6 opacity-20" />
-          <a
-            href="#"
+          <Link
+            href={`/article/${id}`}
             className="text-primary text-xs tracking-wider font-semibold flex items-center gap-1 hover:underline"
           >
             LEARN MORE <FiArrowUpRight className="text-base ml-1" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

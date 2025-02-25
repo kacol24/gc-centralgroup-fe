@@ -1,7 +1,7 @@
 import { StaticImageData } from 'next/image';
-import { imgProperty1 } from './image';
+import { articleAuthorDummy, articleDetailDummy, imgProperty1 } from './image';
 
-interface NewsCard {
+export interface NewsCard {
   id: number;
   date: string;
   category: string;
@@ -11,7 +11,21 @@ interface NewsCard {
   image: string | StaticImageData;
 }
 
-const newsCards: NewsCard[] = [
+export interface ArticleDetailContentModel {
+  id: number;
+  topic: string;
+  description: string;
+  image?: StaticImageData;
+}
+
+export interface ArticleAuthorModel {
+  name: string;
+  position: string;
+  description: string;
+  image: StaticImageData;
+}
+
+export const newsCards: NewsCard[] = [
   {
     id: 1,
     date: '17 JAN 2025',
@@ -99,4 +113,38 @@ const newsCards: NewsCard[] = [
   },
 ];
 
-export { newsCards };
+export const articleDetailContents: ArticleDetailContentModel[] = [
+  {
+    id: 1,
+    topic: 'Sit amet tempus ornare dictum commodo tellus. ',
+    description:
+      'Urna massa habitasse sed bibendum id. Ullamcorper tincidunt quis facilisi volutpat odio varius id tellus aliquet. Eget tristique vel diam aliquet. Felis mattis proin auctor diam. Morbi nibh purus arcu sed proin sed cursus id ullamcorper. At turpis elementum lectus lectus mi quam. Sed viverra nunc ac tristique sit sit semper. Cursus ipsum volutpat turpis sed enim. Pulvinar scelerisque tempus tempor aliquam tellus senectus turpis ultricies. Cursus libero auctor ac lorem sapien ac. Vestibulum eget adipiscing id lobortis. Quis sed scelerisque nec curabitur duis in amet senectus. Cras diam ultrices blandit cras nibh viverra adipiscing commodo. Libero diam dui quis elementum mi. Porta vitae pulvinar eget ullamcorper malesuada et odio in interdum. Tellus id id nec lectus. Enim eleifend gravida ipsum leo.',
+  },
+  {
+    id: 2,
+    topic: 'Sed fermentum augue semper consectetur sed euismod eu. Cras nisl adipiscing non sit sagitti.',
+    description:
+      'Tempus facilisis nibh at urna urna. Pulvinar vel semper elit a. Sed tempor aliquam arcu tincidunt arcu tincidunt ipsum leo in. Donec faucibus ornare nibh rhoncus id. Eget orci enim vitae euismod nisl sed nisl dolor phasellus. Morbi et ac sem nec sed. Egestas commodo morbi aliquet risus. Sed sed tortor enim tristique. Lorem venenatis maecenas pellentesque ac aliquam congue. Non et rhoncus laoreet id cras. Porta nullam integer pulvinar urna faucibus. Amet congue suspendisse volutpat pharetra sed. Egestas vehicula nunc consectetur sed sed augue ipsum. Sem habitant lorem dignissim sed ac urna. Vel aliquam sagittis pulvinar nullam. Eget egestas amet amet proin nunc vulputate sed nibh. Duis massa aliquam diam aliquam hendrerit nunc sagittis. Ullamcorper a vulputate arcu tellus auctor eget. Tincidunt arcu at molestie nunc donec. Arcu facilisis risus sem pellentesque augue.',
+  },
+  {
+    id: 3,
+    topic: 'Nullam porta bibendum quis aenean turpis proin tortor vulputate aenean.',
+    description:
+      'Tempus facilisis nibh at urna urna. Pulvinar vel semper elit a. Sed tempor aliquam arcu tincidunt arcu tincidunt ipsum leo in. Donec faucibus ornare nibh rhoncus id. Eget orci enim vitae euismod nisl sed nisl dolor phasellus. Morbi et ac sem nec sed. Egestas commodo morbi aliquet risus. Sed sed tortor enim tristique. Lorem venenatis maecenas pellentesque ac aliquam congue. Non et rhoncus laoreet id cras. Porta nullam integer pulvinar urna faucibus. Amet congue suspendisse volutpat pharetra sed. Egestas vehicula nunc consectetur sed sed augue ipsum. Sem habitant lorem dignissim sed ac urna. Vel aliquam sagittis pulvinar nullam. Eget egestas amet amet proin nunc vulputate sed nibh. Duis massa aliquam diam aliquam hendrerit nunc sagittis. Ullamcorper a vulputate arcu tellus auctor eget. Tincidunt arcu at molestie nunc donec. Arcu facilisis risus.',
+    image: articleDetailDummy,
+  },
+  {
+    id: 4,
+    topic: 'Condimentum massa arcu lorem quam in malesuada interdum.',
+    description:
+      'Quisque lectus lacus id bibendum. Enim et dolor risus vitae aliquam commodo massa vel. Et dui nulla cum pretium. Imperdiet habitasse ut mollis duis odio aliquet tristique lacus parturient. Nibh nulla ut adipiscing lectus gravida hac ut. Sociis accumsan scelerisque cras adipiscing pellentesque. Turpis suspendisse viverra tellus habitant cum vestibulum nunc semper. Nam arcu elementum eget et. Varius adipiscing nulla quam adipiscing quam. Aliquet et cras ornare id sed lobortis. Id elementum elit sed viverra libero.',
+  },
+];
+
+export const articleAuthor: ArticleAuthorModel = {
+  name: 'John Doe',
+  position: 'Marketing Head',
+  description:
+    'John Doe adalah Direktur Produksi dengan pengalaman lebih dari 15 tahun di industri teknologi dan kuliner. Sebagai ahli dalam manajemen produksi dan inovasi digital, John memiliki wawasan mendalam tentang penerapan teknologi untuk meningkatkan efisiensi operasional dan pengalaman pelanggan. Melalui artikel-artikelnya, John berbagi pengetahuan dan praktik terbaik yang telah membantu banyak bisnis sukses di era modern.',
+  image: articleAuthorDummy,
+};

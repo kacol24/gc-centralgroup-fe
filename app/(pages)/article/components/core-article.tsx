@@ -1,6 +1,6 @@
 import { ComboboxDemo } from '@/components/ui/combobox';
 import { RiBuildingFill } from 'react-icons/ri';
-import NewsCard from './card-article';
+import CardArticle from './card-article';
 import { newsCards } from '@/app/lib/utils/article';
 
 const propertyTypes = [
@@ -38,8 +38,9 @@ export default function ArticleCore() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
         {newsCards.map((news, index) => (
-          <NewsCard
+          <CardArticle
             key={index}
+            id={news.id}
             title={news.title}
             description={news.description}
             author={news.author}
