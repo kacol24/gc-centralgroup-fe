@@ -19,7 +19,7 @@ import { central } from '../lib/utils/cental';
 
 export default function Navbar() {
   const pathname = usePathname();
-  const allowPath = ['/development', '/contact', '/article'];
+  const allowPath = ['/development', '/contact'];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
@@ -77,9 +77,10 @@ export default function Navbar() {
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth <= 1024;
+      const isArticleDetailPath = pathname.includes('/article/');
       const isArticlePath = pathname.includes('/article');
 
-      if (allowPath.includes(pathname) || isArticlePath || !isMobile) {
+      if (allowPath.includes(pathname) || (isArticleDetailPath && !isMobile) || (isArticlePath && !isMobile)) {
         setVariant({
           text: 'text-black',
           logo: logoColGreen,
@@ -141,7 +142,7 @@ export default function Navbar() {
             <div>
               <Link href={'/'}>
                 <Image
-                  className="w-[90px] md:w-[100px]"
+                  className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px'} `}
                   src={isScrolled ? logoRowGreen : variant.logo}
                   alt="CG Logo"
                   height={1000}

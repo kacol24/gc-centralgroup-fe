@@ -165,12 +165,14 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
 
             {/* Button Next & Prev Desktop */}
 
-            <div className="absolute hidden lg:flex right-12 -top-[90px] z-20 w-fit">
-              <CarouselPrevious className="w-12 h-12 bg-white shadow-md border border-textPrimary rounded-none flex items-center justify-center transition">
-                <HiArrowLeft className="text-textPrimary w-7 h-7 " />
+            <div className="absolute hidden lg:flex right-12 -top-[90px] gap-4 z-20">
+              <CarouselPrevious className="w-12 h-12 bg-white shadow-md border border-[#CFD5D5] rounded-none flex items-center justify-center transition">
+                <HiArrowLeft className="text-textPrimary w-7 h-7" />
               </CarouselPrevious>
 
-              <CarouselNext className="w-12 h-12 bg-white shadow-md border border-textPrimary rounded-none flex items-center justify-center  transition">
+              <div className="w-4"></div>
+
+              <CarouselNext className="w-12 h-12 bg-white shadow-md border border-[#CFD5D5] rounded-none flex items-center justify-center transition">
                 <HiArrowRight className="text-textPrimary w-7 h-7" />
               </CarouselNext>
             </div>

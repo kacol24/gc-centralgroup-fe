@@ -17,7 +17,7 @@ interface NewsCardProps {
 export default function CardArticle({ id, date, category, author, title, description, image }: NewsCardProps) {
   return (
     <Link href={`/article/${id}`} className="block">
-      <div className="bg-white overflow-hidden min-h-[480px] lg:min-h-[580px] flex flex-col">
+      <div className="bg-white overflow-hidden min-h-[480px] lg:min-h-[520px] flex flex-col">
         {/* Image Section */}
         <div className="relative w-full h-60">
           <Image src={image} alt="News Thumbnail" layout="fill" objectFit="cover" />
@@ -39,7 +39,7 @@ export default function CardArticle({ id, date, category, author, title, descrip
             <p className="text-textSecondary text-xs/5 line-clamp-4 flex-grow">{description}</p>
           </div>
 
-          <div>
+          <div className="mt-6">
             <div className="border-t w-full flex-none border-textPrimary mb-6 opacity-20" />
             <p className="text-primary text-xs tracking-wider font-semibold flex items-center gap-1 hover:underline">
               LEARN MORE <FiArrowUpRight className="text-base ml-1" />
