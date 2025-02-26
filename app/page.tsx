@@ -5,19 +5,23 @@ import Footer from './components/footer';
 import ContactUs from './components/contact-us';
 import DreamHomeComponent from './components/landing-components/dream-home-component';
 import CarouselAwardeComponent from './components/landing-components/carousel-awarde-component';
-import PropertyFinder from './(pages)/development/components/property-finder';
+
 import CentralNewsComponent from './components/landing-components/central-news-component';
 import CommunityEcosystemComponent from './components/landing-components/comuunity-ecosystem-component';
+import { Suspense } from 'react';
+import PropertyFinderSection from './(pages)/development/components/property-finder-section';
 
 export default function Home() {
   return (
     <div className="">
-      <Navbar />
+      <Suspense>
+        <Navbar />
+      </Suspense>
       <HeroComponent />
       <IntroductionComponent />
       <DreamHomeComponent />
       <CarouselAwardeComponent />
-      <PropertyFinder />
+      <PropertyFinderSection />
       <CentralNewsComponent />
       <CommunityEcosystemComponent />
       <ContactUs />

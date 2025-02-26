@@ -22,6 +22,7 @@ export default function CentralNewsComponent() {
         {limitedNews.map((news, index) => (
           <NewsCard
             key={index}
+            id={news.id}
             title={news.title}
             description={news.description}
             author={news.author}
@@ -46,6 +47,7 @@ export default function CentralNewsComponent() {
             <CarouselItem key={index} className="basis-2/6 pl-4 md:pl-8">
               <NewsCard
                 key={index}
+                id={news.id}
                 title={news.title}
                 description={news.description}
                 author={news.author}

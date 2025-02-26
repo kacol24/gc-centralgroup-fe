@@ -4,6 +4,7 @@ import './../globals.css';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import ContactUs from '../components/contact-us';
+import { Suspense } from 'react';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,7 +35,9 @@ export default async function RootLayout({
       <body
         className={`${geistSans.className} ${geistMono.variable} ${montserrat.className} ${marcellus.className} ${aboreto.className} antialiased`}
       >
-        <Navbar />
+        <Suspense>
+          <Navbar />
+        </Suspense>
         {children}
         <ContactUs />
         <Footer />
