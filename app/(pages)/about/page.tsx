@@ -97,8 +97,8 @@ export default function About() {
         <Image src={backgroundGoalPageAbout} alt="Backgound Beach" className="w-full" />
         <div className="container w-auto mx-4 mb-4 p-6 relative -top-8 bg-white shadow-custom md:-mb-12 md:p-12 md:flex md:gap-12 md:-top-32 lg:mx-auto lg:px-20 lg:py-16 lg:gap-16">
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-primary font-marcellus">VISION</h3>
-            <p className="text-textSecondary font-medium">
+            <h3 className="mb-6 text-2xl text-textPrimary font-marcellus">VISION</h3>
+            <p className="text-sm/6 text-textSecondary font-medium">
               Aliquam malesuada enim ut risus vulputate pretium morbi molestie. Sit non morbi libero nibh morbi in
               aliquet. Auctor quis nisl pretium leo mauris aliquet enim quis.
             </p>
@@ -108,8 +108,8 @@ export default function About() {
           <div className="hidden md:block w-[1px] bg-gray-300 h-100"></div>
 
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-primary font-marcellus">MISSION</h3>
-            <p className="text-textSecondary font-medium">
+            <h3 className="mb-6 text-2xl text-textPrimary font-marcellus">MISSION</h3>
+            <p className="text-sm/6 text-textSecondary font-medium">
               Cursus at pellentesque viverra convallis. Tincidunt turpis tincidunt purus luctus commodo pellentesque.
               Sit pellentesque sit molestie ultrices lefensa indanese.
             </p>
@@ -119,8 +119,8 @@ export default function About() {
           <div className="hidden md:block w-[1px] bg-gray-300 h-100"></div>
 
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-primary font-marcellus">PURPOSE</h3>
-            <p className="text-textSecondary font-medium">
+            <h3 className="mb-6 text-2xl text-textPrimary font-marcellus">PURPOSE</h3>
+            <p className="text-sm/6 text-textSecondary font-medium">
               Turpis eu accumsan platea malesuada aliquet sed egestas posuere vestibulum. Consectetur risus nascetur at
               id nibh ullamcorper. Euismod semper diam lacinia ut placerat massa.
             </p>

@@ -72,7 +72,7 @@ export default function CentralCommunityBanner({
                       />
                     </div>
                     <h3 className="mb-6 text-2xl text-center text-textPrimary font-marcellus">{pillar.title}</h3>
-                    <p className="text-center text-textSecondary font-medium">{pillar.description}</p>
+                    <p className="text-sm/6 text-center text-textSecondary font-medium">{pillar.description}</p>
                   </div>
                 ))}
             </div>

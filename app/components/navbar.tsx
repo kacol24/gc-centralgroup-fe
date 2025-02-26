@@ -77,9 +77,9 @@ export default function Navbar() {
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth <= 1024;
-      const isArticlePath = pathname === '/article';
+      const isArticlePath = pathname.includes('/article');
 
-      if (allowPath.includes(pathname) && !(isArticlePath && isMobile)) {
+      if (allowPath.includes(pathname) || isArticlePath || !isMobile) {
         setVariant({
           text: 'text-black',
           logo: logoColGreen,
