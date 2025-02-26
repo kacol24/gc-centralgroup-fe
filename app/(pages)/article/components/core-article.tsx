@@ -11,7 +11,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import NewsCard from './card-article';
+import NewsCard from '../../../components/card-article';
 import { newsCards } from '@/app/lib/utils/article';
 
 const propertyTypes = [
