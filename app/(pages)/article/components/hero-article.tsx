@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export default function ArticleHero() {
   return (
-    <section className="w-full  mx-auto  lg:bg-white bg-primary lg:px-4 px-4 pb-8  lg:pt-[145px] pt-[137px]">
+    <section className="w-full  mx-auto  lg:bg-backgroundWhite bg-primary lg:px-4 px-4 pb-8  lg:pt-[145px] pt-[137px]">
       <div className="w-full bg-primary  p-4 lg:p-10 xl:p-14 flex flex-col lg:flex-row lg:gap-10 xl:gap-14 items-start justify-start">
         <Image src={imgDummyArticle} alt="Hero Article" className="w-auto lg:w-[547px] lg:h-[369px]  object-contain" />
         <div className="w-full h-auto lg:h-[369px] flex flex-col justify-between">

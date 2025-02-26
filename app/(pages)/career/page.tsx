@@ -42,7 +42,7 @@ export default function Career() {
 
         <div className="z-10 container mx-auto px-4 text-center md:w-[80%] lg:w-[40%]">
           <h1 className="mb-8 text-4xl text-backgroundWhite font-marcellus">WORK WITH US</h1>
-          <p className="text-white font-medium">
+          <p className="text-sm/6 text-white font-medium">
             Saat ini Central Group membutuhkan beberapa posisi sebagai berikut. Kunjungi secara berkala halaman ini,
             untuk mendapatkan informasi karir di Central Group
           </p>
@@ -127,13 +127,13 @@ export default function Career() {
                   openIndex === index ? 'max-h-[1000vh]' : 'max-h-0'
                 }`}
               >
-                <p className="p-4 pb-8 text-textPrimary font-medium md:pt-8 md:px-20 lg:pt-12 lg:px-32">
+                <p className="p-4 pb-8 text-textPrimary font-medium md:pt-8 md:px-20 lg:pt-12 lg:px-40">
                   {item.detail}
                 </p>
-                <h4 className="px-4 text-primary font-semibold md:px-20 lg:px-32">Job Descriptions</h4>
-                <p className="p-4 pb-8 text-textPrimary font-medium md:px-20 lg:px-32">{item.jobDescription}</p>
-                <h4 className="px-4 text-primary font-semibold md:px-20 lg:px-32">Requirements</h4>
-                <p className="p-4 pb-8 text-textPrimary font-medium md:px-20 md:pb-12 lg:px-32">{item.requirement}</p>
+                <h4 className="px-4 text-primary font-semibold md:px-20 lg:px-40">Job Descriptions</h4>
+                <p className="p-4 pb-8 text-textPrimary font-medium md:px-20 lg:px-40">{item.jobDescription}</p>
+                <h4 className="px-4 text-primary font-semibold md:px-20 lg:px-40">Requirements</h4>
+                <p className="p-4 pb-8 text-textPrimary font-medium md:px-20 md:pb-12 lg:px-40">{item.requirement}</p>
                 <Link href="#" className="w-fit mx-auto mb-8 px-12 py-4 block text-white bg-primary md:mb-12 lg:mb-20">
                   APPLY JOB
                 </Link>

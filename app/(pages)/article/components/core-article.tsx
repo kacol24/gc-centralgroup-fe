@@ -46,7 +46,7 @@ export default function ArticleCore() {
   const currentNews = newsCards.slice(startIndex, endIndex);
 
   return (
-    <section className="w-full lg:container lg:mx-auto bg-white px-4 pb-8 pt-12 lg:pt-0">
+    <section className="w-full lg:container lg:mx-auto px-4 pb-8 pt-12 lg:pt-0">
       {/* Header */}
       <div className="w-full flex flex-col lg:flex-row lg:justify-between items-center">
         <h1 className="text-[28px] font-marcellus uppercase text-textPrimary">News & Update</h1>
@@ -91,8 +91,8 @@ export default function ArticleCore() {
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 className={
                   currentPage === 1
-                    ? 'opacity-50 cursor-not-allowed bg-white text-textPrimary shadow-lg border-[#F1F1F1] border-2 hover:bg-primary'
-                    : 'bg-white text-textPrimary shadow-lg border-[#F1F1F1] border-2 hover:bg-primary hover:text-white'
+                    ? 'opacity-50 cursor-not-allowed bg-white text-textPrimary border-[#F1F1F1] border-2 hover:bg-primary'
+                    : 'bg-white text-textPrimary border-[#F1F1F1] border-2 hover:bg-primary hover:text-white'
                 }
               />
             </PaginationItem>
@@ -114,8 +114,8 @@ export default function ArticleCore() {
                 onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                 className={
                   currentPage === totalPages
-                    ? 'opacity-50 cursor-not-allowed bg-white text-textPrimary shadow-lg border-[#F1F1F1] border-2 hover:bg-primary'
-                    : 'bg-white text-textPrimary shadow-lg border-[#F1F1F1] border-2 hover:bg-primary hover:text-white'
+                    ? 'opacity-50 cursor-not-allowed bg-white text-textPrimary border-[#F1F1F1] border-2 hover:bg-primary'
+                    : 'bg-white text-textPrimary border-[#F1F1F1] border-2 hover:bg-primary hover:text-white'
                 }
               />
             </PaginationItem>

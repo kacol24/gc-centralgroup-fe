@@ -18,7 +18,7 @@ export default function CentralCommunityGoal({ goals }: CentralCommunityGoalProp
             <React.Fragment key={index}>
               <div className="mx-12 text-center md:mx-0">
                 <h3 className="mb-6 text-2xl text-primary font-marcellus">{goal.title}</h3>
-                <p className="text-textSecondary font-medium">{goal.description}</p>
+                <p className="text-sm/6 text-textSecondary font-medium">{goal.description}</p>
               </div>
 
               {index < goals.length - 1 && (
