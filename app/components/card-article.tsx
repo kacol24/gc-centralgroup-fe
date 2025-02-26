@@ -25,7 +25,7 @@ export default function CardArticle({ id, date, category, author, title, descrip
         </div>
 
         {/* Content Section */}
-        <div className="p-4 pb-6 flex flex-col flex-grow justify-between min-h-[280px] lg:min-h-[310px]">
+        <div className="p-4 pb-6 bg-white flex flex-col flex-grow justify-between min-h-[200px] lg:min-h-[200px]">
           <div>
             <div className="flex items-center gap-4 text-textPrimary font-bold text-[10px] mb-4">
               <span className="flex items-center gap-1">

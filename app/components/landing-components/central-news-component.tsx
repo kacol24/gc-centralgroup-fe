@@ -10,7 +10,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext
 export default function CentralNewsComponent() {
   const limitedNews = newsCards.slice(0, 3);
   return (
-    <section className="w-full mt-14 lg:mt-[100px] lg:container lg:mx-auto bg-white px-4 pb-0 pt-12 lg:pt-0">
+    <section className="w-full mt-14 lg:mt-[100px] lg:container lg:mx-auto bg-backgroundWhite px-4 pb-0 pt-12 lg:pt-0">
       {/* Header */}
       <div className="w-full flex flex-col lg:flex-row lg:justify-between items-center">
         <h1 className="text-[28px] lg:text-4xl font-marcellus uppercase text-textPrimary">Central News</h1>

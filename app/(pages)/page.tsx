@@ -11,7 +11,7 @@ import PropertyFinderSection from './development/components/property-finder-sect
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="bg-backgroundWhite">
       <Suspense>
         <Navbar />
       </Suspense>
