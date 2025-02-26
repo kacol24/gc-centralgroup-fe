@@ -49,11 +49,11 @@ export default function Contact() {
           <div className="w-full xl:w-[55%] lg:flex items-start gap-28 mt-10">
             <div className="text-white space-y-4">
               <div className="flex items-center gap-3">
-                <IoLogoWhatsapp className="text-lg text-textTertiary" />
+                <IoLogoWhatsapp className="text-base text-textTertiary" />
                 <span>+62 811 703 8868</span>
               </div>
               <div className="flex items-center gap-3">
-                <FaEnvelope className="text-lg text-textTertiary" />
+                <FaEnvelope className="text-base text-textTertiary" />
                 <span>info@centralgroup.com</span>
               </div>
             </div>
@@ -62,7 +62,7 @@ export default function Contact() {
             <div className="mt-6 md:mt-0 text-white space-y-4  ">
               <div>
                 <div className="flex items-center gap-3">
-                  <RiMapPin2Fill className="text-lg text-textTertiary" />
+                  <RiMapPin2Fill className="text-base text-textTertiary" />
                   <span className="font-bold">Central Group Head Office</span>
                 </div>
                 <p className="ml-8 opacity-80">
