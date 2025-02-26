@@ -11,22 +11,28 @@ import logoPartner6 from '@/public/assets/image/logo-partner-6.png';
 import logoPartner7 from '@/public/assets/image/logo-partner-7.png';
 import logoPartner8 from '@/public/assets/image/logo-partner-8.png';
 import logoPartner9 from '@/public/assets/image/logo-partner-9.png';
+
 import logoProperty from '@/public/assets/image/logo-property.png';
 import imgSliderProperty1 from '@/public/assets/image/img-slider-property-1.png';
 import imgSliderProperty2 from '@/public/assets/image/img-slider-property-2.png';
 import imgSliderProperty3 from '@/public/assets/image/img-slider-property-3.jpeg';
+import imgSliderProperty4 from '@/public/assets/image/img-slider-property-4.png';
+
 import imgBackgroundHeroDetailDev from '@/public/assets/image/bg-top-detail-dev.png';
 import imgProperty1 from '@/public/assets/image/property-1.png';
 import backgroundBannerPageAbout from '@/public/assets/image/bg-banner-page-about.png';
 import principMuljadi from '@/public/assets/image/princip-muljadi.png';
 import imgDummyArticle from '@/public/assets/image/img-dummy-article.png';
 import imgBgContactUs from '@/public/assets/image/img-background-contactus.jpeg';
+import imgBgCommunityEcosystem from '@/public/assets/image/img-comunity-ecosystem.jpeg';
+import imgLoadingMaps from '@/public/assets/image/img-loading-maps.png';
 
 import backgroundGoalPageAbout from '@/public/assets/image/bg-goal-page-about.png';
 import aboutPageBannerAttachmentTopLeft from '@/public/assets/image/about-page-banner-attachment-top-left.png';
 import aboutPageBannerAttachmentTopRight from '@/public/assets/image/about-page-banner-attachment-top-right.png';
 import aboutPageBannerAttachmentBottomLeft from '@/public/assets/image/about-page-banner-attachment-bottom-left.png';
 import aboutPageBannerAttachmentBottomRight from '@/public/assets/image/about-page-banner-attachment-bottom-right.png';
+import backgroundWaveTile from '@/public/assets/image/bg-wave-tile.png';
 
 import indonesiaMyHomeAward2022 from '@/public/assets/image/indonesia-my-home-award-2022.png';
 import propertyGuruIndonesiaPropertyAward2023 from '@/public/assets/image/propertyguru-indonesia-property-award-2023.png';
@@ -136,6 +142,7 @@ export {
   aboutPageBannerAttachmentBottomRight,
   awardImageAsArray,
   principMuljadi,
+  backgroundWaveTile,
   backgroundGoalPageAbout,
   patnerLogoAsArray,
   backgroundTopBannerPageCentralBerbagi,
@@ -175,4 +182,7 @@ export {
   articleDetailDummy,
   articleAuthorDummy,
   imgBgContactUs,
+  imgSliderProperty4,
+  imgBgCommunityEcosystem,
+  imgLoadingMaps,
 };

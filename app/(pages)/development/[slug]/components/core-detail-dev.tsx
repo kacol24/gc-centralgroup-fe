@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { RiBuildingFill } from 'react-icons/ri';
 import { MdLocationOn } from 'react-icons/md';
@@ -16,63 +16,15 @@ import {
   PiBasketFill,
   PiPingPongFill,
   PiTreeEvergreenFill,
+  PiDownloadSimpleFill,
 } from 'react-icons/pi';
 
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { imgProperty1, logoProperty } from '@/app/lib/utils/image';
-import CustomPopup from '../../components/custom-popup';
-
-const MapContainer = dynamic(() => import('react-leaflet').then((mod) => mod.MapContainer), { ssr: false });
-const TileLayer = dynamic(() => import('react-leaflet').then((mod) => mod.TileLayer), { ssr: false });
-const Marker = dynamic(() => import('react-leaflet').then((mod) => mod.Marker), { ssr: false });
-const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), { ssr: false });
-
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-
-import markerIconPng from 'leaflet/dist/images/marker-icon.png';
-import markerShadowPng from 'leaflet/dist/images/marker-shadow.png';
-import { StaticImageData } from 'next/image';
+import { logoProperty, imgLoadingMaps } from '@/app/lib/utils/image';
 import { DevelopmentModel } from '@/app/lib/utils/developments';
 import Link from 'next/link';
 import FormDownloadBrosur from './brochure-form';
-
-const defaultIcon = L.icon({
-  iconUrl: markerIconPng.src,
-  shadowUrl: markerShadowPng.src,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-});
-
-const citiesData: { name: string; image: string | StaticImageData; coords: [number, number] }[] = [
-  {
-    name: 'Jakarta',
-    image: imgProperty1,
-
-    coords: [-6.2, 106.816666],
-  },
-  {
-    name: 'Bandung',
-    image: imgProperty1,
-    coords: [-6.914744, 107.60981],
-  },
-  {
-    name: 'Banten',
-    image: imgProperty1,
-    coords: [-6.405817, 106.064018],
-  },
-  {
-    name: 'Yogyakarta',
-    image: imgProperty1,
-    coords: [-7.79558, 110.36949],
-  },
-  {
-    name: 'Solo',
-    image: imgProperty1,
-    coords: [-7.575489, 110.824327],
-  },
-];
 
 const facilities = [
   {
@@ -108,14 +60,27 @@ export default function CoreDetailDevelopment({
   detail: DevelopmentModel | undefined;
   nextSectionId: string;
 }) {
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    delete (L.Icon.Default.prototype as any)._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconUrl: markerIconPng.src,
-      shadowUrl: markerShadowPng.src,
-    });
-  }, []);
+  // useEffect(() => {
+  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //   delete (L.Icon.Default.prototype as any)._getIconUrl;
+  //   L.Icon.Default.mergeOptions({
+  //     iconUrl: markerIconPng.src,
+  //     shadowUrl: markerShadowPng.src,
+  //   });
+  // }, []);
+
+  const MapsComponent = useMemo(
+    () =>
+      dynamic(() => import('./maps-component'), {
+        loading: () => (
+          <div className="w-full h-[127px] lg:h-[260px] p-0 lg:flex-grow mb-10 lg:mb-0 lg:pr-[75px]">
+            <Image src={imgLoadingMaps} alt="Logo Property" unoptimized className="w-full h-full object-cover" />
+          </div>
+        ),
+        ssr: false,
+      }),
+    [],
+  );
 
   return (
     <div className="relative container mx-auto flex px-4 p-0 lg:pt-20">
@@ -176,8 +141,74 @@ export default function CoreDetailDevelopment({
               </span>
             </Button>
           </div>
+          <div className="w-full">
+            <div className=" bg-white">
+              <h1 className="font-marcellus text-textPrimary text-[22px] uppercase mb-8">Download Brochure</h1>
 
-          <div className="border-t border-textPrimary border-opacity-10 mb-8 lg:mb-12" />
+              <div className="space-y-4 mb-6">
+                {/* Property Price */}
+                <div className="space-y-2">
+                  <Label htmlFor="property-price" className="text-[10px] font-semibold text-gray-900">
+                    YOUR NAME
+                  </Label>
+                  <Input
+                    id="name"
+                    placeholder="Your Name"
+                    style={{
+                      backgroundColor: 'white',
+                      borderColor: '#E1E1E1',
+                      borderRadius: '0px',
+                      fontSize: '12px',
+                    }}
+                    className=" text-gray-900"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="down-payment" className="text-[10px] font-semibold text-gray-900">
+                    NOMOR HANDPHONE
+                  </Label>
+                  <Input
+                    id="phone"
+                    placeholder="+62"
+                    style={{
+                      backgroundColor: 'white',
+                      borderColor: '#E1E1E1',
+                      borderRadius: '0px',
+                      fontSize: '12px',
+                    }}
+                    className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">
+                    YOUR EMAIL
+                  </Label>
+                  <Input
+                    id="email"
+                    placeholder="Your Email"
+                    style={{
+                      backgroundColor: 'white',
+                      borderColor: '#E1E1E1',
+                      borderRadius: '0px',
+                      fontSize: '12px',
+                    }}
+                    className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
+                  />
+                </div>
+              </div>
+
+              <Button variant="filled" className="w-full rounded-none text-xs py-[24px] uppercase">
+                Download Brochure
+                <span>
+                  <PiDownloadSimpleFill className="text-white text-xl" />
+                </span>
+              </Button>
+            </div>
+          </div>
+
+          <div className="border-t border-textPrimary border-opacity-10 mt-10 mb-8 lg:mb-12" />
 
           <h1 className="font-marcellus text-textPrimary text-2xl uppercase mb-10 lg:mb-12">Facilities</h1>
 
@@ -192,24 +223,7 @@ export default function CoreDetailDevelopment({
         </div>
 
         <div className="w-full h-[127px] lg:h-[260px] p-0 lg:flex-grow mb-10 lg:mb-0 lg:pr-[75px]">
-          <MapContainer
-            center={[-6.914744, 107.60981]}
-            zoom={7}
-            scrollWheelZoom={false}
-            style={{ height: '100%', width: '100%', zIndex: 0 }}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-            {citiesData.map((city, index) => (
-              <Marker key={index} position={city.coords} icon={defaultIcon}>
-                <Popup className="custom-popup bg-transparent">
-                  <CustomPopup imageSrc={imgProperty1} />
-                </Popup>
-              </Marker>
-            ))}
-          </MapContainer>
+          <MapsComponent />
         </div>
 
         <div className="hidden w-full lg:block border-t border-textPrimary border-opacity-10 mb-10 mt-14" />
@@ -319,7 +333,7 @@ export default function CoreDetailDevelopment({
               </Button>
             </div>
           </div>
-          <Button variant="filled" className="w-full mb-8 rounded-none text-xs py-[24px] block lg:hidden lg:w-">
+          <Button className="w-full bg-primary text-white rounded-none text-xs h-[48px]  block lg:hidden ">
             CALCULATE
           </Button>
         </div>

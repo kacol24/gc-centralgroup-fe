@@ -1,7 +1,7 @@
 'use client';
 
 import { ComboboxDemo } from '@/components/ui/combobox';
-import CardArticle from './card-article';
+import CardArticle from '@/app/components/card-article';
 import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import {

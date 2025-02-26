@@ -67,7 +67,7 @@ export default function Career() {
       <section className="bg-backgroundWhite">
         <div className="relative -top-16 container mx-auto px-4 py-8 -mb-16 space-y-4">
           {filteredCareers.map((item, index) => (
-            <div key={index} className="bg-white shadow-lg">
+            <div key={index} className="bg-white shadow-custom">
               <button
                 className="w-full text-left p-4 font-semibold text-textPrimary flex justify-between items-center md:px-8 md:grid md:grid-cols-[3fr_1fr_1fr] lg:py-6"
                 onClick={() => toggleAccordion(index)}
@@ -127,12 +127,14 @@ export default function Career() {
                   openIndex === index ? 'max-h-[1000vh]' : 'max-h-0'
                 }`}
               >
-                <p className="p-4 pb-8 text-textPrimary font-medium md:px-8 lg:pt-2">{item.detail}</p>
-                <h4 className="px-4 text-primary font-semibold md:px-8">Job Descriptions</h4>
-                <p className="p-4 pb-8 text-textPrimary font-medium md:px-8">{item.jobDescription}</p>
-                <h4 className="px-4 text-primary font-semibold md:px-8">Requirements</h4>
-                <p className="p-4 pb-8 text-textPrimary font-medium md:px-8">{item.requirement}</p>
-                <Link href="#" className="w-fit mx-auto mb-8 px-12 py-3 block text-white bg-primary">
+                <p className="p-4 pb-8 text-textPrimary font-medium md:pt-8 md:px-20 lg:pt-12 lg:px-32">
+                  {item.detail}
+                </p>
+                <h4 className="px-4 text-primary font-semibold md:px-20 lg:px-32">Job Descriptions</h4>
+                <p className="p-4 pb-8 text-textPrimary font-medium md:px-20 lg:px-32">{item.jobDescription}</p>
+                <h4 className="px-4 text-primary font-semibold md:px-20 lg:px-32">Requirements</h4>
+                <p className="p-4 pb-8 text-textPrimary font-medium md:px-20 md:pb-12 lg:px-32">{item.requirement}</p>
+                <Link href="#" className="w-fit mx-auto mb-8 px-12 py-4 block text-white bg-primary md:mb-12 lg:mb-20">
                   APPLY JOB
                 </Link>
               </div>

@@ -145,7 +145,7 @@ export const central: CentralModel[] = [
     pillarItems: centralBerbagiPillars,
     pillarsIconBackground: 'bg-textTertiary',
     goals: centralBerbagiGoals,
-    activityImages: centralAcitivityAsArray,
+    activityImages: [...centralAcitivityAsArray, ...centralAcitivityAsArray],
   },
   {
     slug: 'connect',
@@ -159,7 +159,7 @@ export const central: CentralModel[] = [
     pillarItems: centralConnectPillars,
     pillarsIconBackground: 'bg-textTertiary',
     goals: centralConnectSGoals,
-    activityImages: centralAcitivityAsArray,
+    activityImages: [...centralAcitivityAsArray, ...centralAcitivityAsArray],
   },
   {
     slug: 'home',
@@ -173,7 +173,7 @@ export const central: CentralModel[] = [
     pillarItems: centralConnectPillars,
     pillarsIconBackground: 'bg-primary',
     goals: centralConnectSGoals,
-    activityImages: centralAcitivityAsArray,
+    activityImages: [...centralAcitivityAsArray, ...centralAcitivityAsArray],
   },
   {
     slug: 'property-academy',
@@ -187,6 +187,6 @@ export const central: CentralModel[] = [
     pillarItems: centralConnectPillars,
     pillarsIconBackground: 'bg-primary',
     goals: centralConnectSGoals,
-    activityImages: centralAcitivityAsArray,
+    activityImages: [...centralAcitivityAsArray, ...centralAcitivityAsArray],
   },
 ];

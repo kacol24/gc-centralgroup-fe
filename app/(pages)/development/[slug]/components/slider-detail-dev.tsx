@@ -11,7 +11,7 @@ const logos = [imgSliderProperty1, imgSliderProperty2, imgSliderProperty3];
 
 export default function CarouselDetailDevelopment({ id }: { id: string }) {
   return (
-    <section id={id} className="relative w-full mb-14">
+    <section id={id} className="relative w-full mb-14 mt-8">
       <div className="w-full  mx-auto relative">
         <Carousel
           opts={{
@@ -37,12 +37,13 @@ export default function CarouselDetailDevelopment({ id }: { id: string }) {
             ))}
           </CarouselContent>
 
+          {/* Button Next & Prev Desktop */}
+
           <div className="absolute hidden lg:flex lg:top-full left-5 top-1/2 -translate-y-1/2 lg:left-[80%] z-10">
             <CarouselPrevious className=" w-12 h-12 bg-white shadow-md border border-textPrimary rounded-none flex items-center justify-center  transition">
               <HiArrowLeft className="text-textPrimary w-7 h-7 " />
             </CarouselPrevious>
 
-            {/* Button Next */}
             <CarouselNext className="w-12 h-12 bg-white shadow-md border border-textPrimary rounded-none flex items-center justify-center  transition">
               <HiArrowRight className="text-textPrimary w-7 h-7" />
             </CarouselNext>

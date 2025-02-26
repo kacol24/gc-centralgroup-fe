@@ -12,7 +12,7 @@ import Image from 'next/image';
 import React from 'react';
 import { use, useEffect, useState } from 'react';
 import { FaFacebookF, FaWhatsapp, FaLink, FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
-import CardArticle from '../components/card-article';
+import CardArticle from '@/app/components/card-article';
 import Link from 'next/link';
 
 export default function ArticleDetailPage({ params }: { params: Promise<{ id: string }> }) {

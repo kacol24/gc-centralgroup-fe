@@ -15,7 +15,7 @@ export default function Development() {
   );
 
   return (
-    <div className="h-auto bg-bgPrimary flex flex-col justify-center items-center ">
+    <div className="h-auto  flex flex-col justify-center items-center ">
       <h1 className="text-[64px] leading-[70px]  text-center mt-56 mb-28 font-marcellus text-textPrimary uppercase lg:flex hidden">
         Find tHe Perfect Property <br /> for your lifestyle
       </h1>

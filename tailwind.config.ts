@@ -22,6 +22,9 @@ const config: Config = {
         backgroundWhite: '#FAFAFA',
         backgroundGray: '#2E2E2E',
       },
+      boxShadow: {
+        custom: '0px 15px 30px 0px rgba(0, 0, 0, 0.08)',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],
