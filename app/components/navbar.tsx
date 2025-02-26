@@ -67,7 +67,7 @@ export default function Navbar() {
   };
 
   const variantStyle = () => {
-    if (allowPath.includes(pathname)) {
+    if (allowPath.includes(pathname) || pathname.startsWith('/article')) {
       return { text: 'text-black', logo: logoColGreen, iconMenu, iconWhatsApp, iconCaretDown };
     }
     return {
