@@ -66,18 +66,42 @@ export default function Navbar() {
     }
   };
 
-  const variantStyle = () => {
-    if (allowPath.includes(pathname)) {
-      return { text: 'text-black', logo: logoColGreen, iconMenu, iconWhatsApp, iconCaretDown };
-    }
-    return {
-      text: 'text-white',
-      logo: logoColWhite,
-      iconMenu: iconMenuWhite,
-      iconWhatsApp: iconWhatsAppWhite,
-      iconCaretDown: iconCaretDownWhite,
+  const [variant, setVariant] = useState({
+    text: 'text-white',
+    logo: logoColWhite,
+    iconMenu: iconMenuWhite,
+    iconWhatsApp: iconWhatsAppWhite,
+    iconCaretDown: iconCaretDownWhite,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 1024;
+      const isArticlePath = pathname === '/article';
+
+      if (allowPath.includes(pathname) && !(isArticlePath && isMobile)) {
+        setVariant({
+          text: 'text-black',
+          logo: logoColGreen,
+          iconMenu,
+          iconWhatsApp,
+          iconCaretDown,
+        });
+      } else {
+        setVariant({
+          text: 'text-white',
+          logo: logoColWhite,
+          iconMenu: iconMenuWhite,
+          iconWhatsApp: iconWhatsAppWhite,
+          iconCaretDown: iconCaretDownWhite,
+        });
+      }
     };
-  };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [pathname]);
 
   const menuStyle = (path: string) => {
     if (pathname === path) {
@@ -101,7 +125,7 @@ export default function Navbar() {
       <nav className={`w-full fixed z-50 transition-all duration-300 ${isScrolled ? navbarStyle() : ''}`}>
         <div
           className={` w-full container mx-auto px-4   ${
-            isScrolled ? navbarContainerStyle() : ` py-6 lg:py-8 bg-transparent ${variantStyle().text}`
+            isScrolled ? navbarContainerStyle() : ` py-6 lg:py-8 bg-transparent ${variant.text}`
           }`}
         >
           <div className="flex items-center">
@@ -109,7 +133,7 @@ export default function Navbar() {
             <div className="flex-1 p-4 pl-0">
               <button onClick={() => setIsOpen(true)} className="flex items-center gap-3">
                 <h1 className="hidden md:flex">MENU</h1>
-                <Image src={isScrolled ? iconMenu : variantStyle().iconMenu} alt="Menu Icon" height={24} width={24} />
+                <Image src={isScrolled ? iconMenu : variant.iconMenu} alt="Menu Icon" height={24} width={24} />
               </button>
             </div>
 
@@ -118,7 +142,7 @@ export default function Navbar() {
               <Link href={'/'}>
                 <Image
                   className="w-[90px] md:w-[100px]"
-                  src={isScrolled ? logoRowGreen : variantStyle().logo}
+                  src={isScrolled ? logoRowGreen : variant.logo}
                   alt="CG Logo"
                   height={1000}
                   width={1000}
@@ -131,7 +155,7 @@ export default function Navbar() {
             <div className="md:flex-1 hidden md:flex justify-end items-center gap-6 p-4 pr-0">
               <a href="https://wa.me/6287835712129" target="_blank" rel="noopener noreferrer">
                 <Image
-                  src={isScrolled ? iconWhatsApp : variantStyle().iconWhatsApp}
+                  src={isScrolled ? iconWhatsApp : variant.iconWhatsApp}
                   alt="WhatsApp Icon"
                   width={24}
                   height={24}
@@ -143,7 +167,7 @@ export default function Navbar() {
               <div className="flex items-center gap-1 cursor-pointer">
                 <span>EN</span>
                 <Image
-                  src={isScrolled ? iconCaretDown : variantStyle().iconCaretDown}
+                  src={isScrolled ? iconCaretDown : variant.iconCaretDown}
                   alt="Caret Down Icon"
                   width={16}
                   height={16}
@@ -180,7 +204,7 @@ export default function Navbar() {
           {/* DEVELOPMENT */}
           <li>
             <div
-              className="py-3 font-marcellus text-textPrimary flex justify-start gap-2 items-center cursor-pointer text-[18px]"
+              className="my-3 font-marcellus text-textPrimary flex justify-start gap-2 items-center cursor-pointer text-[18px]"
               onClick={() => toggleMenu('development')}
             >
               DEVELOPMENT
@@ -221,7 +245,7 @@ export default function Navbar() {
           {/* COMMUNITY ECOSYSTEM */}
           <li>
             <div
-              className="py-3 font-marcellus text-textPrimary flex justify-start items-center gap-2 cursor-pointer text-[18px]"
+              className="my-3 font-marcellus text-textPrimary flex justify-start items-center gap-2 cursor-pointer text-[18px]"
               onClick={() => toggleMenu('community')}
             >
               COMMUNITY ECOSYSTEM
@@ -254,17 +278,17 @@ export default function Navbar() {
 
           <li>
             <Link href="/article" className={menuStyle('/article')} onClick={() => setIsOpen(false)}>
-              NEWS & UPDATE
+              <div className="my-3 font-marcellus text-textPrimary cursor-pointer text-[18px]">NEWS & UPDATE</div>
             </Link>
           </li>
           <li>
             <Link href="/career" className={menuStyle('/career')} onClick={() => setIsOpen(false)}>
-              CAREERS
+              <div className="my-3 font-marcellus text-textPrimary cursor-pointer text-[18px]">CAREERS</div>
             </Link>
           </li>
           <li>
             <Link href="/contact" className={menuStyle('/contact')} onClick={() => setIsOpen(false)}>
-              <div className="py-3 font-marcellus text-textPrimary cursor-pointer text-[18px]">ENQUIRE</div>
+              <div className="my-3 font-marcellus text-textPrimary cursor-pointer text-[18px]">ENQUIRE</div>
             </Link>
           </li>
         </ul>
