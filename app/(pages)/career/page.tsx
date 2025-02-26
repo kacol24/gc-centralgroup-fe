@@ -48,7 +48,7 @@ export default function Career() {
           </p>
           <div className="relative md:w-[50%] w-full mt-8 mx-auto">
             <select
-              className="w-full p-4 text-textPrimary rounded-sm focus:outline-none focus:ring-0 appearance-none bg-white border border-gray-300"
+              className="w-full p-3 text-textPrimary rounded-sm focus:outline-none focus:ring-0 appearance-none bg-white border border-gray-300"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >

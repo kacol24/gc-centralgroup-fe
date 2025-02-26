@@ -1,10 +1,87 @@
-export default async function HeroComponent() {
+'use client';
+import { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
+
+import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
+import { imgSliderProperty1, imgSliderProperty2, imgSliderProperty3, imgSliderProperty4 } from '@/app/lib/utils/image';
+
+const logos = [imgSliderProperty1, imgSliderProperty2, imgSliderProperty3, imgSliderProperty4];
+
+export default function HeroComponent() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const swiperRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.params.navigation.prevEl = '.custom-prev';
+      swiperRef.current.swiper.params.navigation.nextEl = '.custom-next';
+      swiperRef.current.swiper.params.pagination.el = '.custom-pagination';
+      swiperRef.current.swiper.navigation.init();
+      swiperRef.current.swiper.navigation.update();
+      swiperRef.current.swiper.pagination.init();
+      swiperRef.current.swiper.pagination.update();
+    }
+  }, []);
+
   return (
-    <div className="relative h-screen bg-slate-500 w-full ">
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full">
-        <h1 className="text-white text-4xl font-bold lg:text-6xl">test page</h1>
-        <p className="text-white text-lg lg:text-2xl">Lorem ipsum</p>
+    <section className="relative w-full h-[70vh] lg:h-screen mb-20">
+      <div className="relative w-full h-full mx-auto">
+        <div className="absolute hidden lg:flex lg:top-full left-5 top-1/2 -translate-y-1/2 lg:left-[80%] z-10">
+          {/* Custom Buttons */}
+          <button className="custom-prev w-12 h-12 bg-white shadow-md border border-[#CFD5D5] rounded-none flex items-center justify-center  transition">
+            <HiArrowLeft className="text-textPrimary w-4 h-4" />
+          </button>
+
+          <button className="custom-next w-12 h-12 bg-white shadow-md border border-[#CFD5D5] rounded-none flex items-center justify-center  transition">
+            <HiArrowRight className="text-textPrimary w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Swiper */}
+        <Swiper
+          ref={swiperRef}
+          spaceBetween={30}
+          centeredSlides={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+            el: '.custom-pagination',
+          }}
+          navigation={{
+            prevEl: '.custom-prev',
+          }}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper h-full"
+        >
+          {logos.map((logo, index) => (
+            <SwiperSlide key={index}>
+              <Image src={logo} alt="logo" className="object-contain w-full h-full" />
+              <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
+
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
+                <h1 className="text-[48px] lg:text-[64px] font-marcellus mb-6 uppercase tracking-wide">
+                  Central <br className="block sm:hidden" /> Group
+                </h1>
+                <p className="text-base lg:text-[20px]  tracking-widest mb-10">Building Your Dream Home</p>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-    </div>
+
+      {/* Custom Pagination */}
+      <div className="absolute  w-full flex justify-center items-center lg:block lg:top-full  lg:-translate-y-1/5  mt-4 z-10">
+        <div className="custom-pagination w-12 "></div>
+      </div>
+    </section>
   );
 }

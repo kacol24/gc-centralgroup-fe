@@ -21,7 +21,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ image, title, location }) =
 
         <div className="flex justify-between mt-2">
           <div className="flex items-center gap-4  text-sm">
-            <span className="flex items-center gap-1 font-bold uppercase">
+            <span className="flex items-center gap-[6px] font-bold uppercase">
               <RiBuildingFill className="text-xs " />
               Residential
             </span>

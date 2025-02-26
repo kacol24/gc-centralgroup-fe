@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Montserrat, Aboreto, Marcellus } from 'next/font/goo
 import './../globals.css';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import ContactUs from '../components/contact-us';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,8 +34,9 @@ export default async function RootLayout({
       <body
         className={`${geistSans.className} ${geistMono.variable} ${montserrat.className} ${marcellus.className} ${aboreto.className} antialiased`}
       >
-        <Navbar type="fixed" />
+        <Navbar />
         {children}
+        <ContactUs />
         <Footer />
       </body>
     </html>

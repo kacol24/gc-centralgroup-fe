@@ -21,11 +21,9 @@ export default function Contact() {
   return (
     <section className="w-full h-auto pt-[170px] lg:pt-[223px] bg-backgroundWhite lg:pb-[90px] pb-0">
       <div className="container mx-auto px-4">
-        <h1 className="text-[64px] leading-[70px] items-center justify-center text-center lg:mb-12 font-marcellus text-textPrimary uppercase sm:flex hidden">
-          The Trusted Real Estate <br /> Authority For Those <br /> Seeking The Best.
-        </h1>
-        <h1 className="text-4xl px-6  items-center justify-center text-center font-marcellus mb-8 text-textPrimary uppercase sm:hidden flex">
-          The Trusted Real <br /> Estate Authority <br /> For Those <br /> Seeking The Best.
+        <h1 className="text-4xl lg:px-0 px-6 lg:text-[64px] lg:leading-[70px] items-center justify-center text-center lg:mb-12 mb-8 font-marcellus text-textPrimary uppercase">
+          The Trusted Real <br className="block lg:hidden" /> Estate <br className="hidden lg:block" /> Authority{' '}
+          <br className="block lg:hidden" /> For Those <br /> Seeking The Best.
         </h1>
         <p className="text-sm px-6 font-medium text-center text-textPrimary mb-[60px] lg:mb-20">
           Thank you for visiting our site. As a dynamic digital platform, it will continuously update with new property{' '}
@@ -97,6 +95,8 @@ export default function Contact() {
                     borderColor: '#E1E1E1',
                     borderRadius: '0px',
                     fontSize: '12px',
+                    paddingTop: '23px',
+                    paddingBottom: '23px',
                   }}
                   className=" text-gray-900"
                 />
@@ -119,6 +119,8 @@ export default function Contact() {
                       borderRadius: '0px',
                       fontSize: '12px',
                       paddingLeft: '40px',
+                      paddingTop: '23px',
+                      paddingBottom: '23px',
                     }}
                     className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
                   />
@@ -137,6 +139,8 @@ export default function Contact() {
                     borderColor: '#E1E1E1',
                     borderRadius: '0px',
                     fontSize: '12px',
+                    paddingTop: '23px',
+                    paddingBottom: '23px',
                   }}
                   className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
                 />
@@ -160,7 +164,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <Button variant="filled" className="rounded-none w-full font-medium text-xs py-[16px] uppercase">
+            <Button variant="filled" className="rounded-none w-full font-medium text-xs py-[24px] uppercase">
               Send Message
             </Button>
           </div>
@@ -185,6 +189,8 @@ export default function Contact() {
                       borderColor: '#E1E1E1',
                       borderRadius: '0px',
                       fontSize: '12px',
+                      paddingTop: '23px',
+                      paddingBottom: '23px',
                     }}
                     className=" text-gray-900"
                   />
@@ -207,6 +213,8 @@ export default function Contact() {
                         borderRadius: '0px',
                         fontSize: '12px',
                         paddingLeft: '40px',
+                        paddingTop: '23px',
+                        paddingBottom: '23px',
                       }}
                       className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
                     />
@@ -225,6 +233,8 @@ export default function Contact() {
                       borderColor: '#E1E1E1',
                       borderRadius: '0px',
                       fontSize: '12px',
+                      paddingTop: '23px',
+                      paddingBottom: '23px',
                     }}
                     className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
                   />
@@ -248,7 +258,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <Button variant="filled" className="rounded-none w-full font-medium text-xs py-[16px] uppercase">
+              <Button variant="filled" className="rounded-none w-full font-medium text-xs py-[24px] uppercase">
                 Send Message
               </Button>
             </div>

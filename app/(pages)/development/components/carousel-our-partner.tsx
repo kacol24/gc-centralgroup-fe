@@ -33,7 +33,7 @@ export default function CarouselOurPartner() {
     <section className="w-full">
       {/* Carousel Desktop */}
       <div className="w-full px-4 lg:py-20 xl:py-20 hidden lg:block container mx-auto">
-        <h4 className="text-primary text-xs font-semibold lg:text-sm text-start mb-6 ">OUR PATNERS</h4>
+        <h4 className="text-primary text-xs font-semibold lg:text-sm text-start mb-6 uppercase">Our Partners</h4>
 
         <div className="container mx-auto">
           <Carousel
@@ -51,7 +51,7 @@ export default function CarouselOurPartner() {
             {/* Wrapper konten carousel */}
             <CarouselContent className="flex gap-8">
               {logos.map((logo, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/6">
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-[12%]">
                   <div className="flex items-center justify-center p-1">
                     <Image src={logo} alt={`Partner ${index + 1}`} width={120} height={60} className="object-contain" />
                   </div>

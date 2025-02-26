@@ -54,7 +54,7 @@ export default function Footer() {
           <div className="mt-6 md:mt-0 text-white space-y-4 md:flex-1 ">
             <div>
               <div className="flex items-center gap-3">
-                <FaMapMarkerAlt className="text-xl opacity-60" />
+                <FaMapMarkerAlt className="text-lg opacity-60" />
                 <span className="font-bold">Central Group Head Office</span>
               </div>
               <p className="ml-8 opacity-80">
@@ -64,7 +64,7 @@ export default function Footer() {
 
             <div>
               <div className="flex items-center gap-3">
-                <FaMapMarkerAlt className="text-xl opacity-60" />
+                <FaMapMarkerAlt className="text-lg opacity-60" />
                 <span className="font-bold">Representative Office</span>
               </div>
               <p className="ml-8 opacity-80">

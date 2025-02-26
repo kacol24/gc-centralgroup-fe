@@ -37,7 +37,7 @@ export default function CentralCommunityActivity({
           )}
         </div>
         {visibleCount < activityImages.length && (
-          <button onClick={loadMore} className="block mt-8 mx-auto px-12 py-4 text-white bg-primary md:mt-12 lg:mt-20">
+          <button onClick={loadMore} className="block mt-8 mx-auto px-12 py-3 text-white bg-primary md:mt-12 lg:mt-20">
             Load More
           </button>
         )}
