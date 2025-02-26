@@ -103,7 +103,7 @@ export default function CoreDetailDevelopment({
             </div>
           </div>
 
-          <div className="lg:block hidden border-t border-textPrimary border-opacity-10 my-4" />
+          <div className="lg:block hidden border-t border-textPrimary border-opacity-10 mt-[45px] mb-[40px]" />
 
           <div className="flex text-textPrimary items-center gap-4  text-sm">
             <span className="flex items-center gap-1 text-[10px] font-bold uppercase">
@@ -275,7 +275,7 @@ export default function CoreDetailDevelopment({
               </div>
             </div>
 
-            <div className="block lg:flex lg:gap-6 items-end">
+            <div className="block lg:flex lg:gap-6 items-end !mt-0">
               {/* Loan Term */}
               <div className="space-y-2 lg:flex-[0.43]">
                 <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">

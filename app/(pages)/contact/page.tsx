@@ -1,6 +1,7 @@
 'use client';
 
-import { FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaEnvelope } from 'react-icons/fa';
+import { RiMapPin2Fill } from 'react-icons/ri';
 import { IoLogoWhatsapp } from 'react-icons/io';
 import { useMemo } from 'react';
 import dynamic from 'next/dynamic';
@@ -48,11 +49,11 @@ export default function Contact() {
           <div className="w-full xl:w-[55%] lg:flex items-start gap-28 mt-10">
             <div className="text-white space-y-4">
               <div className="flex items-center gap-3">
-                <IoLogoWhatsapp className="text-xl opacity-60" />
+                <IoLogoWhatsapp className="text-base text-textTertiary" />
                 <span>+62 811 703 8868</span>
               </div>
               <div className="flex items-center gap-3">
-                <FaEnvelope className="text-xl opacity-60" />
+                <FaEnvelope className="text-base text-textTertiary" />
                 <span>info@centralgroup.com</span>
               </div>
             </div>
@@ -61,7 +62,7 @@ export default function Contact() {
             <div className="mt-6 md:mt-0 text-white space-y-4  ">
               <div>
                 <div className="flex items-center gap-3">
-                  <FaMapMarkerAlt className="text-xl opacity-60" />
+                  <RiMapPin2Fill className="text-base text-textTertiary" />
                   <span className="font-bold">Central Group Head Office</span>
                 </div>
                 <p className="ml-8 opacity-80">
@@ -71,7 +72,8 @@ export default function Contact() {
 
               <div>
                 <div className="flex items-center gap-3">
-                  <FaMapMarkerAlt className="text-xl opacity-60" />
+                  <div className="w-[18px]"></div>
+                  {/* <FaMapMarkerAlt className="text-xl opacity-60" /> */}
                   <span className="font-bold">Representative Office</span>
                 </div>
                 <p className="ml-8 opacity-80">
