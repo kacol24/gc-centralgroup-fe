@@ -7,14 +7,13 @@ import {
   aboutPageBannerAttachmentTopRight,
   aboutPageBannerAttachmentBottomLeft,
   aboutPageBannerAttachmentBottomRight,
-  awardImageAsArray,
   principMuljadi,
   backgroundGoalPageAbout,
   patnerLogoAsArray,
   backgroundWaveTile,
 } from '@/app/lib/utils/image';
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
-import Autoplay from 'embla-carousel-autoplay';
+
+import CarouselAwardeComponent from '@/app/components/landing-components/carousel-awarde-component';
 
 export default function About() {
   return (
@@ -64,39 +63,7 @@ export default function About() {
         />
       </section>
 
-      <section className="bg-backgroundWhite">
-        <div className="w-full py-8">
-          <Carousel
-            opts={{
-              align: 'start',
-              loop: true,
-              slidesToScroll: 1,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 2000,
-              }),
-            ]}
-          >
-            <CarouselContent className="flex gap-4">
-              {awardImageAsArray?.map((award, index) => (
-                <CarouselItem key={index} className="basis-1/2 lg:basis-1/6">
-                  <div className="flex flex-col items-center justify-center p-1 w-[120px] min-w-[120px] grow relative">
-                    <Image
-                      src={award.src}
-                      alt={award.alt}
-                      width={120}
-                      height={0}
-                      className="w-full h-auto object-contain aspect-square"
-                    />
-                    <p className="mt-2 text-[9px] text-center text-textPrimary font-bold md:text-xs">{award.alt}</p>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
-      </section>
+      <CarouselAwardeComponent />
 
       <section className="bg-backgroundWhite ">
         <div className="container mx-auto md:p-16 md:pb-24 md:grid md:grid-cols-[5fr_6fr] lg:px-40 lg:grid-cols-[4fr_5fr]">

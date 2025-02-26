@@ -30,7 +30,7 @@ export default function HeroComponent() {
   }, []);
 
   return (
-    <section className="relative w-full h-[70vh] lg:h-screen mb-20">
+    <section className="relative w-full h-[70vh] lg:h-[96vh] mb-20">
       <div className="relative w-full h-full mx-auto">
         <div className="absolute hidden lg:flex lg:top-full left-5 top-1/2 -translate-y-1/2 lg:left-[80%] z-10">
           {/* Custom Buttons */}

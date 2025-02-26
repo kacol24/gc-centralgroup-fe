@@ -9,13 +9,13 @@ const stats = [
 
 export default function IntroductionComponent() {
   return (
-    <section className="w-full mx-auto container px-4  ">
+    <section className="w-full mx-auto container px-4 mt-10">
       <div className="lg:flex">
         <div className="flex flex-col lg:flex-[0.45] justify-start items-start w-full h-full lg:pr-[100px] mb-12 lg:mb-0 ">
           <h1 className="lg:text-[36px] text-[28px] font-marcellus text-start text-textPrimary mb-6 lg:mb-10 uppercase tracking-wider">
             The Best Developer <br /> in Batam
           </h1>
-          <p className="font-medium lg:text-sm text-start text-textSecondary mb-10 lg:mb-12">
+          <p className="font-medium font-mon lg:text-sm text-start text-textSecondary mb-10 lg:mb-12 leading-6 tracking-wide">
             The Best Developer in Batam by Property & Bank Award, dengan pengalaman lebih dari 34 Tahun sejak tahun 1989
             dalam membangun 3889 rumah impian Anda. Central Group telah berhasil mengembangkan beberapa proyek ternama
             dengan total lahan lebih dari 200 Ha di Kota Batam, beberapa diantaranya bekerjasama dengan developer

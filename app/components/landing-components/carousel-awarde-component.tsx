@@ -24,15 +24,17 @@ export default function CarouselAwardeComponent() {
           <CarouselContent className="flex gap-4">
             {awardImageAsArray?.map((award, index) => (
               <CarouselItem key={index} className="basis-1/2 lg:basis-1/6">
-                <div className="flex flex-col items-center justify-center p-1 w-[120px] min-w-[120px] grow relative">
+                <div className="flex flex-col items-center justify-center p-1 w-[186px] min-w-[186px] grow relative">
                   <Image
                     src={award.src}
                     alt={award.alt}
-                    width={120}
+                    width={186}
                     height={0}
                     className="w-full h-auto object-contain aspect-square"
                   />
-                  <p className="mt-2 text-[9px] text-center text-textPrimary font-bold md:text-xs">{award.alt}</p>
+                  <p className="mt-2 text-[9px] text-center text-textPrimary font-bold md:text-xs uppercase">
+                    {award.alt}
+                  </p>
                 </div>
               </CarouselItem>
             ))}

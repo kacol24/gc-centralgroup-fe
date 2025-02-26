@@ -10,6 +10,10 @@ body {
   :root {
     --radius: 0.5rem;
   }
+
+  p {
+    letter-spacing: 0.025rem;
+  }
 }
 
 .custom-popup .leaflet-popup-content-wrapper {
@@ -68,8 +72,8 @@ body {
 }
 
 .custom-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
+  width: 6px;
+  height: 6px;
   background-color: #d9d9d9;
   border-radius: 0px;
   opacity: 1;

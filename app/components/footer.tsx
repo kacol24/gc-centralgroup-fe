@@ -12,11 +12,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-primary">
+    <footer className="w-full bg-primary text-sm">
       <div className="container mx-auto px-4 ">
         <div className="flex w-full flex-col lg:flex-row lg:justify-between lg:items-start gap-4 lg:gap-8 py-14 lg:py-[72px]">
           {/* Logo & Scroll Up */}
-          <div className="flex w-full md:flex-1 justify-between items-center mb-6">
+          <div className="flex md:max-w-[200px] md:flex-1 justify-between items-center mb-6">
             {/* Logo for Mobile */}
             <Image
               src={logoRowWhite}
@@ -41,11 +41,11 @@ export default function Footer() {
           {/* Contact */}
           <div className="text-white space-y-4 md:flex-1 ">
             <div className="flex items-center gap-3">
-              <IoLogoWhatsapp className="text-xl opacity-60" />
+              <IoLogoWhatsapp size="14" className="text-xl opacity-60" />
               <span>+62 811 703 8868</span>
             </div>
             <div className="flex items-center gap-3">
-              <FaEnvelope className="text-xl opacity-60" />
+              <FaEnvelope size="14" className="text-xl opacity-60" />
               <span>info@centralgroup.com</span>
             </div>
           </div>
@@ -54,20 +54,20 @@ export default function Footer() {
           <div className="mt-6 md:mt-0 text-white space-y-4 md:flex-1 ">
             <div>
               <div className="flex items-center gap-3">
-                <FaMapMarkerAlt className="text-lg opacity-60" />
-                <span className="font-bold">Central Group Head Office</span>
+                <FaMapMarkerAlt className="text-lg opacity-60" size="14px" />
+                <span className="font-bold leading-[25.2px]">Central Group Head Office</span>
               </div>
-              <p className="ml-8 opacity-80">
+              <p className="ml-7 opacity-80 leading-[25.2px]">
                 Jl. Central Raya No.1, Sukajadi, Kec. Batam Kota, Kota Batam, Kepulauan Riau 29432
               </p>
             </div>
 
             <div>
               <div className="flex items-center gap-3">
-                <FaMapMarkerAlt className="text-lg opacity-60" />
-                <span className="font-bold">Representative Office</span>
+                <FaMapMarkerAlt className="text-lg opacity-60" size="14px" />
+                <span className="font-bold leading-[25.2px]">Representative Office</span>
               </div>
-              <p className="ml-8 opacity-80">
+              <p className="ml-7 opacity-80 leading-[25.2px]">
                 Ruko Campton A-03, Jl. Raya Cisauk Lapan, Sampora, Tangerang - Banten 15345
               </p>
             </div>
@@ -76,11 +76,11 @@ export default function Footer() {
           {/* Newsletter */}
           <div className="mt-8 md:mt-0 w-full md:flex-1 ">
             <h3 className="text-white text-lg font-marcellus mb-4 tracking-wider">NEWSLETTER</h3>
-            <div className="flex  rounded-lg overflow-hidden">
+            <div className="flex  rounded-lg overflow-hidden border border-[rgba(0,0,0,0.04)]">
               <input
                 type="email"
                 placeholder="Type your email"
-                className="w-full px-4 py-4  bg-black bg-opacity-5 text-white outline-none"
+                className="w-full px-4 py-4  bg-black bg-opacity-5 text-[#FAFAFA80] outline-none"
               />
               <button className="bg-black bg-opacity-5 text-sm tracking-wider  text-white px-5 py-4 flex items-center gap-2">
                 SUBMIT <HiOutlineArrowRight />

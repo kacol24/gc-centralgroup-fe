@@ -58,11 +58,11 @@ export default function Navbar() {
   const navbarContainerStyle = () => {
     switch (nav) {
       case 'fixed':
-        return 'py-2 lg:py-4 text-black';
+        return 'py-2 lg:py-2 text-black';
       case 'sticky':
-        return 'bg-white py-2 lg:py-4 text-black shadow';
+        return 'bg-white py-2 lg:py-2 text-black shadow';
       default:
-        return 'py-2 lg:py-4 text-black';
+        return 'py-2 lg:py-2 text-black';
     }
   };
 
@@ -113,19 +113,19 @@ export default function Navbar() {
 
   const subMenuStyle = (path: string) => {
     if (pathname === path) {
-      return 'text-black font-semibold uppercase text-sm py-3 block';
+      return 'text-black font-semibold uppercase text-xs py-3 block';
     } else {
-      return 'text-textPrimary font-medium uppercase text-sm py-3 block';
+      return 'text-textPrimary font-medium uppercase text-xs py-3 block';
     }
   };
 
   return (
     <>
       {/* Navbar */}
-      <nav className={`w-full fixed z-50 transition-all duration-300 ${isScrolled ? navbarStyle() : ''}`}>
+      <nav className={`w-full fixed z-50 transition-all duration-300 text-xs ${isScrolled ? navbarStyle() : ''}`}>
         <div
           className={` w-full container mx-auto px-4   ${
-            isScrolled ? navbarContainerStyle() : ` py-6 lg:py-8 bg-transparent ${variant.text}`
+            isScrolled ? navbarContainerStyle() : ` py-2 lg:py-6 bg-transparent ${variant.text}`
           }`}
         >
           <div className="flex items-center">
@@ -133,7 +133,7 @@ export default function Navbar() {
             <div className="flex-1 p-4 pl-0">
               <button onClick={() => setIsOpen(true)} className="flex items-center gap-3">
                 <h1 className="hidden md:flex">MENU</h1>
-                <Image src={isScrolled ? iconMenu : variant.iconMenu} alt="Menu Icon" height={24} width={24} />
+                <Image src={isScrolled ? iconMenu : variant.iconMenu} alt="Menu Icon" height={14} width={14} />
               </button>
             </div>
 
@@ -152,13 +152,13 @@ export default function Navbar() {
             </div>
 
             {/* Right Side */}
-            <div className="md:flex-1 hidden md:flex justify-end items-center gap-6 p-4 pr-0">
+            <div className="md:flex-1 hidden md:flex justify-end items-center gap-6 px-4 py-2 pr-0">
               <a href="https://wa.me/6287835712129" target="_blank" rel="noopener noreferrer">
                 <Image
                   src={isScrolled ? iconWhatsApp : variant.iconWhatsApp}
                   alt="WhatsApp Icon"
-                  width={24}
-                  height={24}
+                  width={15}
+                  height={15}
                 />
               </a>
 
@@ -169,8 +169,8 @@ export default function Navbar() {
                 <Image
                   src={isScrolled ? iconCaretDown : variant.iconCaretDown}
                   alt="Caret Down Icon"
-                  width={16}
-                  height={16}
+                  width={12}
+                  height={12}
                 />
               </div>
 
@@ -186,13 +186,13 @@ export default function Navbar() {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-[380px] bg-white shadow-lg transition-transform duration-300 z-50 ${
+        className={`fixed top-0 left-0 h-full w-[380px] bg-white shadow-lg transition-transform duration-300 z-[60] ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         {/* Button CLOSE */}
         <div className="flex justify-start items-center p-8">
-          <button onClick={() => setIsOpen(false)} className="text-sm uppercase underline text-textPrimary">
+          <button onClick={() => setIsOpen(false)} className="text-xs uppercase underline text-textPrimary">
             Close
           </button>
 
@@ -212,8 +212,8 @@ export default function Navbar() {
                 <Image
                   src={iconCaretDown}
                   alt="Caret Down Icon"
-                  width={16}
-                  height={16}
+                  width={12}
+                  height={12}
                   className={`transform transition-transform ${openMenus['development'] ? 'rotate-180' : 'rotate-0'}`}
                 />
               </span>
@@ -253,8 +253,8 @@ export default function Navbar() {
                 <Image
                   src={iconCaretDown}
                   alt="Caret Down Icon"
-                  width={16}
-                  height={16}
+                  width={12}
+                  height={12}
                   className={`transform transition-transform ${openMenus['community'] ? 'rotate-180' : 'rotate-0'}`}
                 />
               </span>
@@ -295,7 +295,7 @@ export default function Navbar() {
       </div>
 
       {/* Overlay */}
-      {isOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setIsOpen(false)}></div>}
+      {isOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-50" onClick={() => setIsOpen(false)}></div>}
     </>
   );
 }

@@ -127,7 +127,7 @@ export default function CoreDetailDevelopment({
             Starts from Rp 800.000.000
           </div>
 
-          <p className="text-sm mt-6 mb-12 text-textSecondary">{detail?.description}</p>
+          <p className="text-sm mt-6 mb-12 text-textSecondary tracking-wide">{detail?.description}</p>
 
           <div className="w-full lg:max-w-fit flex gap-4 mb-10">
             <Button variant="outline" className="flex-1 rounded-none text-xs py-[24px] px-[15px] lg:px-6">
