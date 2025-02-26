@@ -14,7 +14,7 @@ interface ActivityImage {
 
 export default function CentralCommunityActivity({
   activityImages,
-  initialVisible = 8,
+  initialVisible = 12,
   loadMoreCount = 4,
 }: CentralCommunityActivityProps) {
   const [visibleCount, setVisibleCount] = useState(initialVisible);

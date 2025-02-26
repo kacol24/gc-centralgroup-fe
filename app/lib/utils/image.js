@@ -31,6 +31,7 @@ import aboutPageBannerAttachmentTopLeft from '@/public/assets/image/about-page-b
 import aboutPageBannerAttachmentTopRight from '@/public/assets/image/about-page-banner-attachment-top-right.png';
 import aboutPageBannerAttachmentBottomLeft from '@/public/assets/image/about-page-banner-attachment-bottom-left.png';
 import aboutPageBannerAttachmentBottomRight from '@/public/assets/image/about-page-banner-attachment-bottom-right.png';
+import backgroundWaveTile from '@/public/assets/image/bg-wave-tile.png';
 
 import indonesiaMyHomeAward2022 from '@/public/assets/image/indonesia-my-home-award-2022.png';
 import propertyGuruIndonesiaPropertyAward2023 from '@/public/assets/image/propertyguru-indonesia-property-award-2023.png';
@@ -138,6 +139,7 @@ export {
   aboutPageBannerAttachmentBottomRight,
   awardImageAsArray,
   principMuljadi,
+  backgroundWaveTile,
   backgroundGoalPageAbout,
   patnerLogoAsArray,
   backgroundTopBannerPageCentralBerbagi,

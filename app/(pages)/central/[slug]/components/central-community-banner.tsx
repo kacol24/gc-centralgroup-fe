@@ -38,7 +38,7 @@ export default function CentralCommunityBanner({
 
         <div className="z-20 container w-[80%] m-auto text-center">
           <h1 className="mb-12 text-4xl text-center uppercase lg:text-6xl text-white font-marcellus">{bannerTitle}</h1>
-          <p className="mb-40 text-sm text-center md:w-[80%] md:mx-auto text-white">{bannerDescription}</p>
+          <p className="mb-40 text-sm/6 text-center md:w-[80%] md:mx-auto text-white">{bannerDescription}</p>
         </div>
       </div>
 
@@ -46,9 +46,9 @@ export default function CentralCommunityBanner({
         <div className="container mx-auto relative px-4 py-12 md:py-8 ">
           <div className="relative -top-72 -mb-72 md:-top-80 md:-mb-80 lg:-top-64 lg:-mb-24">
             <div className="flex items-center gap-2 md:justify-between">
-              <div className="w-[20%] h-[1px] bg-white lg:w-[25%]" />
-              <h2 className="text-2xl text-center text-white font-marcellus">{pillarTitle}</h2>
-              <div className="w-[20%] h-[1px] bg-white lg:w-[25%]" />
+              <div className="w-[20%] h-[1px] bg-white opacity-40 lg:w-[25%]" />
+              <h2 className="text-2xl text-center text-white font-marcellus lg:text-4xl">{pillarTitle}</h2>
+              <div className="w-[20%] h-[1px] bg-white opacity-40 lg:w-[25%]" />
             </div>
 
             <div className="md:grid md:grid-cols-2 md:gap-x-8 lg:grid-cols-4">

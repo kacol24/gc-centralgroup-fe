@@ -180,7 +180,7 @@ export default function Navbar() {
           {/* DEVELOPMENT */}
           <li>
             <div
-              className="py-3 font-marcellus  text-textPrimary flex justify-start gap-2 items-center cursor-pointer text-[18px]"
+              className="py-3 font-marcellus text-textPrimary flex justify-start gap-2 items-center cursor-pointer text-[18px]"
               onClick={() => toggleMenu('development')}
             >
               DEVELOPMENT
