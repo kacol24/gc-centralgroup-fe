@@ -71,10 +71,10 @@ export default function CoreDetailDevelopment({
 
   const MapsComponent = useMemo(
     () =>
-      dynamic(() => import('./maps-component'), {
+      dynamic(() => import('../../../../components/maps-component'), {
         loading: () => (
           <div className="w-full h-[127px] lg:h-[260px] p-0 lg:flex-grow mb-10 lg:mb-0 lg:pr-[75px]">
-            <Image src={imgLoadingMaps} alt="Logo Property" unoptimized className="w-full h-full object-cover" />
+            <Image src={imgLoadingMaps} alt="Logo Property" unoptimized className="w-full h-full object-fill" />
           </div>
         ),
         ssr: false,
@@ -141,71 +141,69 @@ export default function CoreDetailDevelopment({
               </span>
             </Button>
           </div>
-          <div className="w-full">
-            <div className=" bg-white">
-              <h1 className="font-marcellus text-textPrimary text-[22px] uppercase mb-8">Download Brochure</h1>
+          <div className="w-full block lg:hidden">
+            <h1 className="font-marcellus text-textPrimary text-[22px] uppercase mb-8">Download Brochure</h1>
 
-              <div className="space-y-4 mb-6">
-                {/* Property Price */}
-                <div className="space-y-2">
-                  <Label htmlFor="property-price" className="text-[10px] font-semibold text-gray-900">
-                    YOUR NAME
-                  </Label>
-                  <Input
-                    id="name"
-                    placeholder="Your Name"
-                    style={{
-                      backgroundColor: 'white',
-                      borderColor: '#E1E1E1',
-                      borderRadius: '0px',
-                      fontSize: '12px',
-                    }}
-                    className=" text-gray-900"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="down-payment" className="text-[10px] font-semibold text-gray-900">
-                    NOMOR HANDPHONE
-                  </Label>
-                  <Input
-                    id="phone"
-                    placeholder="+62"
-                    style={{
-                      backgroundColor: 'white',
-                      borderColor: '#E1E1E1',
-                      borderRadius: '0px',
-                      fontSize: '12px',
-                    }}
-                    className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">
-                    YOUR EMAIL
-                  </Label>
-                  <Input
-                    id="email"
-                    placeholder="Your Email"
-                    style={{
-                      backgroundColor: 'white',
-                      borderColor: '#E1E1E1',
-                      borderRadius: '0px',
-                      fontSize: '12px',
-                    }}
-                    className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
-                  />
-                </div>
+            <div className="space-y-4 mb-6">
+              {/* Property Price */}
+              <div className="space-y-2">
+                <Label htmlFor="property-price" className="text-[10px] font-semibold text-gray-900">
+                  YOUR NAME
+                </Label>
+                <Input
+                  id="name"
+                  placeholder="Your Name"
+                  style={{
+                    backgroundColor: 'white',
+                    borderColor: '#E1E1E1',
+                    borderRadius: '0px',
+                    fontSize: '12px',
+                  }}
+                  className=" text-gray-900"
+                />
               </div>
 
-              <Button variant="filled" className="w-full rounded-none text-xs py-[24px] uppercase">
-                Download Brochure
-                <span>
-                  <PiDownloadSimpleFill className="text-white text-xl" />
-                </span>
-              </Button>
+              <div className="space-y-2">
+                <Label htmlFor="down-payment" className="text-[10px] font-semibold text-gray-900">
+                  NOMOR HANDPHONE
+                </Label>
+                <Input
+                  id="phone"
+                  placeholder="+62"
+                  style={{
+                    backgroundColor: 'white',
+                    borderColor: '#E1E1E1',
+                    borderRadius: '0px',
+                    fontSize: '12px',
+                  }}
+                  className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">
+                  YOUR EMAIL
+                </Label>
+                <Input
+                  id="email"
+                  placeholder="Your Email"
+                  style={{
+                    backgroundColor: 'white',
+                    borderColor: '#E1E1E1',
+                    borderRadius: '0px',
+                    fontSize: '12px',
+                  }}
+                  className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
+                />
+              </div>
             </div>
+
+            <Button variant="filled" className="w-full rounded-none text-xs py-[24px] uppercase">
+              Download Brochure
+              <span>
+                <PiDownloadSimpleFill className="text-white text-xl" />
+              </span>
+            </Button>
           </div>
 
           <div className="border-t border-textPrimary border-opacity-10 mt-10 mb-8 lg:mb-12" />

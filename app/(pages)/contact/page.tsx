@@ -8,12 +8,18 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { imgLoadingMaps } from '@/app/lib/utils/image';
+import Image from 'next/image';
 
 export default function Contact() {
   const MapContact = useMemo(
     () =>
       dynamic(() => import('./components/map-contact'), {
-        loading: () => <p>A map is loading</p>,
+        loading: () => (
+          <div className="w-full h-[127px] lg:h-[260px] p-0 lg:flex-grow mb-10 lg:mb-0 lg:pr-[75px]">
+            <Image src={imgLoadingMaps} alt="Logo Property" unoptimized className="w-full h-full object-cover" />
+          </div>
+        ),
         ssr: false,
       }),
     [],
