@@ -11,7 +11,7 @@ import {
 import Image from 'next/image';
 import React from 'react';
 import { use, useEffect, useState } from 'react';
-import { FaFacebookF, FaWhatsapp, FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
+import { FaFacebookF, FaWhatsapp } from 'react-icons/fa6';
 import { RiLinksFill } from 'react-icons/ri';
 import CardArticle from '@/app/components/card-article';
 import Link from 'next/link';
@@ -174,19 +174,9 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
                 <HiArrowRight className="text-textPrimary w-7 h-7" />
               </CarouselNext>
             </div>
-
-            {/* Button Previous */}
-            {/* <CarouselPrevious className="absolute lg:hidden left-5 top-1/2 -translate-y-1/2  z-10 w-12 h-12 bg-white shadow-md border border-textPrimary rounded-none flex items-center justify-center  transition">
-          <HiArrowLeft className="text-textPrimary w-7 h-7 " />
-        </CarouselPrevious> */}
-
-            {/* Button Next */}
-            {/* <CarouselNext className="absolute lg:hidden right-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-md border border-textPrimary rounded-none flex items-center justify-center  transition">
-          <HiArrowRight className="text-textPrimary w-7 h-7" />
-        </CarouselNext> */}
           </Carousel>
 
-          <Link href="/article" className="w-fit mx-auto mb-8 px-12 py-4 block text-white bg-primary">
+          <Link href="/article" className="w-fit mx-auto mt-16 mb-8 px-12 py-4 block text-white bg-primary">
             ALL NEWS & UPDATE
           </Link>
         </div>
