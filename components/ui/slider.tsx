@@ -48,10 +48,10 @@ const Slider = React.forwardRef<
     </SliderPrimitive.Track>
 
     {/* Thumb 1 (Kiri) */}
-    <SliderPrimitive.Thumb className="block h-6 w-6 rounded-full bg-[#7AAF1C] border-2 border-black shadow-md" />
+    <SliderPrimitive.Thumb className="block h-6 w-6 rounded-full bg-[#7AAF1C]  shadow-md" />
 
     {/* Thumb 2 (Kanan) */}
-    <SliderPrimitive.Thumb className="block h-6 w-6 rounded-full bg-[#7AAF1C] border-2 border-black shadow-md" />
+    <SliderPrimitive.Thumb className="block h-6 w-6 rounded-full bg-[#7AAF1C]  shadow-md" />
   </SliderPrimitive.Root>
 ));
 Slider.displayName = SliderPrimitive.Root.displayName;

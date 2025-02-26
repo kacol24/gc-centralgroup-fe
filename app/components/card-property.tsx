@@ -17,10 +17,10 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ image, title, location }) =
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-white">
-        <h1 className="text-2xl font-marcellus">{title}</h1>
+        <h1 className="text-2xl uppercase font-marcellus">{title}</h1>
 
         <div className="flex justify-between mt-2">
-          <div className="flex items-center gap-4  text-sm">
+          <div className="flex items-center gap-4  text-[10px]">
             <span className="flex items-center gap-[6px] font-bold uppercase">
               <RiBuildingFill className="text-xs " />
               Residential

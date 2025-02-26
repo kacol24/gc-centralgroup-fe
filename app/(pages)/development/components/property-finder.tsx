@@ -200,7 +200,7 @@ export default function PropertyFinder() {
             min={0}
             max={5000}
             step={100}
-            className="w-full"
+            className="w-full "
           />
           <div className="flex justify-between text-white text-sm mt-4">
             <span>{formatRupiah(value[0])}</span>

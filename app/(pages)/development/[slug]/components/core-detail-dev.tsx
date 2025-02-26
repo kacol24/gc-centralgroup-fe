@@ -275,7 +275,7 @@ export default function CoreDetailDevelopment({
               </div>
             </div>
 
-            <div className="block lg:flex lg:gap-6 items-end">
+            <div className="block lg:flex lg:gap-6 items-end !mt-0">
               {/* Loan Term */}
               <div className="space-y-2 lg:flex-[0.43]">
                 <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">

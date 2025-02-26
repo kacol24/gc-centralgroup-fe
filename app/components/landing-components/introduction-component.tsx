@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 const stats = [
@@ -6,8 +9,14 @@ const stats = [
   { value: '6600+', label: 'HOUSING BUILT OVER THE LAST 5 YEARS' },
   { value: '15+', label: 'PROJECTS' },
 ];
+import Image from 'next/image';
+import { imgThumbVideo, development3 } from '@/app/lib/utils/image';
+import { FaPlay } from 'react-icons/fa6';
 
 export default function IntroductionComponent() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoUrl = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&showinfo=0';
+
   return (
     <section className="w-full mx-auto container px-4 mt-10">
       <div className="lg:flex">
@@ -30,16 +39,32 @@ export default function IntroductionComponent() {
             </Link>
           </Button>
         </div>
-        <div className="w-full flex flex-[0.55] h-[350px]">
-          <iframe
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+        <div className="w-full flex flex-[0.55] h-[450px]">
+          {isPlaying ? (
+            <iframe
+              width="100%"
+              height="100%"
+              src={videoUrl}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            <div className="w-full relative cursor-pointer flex gap-[30px]" onClick={() => setIsPlaying(true)}>
+              <div className="h-full flex-1 flex items-end">
+                <Image src={development3} alt="Thumbnail" className="w-full h-[340px]" />
+              </div>
+              <div className="h-full flex-1 items-start">
+                <Image src={imgThumbVideo} alt="Thumbnail" className="w-full h-[224px]" />
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="bg-white p-5 max-w-[60px] aspect-square rounded-full shadow-lg">
+                  <FaPlay className=" w-5 h-5" />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -55,7 +80,7 @@ export default function IntroductionComponent() {
                   : index === 2
                     ? ' border-b-0 border-r-2'
                     : 'border-none'
-            } lg:border-r-2 border-[#E5E5E5] h-[170px]`}
+            } lg:border-r-2 border-textPrimary border-opacity-20 h-[170px]`}
           >
             <p className="text-[32px] lg:text-[52px] font-marcellus text-textPrimary">{stat.value}</p>
             <p
