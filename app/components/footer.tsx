@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="text-white space-y-4 md:flex-1 ">
+          <div className="text-white space-y-4 md:flex-[0.9] ">
             <div className="flex items-center gap-3">
               <IoLogoWhatsapp size="14" className="text-xl opacity-60" />
               <span>+62 811 703 8868</span>
@@ -51,15 +51,17 @@ export default function Footer() {
           </div>
 
           {/* Work Address */}
-          <div className="mt-6 md:mt-0 text-white space-y-4 md:flex-1 ">
+          <div className=" text-white space-y-4 md:flex-[1.1] ">
             <div>
               <div className="flex items-center gap-3">
                 <FaMapMarkerAlt className="text-lg opacity-60" size="14px" />
                 <span className="font-bold leading-[25.2px]">Central Group Head Office</span>
               </div>
-              <p className="ml-7 opacity-80 leading-[25.2px]">
-                Jl. Central Raya No.1, Sukajadi, Kec. Batam Kota, Kota Batam, Kepulauan Riau 29432
-              </p>
+              <div className="ml-7  opacity-80 leading-[25.2px]">
+                Jl. Central Raya No.1,
+                <br className="hidden lg:block" /> Sukajadi, Kec. Batam Kota,
+                <br className="hidden lg:block" /> Kota Batam, Kepulauan Riau 29432
+              </div>
             </div>
 
             <div>
@@ -68,7 +70,9 @@ export default function Footer() {
                 <span className="font-bold leading-[25.2px]">Representative Office</span>
               </div>
               <p className="ml-7 opacity-80 leading-[25.2px]">
-                Ruko Campton A-03, Jl. Raya Cisauk Lapan, Sampora, Tangerang - Banten 15345
+                Ruko Campton A-03,
+                <br className="hidden lg:block" /> Jl. Raya Cisauk Lapan, Sampora,
+                <br className="hidden lg:block" /> Tangerang - Banten 15345
               </p>
             </div>
           </div>
@@ -80,9 +84,9 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Type your email"
-                className="w-full px-4 py-4  bg-black bg-opacity-5 text-[#FAFAFA80] outline-none"
+                className="w-full px-4 py-4  bg-black/10  text-[#FAFAFA80] outline-none"
               />
-              <button className="bg-black bg-opacity-5 text-sm tracking-wider  text-white px-5 py-4 flex items-center gap-2">
+              <button className="bg-black/10 text-sm tracking-wider  text-white px-5 py-4 flex items-center gap-2">
                 SUBMIT <HiOutlineArrowRight />
               </button>
             </div>

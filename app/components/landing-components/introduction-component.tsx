@@ -39,7 +39,7 @@ export default function IntroductionComponent() {
             </Link>
           </Button>
         </div>
-        <div className="w-full flex flex-[0.55] h-[450px]">
+        <div className="w-full flex flex-[0.55] h-[232px] lg:h-[450px]">
           {isPlaying ? (
             <iframe
               width="100%"
@@ -53,10 +53,18 @@ export default function IntroductionComponent() {
           ) : (
             <div className="w-full relative cursor-pointer flex gap-[30px]" onClick={() => setIsPlaying(true)}>
               <div className="h-full flex-1 flex items-end">
-                <Image src={development3} alt="Thumbnail" className="w-full h-[340px]" />
+                <div
+                  className="w-full h-[178px] lg:h-[340px] lg:max-h-[500px]"
+                  style={{ boxShadow: '0px 10px 60px 0px #00000026' }}
+                >
+                  <Image src={development3} alt="Thumbnail" className=" w-full h-full object-cover" />
+                </div>
               </div>
+
               <div className="h-full flex-1 items-start">
-                <Image src={imgThumbVideo} alt="Thumbnail" className="w-full h-[224px]" />
+                <div className="w-full h-[117px] lg:h-[224px]" style={{ boxShadow: '0px 10px 60px 0px #00000026' }}>
+                  <Image src={imgThumbVideo} alt="Thumbnail" className="w-full h-full object-cover" />
+                </div>
               </div>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="bg-white p-5 max-w-[60px] aspect-square rounded-full shadow-lg">
@@ -68,7 +76,7 @@ export default function IntroductionComponent() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 lg:gap-6 text-center mt-[100px] pt-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 lg:gap-6 text-center mt-12 lg:mt-[100px] pt-0 lg:pt-10">
         {stats.map((stat, index) => (
           <div
             key={index}
