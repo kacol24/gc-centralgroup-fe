@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="text-white space-y-4 md:flex-1 ">
+          <div className="text-white space-y-4 md:flex-[0.7] ">
             <div className="flex items-center gap-3">
               <IoLogoWhatsapp size="14" className="text-xl opacity-60" />
               <span>+62 811 703 8868</span>
@@ -51,7 +51,7 @@ export default function Footer() {
           </div>
 
           {/* Work Address */}
-          <div className="mt-6 md:mt-0 text-white space-y-4 md:flex-1 ">
+          <div className="mt-6 md:mt-0 text-white space-y-4 md:flex-[1.3] ">
             <div>
               <div className="flex items-center gap-3">
                 <FaMapMarkerAlt className="text-lg opacity-60" size="14px" />
