@@ -1,5 +1,7 @@
 'use client';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { CareerModel, careers } from '@/app/lib/utils/career';
 import { careerPageBanner } from '@/app/lib/utils/image';
 import Link from 'next/link';
@@ -28,6 +30,11 @@ export default function Career() {
 
   useEffect(() => {
     getData();
+    AOS.init({
+      duration: 500,
+      once: false,
+      startEvent: 'DOMContentLoaded',
+    });
   }, []);
 
   return (
@@ -41,8 +48,10 @@ export default function Career() {
         <div className="absolute inset-0 bg-primary opacity-95" />
 
         <div className="z-10 container mx-auto px-4 text-center md:w-[80%] lg:w-[40%]">
-          <h1 className="mb-8 text-4xl text-backgroundWhite font-marcellus">WORK WITH US</h1>
-          <p className="text-sm/6 text-white font-medium">
+          <h1 className="mb-8 text-4xl text-backgroundWhite font-marcellus" data-aos="fade-up">
+            WORK WITH US
+          </h1>
+          <p className="text-sm/6 text-white font-medium" data-aos="fade-up" data-aos-delay="200">
             Saat ini Central Group membutuhkan beberapa posisi sebagai berikut. Kunjungi secara berkala halaman ini,
             untuk mendapatkan informasi karir di Central Group
           </p>
@@ -51,6 +60,8 @@ export default function Career() {
               className="w-full p-3 text-textPrimary rounded-sm focus:outline-none focus:ring-0 appearance-none bg-white border border-gray-300"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
+              data-aos="fade-up"
+              data-aos-delay="400"
             >
               {categories.map((category) => (
                 <option key={category} value={category} className="p-4 text-textPrimary">
@@ -67,7 +78,7 @@ export default function Career() {
       <section className="bg-backgroundWhite">
         <div className="relative -top-16 container mx-auto px-4 py-8 -mb-16 space-y-4">
           {filteredCareers.map((item, index) => (
-            <div key={index} className="bg-white shadow-custom">
+            <div key={index} className="bg-white shadow-custom" data-aos="fade-up" data-aos-delay={(index + 3) * 100}>
               <button
                 className="w-full text-left p-4 font-semibold text-textPrimary flex justify-between items-center md:px-8 md:grid md:grid-cols-[3fr_1fr_1fr] lg:py-6"
                 onClick={() => toggleAccordion(index)}
