@@ -16,7 +16,7 @@ import { imgSliderProperty1, imgSliderProperty2, imgSliderProperty3, imgSliderPr
 
 const logos = [imgSliderProperty1, imgSliderProperty2, imgSliderProperty3, imgSliderProperty4];
 
-export default function HeroComponent() {
+export default function HeroComponent({slides}) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const swiperRef = useRef<any>(null);
 
@@ -73,9 +73,9 @@ export default function HeroComponent() {
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper h-full"
         >
-          {logos.map((logo, index) => (
-            <SwiperSlide key={index}>
-              <Image src={logo} alt="logo" className="object-contain w-full h-full" />
+          {slides.map(slide => (
+            <SwiperSlide key={slide.id}>
+              <Image src={slide.desktop} alt="logo" className="object-contain w-full h-full" width={1440} height={780} />
               <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
 
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
@@ -86,7 +86,7 @@ export default function HeroComponent() {
                   Central <br className="block sm:hidden" /> Group
                 </h1>
                 <p data-aos="fade-up" data-aos-delay="600" className="text-base lg:text-[20px]  tracking-widest mb-10">
-                  Building Your Dream Home
+                  {slide.title}
                 </p>
               </div>
             </SwiperSlide>

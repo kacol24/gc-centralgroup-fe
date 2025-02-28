@@ -9,13 +9,21 @@ import CommunityEcosystemComponent from '../components/landing-components/comuun
 import { Suspense } from 'react';
 import PropertyFinderSection from './development/components/property-finder-section';
 
-export default function Home() {
+import {getClient} from '@/app/lib/urqlClient';
+import BannersQuery from '@/graphql/BannersQuery.graphql';
+
+export default async function Home() {
+    const {data} = await getClient().query(BannersQuery, {
+        "lang": "en",
+        "type": "hero_banner"
+    });
+
   return (
     <div className="bg-backgroundWhite">
       <Suspense>
         <Navbar />
       </Suspense>
-      <HeroComponent />
+      <HeroComponent slides={data?.banners}/>
       <IntroductionComponent />
       <DreamHomeComponent />
       <CarouselAwardeComponent />

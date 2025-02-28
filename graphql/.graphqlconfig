@@ -1,0 +1,17 @@
+{
+  "name": "Untitled GraphQL Schema",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "STAGING GraphQL Endpoint": {
+        "url": "http://centralgroup.goodcommerce.co/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL",
+          "Content-Type": "application/json",
+          "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiN2JmNGUyODgzYjFhZmZjM2Q1YzQ4MGFjNGY0M2Y4NjlhMjQ2YjlkYTA1MTQ3YzEwNjk3NmUxMjE2ZDQ0ZDUwOGZlNzA5Yjg5MjMzMDIxMjgiLCJpYXQiOjE3NDA3Mjg1NDIuOTE5ODgyLCJuYmYiOjE3NDA3Mjg1NDIuOTE5ODg2LCJleHAiOjE3NDIwMjQ1NDIuOTAzNTE3LCJzdWIiOiIiLCJzY29wZXMiOlsiKiJdfQ.paFXYeXGBhhXefByS61Gx7VxeScI_esNus1w2QIFg1nhXxyMK0mjHqFAca4k2Rk2Fnb6H2weBUghPVSnK2q6DbW-ZeBy7mlb--CSFN7h8R5miJ1vpzhFFtYxfMX2yuvZlfaDTI1dvWlVBMTAOQfbfNBPu8Cfv9blHK0WzOKUBWnrZLQFR3vaLUDS-4o1xAhdm0rtcqQ3SEctT387zQ3qZSuqeSKuxqx2iThAzZwz4yz8O7Fcq9NPwf3F-QDli0F8ZhkrM8TjBVFzB7GXWsYxWBb0gBNoDxv4LA9ashXVltJr23GA6VdGOkDyVK6q_4DzKF4Wq8dxNfS3qitme-hmonoD5sj2BSGTRkny0Zv7dR-LTg8fP7Wrt1QG2UgDFeXhr5Z5tWvYly878HaGS44Nm-inz3zjhrkRXjdquILCg6BU83amkRKvoIgD7ULIRZmB1IXPafO7J55vsXsXgj2ZzLDTXjLCeH2n-YCU15lZTogn7FWxcVDYsrF44utHP437QAZLxNs42I00I7ICtE0rh7iKGzLMtsHkIIXdlEp-pZ4WSecmN-QnWUq3PMwuEDcgcIGVSba4Q-rD5NkU4qtKtlXVhXb-Ou9_CMEJ2L5ZBX-GADvqwl54vcawWL-AEg_2PYL09RYT1AmQS6OTuKTqyuLtzG9VdcxTfCLw02DKfjw"
+        },
+        "introspect": true
+      }
+    }
+  }
+}

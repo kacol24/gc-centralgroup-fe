@@ -1,0 +1,17 @@
+query Q_BANNERS (
+    $lang: String!
+    $type: String!
+) {
+    banners (
+        language: $lang
+        type: $type
+    ) {
+        id
+        title
+        url
+        cta
+        desktop
+        mobile
+        __typename
+    }
+}

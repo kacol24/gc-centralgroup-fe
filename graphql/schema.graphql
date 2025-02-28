@@ -1,0 +1,882 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Address {
+    address: String!
+    city: String!
+    country: String!
+    email: String!
+    geolabel: String
+    id: ID!
+    is_primary: Int!
+    latitude: String
+    longitude: String
+    name: String!
+    phone: String!
+    postcode: String!
+    state: String!
+    subdistrict: String!
+}
+
+type Attribute {
+    title: String
+    value: String
+}
+
+type AuthPayload {
+    access_token: String
+    expires_in: Int
+    message: String
+    refresh_token: String
+    status: String
+    token_type: String
+    user: User
+}
+
+type Banner {
+    background_type: String
+    cta: String
+    desktop: String
+    id: ID!
+    mobile: String
+    title: String
+    url: String
+}
+
+type Blog {
+    author: String
+    category: BlogCategory
+    content: String
+    excerpt: String
+    id: ID
+    image: String
+    publish_date: DateTime!
+    related_blogs: [Blog]
+    related_products: [Product]
+    slug: String
+    tags: [BlogTag]
+    title: String
+}
+
+type BlogCatalog {
+    datas: [Blog]!
+    pagination: Pagination!
+}
+
+type BlogCategory {
+    id: ID
+    seo: Seo
+    slug: String
+    title: String
+}
+
+type BlogTag {
+    id: ID
+    name: String!
+}
+
+type Brand {
+    description: String
+    id: ID!
+    image: String!
+    is_featured: Int!
+    seo: Seo
+    slug: String!
+    title: String!
+}
+
+type Cart {
+    applied_codes: [String]
+    availableCoupons: [Coupon]
+    code: String
+    currency: String
+    discount_coupon: Float
+    discount_ongkir: Float
+    exchange_rate: Float
+    finalweight: Int
+    free_shipping: Int
+    free_shipping_value: Int
+    grand_total: Float
+    gwp: GWP
+    insurance_fee: Float
+    items: [CartItem]
+    message: String
+    must_insurance: Int
+    point: Int
+    realfinalweight: Int
+    realshipping_fee: Float
+    realvolume: Int
+    realweight: Int
+    shipping_fee: Float
+    status: String!
+    subtotal: Float
+    tax: Float
+    volume: Int
+    weight: Int
+}
+
+type CartItem {
+    brand: Brand
+    bundles: [CartItem]
+    first_category: String
+    id: ID
+    image: String
+    is_bundle: Int
+    is_gwp: Int
+    is_wishlist: Int
+    option_1: OptionValue
+    option_2: OptionValue
+    price: Float
+    product_id: Int
+    quantity: Int
+    second_category: String
+    sell_price: Float
+    sku_code: String
+    sku_id: Int
+    stock: Int
+    title: String
+}
+
+type Catalog {
+    brands: [Brand]
+    options: [Option]
+    pagination: Pagination
+    products: [Product]
+}
+
+type Category {
+    children: [Category]
+    description: String
+    id: ID
+    image: String
+    seo: Seo
+    slug: String
+    title: String
+}
+
+type CitySubdistrict {
+    city: String!
+    id: ID!
+    postcodes: [String]!
+    state: String!
+    subdistrict: String!
+}
+
+type Country {
+    code: String
+    id: ID
+    name: String
+}
+
+type Coupon {
+    auto_apply: Int
+    code: String!
+    description: String
+    discount_type: String!
+    is_applied: Int
+    minimum_purchase: Int
+    value: Int
+}
+
+type DeleteAddressResponse {
+    message: String
+    status: String!
+}
+
+type DetailOption {
+    title: String
+    value: String
+}
+
+type EntityGWP {
+    id: Int
+    slug: String
+    title: String
+    type: String
+}
+
+type FAQ {
+    category: FaqCategory
+    description: String
+    id: ID
+    title: String
+}
+
+type FaqCategory {
+    id: ID
+    seo: Seo
+    title: String
+}
+
+type GWP {
+    amount_left: Float
+    entity: EntityGWP
+    image: String
+    item: String
+}
+
+type GroupRate {
+    rate: Float!
+    total: Int!
+}
+
+type Inbox {
+    created_at: DateTime!
+    id: ID!
+    is_read: Int!
+    message: String!
+    order_status: OrderStatus
+    payment_method: String
+    ref_id: Int!
+    type: String!
+}
+
+type Mutation {
+    addToCart(bundles: [Bundle], coupon: [String], currency: String, language: String!, outlet_id: Int, quantity: Int!, shipping: ShippingInfo, sku_id: ID!, use_point: Int): Cart!
+    addToNotify(email: String!, sku_id: ID!): StatusResponse!
+    addToWishlist(product_id: ID!): StatusResponse!
+    confirmPayment(input: ConfirmInput): StatusResponse!
+    contactForm(input: ContactFormInput!): StatusResponse
+    createOrder(billing: AddressInput!, coupon: [String], credit_card: CreditPayment, currency: String, ewallet_phone: String, language: String!, notes: String, outlet_id: Int, payment_method: String!, ref: String, shipping: AddressInput!, shipping_method: ShippingMethodInput!, source: OrderSource, use_point: Int): Order!
+    createUpdateAddress(input: AddressInput!): Address!
+    deleteAddress(id: ID!): DeleteAddressResponse!
+    deleteCart(coupon: [String], currency: String, id: ID!, language: String!, outlet_id: Int, shipping: ShippingInfo, use_point: Int): Cart!
+    forgotPassword(input: ForgotPasswordInput!): StatusResponse!
+    login(input: LoginInput): AuthPayload!
+    logout: StatusResponse!
+    readInbox(id: Int!): StatusResponse!
+    refreshToken(input: RefreshTokenInput): RefreshTokenPayload!
+    register(input: RegisterInput): RegisterResponse!
+    repayment(credit_card: CreditPayment, ewallet_phone: String, language: String!, order_id: Int!, payment_method: String!): Order!
+    socialLogin(input: SocialLoginInput!): AuthPayload!
+    submitHelpful(review_id: ID!): StatusResponse!
+    submitReview(comment: String!, order_detail_id: Int!, product_id: ID!, rate: Float!): StatusResponse!
+    subscribe(email: String!): StatusResponse!
+    updateCart(coupon: [String], currency: String, id: ID!, language: String!, outlet_id: Int, quantity: Int!, shipping: ShippingInfo, use_point: Int): Cart!
+    updateForgottenPassword(input: NewPasswordWithCodeInput): StatusResponse!
+    updatePassword(input: UpdatePassword!): StatusResponse!
+    updateUser(input: UpdateUser!): StatusResponse!
+    verify: StatusResponse!
+    verifyEmail(input: VerifyEmailInput!): AuthPayload!
+}
+
+type MyOrder {
+    datas: [Order]!
+    pagination: Pagination!
+}
+
+type Option {
+    key: String
+    title: String
+    values: [OptionValue]
+}
+
+type OptionValue {
+    image: String
+    title: String
+    value: String
+}
+
+type Order {
+    billing: OrderBilling
+    charge_service_fee: Float
+    created_at: DateTime
+    currency: String
+    details: [OrderDetail]
+    discount_ongkir: Float
+    exchange_rate: Float
+    final_amount: Float
+    id: ID
+    insurance: Float
+    message: String
+    notes: String
+    order_no: String
+    order_status: OrderStatus
+    pay_with_point: Float
+    payment_info: PaymentInfo
+    payment_method: String
+    payment_service_fee: Float
+    shipping: OrderShipping
+    shipping_fee: Float
+    status: String!
+    tax: Float
+    total_amount: Float
+    total_discount: Float
+    tracking_logs: [TrackingLog]
+    unique_code: Float
+    updated_at: DateTime
+}
+
+type OrderBilling {
+    address: String
+    city: String
+    country: String
+    email: String
+    id: ID
+    name: String
+    phone: String
+    postcode: String
+    state: String
+    subdistrict: String
+}
+
+type OrderDetail {
+    brand: Brand
+    bundles: [OrderDetail]
+    discount: Float
+    discount_coupon: Float
+    first_category: String
+    id: Int
+    image: String
+    is_reviewed: Int
+    notes: String
+    option_1: DetailOption
+    option_2: DetailOption
+    price: Float
+    product_id: Int
+    quantity: Int
+    second_category: String
+    sku_code: String
+    sku_id: Int
+    title: String
+}
+
+type OrderShipping {
+    address: String
+    city: String
+    country: String
+    email: String
+    id: ID
+    name: String
+    phone: String
+    postcode: String
+    shipping_method: String
+    state: String
+    subdistrict: String
+    tracking_number: String
+}
+
+type OrderStatus {
+    id: ID!
+    title: String!
+}
+
+type Outlet {
+    address: String
+    city: String
+    distance: String
+    id: ID
+    image: String
+    label: String
+    latitude: String
+    longitude: String
+    phone: String
+    postcode: String
+    state: String
+    subdistrict: String
+    title: String
+}
+
+type Outlets {
+    outlets: [Outlet]
+    pagination: Pagination
+}
+
+type Page {
+    content: String!
+    id: ID!
+    seo: Seo
+    slug: String!
+    title: String!
+}
+
+"Information about pagination using a Relay style cursor connection."
+type PageInfo {
+    "Number of nodes in the current page."
+    count: Int!
+    "Index of the current page."
+    currentPage: Int!
+    "The cursor to continue paginating forwards."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "Index of the last available page."
+    lastPage: Int!
+    "The cursor to continue paginating backwards."
+    startCursor: String
+    "Total number of nodes in the paginated connection."
+    total: Int!
+}
+
+type Pagination {
+    count: Int
+    current_page: Int
+    last_page: Int
+    total_data: Int
+}
+
+"Information about pagination using a fully featured paginator."
+type PaginatorInfo {
+    "Number of items in the current page."
+    count: Int!
+    "Index of the current page."
+    currentPage: Int!
+    "Index of the first item in the current page."
+    firstItem: Int
+    "Are there more pages after this one?"
+    hasMorePages: Boolean!
+    "Index of the last item in the current page."
+    lastItem: Int
+    "Index of the last available page."
+    lastPage: Int!
+    "Number of items per page."
+    perPage: Int!
+    "Number of total available items."
+    total: Int!
+}
+
+type PaymentInfo {
+    account_number: String
+    checkout_url: String
+    reason: String
+    snap_token: String
+    status: String
+}
+
+type PaymentMethod {
+    fee_flat: Int
+    fee_pct: Float
+    logo: String
+    logo_light: String
+    title: String!
+}
+
+type PointLog {
+    current_point: Int!
+    given_point: Int!
+    last_point: Int!
+    order: Order
+    type: String!
+}
+
+type Points {
+    datas: [PointLog]!
+    pagination: Pagination!
+}
+
+type Product {
+    attributes: [Attribute]
+    brand: Brand
+    bundles: [Product]
+    currency: String
+    description: String
+    firstcategory: Category
+    group_rates: [GroupRate]
+    id: ID!
+    images: [String]
+    is_bundle: Int
+    is_wishlist: Int
+    manage_stock: Int
+    options: [Option]
+    price: Float
+    relateds: [Product]
+    review_rate: Float
+    reviews: [Review]
+    secondcategory: Category
+    sell_price: Float
+    skus: [Sku]
+    slug: String
+    thirdcategory: Category
+    title: String
+}
+
+type Promotion {
+    end_date: DateTime
+    id: ID!
+    start_date: DateTime
+    title: String
+}
+
+type Query {
+    address(id: ID!): Address!
+    addresses: [Address!]!
+    banners(language: String!, limit: Int, type: String!): [Banner!]!
+    blog(currency: String!, id: ID!, language: String!): Blog!
+    blogcategories(language: String!): [BlogCategory!]!
+    blogs(category_id: Int, isFeatured: Boolean, language: String!, limit: Int, page: Int): BlogCatalog!
+    brands(filter: BrandFilterInput): [Brand!]!
+    carts(coupon: [String], currency: String, language: String!, outlet_id: Int, shipping: ShippingInfo, use_point: Int): Cart
+    catalogs(filter: CatalogFilterInput): Catalog!
+    categories(filter: CategoryFilterInput): [Category!]!
+    countries: [Country]!
+    faqCategories(language: String!): [FaqCategory]
+    faqs(category_id: Int, language: String!, s: String): [FAQ]
+    inbox(language: String!, limit: Int, page: Int!): [Inbox]!
+    me: User
+    myorders(language: String!, limit: Int, page: Int): MyOrder!
+    mypoints(limit: Int, page: Int): Points!
+    order(id: ID!, language: String!): Order!
+    outlets(filter: OutletFilterInput): Outlets!
+    pages(language: String!): [Page!]!
+    paymentmethods(coupon: [String]): [PaymentMethod]!
+    product(currency: String, id: ID!, language: String!, related_limit: Int): Product
+    promotions(is_flash: Int, outlet_id: Int!): [Promotion!]
+    searchCitySubdistrict(s: String!): [CitySubdistrict]!
+    shippingmethods(currency: String, outlet_id: Int, shipping: ShippingInput!): [ShippingMethod]
+    stock(sku_id: ID!): Stock
+    wishlists(currency: String, language: String!): [Product]
+}
+
+type RefreshTokenPayload {
+    access_token: String!
+    expires_in: Int!
+    refresh_token: String!
+    token_type: String!
+}
+
+type RegisterResponse {
+    message: String
+    status: RegisterStatuses!
+    tokens: AuthPayload
+}
+
+type Review {
+    avatar: String!
+    comment: String!
+    id: Int!
+    is_helpful: Int
+    is_most_helpful: Int
+    name: String!
+    rate: Float!
+    skin_tone: String!
+    skin_type: String!
+    time: String!
+}
+
+type Seo {
+    meta_description: String
+    meta_keyword: String
+    meta_title: String
+}
+
+type ShippingMethod {
+    id: ID!
+    insurance_fee: String
+    name: String
+    price: Float
+    service_name: String
+}
+
+"Information about pagination using a simple paginator."
+type SimplePaginatorInfo {
+    "Number of items in the current page."
+    count: Int!
+    "Index of the current page."
+    currentPage: Int!
+    "Index of the first item in the current page."
+    firstItem: Int
+    "Are there more pages after this one?"
+    hasMorePages: Boolean!
+    "Index of the last item in the current page."
+    lastItem: Int
+    "Number of items per page."
+    perPage: Int!
+}
+
+type Sku {
+    height: Int
+    id: ID!
+    image: String
+    length: Int
+    option_detail_key1: String
+    option_detail_key2: String
+    price: Float
+    sell_price: Float
+    sku_code: String
+    stock: Int
+    weight: Int
+    width: Int
+}
+
+type StatusResponse {
+    message: String
+    status: String!
+}
+
+type Stock {
+    message: String
+    price: Int!
+    sell_price: Int!
+    status: String
+    stock: Int!
+}
+
+type TrackingLog {
+    created_at: DateTime!
+    message: String!
+}
+
+type User {
+    created_at: DateTime!
+    dob: Date!
+    email: String!
+    email_verified_at: String
+    gender: String!
+    group_id: Group!
+    id: ID!
+    name: String!
+    phone: String
+    point: Int!
+    ref: String
+    updated_at: DateTime!
+}
+
+enum Group {
+    Customer
+    Guest
+    Member
+}
+
+"Aggregate functions when ordering by a relation without specifying a column."
+enum OrderByRelationAggregateFunction {
+    "Amount of items."
+    COUNT
+}
+
+"Aggregate functions when ordering by a relation that may specify a column."
+enum OrderByRelationWithColumnAggregateFunction {
+    "Average."
+    AVG
+    "Amount of items."
+    COUNT
+    "Maximum."
+    MAX
+    "Minimum."
+    MIN
+    "Sum."
+    SUM
+}
+
+enum RegisterStatuses {
+    ERROR
+    MUST_VERIFY_EMAIL
+    SUCCESS
+}
+
+"Directions for ordering a list of records."
+enum SortOrder {
+    "Sort records in ascending order."
+    ASC
+    "Sort records in descending order."
+    DESC
+}
+
+"Specify if you want to include or exclude trashed results from a query."
+enum Trashed {
+    "Only return trashed results."
+    ONLY
+    "Return both trashed and non-trashed results."
+    WITH
+    "Only return non-trashed results."
+    WITHOUT
+}
+
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime
+
+scalar Upload
+
+input AddressInput {
+    address: String!
+    address_id: Int
+    city: String!
+    country: String!
+    email: String!
+    geolabel: String
+    is_primary: Int
+    latitude: String
+    longitude: String
+    name: String!
+    phone: String!
+    postcode: String!
+    state: String!
+    subdistrict: String!
+}
+
+input BrandFilterInput {
+    is_featured: Int
+    language: String!
+    s: String
+}
+
+input Bundle {
+    product_id: Int
+    sku_id: Int
+}
+
+input CatalogFilterInput {
+    brand_id: Int
+    category_id: Int
+    currency: String
+    is_bundle: Int
+    is_featured: Int
+    language: String
+    limit: Int
+    options: [String]
+    page: Int
+    price: String
+    promotion_id: Int
+    s: String
+    sale: Int
+    sort: String
+}
+
+input CategoryFilterInput {
+    is_featured: Int
+    language: String!
+}
+
+input ConfirmInput {
+    account_name: String!
+    file: Upload
+    order_no: String!
+    payment_bank: String!
+    payment_date: String!
+    payment_value: Int!
+}
+
+input ContactFormInput {
+    email: String!
+    message: String!
+    name: String!
+    topic: String!
+}
+
+input CreditPayment {
+    authentication_id: String!
+    cvv: String!
+    token_id: String!
+}
+
+input ForgotPasswordInput {
+    email: String!
+}
+
+input LoginInput {
+    password: String!
+    username: String!
+}
+
+input NewPasswordWithCodeInput {
+    email: String!
+    password: String!
+    password_confirmation: String!
+    token: String!
+}
+
+input OptionFilter {
+    option: String
+    value: String
+}
+
+"Allows ordering a list of records."
+input OrderByClause {
+    "The column that is used for ordering."
+    column: String!
+    "The direction that is used for ordering."
+    order: SortOrder!
+}
+
+input OrderSource {
+    platform: String
+    utm_campaign: String
+    utm_content: String
+    utm_medium: String
+    utm_source: String
+    utm_term: String
+}
+
+input OutletFilterInput {
+    latitude: String
+    limit: Int
+    longitude: String
+    page: Int
+    s: String
+}
+
+input RefreshTokenInput {
+    refresh_token: String
+}
+
+input RegisterInput {
+    dob: Date!
+    email: String!
+    gender: String!
+    is_subscribe: Int!
+    name: String!
+    password: String!
+    password_confirmation: String!
+    phone: String
+    provider: String
+    provider_id: String
+    ref: String
+    token: String
+}
+
+input ShippingInfo {
+    city: String!
+    country: String!
+    insurance: Int
+    latitude: String
+    longitude: String
+    method_id: Int!
+    postcode: String!
+    subdistrict: String!
+}
+
+input ShippingInput {
+    shipping_address: String!
+    shipping_city: String!
+    shipping_country: String!
+    shipping_latitude: String
+    shipping_longitude: String
+    shipping_postcode: String!
+    shipping_subdistrict: String!
+}
+
+input ShippingMethodInput {
+    shipping_method_id: Int!
+    use_insurance: Int
+}
+
+input SocialLoginInput {
+    provider: String!
+    token: String!
+}
+
+input UpdatePassword {
+    old_password: String!
+    password: String!
+    password_confirmation: String!
+}
+
+input UpdateUser {
+    dob: String!
+    gender: String!
+    name: String!
+    phone: String
+}
+
+input VerifyEmailInput {
+    hash: String!
+    id: Int!
+}
