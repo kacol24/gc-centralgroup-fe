@@ -1,5 +1,7 @@
 'use client';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import {
   articleAuthor,
   ArticleAuthorModel,
@@ -33,6 +35,11 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
 
   useEffect(() => {
     getData();
+    AOS.init({
+      duration: 500,
+      once: false,
+      startEvent: 'DOMContentLoaded',
+    });
   }, [id]);
 
   return (
@@ -44,18 +51,24 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
               src={article?.image}
               alt="article image"
               className="aspect-[1.88/1] object-cover object-center lg:px-4"
+              data-aos="zoom-in-up"
+              data-aos-delay="600"
             />
           )}
 
           <div className="px-4 py-10 text-center lg:text-start lg:flex lg:justify-between lg:gap-8">
             <div>
-              <p className="text-xs text-primary font-semibold uppercase">{article?.category} UPDATE</p>
-              <h1 className="mt-4 mb-8 text-4xl text-textPrimary font-marcellus uppercase lg:mb-0">{article?.title}</h1>
+              <p className="text-xs text-primary font-semibold uppercase" data-aos="fade-right" data-aos-delay="200">
+                {article?.category} UPDATE
+              </p>
+              <h1 className="mt-4 mb-8 text-4xl text-textPrimary font-marcellus uppercase lg:mb-0" data-aos="fade-up">
+                {article?.title}
+              </h1>
             </div>
             <div className="flex justify-center gap-8 lg:mt-auto lg:justify-end">
-              <FaFacebookF className="w-5 h-5 text-textPrimary" />
-              <FaWhatsapp className="w-5 h-5 text-textPrimary" />
-              <RiLinksFill className="w-5 h-5 text-textPrimary" />
+              <FaFacebookF className="w-5 h-5 text-textPrimary" data-aos="fade-left" data-aos-delay="1000" />
+              <FaWhatsapp className="w-5 h-5 text-textPrimary" data-aos="fade-left" data-aos-delay="1100" />
+              <RiLinksFill className="w-5 h-5 text-textPrimary" data-aos="fade-left" data-aos-delay="1200" />
             </div>
           </div>
         </div>
@@ -63,7 +76,11 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
 
       <section className="relative bg-backgroundWhite">
         <div className="container mx-auto px-4 lg:pt-16 lg:pb-32 lg:grid lg:grid-cols-[1fr_3fr] lg:gap-24">
-          <div className="h-fit mb-8 p-6 pb-8 bg-white lg:mb-0 lg:sticky lg:top-36">
+          <div
+            className="h-fit mb-8 p-6 pb-8 bg-white lg:mb-0 lg:sticky lg:top-36"
+            data-aos="fade-right"
+            data-aos-delay="400"
+          >
             <h2 className="text-primary font-semibold">Table of Content</h2>
             <ol className="px-3 pt-6 space-y-4">
               {contents.map((item, index) => (
@@ -76,16 +93,30 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
           </div>
 
           <div>
-            <p className="mb-8 text-textPrimary font-medium">{article?.description}</p>
+            <p className="mb-8 text-textPrimary font-medium" data-aos="fade-up">
+              {article?.description}
+            </p>
             {contents.map((item) => (
               <React.Fragment key={item.id}>
-                {item.image && <Image src={item.image} alt={`${item.topic} Image`} className="mb-8" />}
-                <h3 className="mb-4 text-primary font-semibold">{item.topic}</h3>
-                <p className="mb-8 text-sm/6 text-textPrimary font-medium">{item.description}</p>
+                {item.image && (
+                  <Image
+                    src={item.image}
+                    alt={`${item.topic} Image`}
+                    className="mb-8"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                  />
+                )}
+                <h3 className="mb-4 text-primary font-semibold" data-aos="fade-up" data-aos-delay="300">
+                  {item.topic}
+                </h3>
+                <p className="mb-8 text-sm/6 text-textPrimary font-medium" data-aos="fade-up" data-aos-delay="500">
+                  {item.description}
+                </p>
               </React.Fragment>
             ))}
 
-            <div className="mb-8 flex justify-start items-center gap-4">
+            <div className="mb-8 flex justify-start items-center gap-4" data-aos="fade-up" data-aos-delay="500">
               <span className="text-xs text-primary font-semibold">SHARE:</span>
               <div className="flex items-center gap-6">
                 <FaFacebookF className="w-5 h-5 text-textPrimary" />
@@ -95,7 +126,7 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
             </div>
 
             {author && (
-              <div className="mb-10 p-8 rounded-md bg-gray-200 lg:mb-0">
+              <div className="mb-10 p-8 rounded-md bg-gray-200 lg:mb-0" data-aos="fade-up" data-aos-delay="800">
                 <div className="flex gap-4">
                   <Image
                     src={author.image}
