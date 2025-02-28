@@ -1,3 +1,8 @@
+'use client';
+
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { RiBuildingFill } from 'react-icons/ri';
 import { MdLocationOn } from 'react-icons/md';
 import Image, { StaticImageData } from 'next/image';
@@ -7,11 +12,23 @@ interface PropertyCardProps {
   image: string | StaticImageData;
   title: string;
   location: string;
+  index: number;
 }
 
-const PropertyCard: React.FC<PropertyCardProps> = ({ image, title, location }) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({ image, title, location, index }) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+    });
+  }, []);
+
   return (
-    <div className="relative  w-full aspect-[4/5] mx-auto overflow-hidden rounded-none lg:rounded-[3px] shadow-lg">
+    <div
+      data-aos="fade-up"
+      data-aos-delay={index * 100}
+      className="relative   w-full aspect-[4/5] mx-auto overflow-hidden rounded-none lg:rounded-[3px] shadow-lg"
+    >
       {/* Image */}
       <Image src={image} alt={title} width={1000} height={1000} className="w-full h-full object-cover" />
 

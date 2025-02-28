@@ -1,4 +1,7 @@
 'use client';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -27,6 +30,14 @@ export default function HeroComponent() {
       swiperRef.current.swiper.pagination.init();
       swiperRef.current.swiper.pagination.update();
     }
+  }, []);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      once: false,
+      startEvent: 'DOMContentLoaded',
+    });
   }, []);
 
   return (
@@ -68,10 +79,15 @@ export default function HeroComponent() {
               <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
 
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-                <h1 className="text-[48px] lg:text-[64px] font-marcellus mb-6 uppercase tracking-wide">
+                <h1
+                  data-aos="fade-up"
+                  className="text-[48px] lg:text-[64px] font-marcellus mb-6 uppercase tracking-wide"
+                >
                   Central <br className="block sm:hidden" /> Group
                 </h1>
-                <p className="text-base lg:text-[20px]  tracking-widest mb-10">Building Your Dream Home</p>
+                <p data-aos="fade-up" data-aos-delay="600" className="text-base lg:text-[20px]  tracking-widest mb-10">
+                  Building Your Dream Home
+                </p>
               </div>
             </SwiperSlide>
           ))}

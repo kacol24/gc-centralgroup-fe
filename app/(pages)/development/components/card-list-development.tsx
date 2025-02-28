@@ -11,13 +11,14 @@ export default function CardListDevelopment({ limit }: CardListDevelopmentProps)
 
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-6 p-0">
-      {limitedDevelopments.map((development) => (
+      {limitedDevelopments.map((development, index) => (
         <Link key={development.id} href={`/development/${development.slug}`}>
           <PropertyCard
             key={development.id}
             image={development.image}
             location={development.location}
             title={development.title}
+            index={index}
           />
         </Link>
       ))}
