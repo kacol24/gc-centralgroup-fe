@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 const stats = [
@@ -17,14 +19,27 @@ export default function IntroductionComponent() {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoUrl = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&showinfo=0';
 
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+    });
+  }, []);
+
   return (
     <section className="w-full mx-auto container px-4 mt-10">
       <div className="lg:flex">
         <div className="flex flex-col lg:flex-[0.45] justify-start items-start w-full h-full lg:pr-[100px] mb-12 lg:mb-0 ">
-          <h1 className="lg:text-[36px] text-[28px] font-marcellus text-start text-textPrimary mb-6 lg:mb-10 uppercase tracking-wider">
+          <h1
+            data-aos="fade-right"
+            className="lg:text-[36px] text-[28px] font-marcellus text-start text-textPrimary mb-6 lg:mb-10 uppercase tracking-wider"
+          >
             The Best Developer <br /> in Batam
           </h1>
-          <p className="font-medium font-mon lg:text-sm text-start text-textSecondary mb-10 lg:mb-12 leading-6 tracking-wide">
+          <p
+            data-aos="fade-right"
+            className="font-medium font-mon lg:text-sm text-start text-textSecondary mb-10 lg:mb-12 leading-6 tracking-wide"
+          >
             The Best Developer in Batam by Property & Bank Award, dengan pengalaman lebih dari 34 Tahun sejak tahun 1989
             dalam membangun 3889 rumah impian Anda. Central Group telah berhasil mengembangkan beberapa proyek ternama
             dengan total lahan lebih dari 200 Ha di Kota Batam, beberapa diantaranya bekerjasama dengan developer
@@ -33,7 +48,11 @@ export default function IntroductionComponent() {
             jajaran staff.
           </p>
 
-          <Button variant="filled" className="rounded-none text-xs py-[24px] px-[30px] lg:px-[38px]">
+          <Button
+            data-aos="fade-right"
+            variant="filled"
+            className="rounded-none text-xs py-[24px] px-[30px] lg:px-[38px]"
+          >
             <Link href={`/about`} passHref>
               ABOUT US
             </Link>
@@ -54,6 +73,7 @@ export default function IntroductionComponent() {
             <div className="w-full relative cursor-pointer flex gap-[30px]" onClick={() => setIsPlaying(true)}>
               <div className="h-full flex-1 flex items-end">
                 <div
+                  data-aos="zoom-in"
                   className="w-full h-[178px] lg:h-[340px] lg:max-h-[500px]"
                   style={{ boxShadow: '0px 10px 60px 0px #00000026' }}
                 >
@@ -62,12 +82,16 @@ export default function IntroductionComponent() {
               </div>
 
               <div className="h-full flex-1 items-start">
-                <div className="w-full h-[117px] lg:h-[224px]" style={{ boxShadow: '0px 10px 60px 0px #00000026' }}>
+                <div
+                  data-aos="zoom-in"
+                  className="w-full h-[117px] lg:h-[224px]"
+                  style={{ boxShadow: '0px 10px 60px 0px #00000026' }}
+                >
                   <Image src={imgThumbVideo} alt="Thumbnail" className="w-full h-full object-cover" />
                 </div>
               </div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-white p-5 max-w-[60px] aspect-square rounded-full shadow-lg">
+                <div data-aos="zoom-in" className="bg-white p-5 max-w-[60px] aspect-square rounded-full shadow-lg">
                   <FaPlay className=" w-5 h-5" />
                 </div>
               </div>
@@ -79,6 +103,8 @@ export default function IntroductionComponent() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 lg:gap-6 text-center mt-12 lg:mt-[100px] pt-0 lg:pt-10">
         {stats.map((stat, index) => (
           <div
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
             key={index}
             className={`flex flex-col justify-center items-center ${
               index === 0

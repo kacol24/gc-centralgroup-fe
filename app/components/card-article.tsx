@@ -1,8 +1,13 @@
-import Image, { StaticImageData } from 'next/image';
+'use client';
+
 import { RiLayoutGridFill } from 'react-icons/ri';
 import { FaUserCircle } from 'react-icons/fa';
 import { FiArrowUpRight } from 'react-icons/fi';
 import Link from 'next/link';
+import Image, { StaticImageData } from 'next/image';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 interface NewsCardProps {
   id: number;
@@ -12,16 +17,28 @@ interface NewsCardProps {
   title: string;
   description: string;
   image: string | StaticImageData;
+  index: number;
 }
 
-export default function CardArticle({ id, date, category, author, title, description, image }: NewsCardProps) {
+const CardArticle: React.FC<NewsCardProps> = ({ id, date, category, author, title, description, image, index }) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+    });
+  }, []);
+
   return (
     <Link href={`/article/${id}`} className="block">
-      <div className="bg-white overflow-hidden min-h-[480px] lg:min-h-[520px] flex flex-col">
+      <div
+        data-aos="fade-up"
+        data-aos-delay={index * 100}
+        className="bg-white overflow-hidden min-h-[480px] lg:min-h-[520px] flex flex-col"
+      >
         {/* Image Section */}
         <div className="relative w-full h-60">
           <Image src={image} alt="News Thumbnail" layout="fill" objectFit="cover" />
-          <div className="absolute top-3 left-3 bg-primary text-white px-3 py-2 text-[10px] font-bold ">{date}</div>
+          <div className="absolute top-3 left-3 bg-primary text-white px-3 py-2 text-[10px] font-bold">{date}</div>
         </div>
 
         {/* Content Section */}
@@ -49,4 +66,6 @@ export default function CardArticle({ id, date, category, author, title, descrip
       </div>
     </Link>
   );
-}
+};
+
+export default CardArticle;

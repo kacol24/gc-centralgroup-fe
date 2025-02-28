@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { ComboboxDemo } from '@/components/ui/combobox';
 import CardArticle from '@/app/components/card-article';
 import { useState } from 'react';
@@ -36,6 +39,13 @@ const propertyTypes = [
 const itemsPerPage = 6;
 
 export default function ArticleCore() {
+  useEffect(() => {
+    AOS.init({
+      once: false,
+      startEvent: 'DOMContentLoaded',
+    });
+  }, []);
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(newsCards.length / itemsPerPage);
@@ -49,8 +59,14 @@ export default function ArticleCore() {
     <section className="w-full lg:container lg:mx-auto px-4 pb-8 pt-12 lg:pt-0">
       {/* Header */}
       <div className="w-full flex flex-col lg:flex-row lg:justify-between items-center">
-        <h1 className="text-[28px] font-marcellus uppercase text-textPrimary">News & Update</h1>
-        <div className="w-full lg:w-auto lg:pt-0 pt-6">
+        <h1
+          data-aos="zoom-in-right"
+          data-aos-duration="1000"
+          className="text-[28px] font-marcellus uppercase text-textPrimary"
+        >
+          News & Update
+        </h1>
+        <div data-aos="zoom-in-left" data-aos-duration="1000" className="w-full lg:w-auto lg:pt-0 pt-6">
           <ComboboxDemo
             dataPropertys={propertyTypes}
             placeholder="Semua Topik"
@@ -78,6 +94,7 @@ export default function ArticleCore() {
             category={news.category}
             date={news.date}
             image={news.image}
+            index={index}
           />
         ))}
       </div>

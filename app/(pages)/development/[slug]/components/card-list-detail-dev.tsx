@@ -16,22 +16,25 @@ export default function CardListDetailDevelopment() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-6 p-0  pb-0 lg:pb-20">
         {developments
           .filter((i, index) => index < 3)
-          .map((development) => (
+          .map((development, index) => (
             <Link key={development.id} href={`/development/${development.slug}`}>
               <PropertyCard
                 key={development.id}
                 image={development.image}
                 location={development.location}
                 title={development.title}
+                index={index}
               />
             </Link>
           ))}
       </div>
 
       <div className="px-24 block lg:hidden">
-        <Button variant="filled" className="w-full my-8  rounded-none text-xs py-[24px]">
-          ALL DEVELOPMENT
-        </Button>
+        <Link href={'/development'}>
+          <Button variant="filled" className="w-full my-8  rounded-none text-xs py-[24px]">
+            ALL DEVELOPMENT
+          </Button>
+        </Link>
       </div>
     </section>
   );

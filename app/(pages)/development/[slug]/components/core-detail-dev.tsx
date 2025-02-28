@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { useMemo } from 'react';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { RiBuildingFill } from 'react-icons/ri';
@@ -60,14 +63,12 @@ export default function CoreDetailDevelopment({
   detail: DevelopmentModel | undefined;
   nextSectionId: string;
 }) {
-  // useEffect(() => {
-  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //   delete (L.Icon.Default.prototype as any)._getIconUrl;
-  //   L.Icon.Default.mergeOptions({
-  //     iconUrl: markerIconPng.src,
-  //     shadowUrl: markerShadowPng.src,
-  //   });
-  // }, []);
+  useEffect(() => {
+    AOS.init({
+      once: false,
+      startEvent: 'DOMContentLoaded',
+    });
+  }, []);
 
   const MapsComponent = useMemo(
     () =>
@@ -87,17 +88,25 @@ export default function CoreDetailDevelopment({
       <div className="flex flex-col flex-grow">
         <div className="p-8 pb-0 lg:pl-0 lg:pt-0 lg:pb-0 lg:pr-[75px] ">
           <div className="flex items-start mb-0 lg:mb-10">
-            <div className="hidden lg:flex items-center justify-center w-full max-w-[162px] aspect-square bg-white rounded-full shadow-lg border-2 border-[#E1E1E1]">
+            <div
+              data-aos="zoom-in"
+              data-aos-duration="1000"
+              className="hidden lg:flex items-center justify-center w-full max-w-[162px] aspect-square bg-white rounded-full shadow-lg border-2 border-[#E1E1E1]"
+            >
               <Image src={logoProperty} alt="Logo Property" unoptimized className="w-[80%] h-[80%] object-contain" />
             </div>
 
-            <div className="ml-0 lg:ml-14">
+            <div data-aos="zoom-in-right" data-aos-duration="1000" className="ml-0 lg:ml-14">
               <Link href="/development" className="flex items-center gap-2 lg:gap-4 mb-4">
                 <HiOutlineArrowLeft className="text-primary text-lg lg:text-xl" />
                 <p className="text-primary font-medium text-sm lg:text-xs uppercase tracking-wider">All Development</p>
               </Link>
 
-              <h1 className="font-marcellus text-textPrimary lg:leading-none lg:text-[64px] text-4xl uppercase lg:mb-0 mb-4">
+              <h1
+                data-aos="zoom-in-right"
+                data-aos-duration="1200"
+                className="font-marcellus text-textPrimary lg:leading-none lg:text-[64px] text-4xl uppercase lg:mb-0 mb-4"
+              >
                 {detail?.title}
               </h1>
             </div>
@@ -105,7 +114,11 @@ export default function CoreDetailDevelopment({
 
           <div className="lg:block hidden border-t border-textPrimary border-opacity-10 mt-[45px] mb-[40px]" />
 
-          <div className="flex text-textPrimary items-center gap-4  text-sm">
+          <div
+            data-aos="zoom-in-right"
+            data-aos-duration="1000"
+            className="flex text-textPrimary items-center gap-4  text-sm"
+          >
             <span className="flex items-center gap-1 text-[10px] font-bold uppercase">
               <RiBuildingFill className="text-sm" />
               {detail?.type}
@@ -122,14 +135,24 @@ export default function CoreDetailDevelopment({
 
           <div className="lg:hidden block border-t border-textPrimary border-opacity-10 my-4" />
 
-          <div className="lg:hidden flex items-center text-textPrimary gap-1 text-[10px] font-bold uppercase ">
+          <div
+            data-aos="zoom-in-right"
+            data-aos-duration="1200"
+            className="lg:hidden flex items-center text-textPrimary gap-1 text-[10px] font-bold uppercase "
+          >
             <FaWallet className="text-xs" />
             Starts from Rp 800.000.000
           </div>
 
-          <p className="text-sm mt-6 mb-12 text-textSecondary tracking-wide">{detail?.description}</p>
+          <p
+            data-aos="zoom-in-right"
+            data-aos-duration="1000"
+            className="text-sm mt-6 mb-12 text-textSecondary tracking-wide"
+          >
+            {detail?.description}
+          </p>
 
-          <div className="w-full lg:max-w-fit flex gap-4 mb-10">
+          <div data-aos="zoom-in-right" data-aos-duration="1000" className="w-full lg:max-w-fit flex gap-4 mb-10">
             <Button variant="outline" className="flex-1 rounded-none text-xs py-[24px] px-[15px] lg:px-6">
               CALCULATE COST
             </Button>
@@ -142,11 +165,17 @@ export default function CoreDetailDevelopment({
             </Button>
           </div>
           <div className="w-full block lg:hidden">
-            <h1 className="font-marcellus text-textPrimary text-[22px] uppercase mb-8">Download Brochure</h1>
+            <h1
+              data-aos="zoom-in"
+              data-aos-duration="1500"
+              className="font-marcellus text-textPrimary text-[22px] uppercase mb-8"
+            >
+              Download Brochure
+            </h1>
 
             <div className="space-y-4 mb-6">
               {/* Property Price */}
-              <div className="space-y-2">
+              <div data-aos="zoom-in" data-aos-duration="1500" className="space-y-2">
                 <Label htmlFor="property-price" className="text-[10px] font-semibold text-gray-900">
                   YOUR NAME
                 </Label>
@@ -163,7 +192,7 @@ export default function CoreDetailDevelopment({
                 />
               </div>
 
-              <div className="space-y-2">
+              <div data-aos="zoom-in" data-aos-duration="1500" className="space-y-2">
                 <Label htmlFor="down-payment" className="text-[10px] font-semibold text-gray-900">
                   NOMOR HANDPHONE
                 </Label>
@@ -180,7 +209,7 @@ export default function CoreDetailDevelopment({
                 />
               </div>
 
-              <div className="space-y-2">
+              <div data-aos="zoom-in" data-aos-duration="1500" className="space-y-2">
                 <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">
                   YOUR EMAIL
                 </Label>
@@ -198,7 +227,12 @@ export default function CoreDetailDevelopment({
               </div>
             </div>
 
-            <Button variant="filled" className="w-full rounded-none text-xs py-[24px] uppercase">
+            <Button
+              data-aos="zoom-in"
+              data-aos-duration="1500"
+              variant="filled"
+              className="w-full rounded-none text-xs py-[24px] uppercase"
+            >
               Download Brochure
               <span>
                 <PiDownloadSimpleFill className="text-white text-xl" />
@@ -208,11 +242,22 @@ export default function CoreDetailDevelopment({
 
           <div className="border-t border-textPrimary border-opacity-10 mt-10 mb-8 lg:mb-12" />
 
-          <h1 className="font-marcellus text-textPrimary text-2xl uppercase mb-10 lg:mb-12">Facilities</h1>
+          <h1
+            data-aos="fade-up"
+            data-aos-duration="800"
+            className="font-marcellus text-textPrimary text-2xl uppercase mb-10 lg:mb-12"
+          >
+            Facilities
+          </h1>
 
           <div className="flex flex-col gap-4 mb-9 lg:grid lg:grid-cols-2 lg:gap-7">
             {facilities.map((facility, index) => (
-              <div key={index} className="flex items-center font-medium gap-4 text-textSecondary text-sm">
+              <div
+                data-aos="zoom-in-right"
+                data-aos-duration={index * 800}
+                key={index}
+                className="flex items-center font-medium gap-4 text-textSecondary text-sm"
+              >
                 <span className="text-lg text-textPrimary">{facility.icon}</span>
                 <p>{facility.title}</p>
               </div>
@@ -227,15 +272,21 @@ export default function CoreDetailDevelopment({
         <div className="hidden w-full lg:block border-t border-textPrimary border-opacity-10 mb-10 mt-14" />
 
         <div className="px-8 lg:px-0  lg:pr-[75px]">
-          <h1 className="font-marcellus text-textPrimary text-[22px] uppercase mb-6">Financing Available</h1>
-          <p className="text-textSecondary text-sm mb-10">
+          <h1
+            data-aos="fade-up"
+            data-aos-duration="800"
+            className="font-marcellus text-textPrimary text-[22px] uppercase mb-6"
+          >
+            Financing Available
+          </h1>
+          <p data-aos="fade-up" data-aos-duration="1000" className="text-textSecondary text-sm mb-10">
             This calculation is an estimate and not a depiction of actual payment plan
           </p>
 
           <div className="space-y-6 mb-8 lg:mb-20 lg:flex lg:flex-col lg:gap-6">
             <div className="block lg:flex lg:gap-6 w-full">
               {/* Property Price */}
-              <div className="space-y-2 lg:flex-[0.4]">
+              <div data-aos="fade-up" data-aos-duration="800" className="space-y-2 lg:flex-[0.4]">
                 <Label htmlFor="property-price" className="text-[10px] font-semibold text-gray-900">
                   PROPERTY PRICE
                 </Label>
@@ -255,7 +306,7 @@ export default function CoreDetailDevelopment({
               </div>
 
               {/* Down Payment */}
-              <div className="space-y-2 lg:flex-[0.6]">
+              <div data-aos="fade-up" data-aos-duration="1000" className="space-y-2 lg:flex-[0.6]">
                 <Label htmlFor="down-payment" className="text-[10px] font-semibold text-gray-900">
                   DOWN PAYMENT
                 </Label>
@@ -277,7 +328,7 @@ export default function CoreDetailDevelopment({
 
             <div className="block lg:flex lg:gap-6 items-end !mt-0">
               {/* Loan Term */}
-              <div className="space-y-2 lg:flex-[0.43]">
+              <div data-aos="fade-up" data-aos-duration="1100" className="space-y-2 lg:flex-[0.43]">
                 <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">
                   LOAN TERM
                 </Label>
@@ -303,7 +354,7 @@ export default function CoreDetailDevelopment({
               </div>
 
               {/* Interest Rate */}
-              <div className="space-y-2 lg:flex-[0.43]">
+              <div data-aos="fade-up" data-aos-duration="1200" className="space-y-2 lg:flex-[0.43]">
                 <Label htmlFor="interest-rate" className="text-[10px] font-semibold text-gray-900">
                   INTEREST RATE
                 </Label>
@@ -326,17 +377,26 @@ export default function CoreDetailDevelopment({
                   </span>
                 </div>
               </div>
-              <Button variant="filled" className="w-full rounded-none text-xs py-[24px] hidden lg:flex-[0.14] lg:flex">
+              <Button
+                data-aos="fade-up"
+                data-aos-duration="1400"
+                variant="filled"
+                className="w-full rounded-none text-xs py-[24px] hidden lg:flex-[0.14] lg:flex"
+              >
                 CALCULATE
               </Button>
             </div>
           </div>
-          <Button className="w-full bg-primary text-white rounded-none text-xs h-[48px]  block lg:hidden ">
+          <Button
+            data-aos="fade-up"
+            data-aos-duration="1400"
+            className="w-full bg-primary text-white rounded-none text-xs h-[48px]  block lg:hidden "
+          >
             CALCULATE
           </Button>
         </div>
       </div>
-      <div className="hidden lg:block w-[405px] flex-shrink-0">
+      <div data-aos="zoom-in" data-aos-duration="1000" className="hidden lg:block w-[405px] flex-shrink-0">
         <FormDownloadBrosur nextSectionId={nextSectionId} />
       </div>
     </div>

@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { FaEnvelope } from 'react-icons/fa';
 import { RiMapPin2Fill } from 'react-icons/ri';
 import { IoLogoWhatsapp } from 'react-icons/io';
@@ -25,14 +28,29 @@ export default function Contact() {
       }),
     [],
   );
+
+  useEffect(() => {
+    AOS.init({
+      once: false,
+      startEvent: 'DOMContentLoaded',
+    });
+  }, []);
   return (
     <section className="w-full h-auto pt-[170px] lg:pt-[223px] bg-backgroundWhite lg:pb-[90px] pb-0">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl lg:px-0 px-6 lg:text-[64px] lg:leading-[70px] items-center justify-center text-center lg:mb-12 mb-8 font-marcellus text-textPrimary uppercase">
+        <h1
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          className="text-4xl lg:px-0 px-6 lg:text-[64px] lg:leading-[70px] items-center justify-center text-center lg:mb-12 mb-8 font-marcellus text-textPrimary uppercase"
+        >
           The Trusted Real <br className="block lg:hidden" /> Estate <br className="hidden lg:block" /> Authority{' '}
           <br className="block lg:hidden" /> For Those <br /> Seeking The Best.
         </h1>
-        <p className="text-sm px-6 font-medium text-center text-textPrimary mb-[60px] lg:mb-20">
+        <p
+          data-aos="zoom-in"
+          data-aos-duration="1200"
+          className="text-sm px-6 font-medium text-center text-textPrimary mb-[60px] lg:mb-20"
+        >
           Thank you for visiting our site. As a dynamic digital platform, it will continuously update with new property{' '}
           <br className="hidden lg:block" />
           listings, sales outcomes, news articles, market trends and special Forbes event notifications. We encourage
@@ -43,10 +61,18 @@ export default function Contact() {
 
       <div className="w-full relative lg:container lg:mx-auto lg:px-4 ">
         <div className="w-full px-8 py-12  lg:p-20 bg-[#192E2E] flex flex-col justify-start">
-          <h3 className="text-2xl text-backgroundWhite tracking-wider font-marcellus uppercase">
+          <h3
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            className="text-2xl text-backgroundWhite tracking-wider font-marcellus uppercase"
+          >
             Central Group Development
           </h3>
-          <div className="w-full xl:w-[55%] lg:flex items-start gap-28 mt-10">
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            className="w-full xl:w-[55%] lg:flex items-start gap-28 mt-10"
+          >
             <div className="text-white space-y-4">
               <div className="flex items-center gap-3">
                 <IoLogoWhatsapp className="text-base text-textTertiary" />
@@ -59,7 +85,7 @@ export default function Contact() {
             </div>
 
             {/* Work Address */}
-            <div className="mt-6 md:mt-0 text-white space-y-4  ">
+            <div data-aos="zoom-in" data-aos-duration="1000" className="mt-6 md:mt-0 text-white space-y-4  ">
               <div>
                 <div className="flex items-center gap-3">
                   <RiMapPin2Fill className="text-base text-textTertiary" />
@@ -91,7 +117,7 @@ export default function Contact() {
 
             <div className="space-y-4 mb-6">
               {/* Property Price */}
-              <div className="space-y-2">
+              <div data-aos="zoom-in" data-aos-duration="2000" className="space-y-2">
                 <Label htmlFor="property-price" className="text-[10px] font-semibold text-gray-900">
                   YOUR NAME
                 </Label>
@@ -110,7 +136,7 @@ export default function Contact() {
                 />
               </div>
 
-              <div className="space-y-2">
+              <div data-aos="zoom-in" data-aos-duration="2000" className="space-y-2">
                 <Label htmlFor="down-payment" className="text-[10px] font-semibold text-gray-900">
                   NOMOR HANDPHONE
                 </Label>
@@ -135,7 +161,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div data-aos="zoom-in" data-aos-duration="2000" className="space-y-2">
                 <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">
                   YOUR EMAIL
                 </Label>
@@ -154,7 +180,7 @@ export default function Contact() {
                 />
               </div>
 
-              <div className="space-y-2">
+              <div data-aos="zoom-in" data-aos-duration="2000" className="space-y-2">
                 <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">
                   YOUR MESSAGE
                 </Label>
@@ -172,7 +198,12 @@ export default function Contact() {
               </div>
             </div>
 
-            <Button variant="filled" className="rounded-none w-full font-medium text-xs py-[24px] uppercase">
+            <Button
+              data-aos="zoom-in"
+              data-aos-duration="1000"
+              variant="filled"
+              className="rounded-none w-full font-medium text-xs py-[24px] uppercase"
+            >
               Send Message
             </Button>
           </div>
