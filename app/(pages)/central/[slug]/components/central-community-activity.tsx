@@ -1,5 +1,9 @@
+'use client';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Image, { StaticImageData } from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface CentralCommunityActivityProps {
   activityImages: ActivityImage[];
@@ -22,15 +26,33 @@ export default function CentralCommunityActivity({
     setVisibleCount((prevCount) => prevCount + loadMoreCount);
   };
 
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+      once: false,
+      startEvent: 'DOMContentLoaded',
+    });
+  }, []);
+
   return (
     <section className="bg-backgroundWhite">
       <div className="container mx-auto px-4 pt-[3.5rem] pb-10  md:pt-20 md:pb-12 lg:mx-auto lg:pt-28 lg:pb-20">
-        <h2 className="mb-8 text-xl text-center text-textPrimary md:mb-12 md:text-2xl lg:mb-20 lg:text-4xl font-marcellus">
+        <h2
+          className="mb-8 text-xl text-center text-textPrimary md:mb-12 md:text-2xl lg:mb-20 lg:text-4xl font-marcellus"
+          data-aos="zoom-in"
+        >
           Our Activities
         </h2>
         <div className="relative columns-2 gap-4 space-y-4 md:columns-4">
           {activityImages.slice(0, visibleCount).map((activity, index) => (
-            <Image key={index} src={activity?.src} alt={activity.alt} className="break-inside-avoid" />
+            <Image
+              key={index}
+              src={activity?.src}
+              alt={activity.alt}
+              className="break-inside-avoid"
+              data-aos="zoom-in-up"
+              data-aos-delay={(index + 3) * 100}
+            />
           ))}
           {visibleCount < activityImages.length && (
             <div className="z-10 absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-backgroundWhite to-transparent" />
