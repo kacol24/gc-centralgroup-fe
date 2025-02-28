@@ -1,11 +1,11 @@
 'use client';
 
 import { newsCards } from '@/app/lib/utils/article';
-import NewsCard from '../card-article';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
+import CardArticle from '../card-article';
 
 export default function CentralNewsComponent() {
   const limitedNews = newsCards.slice(0, 3);
@@ -20,7 +20,7 @@ export default function CentralNewsComponent() {
 
       <div className="grid grid-cols-1 lg:hidden">
         {limitedNews.map((news, index) => (
-          <NewsCard
+          <CardArticle
             key={index}
             id={news.id}
             title={news.title}
@@ -29,6 +29,7 @@ export default function CentralNewsComponent() {
             category={news.category}
             date={news.date}
             image={news.image}
+            index={index}
           />
         ))}
       </div>
@@ -45,7 +46,7 @@ export default function CentralNewsComponent() {
         <CarouselContent className="hidden lg:flex -ml-4 md:-ml-8">
           {newsCards.map((news, index) => (
             <CarouselItem key={index} className="basis-2/6 pl-4 md:pl-8">
-              <NewsCard
+              <CardArticle
                 key={index}
                 id={news.id}
                 title={news.title}
@@ -54,6 +55,7 @@ export default function CentralNewsComponent() {
                 category={news.category}
                 date={news.date}
                 image={news.image}
+                index={index}
               />
             </CarouselItem>
           ))}

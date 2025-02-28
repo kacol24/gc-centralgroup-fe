@@ -30,9 +30,11 @@ export default function CardListDetailDevelopment() {
       </div>
 
       <div className="px-24 block lg:hidden">
-        <Button variant="filled" className="w-full my-8  rounded-none text-xs py-[24px]">
-          ALL DEVELOPMENT
-        </Button>
+        <Link href={'/development'}>
+          <Button variant="filled" className="w-full my-8  rounded-none text-xs py-[24px]">
+            ALL DEVELOPMENT
+          </Button>
+        </Link>
       </div>
     </section>
   );
