@@ -154,7 +154,7 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
           <hr className="my-8 border-primary opacity-20"></hr>
 
           <div className="mb-8 grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8 md:hidden">
-            {newsCards.slice(0, 3).map((news) => (
+            {newsCards.slice(0, 3).map((news, index) => (
               <CardArticle
                 key={news.id}
                 id={news.id}
@@ -164,6 +164,7 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
                 category={news.date}
                 date={news.date}
                 image={news.image}
+                index={index}
               />
             ))}
           </div>
@@ -189,6 +190,7 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
                     category={news.category}
                     date={news.date}
                     image={news.image}
+                    index={index}
                   />
                 </CarouselItem>
               ))}
