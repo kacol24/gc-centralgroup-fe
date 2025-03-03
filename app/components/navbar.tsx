@@ -80,7 +80,7 @@ export default function Navbar() {
       const isArticleDetailPath = pathname.includes('/article/');
       const isArticlePath = pathname.includes('/article');
 
-      if (allowPath.includes(pathname) || (isArticleDetailPath && !isMobile) || (isArticlePath && !isMobile)) {
+      if (allowPath.includes(pathname) || (isArticleDetailPath && isMobile) || (isArticlePath && !isMobile)) {
         setVariant({
           text: 'text-black',
           logo: logoColGreen,
@@ -119,6 +119,18 @@ export default function Navbar() {
       return 'text-textPrimary font-medium uppercase text-xs py-3 block';
     }
   };
+
+  useEffect(() => {
+    if (isOpen && window.innerHeight < 800) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
   return (
     <>
@@ -187,7 +199,7 @@ export default function Navbar() {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-[380px] bg-white shadow-lg transition-transform duration-300 z-[60] ${
+        className={`fixed top-0 left-0 h-full w-[380px] bg-white shadow-lg transition-transform duration-300 z-[60] overflow-y-auto ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -239,7 +251,7 @@ export default function Navbar() {
           {/* ABOUT US */}
           <li>
             <Link href="/about" className={menuStyle('/about')} onClick={() => setIsOpen(false)}>
-              ABOUT US
+              <div className="my-3 font-marcellus text-textPrimary cursor-pointer text-[18px]">ABOUT US</div>
             </Link>
           </li>
 
