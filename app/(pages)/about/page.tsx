@@ -74,7 +74,7 @@ export default function About() {
         <Image
           src={aboutPageBannerAttachmentTopRight}
           alt="Banner Attachment Top Right"
-          className="absolute w-[40%] right-[40%] bottom-[20%] md:w-[20%] md:right-0 md:bottom-[50%] lg:w-[15%] lg:bottom-[60%]"
+          className="absolute w-[40%] right-[48%] bottom-[16%] md:w-[20%] md:right-0 md:bottom-[50%] lg:w-[15%] lg:bottom-[60%]"
           data-aos="zoom-in"
           data-aos-delay="300"
         />
