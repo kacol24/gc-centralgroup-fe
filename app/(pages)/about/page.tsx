@@ -17,8 +17,12 @@ import {
 
 import CarouselAwardeComponent from '@/app/components/landing-components/carousel-awarde-component';
 import { useEffect } from 'react';
+import { useWindowSize } from '@/app/hooks/use-window-size';
 
 export default function About() {
+  const { width } = useWindowSize();
+  const isXsView = width < 450;
+
   useEffect(() => {
     AOS.init({
       duration: 500,
@@ -30,7 +34,9 @@ export default function About() {
   return (
     <>
       <section
-        className="h-[120vh] min-h-[1000px] relative flex flex-col justify-start bg-cover bg-center md:justify-center"
+        className={`${
+          isXsView ? 'min-h-[1140px]' : 'min-h-[1000px]'
+        } h-[120vh] relative flex flex-col justify-start bg-cover bg-center md:justify-center`}
         style={{ backgroundImage: `url(${backgroundBannerPageAbout.src})` }}
       >
         <div className="z-10 container w-[80%] mt-36 mx-auto md:w-[60%] md:mt-0 lg:w-[50%] text-white">
@@ -132,7 +138,7 @@ export default function About() {
       <section className="bg-backgroundWhite">
         <Image src={backgroundGoalPageAbout} alt="Backgound Beach" className="w-full" />
         <div
-          className="container w-auto mx-4 mb-4 p-6 relative -top-8 bg-white shadow-custom md:-mb-12 md:p-12 md:flex md:gap-12 md:-top-32 lg:mx-auto lg:px-20 lg:py-16 lg:gap-16"
+          className="container w-auto mx-4 px-6 py-8 relative -top-8 bg-white shadow-custom md:-mb-12 md:p-12 md:flex md:gap-12 md:-top-32 lg:mx-auto lg:px-20 lg:py-16 lg:gap-16"
           data-aos="fade-up"
           data-aos-delay="100"
         >
@@ -169,7 +175,7 @@ export default function About() {
       </section>
 
       <section className="bg-backgroundWhite">
-        <div className="container mx-auto px-4 pb-10 lg:m-auto lg:pb-16">
+        <div className="container mx-auto p-4 pb-10 lg:m-auto lg:pb-16">
           <p className="mb-5 text-xs text-primary font-semibold" data-aos="fade-up">
             OUR PROJECTS
           </p>
