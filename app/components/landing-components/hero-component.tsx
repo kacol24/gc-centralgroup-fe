@@ -81,9 +81,10 @@ export default function HeroComponent({slides}) {
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
                 <h1
                   data-aos="fade-up"
-                  className="text-[48px] lg:text-[64px] font-marcellus mb-6 uppercase tracking-wide"
+                  className="text-[48px] lg:text-[64px] leading-[1.2] font-marcellus mb-6 uppercase tracking-wide"
                 >
-                  Central <br className="block sm:hidden" /> Group
+                  Central
+                  <br className="block sm:hidden" /> Group
                 </h1>
                 <p data-aos="fade-up" data-aos-delay="600" className="text-base lg:text-[20px]  tracking-widest mb-10">
                   {slide.title}
