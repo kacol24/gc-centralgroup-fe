@@ -1,19 +1,41 @@
 import {cacheExchange, createClient, fetchExchange} from '@urql/next';
 import {registerUrql} from '@urql/next/rsc';
 
-const makeClient = () => {
+const fetchToken = async () => {
+  const response = await fetch(process.env.OAUTH_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      'grant_type': 'client_credentials',
+      'client_id': process.env.OAUTH_CLIENT_ID,
+      'client_secret': process.env.OAUTH_CLIENT_SECRET,
+      'scope': '*'
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error('oauth error, failed to fetch access_token.');
+  }
+
+  const data = await response.json();
+
+  return data.access_token;
+};
+
+export const makeClient = async () => {
+  const token = await fetchToken();
+
   return createClient({
     url: process.env.NEXT_PUBLIC_GRAPHQL_API,
-    exchanges: [cacheExchange, fetchExchange],
-    fetchOptions: () => {
-      const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiN2JmNGUyODgzYjFhZmZjM2Q1YzQ4MGFjNGY0M2Y4NjlhMjQ2YjlkYTA1MTQ3YzEwNjk3NmUxMjE2ZDQ0ZDUwOGZlNzA5Yjg5MjMzMDIxMjgiLCJpYXQiOjE3NDA3Mjg1NDIuOTE5ODgyLCJuYmYiOjE3NDA3Mjg1NDIuOTE5ODg2LCJleHAiOjE3NDIwMjQ1NDIuOTAzNTE3LCJzdWIiOiIiLCJzY29wZXMiOlsiKiJdfQ.paFXYeXGBhhXefByS61Gx7VxeScI_esNus1w2QIFg1nhXxyMK0mjHqFAca4k2Rk2Fnb6H2weBUghPVSnK2q6DbW-ZeBy7mlb--CSFN7h8R5miJ1vpzhFFtYxfMX2yuvZlfaDTI1dvWlVBMTAOQfbfNBPu8Cfv9blHK0WzOKUBWnrZLQFR3vaLUDS-4o1xAhdm0rtcqQ3SEctT387zQ3qZSuqeSKuxqx2iThAzZwz4yz8O7Fcq9NPwf3F-QDli0F8ZhkrM8TjBVFzB7GXWsYxWBb0gBNoDxv4LA9ashXVltJr23GA6VdGOkDyVK6q_4DzKF4Wq8dxNfS3qitme-hmonoD5sj2BSGTRkny0Zv7dR-LTg8fP7Wrt1QG2UgDFeXhr5Z5tWvYly878HaGS44Nm-inz3zjhrkRXjdquILCg6BU83amkRKvoIgD7ULIRZmB1IXPafO7J55vsXsXgj2ZzLDTXjLCeH2n-YCU15lZTogn7FWxcVDYsrF44utHP437QAZLxNs42I00I7ICtE0rh7iKGzLMtsHkIIXdlEp-pZ4WSecmN-QnWUq3PMwuEDcgcIGVSba4Q-rD5NkU4qtKtlXVhXb-Ou9_CMEJ2L5ZBX-GADvqwl54vcawWL-AEg_2PYL09RYT1AmQS6OTuKTqyuLtzG9VdcxTfCLw02DKfjw';
-      return {
-        headers: {authorization: token ? `Bearer ${token}` : ''},
-      };
+    fetchOptions: {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     },
+    exchanges: [cacheExchange, fetchExchange]
   });
 };
 
-const {getClient} = registerUrql(makeClient);
-
-export {getClient};
+export const {getClient} = registerUrql(makeClient);

@@ -13,7 +13,8 @@ import {getClient} from '@/app/lib/urqlClient';
 import BannersQuery from '@/graphql/BannersQuery.graphql';
 
 export default async function Home() {
-    const {data} = await getClient().query(BannersQuery, {
+    const client = await getClient();
+    const {data} = await client.query(BannersQuery, {
         "lang": "en",
         "type": "hero_banner"
     });

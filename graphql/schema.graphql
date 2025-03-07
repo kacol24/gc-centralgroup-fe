@@ -89,6 +89,20 @@ type Brand {
     title: String!
 }
 
+type Career {
+    category: CareerCategory
+    content: String
+    id: ID
+    seo: Seo
+    title: String
+}
+
+type CareerCategory {
+    id: ID
+    seo: Seo
+    title: String
+}
+
 type Cart {
     applied_codes: [String]
     availableCoupons: [Coupon]
@@ -206,6 +220,11 @@ type FAQ {
     title: String
 }
 
+type Facilities {
+    id: ID
+    title: String
+}
+
 type FaqCategory {
     id: ID
     seo: Seo
@@ -233,6 +252,11 @@ type Inbox {
     payment_method: String
     ref_id: Int!
     type: String!
+}
+
+type Location {
+    id: ID
+    title: String
 }
 
 type Mutation {
@@ -496,10 +520,33 @@ type Product {
     title: String
 }
 
+type Project {
+    description: String
+    facilities: [Facilities]
+    header_image: String
+    id: ID
+    images: [String]
+    location: Location
+    logo: String
+    property_type: PropertyType
+    slug: String
+    title: String
+}
+
+type ProjectCatalog {
+    datas: [Project]!
+    pagination: Pagination!
+}
+
 type Promotion {
     end_date: DateTime
     id: ID!
     start_date: DateTime
+    title: String
+}
+
+type PropertyType {
+    id: ID
     title: String
 }
 
@@ -511,6 +558,7 @@ type Query {
     blogcategories(language: String!): [BlogCategory!]!
     blogs(category_id: Int, isFeatured: Boolean, language: String!, limit: Int, page: Int): BlogCatalog!
     brands(filter: BrandFilterInput): [Brand!]!
+    careers(category_id: Int, language: String!, s: String): [Career]
     carts(coupon: [String], currency: String, language: String!, outlet_id: Int, shipping: ShippingInfo, use_point: Int): Cart
     catalogs(filter: CatalogFilterInput): Catalog!
     categories(filter: CategoryFilterInput): [Category!]!
@@ -518,6 +566,7 @@ type Query {
     faqCategories(language: String!): [FaqCategory]
     faqs(category_id: Int, language: String!, s: String): [FAQ]
     inbox(language: String!, limit: Int, page: Int!): [Inbox]!
+    locations(s: String): [Location]
     me: User
     myorders(language: String!, limit: Int, page: Int): MyOrder!
     mypoints(limit: Int, page: Int): Points!
@@ -526,7 +575,9 @@ type Query {
     pages(language: String!): [Page!]!
     paymentmethods(coupon: [String]): [PaymentMethod]!
     product(currency: String, id: ID!, language: String!, related_limit: Int): Product
+    projects(language: String!, s: String): ProjectCatalog
     promotions(is_flash: Int, outlet_id: Int!): [Promotion!]
+    propertytypes(language: String!, s: String): [PropertyType]
     searchCitySubdistrict(s: String!): [CitySubdistrict]!
     shippingmethods(currency: String, outlet_id: Int, shipping: ShippingInput!): [ShippingMethod]
     stock(sku_id: ID!): Stock
