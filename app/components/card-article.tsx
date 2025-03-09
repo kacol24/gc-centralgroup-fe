@@ -18,9 +18,10 @@ interface NewsCardProps {
   description: string;
   image: string | StaticImageData;
   index: number;
+  slug: string;
 }
 
-const CardArticle: React.FC<NewsCardProps> = ({ id, date, category, author, title, description, image, index }) => {
+const CardArticle: React.FC<NewsCardProps> = ({ id, date, category, author, title, description, image, index , slug}) => {
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -29,7 +30,7 @@ const CardArticle: React.FC<NewsCardProps> = ({ id, date, category, author, titl
   }, []);
 
   return (
-    <Link href={`/article/${id}`} className="block">
+    <Link href={`/article/${slug}`} className="block">
       <div
         data-aos="fade-up"
         data-aos-delay={index * 100}

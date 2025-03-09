@@ -1,6 +1,5 @@
 'use client';
 
-import { newsCards } from '@/app/lib/utils/article';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
@@ -31,6 +30,7 @@ export default function CentralNewsComponent({blogs}) {
             date={news.publish_date}
             image={news.image}
             index={news.id}
+            slug={news.slug}
           />
         ))}
       </div>
@@ -57,6 +57,7 @@ export default function CentralNewsComponent({blogs}) {
                 date={news.publish_date}
                 image={news.image}
                 index={news.id}
+                slug={news.slug}
               />
             </CarouselItem>
           ))}
