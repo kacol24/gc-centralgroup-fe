@@ -1,0 +1,33 @@
+query Q_BLOGS (
+    $lang: String!
+    $limit: Int
+) {
+    blogs (
+        language: $lang
+        limit: $limit
+    ) {
+        datas {
+            id
+            author
+            title
+            slug
+            image
+            excerpt
+            category {
+                id
+                title
+                slug
+#                seo {
+#                    meta_title
+#                    meta_keyword
+#                    meta_description
+#                }
+            }
+            publish_date
+            content
+#            related_products
+#            related_blogs
+#            tags
+        }
+    }
+}

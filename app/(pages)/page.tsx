@@ -11,10 +11,11 @@ import PropertyFinderSection from './development/components/property-finder-sect
 
 import {getClient} from '@/app/lib/urqlClient';
 import BannersQuery from '@/graphql/BannersQuery.graphql';
+import BlogsQuery from '@/graphql/BlogsQuery.graphql';
 
 export default async function Home() {
     const client = await getClient();
-    
+
     const {data: heroBanners} = await client.query(BannersQuery, {
         "lang": "en",
         "type": "hero_banner"
@@ -22,6 +23,10 @@ export default async function Home() {
     const {data: awardBanners} = await client.query(BannersQuery, {
         "lang": "en",
         "type": "award_banner"
+    });
+    const {data: blogs} = await client.query(BlogsQuery, {
+        "lang": "en",
+        "limit": 6
     });
 
   return (
@@ -34,7 +39,7 @@ export default async function Home() {
       <DreamHomeComponent />
       <CarouselAwardeComponent slides={awardBanners?.banners}/>
       <PropertyFinderSection />
-      <CentralNewsComponent />
+      <CentralNewsComponent blogs={blogs?.blogs}/>
       <CommunityEcosystemComponent />
     </div>
   );

@@ -7,7 +7,8 @@ import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
 import CardArticle from '../card-article';
 
-export default function CentralNewsComponent() {
+export default function CentralNewsComponent({blogs}) {
+  const newsCards = blogs.datas;
   const limitedNews = newsCards.slice(0, 3);
   return (
     <section className="w-full mt-14 lg:mt-[100px] lg:container lg:mx-auto bg-backgroundWhite px-4 pb-0 pt-12 lg:pt-0">
@@ -19,17 +20,17 @@ export default function CentralNewsComponent() {
       <div className=" block border-t border-textPrimary border-opacity-30 my-8" />
 
       <div className="grid grid-cols-1 lg:hidden">
-        {limitedNews.map((news, index) => (
+        {limitedNews.map((news) => (
           <CardArticle
-            key={index}
+            key={news.id}
             id={news.id}
             title={news.title}
-            description={news.description}
+            description={news.excerpt}
             author={news.author}
-            category={news.category}
-            date={news.date}
+            category={news.category.title}
+            date={news.publish_date}
             image={news.image}
-            index={index}
+            index={news.id}
           />
         ))}
       </div>
@@ -44,18 +45,18 @@ export default function CentralNewsComponent() {
       >
         {/* Wrapper carousel */}
         <CarouselContent className="hidden lg:flex -ml-4 md:-ml-8">
-          {newsCards.map((news, index) => (
-            <CarouselItem key={index} className="basis-2/6 pl-4 md:pl-8">
+          {newsCards.map((news) => (
+            <CarouselItem key={news.id} className="basis-2/6 pl-4 md:pl-8">
               <CardArticle
-                key={index}
+                key={news.id}
                 id={news.id}
                 title={news.title}
-                description={news.description}
+                description={news.excerpt}
                 author={news.author}
-                category={news.category}
-                date={news.date}
+                category={news.category.title}
+                date={news.publish_date}
                 image={news.image}
-                index={index}
+                index={news.id}
               />
             </CarouselItem>
           ))}
