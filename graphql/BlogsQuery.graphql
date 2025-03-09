@@ -29,5 +29,11 @@ query Q_BLOGS (
 #            related_blogs
 #            tags
         }
+        pagination {
+            count
+            current_page
+            last_page
+            total_data
+        }
     }
 }

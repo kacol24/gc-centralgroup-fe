@@ -15,7 +15,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import { newsCards } from '@/app/lib/utils/article';
 
 const propertyTypes = [
   {
@@ -36,9 +35,10 @@ const propertyTypes = [
   },
 ];
 
-const itemsPerPage = 6;
+export default function ArticleCore({blogs}) {
+  const newsCards = blogs.datas;
+  const pagination = blogs.pagination;
 
-export default function ArticleCore() {
   useEffect(() => {
     AOS.init({
       once: false,
@@ -46,14 +46,8 @@ export default function ArticleCore() {
     });
   }, []);
 
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const totalPages = Math.ceil(newsCards.length / itemsPerPage);
-
-  // Hitung indeks item yang akan ditampilkan pada halaman saat ini
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentNews = newsCards.slice(startIndex, endIndex);
+  const [currentPage, setCurrentPage] = useState(pagination.current_page);
+  const totalPages = pagination.last_page;
 
   return (
     <section className="w-full lg:container lg:mx-auto px-4 pb-8 pt-12 lg:pt-0">
@@ -84,17 +78,18 @@ export default function ArticleCore() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
-        {currentNews.map((news, index) => (
+        {newsCards.map((news, index) => (
           <CardArticle
-            key={index}
+            key={news.id}
             id={news.id}
             title={news.title}
-            description={news.description}
+            description={news.excerpt}
             author={news.author}
-            category={news.category}
-            date={news.date}
+            category={news.category.title}
+            date={news.publish_date}
             image={news.image}
-            index={index}
+            index={news.id}
+            slug={news.slug}
           />
         ))}
       </div>
