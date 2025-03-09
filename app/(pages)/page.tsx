@@ -14,9 +14,14 @@ import BannersQuery from '@/graphql/BannersQuery.graphql';
 
 export default async function Home() {
     const client = await getClient();
-    const {data} = await client.query(BannersQuery, {
+    
+    const {data: heroBanners} = await client.query(BannersQuery, {
         "lang": "en",
         "type": "hero_banner"
+    });
+    const {data: awardBanners} = await client.query(BannersQuery, {
+        "lang": "en",
+        "type": "award_banner"
     });
 
   return (
@@ -24,10 +29,10 @@ export default async function Home() {
       <Suspense>
         <Navbar />
       </Suspense>
-      <HeroComponent slides={data?.banners}/>
+      <HeroComponent slides={heroBanners?.banners}/>
       <IntroductionComponent />
       <DreamHomeComponent />
-      <CarouselAwardeComponent />
+      <CarouselAwardeComponent slides={awardBanners?.banners}/>
       <PropertyFinderSection />
       <CentralNewsComponent />
       <CommunityEcosystemComponent />
