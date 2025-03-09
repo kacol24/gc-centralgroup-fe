@@ -3,6 +3,7 @@
 import { imgBgCommunityEcosystem } from '@/app/lib/utils/image';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import Link from "next/link";
 
 export default function CommunityEcosystemComponent() {
   return (
@@ -19,7 +20,9 @@ export default function CommunityEcosystemComponent() {
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
         <h1 className="text-[36px] font-marcellus mb-10 uppercase tracking-wide">Community Ecosystem</h1>
         <Button variant="filled" className="rounded-sm  text-xs py-[24px] px-[15px] lg:px-6">
-          LEARN MORE
+          <Link href={'central/berbagi'}>
+              LEARN MORE
+          </Link>
         </Button>
       </div>
     </div>
