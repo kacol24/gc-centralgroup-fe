@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Montserrat, Aboreto, Marcellus } from 'next/font/google';
 import './globals.css';
+import GraphqlProvider from "@/components/GraphqlProvider";
+import {fetchToken} from "@/app/lib/urqlClient";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -21,18 +23,22 @@ export const metadata: Metadata = {
   description: 'Building Your Dream Home',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+    const accessToken = await fetchToken();
+
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.className} ${geistMono.variable} ${montserrat.className} ${marcellus.className} ${aboreto.className} antialiased`}
-      >
-        {children}
-      </body>
+        <GraphqlProvider token={accessToken}>
+          <body
+            className={`${geistSans.className} ${geistMono.variable} ${montserrat.className} ${marcellus.className} ${aboreto.className} antialiased`}
+          >
+            {children}
+          </body>
+        </GraphqlProvider>
     </html>
   );
 }

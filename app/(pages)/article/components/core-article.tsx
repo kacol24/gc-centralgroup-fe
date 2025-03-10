@@ -15,6 +15,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
+import {useQuery} from "@urql/next";
+import BlogsQuery from '@/graphql/BlogsQuery.graphql';
 
 const propertyTypes = [
   {
@@ -35,16 +37,23 @@ const propertyTypes = [
   },
 ];
 
-export default function ArticleCore({blogs}) {
-  const newsCards = blogs.datas;
-  const pagination = blogs.pagination;
-
+export default function ArticleCore() {
   useEffect(() => {
     AOS.init({
       once: false,
       startEvent: 'DOMContentLoaded',
     });
   }, []);
+
+  const [result] = useQuery({
+    query: BlogsQuery,
+    variables: {
+      "lang": "en",
+      "limit": 6
+    }
+  });
+  const pagination = result.data.blogs?.pagination;
+  const newsCards = result.data.blogs?.datas;
 
   const [currentPage, setCurrentPage] = useState(pagination.current_page);
   const totalPages = pagination.last_page;

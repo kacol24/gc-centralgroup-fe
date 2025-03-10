@@ -1,10 +1,14 @@
 query Q_BLOGS (
     $lang: String!
     $limit: Int
+    $page: Int
+    $isFeatured: Boolean
 ) {
     blogs (
         language: $lang
         limit: $limit
+        page: $page
+        isFeatured: $isFeatured
     ) {
         datas {
             id
@@ -24,9 +28,21 @@ query Q_BLOGS (
 #                }
             }
             publish_date
-            content
 #            related_products
-#            related_blogs
+            related_blogs {
+                id
+                author
+                title
+                slug
+                image
+                excerpt
+                category {
+                    id
+                    title
+                    slug
+                }
+                publish_date
+            }
 #            tags
         }
         pagination {

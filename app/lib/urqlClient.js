@@ -1,7 +1,7 @@
 import {cacheExchange, createClient, fetchExchange} from '@urql/next';
 import {registerUrql} from '@urql/next/rsc';
 
-const fetchToken = async () => {
+export const fetchToken = async () => {
   const response = await fetch(process.env.OAUTH_URL, {
     method: 'POST',
     headers: {
