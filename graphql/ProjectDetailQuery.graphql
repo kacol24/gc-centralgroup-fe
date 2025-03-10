@@ -1,0 +1,33 @@
+query Q_PROJECT_DETAIL (
+    $lang: String!
+    $id: ID!
+) {
+    project(
+        language: $lang
+        id: $id
+    ) {
+        id
+        title
+        slug
+        header_image
+        logo
+        description
+        location {
+            id
+            title
+        }
+        property_type {
+            id
+            title
+        }
+        images
+        facilities {
+            id
+            title
+            icon
+        }
+        starting_price
+        maps_url
+        brochure_url
+    }
+}

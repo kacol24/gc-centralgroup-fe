@@ -7,7 +7,7 @@ export default function CardListDevelopment({ properties }) {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-6 p-0">
       {limitedDevelopments.map((development) => (
-        <Link key={development.id} href={`/development/${development.slug}`}>
+        <Link key={development.id} href={`/development/${development.slug}/${development.id}`}>
           <PropertyCard
             key={development.id}
             image={development.images[0]}

@@ -28,40 +28,11 @@ import { logoProperty, imgLoadingMaps } from '@/app/lib/utils/image';
 import { DevelopmentModel } from '@/app/lib/utils/developments';
 import Link from 'next/link';
 import FormDownloadBrosur from './brochure-form';
-
-const facilities = [
-  {
-    title: '24/7 Security',
-    icon: <PiSecurityCameraFill />,
-  },
-  {
-    title: 'Jogging Track',
-    icon: <PiSneakerFill />,
-  },
-  {
-    title: 'Swimming Pool',
-    icon: <PiPersonSimpleSwimFill />,
-  },
-  {
-    title: 'Fresh Modern Market',
-    icon: <PiBasketFill />,
-  },
-  {
-    title: 'Green Spaced Garden',
-    icon: <PiTreeEvergreenFill />,
-  },
-  {
-    title: 'Club House',
-    icon: <PiPingPongFill />,
-  },
-];
+import FormattedPrice from "@/app/components/formatted-price";
 
 export default function CoreDetailDevelopment({
   detail,
   nextSectionId,
-}: {
-  detail: DevelopmentModel | undefined;
-  nextSectionId: string;
 }) {
   useEffect(() => {
     AOS.init({
@@ -72,10 +43,10 @@ export default function CoreDetailDevelopment({
 
   const MapsComponent = useMemo(
     () =>
-      dynamic(() => import('../../../../components/maps-component'), {
+      dynamic(() => import('../../../../../components/maps-component'), {
         loading: () => (
           <div className="w-full h-[127px] lg:h-[260px] p-0 lg:flex-grow mb-10 lg:mb-0 lg:pr-[75px]">
-            <Image src={imgLoadingMaps} alt="Logo Property" unoptimized className="w-full h-full object-fill" />
+            <Image src={imgLoadingMaps} width={0} height={0} alt="Logo Property" unoptimized className="w-full h-full object-fill" />
           </div>
         ),
         ssr: false,
@@ -93,7 +64,7 @@ export default function CoreDetailDevelopment({
               data-aos-duration="1000"
               className="hidden lg:flex items-center justify-center w-full max-w-[162px] aspect-square bg-white rounded-full shadow-lg border-2 border-[#E1E1E1]"
             >
-              <Image src={logoProperty} alt="Logo Property" unoptimized className="w-[80%] h-[80%] object-contain" />
+              <Image src={detail?.logo} width={0} height={0} alt="Logo Property" unoptimized className="w-[80%] h-[80%] object-contain" />
             </div>
 
             <div data-aos="zoom-in-right" data-aos-duration="1000" className="ml-0 lg:ml-14">
@@ -121,15 +92,15 @@ export default function CoreDetailDevelopment({
           >
             <span className="flex items-center gap-1 text-[10px] font-bold uppercase">
               <RiBuildingFill className="text-sm" />
-              {detail?.type}
+              {detail?.property_type.title}
             </span>
             <span className="flex items-center gap-1 text-[10px] font-bold uppercase">
               <MdLocationOn className="text-sm" />
-              {detail?.location}
+              {detail?.location.title}
             </span>
             <div className="hidden lg:flex items-center text-textPrimary gap-1 text-[10px] font-bold uppercase ">
               <FaWallet className="text-xs" />
-              Starts from Rp 800.000.000
+              Starts from Rp <FormattedPrice value={detail?.starting_price} />
             </div>
           </div>
 
@@ -141,7 +112,7 @@ export default function CoreDetailDevelopment({
             className="lg:hidden flex items-center text-textPrimary gap-1 text-[10px] font-bold uppercase "
           >
             <FaWallet className="text-xs" />
-            Starts from Rp 800.000.000
+            Starts from Rp <FormattedPrice value={detail?.starting_price}/>
           </div>
 
           <p
@@ -157,12 +128,18 @@ export default function CoreDetailDevelopment({
               CALCULATE COST
             </Button>
 
-            <Button variant="filled" className="flex-1 rounded-none text-xs py-[24px] px-[15px] lg:px-6">
-              VISIT WEBSITE
-              <span>
-                <PiArrowSquareOutFill className="text-white text-xl" />
-              </span>
-            </Button>
+            {
+              detail?.website_url ?
+                  <a href={detail?.website_url}>
+                    <Button variant="filled" className="flex-1 rounded-none text-xs py-[24px] px-[15px] lg:px-6">
+                      VISIT WEBSITE
+                      <span>
+                        <PiArrowSquareOutFill className="text-white text-xl"/>
+                      </span>
+                    </Button>
+                  </a>
+                : ''
+            }
           </div>
           <div className="w-full block lg:hidden">
             <h1
@@ -251,14 +228,14 @@ export default function CoreDetailDevelopment({
           </h1>
 
           <div className="flex flex-col gap-4 mb-9 lg:grid lg:grid-cols-2 lg:gap-7">
-            {facilities.map((facility, index) => (
+            {detail?.facilities.map((facility, index) => (
               <div
                 data-aos="zoom-in-right"
                 data-aos-duration={index * 800}
-                key={index}
+                key={facility.id}
                 className="flex items-center font-medium gap-4 text-textSecondary text-sm"
               >
-                <span className="text-lg text-textPrimary">{facility.icon}</span>
+                <Image src={facility.icon} width={0} height={0} alt={'icon ' + facility.title}/>
                 <p>{facility.title}</p>
               </div>
             ))}

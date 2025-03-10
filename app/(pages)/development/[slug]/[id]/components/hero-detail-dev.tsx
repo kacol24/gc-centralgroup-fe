@@ -6,7 +6,7 @@ import 'aos/dist/aos.css';
 import { imgBackgroundHeroDetailDev, logoProperty } from '@/app/lib/utils/image';
 import Image from 'next/image';
 
-export default function HeroDetailDevelopment({ id }: { id: string }) {
+export default function HeroDetailDevelopment({ heroImage, logo }) {
   useEffect(() => {
     AOS.init({
       once: false,
@@ -15,9 +15,11 @@ export default function HeroDetailDevelopment({ id }: { id: string }) {
   }, []);
 
   return (
-    <div id={id} className="relative w-full h-[585px]">
+    <div className="relative w-full h-[585px]">
       <Image
-        src={imgBackgroundHeroDetailDev}
+        src={heroImage}
+        width={0}
+        height={0}
         alt="Hero Detail Development"
         unoptimized
         className="w-full h-full object-cover"
@@ -32,7 +34,7 @@ export default function HeroDetailDevelopment({ id }: { id: string }) {
           data-aos-duration="1200"
           className="flex items-center justify-center w-[120px] h-[120px] bg-white rounded-full shadow-lg border-2 border-[#E1E1E1]"
         >
-          <Image src={logoProperty} alt="Logo Property" unoptimized className="w-[100px] h-[100px] object-contain" />
+          <Image src={logo} width={0} height={0} alt="Logo Property" unoptimized className="w-[100px] h-[100px] object-contain" />
         </div>
       </div>
     </div>

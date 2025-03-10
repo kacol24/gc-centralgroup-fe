@@ -220,7 +220,8 @@ type FAQ {
     title: String
 }
 
-type Facilities {
+type Facility {
+    icon: String
     id: ID
     title: String
 }
@@ -521,15 +522,18 @@ type Product {
 }
 
 type Project {
+    brochure_url: String
     description: String
-    facilities: [Facilities]
+    facilities: [Facility]
     header_image: String
     id: ID
     images: [String]
     location: Location
     logo: String
+    maps_url: String
     property_type: PropertyType
     slug: String
+    starting_price: Int
     title: String
 }
 
@@ -575,6 +579,7 @@ type Query {
     pages(language: String!): [Page!]!
     paymentmethods(coupon: [String]): [PaymentMethod]!
     product(currency: String, id: ID!, language: String!, related_limit: Int): Product
+    project(id: ID!, language: String!): Project!
     projects(language: String!, s: String): ProjectCatalog
     promotions(is_flash: Int, outlet_id: Int!): [Promotion!]
     propertytypes(language: String!, s: String): [PropertyType]

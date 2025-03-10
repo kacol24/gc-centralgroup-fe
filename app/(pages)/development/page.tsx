@@ -3,7 +3,7 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import dynamic from 'next/dynamic';
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, Suspense } from 'react';
 import CardListDevelopment from './components/card-list-development';
 import CarouselOurPartner from './components/carousel-our-partner';
 import {useQuery} from "@urql/next";
@@ -51,7 +51,9 @@ export default function Development() {
       <div className="container mx-auto md:px-4">
         <CardListDevelopment properties={projectsResponse.projects}/>
       </div>
-      <CarouselOurPartner />
+        <Suspense>
+            <CarouselOurPartner/>
+        </Suspense>
       <PropertyFinder />
     </div>
   );

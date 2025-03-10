@@ -23,8 +23,7 @@ export default function CardListDetailDevelopment() {
                 image={development.image}
                 location={development.location}
                 title={development.title}
-                index={index}
-              />
+                index={index}/>
             </Link>
           ))}
       </div>

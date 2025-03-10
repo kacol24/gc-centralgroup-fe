@@ -9,9 +9,9 @@ import { imgSliderProperty1, imgSliderProperty2, imgSliderProperty3 } from '@/ap
 
 const logos = [imgSliderProperty1, imgSliderProperty2, imgSliderProperty3];
 
-export default function CarouselDetailDevelopment({ id }: { id: string }) {
+export default function CarouselDetailDevelopment({ images }) {
   return (
-    <section id={id} className="relative w-full mb-14 mt-8">
+    <section className="relative w-full mb-14 mt-8">
       <div className="w-full  mx-auto relative">
         <Carousel
           opts={{
@@ -28,10 +28,10 @@ export default function CarouselDetailDevelopment({ id }: { id: string }) {
         >
           {/* Wrapper carousel */}
           <CarouselContent className="flex -ml-4 md:-ml-8">
-            {logos.map((logo, index) => (
+            {images.map((image, index) => (
               <CarouselItem key={index} className="basis-3/4 md:basis-2/3 lg:basis-3/4 pl-4 md:pl-8">
                 <div className="relative w-full h-[184px] lg:h-[600px] overflow-hidden rounded-none shadow-md">
-                  <Image src={logo} alt={`Partner ${index + 1}`} fill className="object-cover" />
+                  <Image src={image} width={1062} height={600} className="object-cover" alt={'project image' + (index + 1)} />
                 </div>
               </CarouselItem>
             ))}
