@@ -13,6 +13,7 @@ interface PropertyCardProps {
   title: string;
   location: string;
   index: number;
+  type: string;
 }
 
 const PropertyCard: React.FC<PropertyCardProps> = ({ image, title, location, index }) => {

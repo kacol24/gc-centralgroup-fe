@@ -17,6 +17,8 @@ export const fetchToken = async () => {
   });
 
   if (!response.ok) {
+    console.log(response);
+    
     throw new Error('oauth error, failed to fetch access_token.');
   }
 

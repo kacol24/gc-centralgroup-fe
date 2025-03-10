@@ -6,6 +6,8 @@ import 'aos/dist/aos.css';
 import CardListDevelopment from '@/app/(pages)/development/components/card-list-development';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import {useQuery} from "@urql/next";
+import ProjectsQuery from '@/graphql/ProjectsQuery.graphql';
 
 export default function DreamHomeComponent() {
   useEffect(() => {
@@ -14,6 +16,14 @@ export default function DreamHomeComponent() {
       once: false,
     });
   }, []);
+
+  const [{data: projectsResponse}] = useQuery({
+      query: ProjectsQuery,
+      variables: {
+          lang: 'en',
+          limit: 6
+      }
+  });
 
   return (
     <section className="h-auto flex flex-col mt-14 lg:mt-40 justify-center items-center ">
@@ -24,7 +34,7 @@ export default function DreamHomeComponent() {
         Your Dream Home
       </h1>
       <div className="container mx-auto md:px-4">
-        <CardListDevelopment limit={6} />
+        <CardListDevelopment properties={projectsResponse.projects} />
       </div>
       <div className="px-24 block">
         <Button variant="filled" className="w-full my-8  rounded-none text-xs py-[24px] lg:my-16">
