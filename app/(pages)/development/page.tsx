@@ -6,6 +6,8 @@ import dynamic from 'next/dynamic';
 import { useMemo, useEffect } from 'react';
 import CardListDevelopment from './components/card-list-development';
 import CarouselOurPartner from './components/carousel-our-partner';
+import {useQuery} from "@urql/next";
+import ProjectsQuery from "@/graphql/ProjectsQuery.graphql";
 
 export default function Development() {
   const PropertyFinder = useMemo(
@@ -24,6 +26,14 @@ export default function Development() {
     });
   }, []);
 
+    const [{data: projectsResponse}] = useQuery({
+        query: ProjectsQuery,
+        variables: {
+            lang: 'en',
+            limit: 6
+        }
+    });
+
   return (
     <div className="h-auto  flex flex-col justify-center items-center ">
       <h1
@@ -39,7 +49,7 @@ export default function Development() {
         Find tHe Perfect <br /> Property for <br /> your lifestyle
       </h1>
       <div className="container mx-auto md:px-4">
-        <CardListDevelopment />
+        <CardListDevelopment properties={projectsResponse.projects}/>
       </div>
       <CarouselOurPartner />
       <PropertyFinder />
