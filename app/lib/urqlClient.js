@@ -1,5 +1,6 @@
 import {cacheExchange, createClient, fetchExchange} from '@urql/next';
 import {registerUrql} from '@urql/next/rsc';
+import {devtoolsExchange} from '@urql/devtools';
 
 export const fetchToken = async () => {
   const response = await fetch(process.env.OAUTH_URL, {
@@ -24,7 +25,7 @@ export const fetchToken = async () => {
   return data.access_token;
 };
 
-export const makeClient = async () => {
+export const {getClient} = registerUrql(async () => {
   const token = await fetchToken();
 
   return createClient({
@@ -34,8 +35,6 @@ export const makeClient = async () => {
         Authorization: `Bearer ${token}`
       }
     },
-    exchanges: [cacheExchange, fetchExchange]
+    exchanges: [devtoolsExchange, cacheExchange, fetchExchange]
   });
-};
-
-export const {getClient} = registerUrql(makeClient);
+});

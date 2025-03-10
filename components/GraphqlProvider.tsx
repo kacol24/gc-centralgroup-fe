@@ -2,6 +2,7 @@
 
 import {useMemo} from "react";
 import {cacheExchange, createClient, fetchExchange, ssrExchange, UrqlProvider} from "@urql/next";
+import {devtoolsExchange} from "@urql/devtools";
 
 export default function GraphqlProvider({children, token}) {
     const [client, ssr] = useMemo(() => {
@@ -10,7 +11,7 @@ export default function GraphqlProvider({children, token}) {
         });
         const client = createClient({
             url: process.env.NEXT_PUBLIC_GRAPHQL_API,
-            exchanges: [cacheExchange, ssr, fetchExchange],
+            exchanges: [devtoolsExchange, cacheExchange, ssr, fetchExchange],
             suspense: true,
             fetchOptions: {
                 headers: {
