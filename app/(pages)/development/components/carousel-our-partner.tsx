@@ -15,20 +15,20 @@ import {
   logoPartner9,
 } from '@/app/lib/utils/image';
 import Autoplay from 'embla-carousel-autoplay';
-
-const logos = [
-  logoPartner1,
-  logoPartner2,
-  logoPartner3,
-  logoPartner4,
-  logoPartner5,
-  logoPartner6,
-  logoPartner7,
-  logoPartner8,
-  logoPartner9,
-];
+import {useQuery} from "@urql/next";
+import BannersQuery from '@/graphql/BannersQuery.graphql';
 
 export default function CarouselOurPartner() {
+    const [{data: partnersResponse}] = useQuery({
+        query: BannersQuery,
+        variables: {
+            lang: 'en',
+            type: 'partner_banner'
+        }
+    });
+
+    const logos = partnersResponse.banners;
+
   return (
     <section className="w-full">
       {/* Carousel Desktop */}
@@ -50,10 +50,10 @@ export default function CarouselOurPartner() {
           >
             {/* Wrapper konten carousel */}
             <CarouselContent className="flex gap-8">
-              {logos.map((logo, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-[12%]">
+              {logos.map((banner) => (
+                <CarouselItem key={banner.id} className="md:basis-1/2 lg:basis-[12%]">
                   <div className="flex items-center justify-center p-1">
-                    <Image src={logo} alt={`Partner ${index + 1}`} width={120} height={60} className="object-contain" />
+                    <Image src={banner.desktop} alt={banner.title} width={120} height={60} className="object-contain" />
                   </div>
                 </CarouselItem>
               ))}
@@ -67,8 +67,8 @@ export default function CarouselOurPartner() {
         <div className="container mx-auto px-4 py-8 lg:m-auto">
           <p className="mb-5 text-xs text-primary font-semibold">OUR PATNERS</p>
           <div className="grid grid-cols-3 gap-8 md:flex md:justify-between md:gap-0">
-            {logos.map((logo, key) => (
-              <Image key={key} src={logo} alt={`logo` + key + 1} width={0} className="w-[84px] h-full object-cover" />
+            {logos.map((banner) => (
+              <Image key={banner.id} src={banner.mobile} alt={banner.title} width={0} height={0} className="w-[84px] h-full object-cover" />
             ))}
           </div>
         </div>
