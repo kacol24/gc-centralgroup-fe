@@ -6,8 +6,9 @@ import 'aos/dist/aos.css';
 import Image from 'next/image';
 import { imgDummyArticle } from '@/app/lib/utils/image';
 import { Button } from '@/components/ui/button';
+import Link from "next/link";
 
-export default function ArticleHero() {
+export default function ArticleHero({blog}) {
   useEffect(() => {
     AOS.init({
       once: false,
@@ -21,7 +22,7 @@ export default function ArticleHero() {
         <Image
           data-aos="zoom-in"
           data-aos-duration="1000"
-          src={imgDummyArticle}
+          src={blog.image}
           alt="Hero Article"
           className="w-auto lg:w-[547px] lg:h-[369px]  object-contain"
         />
@@ -32,7 +33,7 @@ export default function ArticleHero() {
               data-aos-duration="1000"
               className="text-[12px] lg:text-[10px] font-medium text-textTertiary uppercase text-center mt-7 lg:mt-0 mb-4"
             >
-              News Update
+              {blog.category.title}
             </p>
 
             <h1
@@ -40,17 +41,14 @@ export default function ArticleHero() {
               data-aos-duration="1200"
               className="text-[22px] lg:text-lg xl:text-2xl font-marcellus text-white uppercase mb-4"
             >
-              Surga Bagi Pecinta Kopi di <br className="block sm:hidden" /> Batam Hadir dengan{' '}
-              <br className="block sm:hidden" /> Gaya Hidup Modern dan <br className="block sm:hidden" /> Fasilitas
-              Lengkap
+              {blog.title}
             </h1>
             <p
               data-aos="zoom-in-right"
               data-aos-duration="1400"
               className="text-sm lg:text-xs xl:text-sm font-medium text-start text-backgroundWhite text-opacity-80 mb-10"
             >
-              Kabar gembira bagi para pecinta kopi di Batam! Kini hadir Central Tiban, hunian modern yang dikelilingi
-              oleh berbagai coffeeshop terkenal, menawarkan gaya hidup nyaman, modern, dan menyenangkan.
+              {blog.excerpt}
             </p>
           </div>
 
@@ -59,11 +57,13 @@ export default function ArticleHero() {
             <div className=" w-full block items-center lg:flex lg:flex-row">
               <div data-aos="zoom-in-right" data-aos-duration="1200" className="w-full flex gap-4 items-start">
                 <div className="w-14 h-14  ">
-                  <Image src={imgDummyArticle} alt="Hero Article" className="w-full h-full object-cover rounded-full" />
+                  <Image src={blog.image} alt="Hero Article" className="w-full h-full object-cover rounded-full" />
                 </div>
                 <div className="flex flex-col gap-2 items-start justify-start">
-                  <h4 className="text-sm font-semibold text-white ">Bayu Agusto</h4>
-                  <p className="text-xs font-medium text-white text-opacity-80 ">Marketing Head</p>
+                  <h4 className="text-sm font-semibold text-white ">
+                    {blog.author}
+                  </h4>
+                  <p className="text-xs font-medium text-white text-opacity-80 ">//TODO Marketing Head</p>
                 </div>
               </div>
 
@@ -75,7 +75,9 @@ export default function ArticleHero() {
                 variant="filled"
                 className="rounded-none bg w-full !bg-white !text-primary lg:w-auto   font-medium text-xs px-0 lg:px-11 py-[24px] uppercase"
               >
-                Learn More
+                <Link href={`/article/${blog.slug}`}>
+                  Learn More
+                </Link>
               </Button>
             </div>
           </div>
