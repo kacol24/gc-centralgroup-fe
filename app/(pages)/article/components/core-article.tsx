@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/pagination';
 import {useQuery} from "@urql/next";
 import BlogsQuery from '@/graphql/BlogsQuery.graphql';
+import BlogCategoriesQuery from '@/graphql/BlogCategoriesQuery.graphql';
 
 const propertyTypes = [
   {
@@ -45,18 +46,31 @@ export default function ArticleCore() {
     });
   }, []);
 
-  const [result] = useQuery({
+  const [{data: blogsResponse}] = useQuery({
     query: BlogsQuery,
     variables: {
       "lang": "en",
       "limit": 6
     }
   });
-  const pagination = result.data.blogs?.pagination;
-  const newsCards = result.data.blogs?.datas;
+  const pagination = blogsResponse.blogs?.pagination;
+  const newsCards = blogsResponse.blogs?.datas;
 
   const [currentPage, setCurrentPage] = useState(pagination.current_page);
   const totalPages = pagination.last_page;
+
+  const [{data: blogCategoriesResponse}] = useQuery({
+    query: BlogCategoriesQuery,
+    variables: {
+      lang: 'en'
+    }
+  });
+  const articleDropdown = blogCategoriesResponse.blogcategories.map((category) => {
+    return {
+      value: category.id,
+      label: category.title
+    };
+  });
 
   return (
     <section className="w-full lg:container lg:mx-auto px-4 pb-8 pt-12 lg:pt-0">
@@ -71,7 +85,7 @@ export default function ArticleCore() {
         </h1>
         <div data-aos="zoom-in-left" data-aos-duration="1000" className="w-full lg:w-auto lg:pt-0 pt-6">
           <ComboboxDemo
-            dataPropertys={propertyTypes}
+            dataPropertys={articleDropdown}
             placeholder="Semua Topik"
             icon={<IoIosArrowDown className="text-textPrimary ml-24" />}
             customClassName={{
@@ -87,7 +101,7 @@ export default function ArticleCore() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
-        {newsCards.map((news, index) => (
+        {newsCards.map((news) => (
           <CardArticle
             key={news.id}
             id={news.id}

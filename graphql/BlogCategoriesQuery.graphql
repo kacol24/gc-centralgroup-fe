@@ -1,0 +1,11 @@
+query Q_BLOG_CATEGORIES (
+    $lang: String!
+) {
+    blogcategories (
+        language: $lang
+    ) {
+        id
+        title
+        slug
+    }
+}
