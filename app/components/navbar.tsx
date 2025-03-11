@@ -13,9 +13,10 @@ import {
 import { logoColGreen, logoColWhite, logoRowGreen } from '@/app/lib/utils/image';
 import { useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
-import { developments } from '../lib/utils/developments';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { central } from '../lib/utils/cental';
+import {useQuery} from "@urql/next";
+import ProjectListQuery from '@/graphql/ProjectListQuery.graphql';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -132,6 +133,14 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
+  const [{data: projectListResponse}] = useQuery({
+    query: ProjectListQuery,
+    variables: {
+      lang: 'en'
+    }
+  });
+  const developments = projectListResponse.projects.datas;
+
   return (
     <>
       {/* Navbar */}
@@ -237,8 +246,8 @@ export default function Navbar() {
               {developments.map((item) => (
                 <li key={item.id}>
                   <Link
-                    href={`/development/${item.slug}`}
-                    className={subMenuStyle(`/development/${item.slug}`)}
+                    href={`/development/${item.slug}/${item.id}`}
+                    className={subMenuStyle(`/development/${item.slug}/${item.id}`)}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.title}

@@ -1,0 +1,13 @@
+query Q_PROJECT_LISTS (
+    $lang: String!
+) {
+    projects (
+        language: $lang
+    ) {
+        datas {
+            id
+            title
+            slug
+        }
+    }
+}
