@@ -26,6 +26,7 @@ import imgDummyArticle from '@/public/assets/image/img-dummy-article.png';
 import imgBgContactUs from '@/public/assets/image/img-background-contactus.jpeg';
 import imgBgCommunityEcosystem from '@/public/assets/image/img-comunity-ecosystem.jpeg';
 import imgLoadingMaps from '@/public/assets/image/img-loading-maps.png';
+import imgPropertyFinderMap from '@/public/assets/image/property-finder-map.jpeg';
 import imgThumbVideo from '@/public/assets/image/img-thumbnail-video.png';
 
 import backgroundGoalPageAbout from '@/public/assets/image/bg-goal-page-about.png';
@@ -187,4 +188,5 @@ export {
   imgBgCommunityEcosystem,
   imgLoadingMaps,
   imgThumbVideo,
+  imgPropertyFinderMap
 };

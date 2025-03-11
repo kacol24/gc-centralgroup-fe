@@ -4,24 +4,21 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { RiBuildingFill } from 'react-icons/ri';
-import { imgProperty1 } from '@/app/lib/utils/image';
-import CustomPopup from './custom-popup';
 import { Slider } from '@/components/ui/slider';
 import { ComboboxDemo } from '@/components/ui/combobox';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
-
-const MapContainer = dynamic(() => import('react-leaflet').then((mod) => mod.MapContainer), { ssr: false });
-const TileLayer = dynamic(() => import('react-leaflet').then((mod) => mod.TileLayer), { ssr: false });
-const Marker = dynamic(() => import('react-leaflet').then((mod) => mod.Marker), { ssr: false });
-const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), { ssr: false });
+import Image from 'next/image';
+import {imgPropertyFinderMap} from '@/app/lib/utils/image';
 
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 import markerIconPng from 'leaflet/dist/images/marker-icon.png';
 import markerShadowPng from 'leaflet/dist/images/marker-shadow.png';
-import { StaticImageData } from 'next/image';
+import {useQuery} from "@urql/next";
+import PropertyTypesQuery from '@/graphql/PropertyTypesQuery.graphql';
+import LocationsQuery from '@/graphql/LocationsQuery.graphql';
 
 const defaultIcon = L.icon({
   iconUrl: markerIconPng.src,
@@ -30,48 +27,6 @@ const defaultIcon = L.icon({
   iconAnchor: [12, 41],
 });
 
-const cities = [
-  {
-    value: 'jakarta',
-    label: 'Jakarta',
-  },
-  {
-    value: 'bandung',
-    label: 'Bandung',
-  },
-  {
-    value: 'yogyakarta',
-    label: 'Yogyakarta',
-  },
-  {
-    value: 'banten',
-    label: 'Banten',
-  },
-  {
-    value: 'solo',
-    label: 'Solo',
-  },
-];
-
-const propertyTypes = [
-  {
-    value: 'apartment',
-    label: 'Apartment',
-  },
-  {
-    value: 'house',
-    label: 'House',
-  },
-  {
-    value: 'villa',
-    label: 'Villa',
-  },
-  {
-    value: 'office',
-    label: 'Office',
-  },
-];
-
 const facilities = [
   { id: 'security', value: 'Security 24/7' },
   { id: 'jogging', value: 'Jogging Track' },
@@ -79,35 +34,6 @@ const facilities = [
   { id: 'market', value: 'Fresh Modern Market' },
   { id: 'garden', value: 'Green Spaced Garden' },
   { id: 'clubhouse', value: 'Club House' },
-];
-
-const citiesData: { name: string; image: string | StaticImageData; coords: [number, number] }[] = [
-  {
-    name: 'Jakarta',
-    image: imgProperty1,
-
-    coords: [-6.2, 106.816666],
-  },
-  {
-    name: 'Bandung',
-    image: imgProperty1,
-    coords: [-6.914744, 107.60981],
-  },
-  {
-    name: 'Banten',
-    image: imgProperty1,
-    coords: [-6.405817, 106.064018],
-  },
-  {
-    name: 'Yogyakarta',
-    image: imgProperty1,
-    coords: [-7.79558, 110.36949],
-  },
-  {
-    name: 'Solo',
-    image: imgProperty1,
-    coords: [-7.575489, 110.824327],
-  },
 ];
 
 function formatRupiah(value: number) {
@@ -133,28 +59,36 @@ export default function PropertyFinder() {
     });
   }, []);
 
+  const [{data: propertyTypesResponse}] = useQuery({
+    query: PropertyTypesQuery,
+    variables: {
+      lang: 'en'
+    }
+  });
+
+  const propertyTypes = propertyTypesResponse.propertytypes.map(propertyType => {
+    return {
+      value: propertyType.id,
+      label: propertyType.title
+    }
+  })
+
+  const [{data: locationsResponse}] = useQuery({
+    query: LocationsQuery
+  });
+
+  const cities = locationsResponse.locations.map(location => {
+    return {
+      value: location.id,
+      label: location.title
+    }
+  });
+
   return (
     <section className="w-full h-auto lg:h-[740px] lg:flex">
       {/* Property Maps */}
       <div className="w-full h-[295px] lg:h-full lg:flex-grow">
-        <MapContainer
-          center={[-6.914744, 107.60981]}
-          zoom={7}
-          scrollWheelZoom={false}
-          style={{ height: '100%', width: '100%', zIndex: 0 }}
-        >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-          {citiesData.map((city, index) => (
-            <Marker key={index} position={city.coords} icon={defaultIcon}>
-              <Popup className="custom-popup bg-transparent">
-                <CustomPopup imageSrc={imgProperty1} />
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
+        <img src={imgPropertyFinderMap} alt="maps" className="w-full"/>
       </div>
 
       {/* Property Form */}

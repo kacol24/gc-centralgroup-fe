@@ -1,0 +1,10 @@
+query Q_PROPERTY_TYPES (
+    $lang: String!
+) {
+    propertytypes (
+        language: $lang
+    ) {
+        id
+        title
+    }
+}
