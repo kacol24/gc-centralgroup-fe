@@ -1,11 +1,5 @@
-query Q_PROJECT_DETAIL (
-    $lang: String!
-    $id: ID!
-) {
-    project(
-        language: $lang
-        id: $id
-    ) {
+query Q_PROJECT_DETAIL($lang: String!, $id: ID!) {
+    project(language: $lang, id: $id) {
         id
         title
         slug
@@ -29,5 +23,18 @@ query Q_PROJECT_DETAIL (
         starting_price
         maps_url
         brochure_url
+        website_url
+        related_projects {
+            id
+            title
+            slug
+            location {
+                title
+            }
+            property_type {
+                title
+            }
+            images
+        }
     }
 }

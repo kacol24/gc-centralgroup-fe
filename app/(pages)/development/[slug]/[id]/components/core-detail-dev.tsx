@@ -130,7 +130,7 @@ export default function CoreDetailDevelopment({
 
             {
               detail?.website_url ?
-                  <a href={detail?.website_url}>
+                  <a href={detail?.website_url} target="_blank">
                     <Button variant="filled" className="flex-1 rounded-none text-xs py-[24px] px-[15px] lg:px-6">
                       VISIT WEBSITE
                       <span>
@@ -243,7 +243,7 @@ export default function CoreDetailDevelopment({
         </div>
 
         <div className="w-full h-[127px] lg:h-[260px] p-0 lg:flex-grow mb-10 lg:mb-0 lg:pr-[75px]">
-          <MapsComponent />
+            <iframe src={detail?.maps_url} className={'w-full h-full'}></iframe>
         </div>
 
         <div className="hidden w-full lg:block border-t border-textPrimary border-opacity-10 mb-10 mt-14" />

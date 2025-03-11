@@ -29,7 +29,7 @@ export default function DevelopmentDetailPage({ params }) {
       <HeroDetailDevelopment heroImage={projectData.project.header_image} logo={projectData.project.logo}/>
       <CoreDetailDevelopment nextSectionId={nextSectionId} detail={projectData.project} />
       <CarouselDetailDevelopment id="last-section" images={projectData.project.images} />
-      <CardListDetailDevelopment />
+      <CardListDetailDevelopment developments={projectData.project.related_projects}/>
     </section>
   );
 }

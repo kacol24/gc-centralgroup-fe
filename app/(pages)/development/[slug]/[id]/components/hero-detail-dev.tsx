@@ -34,7 +34,7 @@ export default function HeroDetailDevelopment({ heroImage, logo }) {
           data-aos-duration="1200"
           className="flex items-center justify-center w-[120px] h-[120px] bg-white rounded-full shadow-lg border-2 border-[#E1E1E1]"
         >
-          <Image src={logo} width={0} height={0} alt="Logo Property" unoptimized className="w-[100px] h-[100px] object-contain" />
+          <Image src={logo} width={162} height={162} alt="Logo Property" unoptimized className="w-[100px] h-[100px]" />
         </div>
       </div>
     </div>

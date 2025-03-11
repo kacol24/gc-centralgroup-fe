@@ -532,9 +532,11 @@ type Project {
     logo: String
     maps_url: String
     property_type: PropertyType
+    related_projects: [Project]
     slug: String
     starting_price: Int
     title: String
+    website_url: String
 }
 
 type ProjectCatalog {
