@@ -30,7 +30,7 @@ const CardArticle: React.FC<NewsCardProps> = ({ id, date, category, author, titl
   }, []);
 
   return (
-    <Link href={`/article/${slug}`} className="block">
+    <Link href={`/article/${slug}/${id}`} className="block">
       <div
         data-aos="fade-up"
         data-aos-delay={index * 100}
@@ -38,7 +38,7 @@ const CardArticle: React.FC<NewsCardProps> = ({ id, date, category, author, titl
       >
         {/* Image Section */}
         <div className="relative w-full h-60">
-          <Image src={image} alt="News Thumbnail" layout="fill" objectFit="cover" width={405} height={256}/>
+          <Image src={image} alt="News Thumbnail" objectFit="cover" width={405} height={256}/>
           <div className="absolute top-3 left-3 bg-primary text-white px-3 py-2 text-[10px] font-bold">{date}</div>
         </div>
 

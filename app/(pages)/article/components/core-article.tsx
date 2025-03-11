@@ -19,25 +19,6 @@ import {useQuery} from "@urql/next";
 import BlogsQuery from '@/graphql/BlogsQuery.graphql';
 import BlogCategoriesQuery from '@/graphql/BlogCategoriesQuery.graphql';
 
-const propertyTypes = [
-  {
-    value: 'economy',
-    label: 'Ecomony',
-  },
-  {
-    value: 'politic',
-    label: 'Political',
-  },
-  {
-    value: 'villa',
-    label: 'Villa',
-  },
-  {
-    value: 'office',
-    label: 'Office',
-  },
-];
-
 export default function ArticleCore() {
   useEffect(() => {
     AOS.init({

@@ -77,7 +77,7 @@ export default function ArticleHero({blog}) {
                 variant="filled"
                 className="rounded-none bg w-full !bg-white !text-primary lg:w-auto   font-medium text-xs px-0 lg:px-11 py-[24px] uppercase"
               >
-                <Link href={`/article/${blog.slug}`}>
+                <Link href={`/article/${blog.slug}/${blog.id}`}>
                   Learn More
                 </Link>
               </Button>

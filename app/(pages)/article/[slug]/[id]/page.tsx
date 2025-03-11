@@ -19,18 +19,30 @@ import CardArticle from '@/app/components/card-article';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
+import BlogDetailQuery from '@/graphql/BlogDetailQuery.graphql';
+import {useQuery} from "@urql/next";
 
 export default function ArticleDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const [article, setArticle] = useState<NewsCard | undefined>();
+  const [article, setArticle] = useState();
+  const [newsCards, setNewsCards] = useState([]);
   const [contents, setContents] = useState<ArticleDetailContentModel[]>([]);
   const [author, setAuthor] = useState<ArticleAuthorModel | undefined>();
 
+  const [{data: blogResponse}] = useQuery({
+    query: BlogDetailQuery,
+    variables: {
+      lang: 'en',
+      id: id
+    }
+  });
+
   const getData = () => {
-    const data: NewsCard | undefined = newsCards.find((item) => item.id === parseInt(id));
+    const data = blogResponse.blog;
     setArticle(data);
-    setContents(articleDetailContents);
-    setAuthor(articleAuthor);
+    setNewsCards(data.related_blogs);
+    // setContents(articleDetailContents);
+    setAuthor(data.author);
   };
 
   useEffect(() => {
@@ -49,6 +61,8 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
           {article?.image && (
             <Image
               src={article?.image}
+              width={1280}
+              height={682}
               alt="article image"
               className="aspect-[1.88/1] object-cover object-center lg:px-4"
               data-aos="zoom-in-up"
@@ -59,7 +73,7 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
           <div className="px-4 py-10 text-center lg:text-start lg:flex lg:justify-between lg:gap-8">
             <div>
               <p className="text-xs text-primary font-semibold uppercase" data-aos="fade-right" data-aos-delay="200">
-                {article?.category} UPDATE
+                {article?.category.title}
               </p>
               <h1 className="mt-4 mb-8 text-4xl text-textPrimary font-marcellus uppercase lg:mb-0" data-aos="fade-up">
                 {article?.title}
@@ -93,9 +107,8 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
           </div>
 
           <div>
-            <p className="mb-8 text-textPrimary font-medium" data-aos="fade-up">
-              {article?.description}
-            </p>
+            <div className="mb-8 text-textPrimary font-medium" data-aos="fade-up"
+                 dangerouslySetInnerHTML={ {__html: article?.content} } />
             {contents.map((item) => (
               <React.Fragment key={item.id}>
                 {item.image && (
@@ -128,18 +141,18 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
             {author && (
               <div className="mb-10 p-8 rounded-md bg-gray-200 lg:mb-0" data-aos="fade-up" data-aos-delay="800">
                 <div className="flex gap-4">
-                  <Image
-                    src={author.image}
-                    alt={author.name}
-                    className="w-14 aspect-square object-cover object-center"
-                  />
+                  {/*<Image*/}
+                  {/*  src={author.image}*/}
+                  {/*  alt={author.name}*/}
+                  {/*  className="w-14 aspect-square object-cover object-center"*/}
+                  {/*/>*/}
                   <div>
                     <p className="mb-1 text-textPrimary font-semibold">{author.name}</p>
-                    <p className="text-sm/6 text-textPrimary">{author.position}</p>
+                    {/*<p className="text-sm/6 text-textPrimary">{author.position}</p>*/}
                   </div>
                 </div>
                 <hr className="my-6 border-[#0000001A]"></hr>
-                <p className="text-xs/5 text-textPrimary font-medium opacity-80">{author.description}</p>
+                {/*<p className="text-xs/5 text-textPrimary font-medium opacity-80">{author.description}</p>*/}
               </div>
             )}
           </div>
@@ -154,18 +167,18 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
           <hr className="my-8 border-primary opacity-20"></hr>
 
           <div className="mb-8 grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8 md:hidden">
-            {newsCards.slice(0, 3).map((news, index) => (
+            {newsCards.map((news, index) => (
               <CardArticle
                 key={news.id}
                 id={news.id}
                 title={news.title}
-                description={news.description}
+                description={news.excerpt}
                 author={news.author}
-                category={news.date}
-                date={news.date}
+                category={news.category.title}
+                date={news.publish_date}
                 image={news.image}
                 index={index}
-              />
+                slug={news.slug}/>
             ))}
           </div>
 
@@ -182,16 +195,16 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
               {newsCards.map((news, index) => (
                 <CarouselItem key={index} className="basis-2/6 pl-4 md:pl-8">
                   <CardArticle
-                    key={index}
-                    id={news.id}
-                    title={news.title}
-                    description={news.description}
-                    author={news.author}
-                    category={news.category}
-                    date={news.date}
-                    image={news.image}
-                    index={index}
-                  />
+                      key={news.id}
+                      id={news.id}
+                      title={news.title}
+                      description={news.excerpt}
+                      author={news.author}
+                      category={news.category.title}
+                      date={news.publish_date}
+                      image={news.image}
+                      index={index}
+                      slug={news.slug}/>
                 </CarouselItem>
               ))}
             </CarouselContent>

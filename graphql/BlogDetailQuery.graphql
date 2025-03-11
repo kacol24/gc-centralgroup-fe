@@ -1,0 +1,28 @@
+query Q_BLOG_DETAIL($lang: String!, $id: ID!) {
+    blog(language: $lang, id: $id, currency: "IDR") {
+        id
+        author
+        title
+        slug
+        image
+        excerpt
+        category {
+            id
+            title
+            slug
+        }
+        publish_date
+        content
+        related_blogs {
+            id
+            author
+            title
+            slug
+            excerpt
+            image
+            category {
+                title
+            }
+        }
+    }
+}
