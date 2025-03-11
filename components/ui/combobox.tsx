@@ -18,6 +18,7 @@ interface ComboboxDemoProps {
     item?: string;
     itemActive?: string;
   };
+  onValueChange?: (value: string) => void;
 }
 
 export const ComboboxDemo: React.FC<ComboboxDemoProps> = ({
@@ -25,6 +26,7 @@ export const ComboboxDemo: React.FC<ComboboxDemoProps> = ({
   placeholder = 'Select...',
   icon,
   customClassName = {},
+  onValueChange
 }) => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
@@ -58,6 +60,9 @@ export const ComboboxDemo: React.FC<ComboboxDemoProps> = ({
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? '' : currentValue);
                     setOpen(false);
+                    if (onValueChange) {
+                      onValueChange(currentValue === value ? '' : currentValue);
+                    }
                   }}
                 >
                   {item.label}

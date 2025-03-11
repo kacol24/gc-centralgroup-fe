@@ -38,7 +38,7 @@ const CardArticle: React.FC<NewsCardProps> = ({ id, date, category, author, titl
       >
         {/* Image Section */}
         <div className="relative w-full h-60">
-          <Image src={image} alt="News Thumbnail" objectFit="cover" width={405} height={256}/>
+          <Image src={image} alt="News Thumbnail" objectFit="cover" fill/>
           <div className="absolute top-3 left-3 bg-primary text-white px-3 py-2 text-[10px] font-bold">{date}</div>
         </div>
 

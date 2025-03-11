@@ -2,6 +2,7 @@ query Q_BLOGS (
     $lang: String!
     $limit: Int
     $page: Int
+    $categoryId: Int
     $isFeatured: Boolean
 ) {
     blogs (
@@ -9,6 +10,7 @@ query Q_BLOGS (
         limit: $limit
         page: $page
         isFeatured: $isFeatured
+        category_id: $categoryId
     ) {
         datas {
             id
