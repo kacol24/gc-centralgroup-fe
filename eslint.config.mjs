@@ -11,6 +11,22 @@ const eslintConfig = [
     extends: ['next/core-web-vitals', 'next/typescript', 'prettier'],
     rules: {
       '@typescript-eslint/no-require-imports': 'off',
+      'no-restricted-imports': [
+        'error',
+        {
+          name: 'next/link',
+          message: 'Please import from `@/i18n/routing` instead.'
+        },
+        {
+          name: 'next/navigation',
+          importNames: [
+            'redirect',
+            'permanentRedirect',
+            'useRouter',
+            'usePathname'],
+          message: 'Please import from `@/i18n/routing` instead.'
+        }
+      ]
     },
   }),
 ];

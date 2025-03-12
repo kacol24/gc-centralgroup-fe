@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Montserrat, Aboreto, Marcellus } from 'next/font/goo
 import './globals.css';
 import GraphqlProvider from "@/components/GraphqlProvider";
 import {fetchToken} from "@/app/lib/urqlClient";
+import {routing} from "@/i18n/routing";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import CardListDevelopment from '@/app/(pages)/development/components/card-list-development';
+import CardListDevelopment from '@/app/(pages)/[locale]/development/components/card-list-development';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {useQuery} from "@urql/next";

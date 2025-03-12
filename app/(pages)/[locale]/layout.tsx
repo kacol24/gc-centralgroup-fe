@@ -1,10 +1,14 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Montserrat, Aboreto, Marcellus } from 'next/font/google';
-import './../globals.css';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
-import ContactUs from '../components/contact-us';
+import './../../globals.css';
+import Navbar from '../../components/navbar';
+import Footer from '../../components/footer';
+import ContactUs from '../../components/contact-us';
 import { Suspense } from 'react';
+import {routing} from "@/i18n/routing";
+import {notFound} from "next/navigation";
+import {getMessages} from "next-intl/server";
+import {NextIntlClientProvider} from "next-intl";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,20 +31,31 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const {locale} = await params;
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  const messages = await getMessages();
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.className} ${geistMono.variable} ${montserrat.className} ${marcellus.className} ${aboreto.className} antialiased`}
       >
-        <Suspense>
-          <Navbar />
-        </Suspense>
-        {children}
-        <ContactUs />
-        <Footer />
+        <NextIntlClientProvider messages={messages}>
+          <Suspense>
+            <Navbar/>
+          </Suspense>
+          {children}
+          <ContactUs/>
+          <Footer/>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
