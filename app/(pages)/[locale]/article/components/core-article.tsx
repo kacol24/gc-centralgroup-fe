@@ -21,11 +21,16 @@ import BlogCategoriesQuery from '@/graphql/BlogCategoriesQuery.graphql';
 import {usePathname, useRouter} from "@/i18n/navigation";
 import {useSearchParams} from 'next/navigation';
 
-interface QueryVariables {
-  lang: string;
-  limit: number;
-  page: number;
-  category?: string;
+// interface QueryVariables {
+//   lang: string;
+//   limit?: number;
+//   page?: number;
+//   category?: number;
+// }
+
+interface BlogCategory {
+    id: number;
+    title: string;
 }
 
 export default function ArticleCore() {
@@ -33,7 +38,7 @@ export default function ArticleCore() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  const [queryVariables, setQueryVariables] = useState<QueryVariables>({
+  const [queryVariables, setQueryVariables] = useState({
     lang: 'en',
     limit: 6,
     page: 1
@@ -63,7 +68,7 @@ export default function ArticleCore() {
   const pagination = blogsResponse.blogs?.pagination;
   const newsCards = blogsResponse.blogs?.datas;
 
-  const [currentPage, setCurrentPage] = useState(searchParams.page ?? 1);
+  const [currentPage, setCurrentPage] = useState(searchParams.get('page') ?? 1);
   const totalPages = pagination.last_page;
 
   const [{data: blogCategoriesResponse}] = useQuery({
@@ -72,14 +77,14 @@ export default function ArticleCore() {
       lang: 'en'
     }
   });
-  const articleDropdown = blogCategoriesResponse.blogcategories.map((category) => {
+  const articleDropdown = blogCategoriesResponse.blogcategories.map((category: BlogCategory) => {
     return {
       value: category.id,
       label: category.title
     };
   });
 
-  const handleCategoryChange = useCallback((value) => {
+  const handleCategoryChange = useCallback((value: string) => {
     router.push(pathname + '?' + createQueryString('category_id', value));
     setCurrentPage(1);
     const newVariables = {...queryVariables, page: currentPage, categoryId: parseInt(value)};

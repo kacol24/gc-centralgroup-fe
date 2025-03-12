@@ -3,7 +3,6 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {
-  ArticleAuthorModel,
   ArticleDetailContentModel,
 } from '@/app/lib/utils/article';
 import Image from 'next/image';
@@ -18,12 +17,30 @@ import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import BlogDetailQuery from '@/graphql/BlogDetailQuery.graphql';
 import {useQuery} from "@urql/next";
 
+interface NewsCategory {
+  title: string;
+}
+
+interface Author {
+  name: string;
+  title: string;
+  avatar: string;
+}
+
+interface NewsItem {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  publish_date: string;
+  image: string;
+  category: NewsCategory;
+  author: Author;
+}
+
 export default function ArticleDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const [article, setArticle] = useState();
-  const [newsCards, setNewsCards] = useState([]);
   const [contents] = useState<ArticleDetailContentModel[]>([]);
-  const [author, setAuthor] = useState<ArticleAuthorModel | undefined>();
 
   const [{data: blogResponse}] = useQuery({
     query: BlogDetailQuery,
@@ -32,20 +49,17 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
       id: id
     }
   });
+  const article = blogResponse.blog;
+  const newsCards = blogResponse.blog.related_blogs;
+  const author = blogResponse.blog.author;
 
   useEffect(() => {
-    const data = blogResponse.blog;
-    setArticle(data);
-    setNewsCards(data.related_blogs);
-    // setContents(articleDetailContents);
-    setAuthor(data.author);
-
     AOS.init({
       duration: 500,
       once: false,
       startEvent: 'DOMContentLoaded',
     });
-  }, [id, blogResponse.blog]);
+  }, [id]);
 
   return (
     <>
@@ -160,13 +174,13 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
           <hr className="my-8 border-primary opacity-20"></hr>
 
           <div className="mb-8 grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8 md:hidden">
-            {newsCards.map((news, index) => (
+            {newsCards.map((news: NewsItem, index: number) => (
               <CardArticle
                 key={news.id}
                 id={news.id}
                 title={news.title}
                 description={news.excerpt}
-                author={news.author}
+                author={news.author.name}
                 category={news.category.title}
                 date={news.publish_date}
                 image={news.image}
@@ -185,14 +199,14 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
           >
             {/* Wrapper carousel */}
             <CarouselContent className="hidden lg:flex -ml-4 md:-ml-8">
-              {newsCards.map((news, index) => (
+              {newsCards.map((news: NewsItem, index: number) => (
                 <CarouselItem key={index} className="basis-2/6 pl-4 md:pl-8">
                   <CardArticle
                       key={news.id}
                       id={news.id}
                       title={news.title}
                       description={news.excerpt}
-                      author={news.author}
+                      author={news.author.name}
                       category={news.category.title}
                       date={news.publish_date}
                       image={news.image}
