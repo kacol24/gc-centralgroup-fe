@@ -14,7 +14,11 @@ query Q_BLOGS (
     ) {
         datas {
             id
-            author
+            author {
+                name
+                title
+                avatar
+            }
             title
             slug
             image
@@ -33,7 +37,11 @@ query Q_BLOGS (
 #            related_products
             related_blogs {
                 id
-                author
+                author {
+                    name
+                    title
+                    avatar
+                }
                 title
                 slug
                 image

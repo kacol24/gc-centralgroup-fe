@@ -37,6 +37,13 @@ type AuthPayload {
     user: User
 }
 
+type Author {
+    avatar: String
+    id: ID
+    name: String
+    title: String
+}
+
 type Banner {
     background_type: String
     cta: String
@@ -48,7 +55,7 @@ type Banner {
 }
 
 type Blog {
-    author: String
+    author: Author
     category: BlogCategory
     content: String
     excerpt: String

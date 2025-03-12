@@ -1,7 +1,11 @@
 query Q_BLOG_DETAIL($lang: String!, $id: ID!) {
     blog(language: $lang, id: $id, currency: "IDR") {
         id
-        author
+        author {
+            name
+            title
+            avatar
+        }
         title
         slug
         image
@@ -15,7 +19,11 @@ query Q_BLOG_DETAIL($lang: String!, $id: ID!) {
         content
         related_blogs {
             id
-            author
+            author {
+                name
+                title
+                avatar
+            }
             title
             slug
             excerpt
