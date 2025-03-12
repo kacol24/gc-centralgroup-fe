@@ -228,7 +228,7 @@ export default function CoreDetailDevelopment({
                 key={facility.id}
                 className="flex items-center font-medium gap-4 text-textSecondary text-sm"
               >
-                <Image src={facility.icon} width={0} height={0} alt={'icon ' + facility.title}/>
+                <Image src={facility.icon} width={20} height={20} alt={'icon ' + facility.title}/>
                 <p>{facility.title}</p>
               </div>
             ))}
