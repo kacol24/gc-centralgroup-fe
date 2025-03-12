@@ -43,7 +43,7 @@ export default function CoreDetailDevelopment({
 
   const MapsComponent = useMemo(
     () =>
-      dynamic(() => import('../../../../../components/maps-component'), {
+      dynamic(() => import('../../../../../../components/maps-component'), {
         loading: () => (
           <div className="w-full h-[127px] lg:h-[260px] p-0 lg:flex-grow mb-10 lg:mb-0 lg:pr-[75px]">
             <Image src={imgLoadingMaps} width={0} height={0} alt="Logo Property" unoptimized className="w-full h-full object-fill" />
