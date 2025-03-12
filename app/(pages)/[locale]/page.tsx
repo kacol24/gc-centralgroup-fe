@@ -20,7 +20,7 @@ export default async function Home() {
 
     const {data: heroBanners} = await client.query(BannersQuery, {
         "lang": locale,
-        "type": "hero_banner"
+        "type": "homepage_banner"
     });
     const {data: awardBanners} = await client.query(BannersQuery, {
         "lang": locale,
