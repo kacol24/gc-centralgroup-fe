@@ -12,20 +12,22 @@ import PropertyFinderSection from './development/components/property-finder-sect
 import {getClient} from '@/app/lib/urqlClient';
 import BannersQuery from '@/graphql/BannersQuery.graphql';
 import BlogsQuery from '@/graphql/BlogsQuery.graphql';
+import {getLocale} from "next-intl/server";
 
 export default async function Home() {
     const client = await getClient();
+    const locale = await getLocale();
 
     const {data: heroBanners} = await client.query(BannersQuery, {
-        "lang": "en",
+        "lang": locale,
         "type": "hero_banner"
     });
     const {data: awardBanners} = await client.query(BannersQuery, {
-        "lang": "en",
+        "lang": locale,
         "type": "award_banner"
     });
     const {data: blogs} = await client.query(BlogsQuery, {
-        "lang": "en",
+        "lang": locale,
         "limit": 6
     });
 

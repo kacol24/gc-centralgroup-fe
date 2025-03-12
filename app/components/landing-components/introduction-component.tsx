@@ -14,6 +14,7 @@ const stats = [
 import Image from 'next/image';
 import { imgThumbVideo, development3 } from '@/app/lib/utils/image';
 import { FaPlay } from 'react-icons/fa6';
+import {useTranslations} from "next-intl";
 
 export default function IntroductionComponent() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -25,6 +26,8 @@ export default function IntroductionComponent() {
       once: false,
     });
   }, []);
+
+  const t = useTranslations('Home');
 
   return (
     <section className="w-full mx-auto container px-4 mt-10">

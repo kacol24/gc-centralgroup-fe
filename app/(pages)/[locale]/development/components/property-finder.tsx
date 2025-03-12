@@ -21,6 +21,7 @@ import PropertyTypesQuery from '@/graphql/PropertyTypesQuery.graphql';
 import LocationsQuery from '@/graphql/LocationsQuery.graphql';
 import FacilitiesQuery from '@/graphql/FacilitiesQuery.graphql';
 import {useRouter, useSearchParams} from "next/navigation";
+import {useLocale} from "next-intl";
 
 const defaultIcon = L.icon({
   iconUrl: markerIconPng.src,
@@ -43,6 +44,7 @@ function formatRupiah(value: number) {
 }
 
 export default function PropertyFinder({ compact = false }) {
+    const locale = useLocale();
   const searchParams = useSearchParams();
   const router = useRouter();
   const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
@@ -68,7 +70,7 @@ export default function PropertyFinder({ compact = false }) {
   const [{data: propertyTypesResponse}] = useQuery({
     query: PropertyTypesQuery,
     variables: {
-      lang: 'en'
+      lang: locale
     }
   });
 
@@ -93,7 +95,7 @@ export default function PropertyFinder({ compact = false }) {
   const [{data: facilitiesResponse}] = useQuery({
     query: FacilitiesQuery,
     variables: {
-        lang: 'en'
+        lang: locale
     }
   });
   const facilities = facilitiesResponse.facilities;
