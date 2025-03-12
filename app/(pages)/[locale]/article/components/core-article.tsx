@@ -134,7 +134,7 @@ export default function ArticleCore() {
                   id={news.id}
                   title={news.title}
                   description={news.excerpt}
-                  author={news.author}
+                  author={news.author.name}
                   category={news.category.title}
                   date={news.publish_date}
                   image={news.image}

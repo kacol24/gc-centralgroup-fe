@@ -25,7 +25,7 @@ export default function CentralNewsComponent({blogs}) {
             id={news.id}
             title={news.title}
             description={news.excerpt}
-            author={news.author}
+            author={news.author.name}
             category={news.category.title}
             date={news.publish_date}
             image={news.image}
@@ -52,7 +52,7 @@ export default function CentralNewsComponent({blogs}) {
                 id={news.id}
                 title={news.title}
                 description={news.excerpt}
-                author={news.author}
+                author={news.author.name}
                 category={news.category.title}
                 date={news.publish_date}
                 image={news.image}
