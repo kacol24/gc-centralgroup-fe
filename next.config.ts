@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: 'http',
+                protocol: 'https',
                 hostname: 'centralgroup.goodcommerce.co',
                 port: '',
                 pathname: '**',
