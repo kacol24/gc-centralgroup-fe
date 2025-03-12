@@ -81,6 +81,9 @@ export default function ArticleCore() {
   const handleCategoryChange = useCallback((value) => {
     router.push(pathname + '?' + createQueryString('category_id', value));
     setCurrentPage(1);
+    const newVariables = {...queryVariables, page: currentPage, categoryId: parseInt(value)};
+    setQueryVariables(newVariables);
+    reexecuteQuery({requestPolicy: 'network-only'});
   }, [reexecuteQuery]);
 
   useEffect(() => {
