@@ -61,7 +61,7 @@ export default function Search({searchParams}) {
                     <PropertyFinder compact/>
                     <div className="flex flex-col flex-grow lg:pl-6">
                         {
-                            projectsResponse.projects.length ?
+                            projectsResponse.projects.datas.length ?
                                 <CardListDevelopment columns="2" properties={projectsResponse.projects}/>
                                 :
                                 <div>
