@@ -1,7 +1,7 @@
 'use client'
 
 import ProjectsQuery from "@/graphql/ProjectsQuery.graphql";
-import CardListDevelopment from "@/app/(pages)/development/components/card-list-development";
+import CardListDevelopment from "@/app/(pages)/[locale]/development/components/card-list-development";
 import {use, useMemo} from "react";
 import dynamic from "next/dynamic";
 import {useQuery} from "@urql/next";
