@@ -534,7 +534,7 @@ type Project {
     property_type: PropertyType
     related_projects: [Project]
     slug: String
-    starting_price: Int
+    starting_price: Float
     title: String
     website_url: String
 }
@@ -569,6 +569,7 @@ type Query {
     catalogs(filter: CatalogFilterInput): Catalog!
     categories(filter: CategoryFilterInput): [Category!]!
     countries: [Country]!
+    facilities(language: String!, s: String): [Facility]
     faqCategories(language: String!): [FaqCategory]
     faqs(category_id: Int, language: String!, s: String): [FAQ]
     inbox(language: String!, limit: Int, page: Int!): [Inbox]!
@@ -582,7 +583,7 @@ type Query {
     paymentmethods(coupon: [String]): [PaymentMethod]!
     product(currency: String, id: ID!, language: String!, related_limit: Int): Product
     project(id: ID!, language: String!): Project!
-    projects(language: String!, s: String): ProjectCatalog
+    projects(facility_ids: [Int], language: String!, location_id: Int, max_price: Float, min_price: Float, property_type_id: Int, s: String): ProjectCatalog
     promotions(is_flash: Int, outlet_id: Int!): [Promotion!]
     propertytypes(language: String!, s: String): [PropertyType]
     searchCitySubdistrict(s: String!): [CitySubdistrict]!

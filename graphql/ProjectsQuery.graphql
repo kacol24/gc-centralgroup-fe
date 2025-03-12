@@ -1,8 +1,18 @@
-query Q_PROJECTS (
+query Q_PROJECTS(
     $lang: String!
+    $locationId: Int
+    $propertyTypeId: Int
+    $facilityIds: [Int]
+    $minPrice: Float
+    $maxPrice: Float
 ) {
-    projects (
+    projects(
         language: $lang
+        location_id: $locationId
+        property_type_id: $propertyTypeId
+        facility_ids: $facilityIds
+        min_price: $minPrice
+        max_price: $maxPrice
     ) {
         datas {
             id
