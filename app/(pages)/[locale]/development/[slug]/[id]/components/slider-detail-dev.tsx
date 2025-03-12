@@ -5,10 +5,6 @@ import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext
 import Autoplay from 'embla-carousel-autoplay';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 
-import { imgSliderProperty1, imgSliderProperty2, imgSliderProperty3 } from '@/app/lib/utils/image';
-
-const logos = [imgSliderProperty1, imgSliderProperty2, imgSliderProperty3];
-
 export default function CarouselDetailDevelopment({ images }) {
   return (
     <section className="relative w-full mb-14 mt-8">

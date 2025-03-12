@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { imgBackgroundHeroDetailDev, logoProperty } from '@/app/lib/utils/image';
 import Image from 'next/image';
 
 export default function HeroDetailDevelopment({ heroImage, logo }) {

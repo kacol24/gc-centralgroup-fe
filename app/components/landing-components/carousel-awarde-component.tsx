@@ -1,18 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { awardImageAsArray } from '@/app/lib/utils/image';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
-
-type award = {
-    id: number,
-    title: string,
-    url: string
-    cta: string,
-    desktop: string,
-    mobile: string,
-};
 
 export default function CarouselAwardeComponent({slides}) {
   return (

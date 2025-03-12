@@ -1,5 +1,5 @@
 import PropertyCard from '@/app/components/card-property';
-import Link from 'next/link';
+import {Link} from '@/i18n/navigation';
 
 export default function CardListDevelopment({ properties, columns = 3 }) {
   const limitedDevelopments = properties.datas;

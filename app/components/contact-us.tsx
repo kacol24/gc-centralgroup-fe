@@ -4,7 +4,7 @@ import { imgBgContactUs } from '@/app/lib/utils/image';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { RiWhatsappFill } from 'react-icons/ri';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/i18n/navigation';
 
 export default function ContactUs() {
   const pathname = usePathname();

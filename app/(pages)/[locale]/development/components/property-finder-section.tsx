@@ -3,12 +3,6 @@
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
 import {imgPropertyFinderMap} from "@/app/lib/utils/image";
-import {ComboboxDemo} from "@/components/ui/combobox";
-import {FaMapMarkerAlt} from "react-icons/fa";
-import {RiBuildingFill} from "react-icons/ri";
-import {Slider} from "@/components/ui/slider";
-import {Checkbox} from "@/components/ui/checkbox";
-import {Label} from "@/components/ui/label";
 import Image from 'next/image';
 
 export default function PropertyFinderSection() {

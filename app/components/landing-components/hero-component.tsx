@@ -12,9 +12,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
-import { imgSliderProperty1, imgSliderProperty2, imgSliderProperty3, imgSliderProperty4 } from '@/app/lib/utils/image';
-
-const logos = [imgSliderProperty1, imgSliderProperty2, imgSliderProperty3, imgSliderProperty4];
 
 export default function HeroComponent({slides}) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

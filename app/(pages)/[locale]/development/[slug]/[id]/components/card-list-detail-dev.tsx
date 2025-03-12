@@ -1,6 +1,6 @@
 import PropertyCard from '@/app/components/card-property';
 
-import Link from 'next/link';
+import {Link} from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 
 export default function CardListDetailDevelopment({ developments }) {

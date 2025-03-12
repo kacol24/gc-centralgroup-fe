@@ -1,6 +1,6 @@
 'use client';
 
-import {use, useCallback, useEffect} from 'react';
+import {useCallback, useEffect} from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { ComboboxDemo } from '@/components/ui/combobox';
@@ -18,7 +18,8 @@ import {
 import {useQuery} from "@urql/next";
 import BlogsQuery from '@/graphql/BlogsQuery.graphql';
 import BlogCategoriesQuery from '@/graphql/BlogCategoriesQuery.graphql';
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {usePathname, useRouter} from "@/i18n/navigation";
+import {useSearchParams} from 'next/navigation';
 
 interface QueryVariables {
   lang: string;
@@ -45,7 +46,7 @@ export default function ArticleCore() {
 
         return params.toString()
       },
-      [searchParams]
+      [searchParams, createQueryString, pathname, queryVariables, router]
   )
 
   useEffect(() => {
@@ -90,7 +91,7 @@ export default function ArticleCore() {
     const newVariables = {...queryVariables, page: currentPage};
     setQueryVariables(newVariables);
     reexecuteQuery({requestPolicy: 'network-only'});
-  }, [currentPage]);
+  }, [currentPage, queryVariables, reexecuteQuery()]);
 
   return (
       <section className="w-full lg:container lg:mx-auto px-4 pb-8 pt-12 lg:pt-0">

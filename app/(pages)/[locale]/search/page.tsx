@@ -23,7 +23,7 @@ export default function Search({searchParams}) {
         price
     } = use(searchParams);
 
-    let variables = {
+    const variables = {
         lang: 'en'
     };
     if (locationId) {

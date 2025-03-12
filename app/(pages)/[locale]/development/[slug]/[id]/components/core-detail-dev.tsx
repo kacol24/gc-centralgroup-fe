@@ -13,19 +13,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
   PiArrowSquareOutFill,
-  PiSecurityCameraFill,
-  PiSneakerFill,
-  PiPersonSimpleSwimFill,
-  PiBasketFill,
-  PiPingPongFill,
-  PiTreeEvergreenFill,
   PiDownloadSimpleFill,
 } from 'react-icons/pi';
 
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { logoProperty, imgLoadingMaps } from '@/app/lib/utils/image';
-import { DevelopmentModel } from '@/app/lib/utils/developments';
+import { imgLoadingMaps } from '@/app/lib/utils/image';
 import Link from 'next/link';
 import FormDownloadBrosur from './brochure-form';
 import FormattedPrice from "@/app/components/formatted-price";

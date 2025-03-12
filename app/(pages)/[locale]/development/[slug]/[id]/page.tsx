@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useState, use } from 'react';
+import { use } from 'react';
 // import { useParams } from 'next/navigation';
 import HeroDetailDevelopment from './components/hero-detail-dev';
 // import dynamic from 'next/dynamic';
 import CarouselDetailDevelopment from './components/slider-detail-dev';
 import CardListDetailDevelopment from './components/card-list-detail-dev';
-import { developments, DevelopmentModel } from '@/app/lib/utils/developments';
 import CoreDetailDevelopment from './components/core-detail-dev';
 import {useQuery} from "@urql/next";
 import ProjectDetailQuery from '@/graphql/ProjectDetailQuery.graphql';

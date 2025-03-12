@@ -3,7 +3,7 @@
 import { imgBgCommunityEcosystem } from '@/app/lib/utils/image';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import Link from "next/link";
+import {Link} from "@/i18n/navigation";
 
 export default function CommunityEcosystemComponent() {
   return (

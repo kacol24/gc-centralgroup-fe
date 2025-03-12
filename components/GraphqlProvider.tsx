@@ -21,7 +21,7 @@ export default function GraphqlProvider({children, token}) {
         });
 
         return [client, ssr];
-    }, []);
+    }, [token]);
 
     return (
         <UrqlProvider client={client} ssr={ssr}>

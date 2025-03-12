@@ -3,7 +3,7 @@
 import { RiLayoutGridFill } from 'react-icons/ri';
 import { FaUserCircle } from 'react-icons/fa';
 import { FiArrowUpRight } from 'react-icons/fi';
-import Link from 'next/link';
+import {Link} from '@/i18n/navigation';
 import Image, { StaticImageData } from 'next/image';
 import { useEffect } from 'react';
 import AOS from 'aos';

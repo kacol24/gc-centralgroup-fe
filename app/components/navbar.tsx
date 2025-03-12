@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import {Link} from '@/i18n/navigation';
+import {Link, usePathname} from '@/i18n/navigation';
 import {
   iconWhatsApp,
   iconCaretDown,
@@ -13,7 +13,7 @@ import {
 import { logoColGreen, logoColWhite, logoRowGreen } from '@/app/lib/utils/image';
 import { useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { central } from '../lib/utils/cental';
 import {useQuery} from "@urql/next";
 import ProjectListQuery from '@/graphql/ProjectListQuery.graphql';
@@ -103,7 +103,7 @@ export default function Navbar() {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [pathname]);
+  }, [pathname, allowPath]);
 
   const menuStyle = (path: string) => {
     if (pathname === path) {

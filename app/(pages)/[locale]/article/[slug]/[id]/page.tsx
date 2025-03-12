@@ -3,12 +3,8 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {
-  articleAuthor,
   ArticleAuthorModel,
   ArticleDetailContentModel,
-  articleDetailContents,
-  NewsCard,
-  newsCards,
 } from '@/app/lib/utils/article';
 import Image from 'next/image';
 import React from 'react';
@@ -16,7 +12,7 @@ import { use, useEffect, useState } from 'react';
 import { FaFacebookF, FaWhatsapp } from 'react-icons/fa6';
 import { RiLinksFill } from 'react-icons/ri';
 import CardArticle from '@/app/components/card-article';
-import Link from 'next/link';
+import {Link} from '@/i18n/navigation';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import BlogDetailQuery from '@/graphql/BlogDetailQuery.graphql';
@@ -26,7 +22,7 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
   const { id } = use(params);
   const [article, setArticle] = useState();
   const [newsCards, setNewsCards] = useState([]);
-  const [contents, setContents] = useState<ArticleDetailContentModel[]>([]);
+  const [contents] = useState<ArticleDetailContentModel[]>([]);
   const [author, setAuthor] = useState<ArticleAuthorModel | undefined>();
 
   const [{data: blogResponse}] = useQuery({
@@ -37,16 +33,13 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
     }
   });
 
-  const getData = () => {
+  useEffect(() => {
     const data = blogResponse.blog;
     setArticle(data);
     setNewsCards(data.related_blogs);
     // setContents(articleDetailContents);
     setAuthor(data.author);
-  };
 
-  useEffect(() => {
-    getData();
     AOS.init({
       duration: 500,
       once: false,

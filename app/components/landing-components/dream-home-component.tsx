@@ -5,7 +5,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import CardListDevelopment from '@/app/(pages)/[locale]/development/components/card-list-development';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import {Link} from '@/i18n/navigation';
 import {useQuery} from "@urql/next";
 import ProjectsQuery from '@/graphql/ProjectsQuery.graphql';
 

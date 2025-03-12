@@ -3,17 +3,6 @@
 import Image from 'next/image';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 
-import {
-  logoPartner1,
-  logoPartner2,
-  logoPartner3,
-  logoPartner4,
-  logoPartner5,
-  logoPartner6,
-  logoPartner7,
-  logoPartner8,
-  logoPartner9,
-} from '@/app/lib/utils/image';
 import Autoplay from 'embla-carousel-autoplay';
 import {useQuery} from "@urql/next";
 import BannersQuery from '@/graphql/BannersQuery.graphql';

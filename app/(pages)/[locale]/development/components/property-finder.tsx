@@ -1,15 +1,12 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import {use, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { RiBuildingFill } from 'react-icons/ri';
 import { Slider } from '@/components/ui/slider';
 import { ComboboxDemo } from '@/components/ui/combobox';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
-import Image from 'next/image';
-import {imgPropertyFinderMap} from '@/app/lib/utils/image';
 
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -20,24 +17,9 @@ import {useQuery} from "@urql/next";
 import PropertyTypesQuery from '@/graphql/PropertyTypesQuery.graphql';
 import LocationsQuery from '@/graphql/LocationsQuery.graphql';
 import FacilitiesQuery from '@/graphql/FacilitiesQuery.graphql';
-import {useRouter, useSearchParams} from "next/navigation";
+import {useSearchParams} from "next/navigation";
+import {useRouter} from '@/i18n/navigation';
 import {useLocale} from "next-intl";
-
-const defaultIcon = L.icon({
-  iconUrl: markerIconPng.src,
-  shadowUrl: markerShadowPng.src,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-});
-
-const facilities = [
-  { id: 'security', value: 'Security 24/7' },
-  { id: 'jogging', value: 'Jogging Track' },
-  { id: 'swimming', value: 'Swimming Pool' },
-  { id: 'market', value: 'Fresh Modern Market' },
-  { id: 'garden', value: 'Green Spaced Garden' },
-  { id: 'clubhouse', value: 'Club House' },
-];
 
 function formatRupiah(value: number) {
   return value >= 1000 ? `Rp ${value / 1000} M` : `Rp ${value} Jt`;

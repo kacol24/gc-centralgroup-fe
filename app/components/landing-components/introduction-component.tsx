@@ -4,7 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import {Link} from '@/i18n/navigation';
 const stats = [
   { value: '35+', label: 'YEARS OF EXPERIENCE' },
   { value: '250+', label: 'HECTARE AREAS' },
@@ -14,7 +14,6 @@ const stats = [
 import Image from 'next/image';
 import { imgThumbVideo, development3 } from '@/app/lib/utils/image';
 import { FaPlay } from 'react-icons/fa6';
-import {useTranslations} from "next-intl";
 
 export default function IntroductionComponent() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -26,8 +25,6 @@ export default function IntroductionComponent() {
       once: false,
     });
   }, []);
-
-  const t = useTranslations('Home');
 
   return (
     <section className="w-full mx-auto container px-4 mt-10">

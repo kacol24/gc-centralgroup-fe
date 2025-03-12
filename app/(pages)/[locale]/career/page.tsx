@@ -4,7 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { CareerModel, careers } from '@/app/lib/utils/career';
 import { careerPageBanner } from '@/app/lib/utils/image';
-import Link from 'next/link';
+import {Link} from '@/i18n/navigation';
 import { useEffect, useState } from 'react';
 import { TbGridDots } from 'react-icons/tb';
 import { IoMdArrowDropdown } from 'react-icons/io';

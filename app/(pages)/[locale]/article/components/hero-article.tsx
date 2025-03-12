@@ -4,9 +4,8 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Image from 'next/image';
-import { imgDummyArticle } from '@/app/lib/utils/image';
 import { Button } from '@/components/ui/button';
-import Link from "next/link";
+import {Link} from "@/i18n/navigation";
 
 export default function ArticleHero({blog}) {
   useEffect(() => {

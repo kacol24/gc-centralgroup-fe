@@ -19,7 +19,7 @@ interface ComboboxDemoProps {
     itemActive?: string;
   };
   onValueChange?: (value: string) => void;
-  defaultValue?: any
+  defaultValue?: number
 }
 
 export const ComboboxDemo: React.FC<ComboboxDemoProps> = ({
