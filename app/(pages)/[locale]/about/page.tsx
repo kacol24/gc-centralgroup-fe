@@ -18,10 +18,14 @@ import {
 import CarouselAwardeComponent from '@/app/components/landing-components/carousel-awarde-component';
 import { useEffect } from 'react';
 import { useWindowSize } from '@/app/hooks/use-window-size';
+import BannersQuery from "@/graphql/BannersQuery.graphql";
+import {useLocale} from "next-intl";
+import {useQuery} from "@urql/next";
 
 export default function About() {
   const { width } = useWindowSize();
   const isXsView = width < 450;
+  const locale = useLocale();
 
   useEffect(() => {
     AOS.init({
@@ -30,6 +34,14 @@ export default function About() {
       startEvent: 'DOMContentLoaded',
     });
   }, []);
+
+  const [{data: partners}] = useQuery({
+    query: BannersQuery,
+    variables: {
+      lang: locale,
+      type: 'award_banner',
+    }
+  });
 
   return (
     <>
@@ -95,7 +107,7 @@ export default function About() {
         />
       </section>
 
-      <CarouselAwardeComponent />
+      <CarouselAwardeComponent slides={partners.banners}/>
 
       <section className="bg-backgroundWhite ">
         <div className="container mx-auto md:p-16 md:pb-24 md:grid md:grid-cols-[5fr_6fr] lg:px-40 lg:grid-cols-[4fr_5fr]">
