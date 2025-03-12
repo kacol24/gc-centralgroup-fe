@@ -21,7 +21,7 @@ export default function CarouselAwardeComponent({slides}) {
           ]}
         >
           <CarouselContent className="flex gap-4">
-            {slides?.map((award, id) => (
+            {slides?.map((award) => (
               <CarouselItem key={award.id} className="basis-1/2 lg:basis-1/6">
                 <div className="flex flex-col items-center justify-center p-1 w-[186px] min-w-[186px] grow relative">
                   <Image

@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useMemo } from 'react';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { RiBuildingFill } from 'react-icons/ri';
 import { MdLocationOn } from 'react-icons/md';
@@ -16,10 +15,8 @@ import {
   PiDownloadSimpleFill,
 } from 'react-icons/pi';
 
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { imgLoadingMaps } from '@/app/lib/utils/image';
-import Link from 'next/link';
+import {Link} from '@/i18n/navigation';
 import FormDownloadBrosur from './brochure-form';
 import FormattedPrice from "@/app/components/formatted-price";
 
@@ -33,19 +30,6 @@ export default function CoreDetailDevelopment({
       startEvent: 'DOMContentLoaded',
     });
   }, []);
-
-  const MapsComponent = useMemo(
-    () =>
-      dynamic(() => import('../../../../../../components/maps-component'), {
-        loading: () => (
-          <div className="w-full h-[127px] lg:h-[260px] p-0 lg:flex-grow mb-10 lg:mb-0 lg:pr-[75px]">
-            <Image src={imgLoadingMaps} width={0} height={0} alt="Logo Property" unoptimized className="w-full h-full object-fill" />
-          </div>
-        ),
-        ssr: false,
-      }),
-    [],
-  );
 
   return (
     <div className="relative container mx-auto flex px-4 p-0 lg:pt-20">

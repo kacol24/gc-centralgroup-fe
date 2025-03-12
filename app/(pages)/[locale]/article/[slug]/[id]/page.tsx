@@ -45,7 +45,7 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
       once: false,
       startEvent: 'DOMContentLoaded',
     });
-  }, [id]);
+  }, [id, blogResponse.blog]);
 
   return (
     <>

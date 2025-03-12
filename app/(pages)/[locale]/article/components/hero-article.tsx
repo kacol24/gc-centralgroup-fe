@@ -58,13 +58,15 @@ export default function ArticleHero({blog}) {
             <div className=" w-full block items-center lg:flex lg:flex-row">
               <div data-aos="zoom-in-right" data-aos-duration="1200" className="w-full flex gap-4 items-start">
                 <div className="w-14 h-14  ">
-                  <Image src={blog.image} alt="Hero Article" className="w-full h-full object-cover rounded-full" width={56} height={56}/>
+                  <Image src={blog.author.avatar} alt="Hero Article" className="w-full h-full object-cover rounded-full" width={56} height={56}/>
                 </div>
                 <div className="flex flex-col gap-2 items-start justify-start">
                   <h4 className="text-sm font-semibold text-white ">
-                    {blog.author}
+                    {blog.author.name}
                   </h4>
-                  <p className="text-xs font-medium text-white text-opacity-80 ">//TODO Marketing Head</p>
+                  <p className="text-xs font-medium text-white text-opacity-80 ">
+                    {blog.author.title}
+                  </p>
                 </div>
               </div>
 

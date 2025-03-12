@@ -46,7 +46,7 @@ export default function ArticleCore() {
 
         return params.toString()
       },
-      [searchParams, createQueryString, pathname, queryVariables, router]
+      [searchParams]
   )
 
   useEffect(() => {
@@ -85,13 +85,13 @@ export default function ArticleCore() {
     const newVariables = {...queryVariables, page: currentPage, categoryId: parseInt(value)};
     setQueryVariables(newVariables);
     reexecuteQuery({requestPolicy: 'network-only'});
-  }, [reexecuteQuery]);
+  }, [reexecuteQuery, createQueryString, currentPage, pathname, queryVariables, router]);
 
   useEffect(() => {
     const newVariables = {...queryVariables, page: currentPage};
     setQueryVariables(newVariables);
     reexecuteQuery({requestPolicy: 'network-only'});
-  }, [currentPage, queryVariables, reexecuteQuery()]);
+  }, [currentPage, queryVariables, reexecuteQuery]);
 
   return (
       <section className="w-full lg:container lg:mx-auto px-4 pb-8 pt-12 lg:pt-0">

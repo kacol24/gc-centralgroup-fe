@@ -12,6 +12,5 @@ query Q_BANNERS (
         cta
         desktop
         mobile
-        __typename
     }
 }

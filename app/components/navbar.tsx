@@ -20,7 +20,6 @@ import ProjectListQuery from '@/graphql/ProjectListQuery.graphql';
 
 export default function Navbar() {
   const pathname = usePathname();
-  const allowPath = ['/development', '/contact', '/search'];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
@@ -76,6 +75,8 @@ export default function Navbar() {
   });
 
   useEffect(() => {
+    const allowPath = ['/development', '/contact', '/search'];
+
     const handleResize = () => {
       const isMobile = window.innerWidth <= 1024;
       const isArticleDetailPath = pathname.includes('/article/');
@@ -103,7 +104,7 @@ export default function Navbar() {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [pathname, allowPath]);
+  }, [pathname]);
 
   const menuStyle = (path: string) => {
     if (pathname === path) {
