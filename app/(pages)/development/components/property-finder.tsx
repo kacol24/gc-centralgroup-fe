@@ -85,43 +85,36 @@ export default function PropertyFinder() {
   });
 
   return (
-    <section className="w-full h-auto lg:h-[740px] lg:flex">
-      {/* Property Maps */}
-      <div className="w-full h-[295px] lg:h-full lg:flex-grow">
-        <img src={imgPropertyFinderMap} alt="maps" className="w-full"/>
-      </div>
-
-      {/* Property Form */}
       <div className="w-full lg:w-[580px] p-8 lg:p-20 bg-[#2E2E2E] text-white ">
         <h2 className="text-2xl font-marcellus text-start  mb-10">PROPERTY FINDER</h2>
 
         <div className="mb-[22px]">
           <ComboboxDemo
-            dataPropertys={cities}
-            placeholder="Location"
-            icon={<FaMapMarkerAlt className="text-white" />}
-            customClassName={{
-              button: 'bg-black text-white hover:bg-black hover:opacity-80 py-6',
-              popoverContent: 'bg-gray-800 text-white',
-              input: 'border-gray-400',
-              item: 'text-gray-700',
-              itemActive: 'bg-blue-300 text-black',
-            }}
+              dataPropertys={cities}
+              placeholder="Location"
+              icon={<FaMapMarkerAlt className="text-white"/>}
+              customClassName={{
+                button: 'bg-black text-white hover:bg-black hover:opacity-80 py-6',
+                popoverContent: 'bg-gray-800 text-white',
+                input: 'border-gray-400',
+                item: 'text-gray-700',
+                itemActive: 'bg-blue-300 text-black',
+              }}
           />
         </div>
 
         <div className="mb-6">
           <ComboboxDemo
-            dataPropertys={propertyTypes}
-            placeholder="Property Types"
-            icon={<RiBuildingFill className="text-white" />}
-            customClassName={{
-              button: 'bg-black text-white hover:bg-black hover:opacity-80 py-6',
-              popoverContent: 'bg-gray-800 text-white',
-              input: 'border-gray-400',
-              item: 'text-gray-700',
-              itemActive: 'bg-blue-300 text-black',
-            }}
+              dataPropertys={propertyTypes}
+              placeholder="Property Types"
+              icon={<RiBuildingFill className="text-white"/>}
+              customClassName={{
+                button: 'bg-black text-white hover:bg-black hover:opacity-80 py-6',
+                popoverContent: 'bg-gray-800 text-white',
+                input: 'border-gray-400',
+                item: 'text-gray-700',
+                itemActive: 'bg-blue-300 text-black',
+              }}
           />
         </div>
 
@@ -129,12 +122,12 @@ export default function PropertyFinder() {
           <label className="block text-[10px] font-semibold mb-5 uppercase">Price Range</label>
 
           <Slider
-            value={value}
-            onValueChange={(val) => setValue([val[0], val[1]])}
-            min={0}
-            max={5000}
-            step={100}
-            className="w-full "
+              value={value}
+              onValueChange={(val) => setValue([val[0], val[1]])}
+              min={0}
+              max={5000}
+              step={100}
+              className="w-full "
           />
           <div className="flex justify-between text-white text-sm mt-4">
             <span>{formatRupiah(value[0])}</span>
@@ -147,16 +140,16 @@ export default function PropertyFinder() {
           <label className="block text-[10px] uppercase font-semibold mb-4">Facilities</label>
           <div className="flex flex-col gap-4">
             {facilities.map((facility) => (
-              <div key={facility.id} className="flex items-center space-x-2 ">
-                <Checkbox
-                  id={facility.id}
-                  checked={selectedFacilities.includes(facility.value)}
-                  onCheckedChange={() => toggleFacility(facility.value)}
-                />
-                <Label htmlFor={facility.value} className="text-xs">
-                  {facility.value}
-                </Label>
-              </div>
+                <div key={facility.id} className="flex items-center space-x-2 ">
+                  <Checkbox
+                      id={facility.id}
+                      checked={selectedFacilities.includes(facility.value)}
+                      onCheckedChange={() => toggleFacility(facility.value)}
+                  />
+                  <Label htmlFor={facility.value} className="text-xs">
+                    {facility.value}
+                  </Label>
+                </div>
             ))}
           </div>
         </div>
@@ -165,6 +158,5 @@ export default function PropertyFinder() {
           FIND PROPERTY
         </button>
       </div>
-    </section>
   );
 }

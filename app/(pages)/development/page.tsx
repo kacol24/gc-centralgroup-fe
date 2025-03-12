@@ -8,6 +8,14 @@ import CardListDevelopment from './components/card-list-development';
 import CarouselOurPartner from './components/carousel-our-partner';
 import {useQuery} from "@urql/next";
 import ProjectsQuery from "@/graphql/ProjectsQuery.graphql";
+import {imgPropertyFinderMap} from "@/app/lib/utils/image";
+import {ComboboxDemo} from "@/components/ui/combobox";
+import {FaMapMarkerAlt} from "react-icons/fa";
+import {RiBuildingFill} from "react-icons/ri";
+import {Slider} from "@/components/ui/slider";
+import {Checkbox} from "@/components/ui/checkbox";
+import {Label} from "@/components/ui/label";
+import Image from 'next/image';
 
 export default function Development() {
   const PropertyFinder = useMemo(
@@ -54,7 +62,15 @@ export default function Development() {
         <Suspense>
             <CarouselOurPartner/>
         </Suspense>
-      <PropertyFinder />
+        <section className="w-full h-auto lg:h-[740px] lg:flex">
+            {/* Property Maps */}
+            <div className="w-full h-[295px] lg:h-full lg:flex-grow relative">
+                <Image src={imgPropertyFinderMap} alt="maps" fill/>
+            </div>
+
+            {/* Property Form */}
+            <PropertyFinder/>
+        </section>
     </div>
   );
 }
