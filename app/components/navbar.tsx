@@ -20,7 +20,7 @@ import ProjectListQuery from '@/graphql/ProjectListQuery.graphql';
 
 export default function Navbar() {
   const pathname = usePathname();
-  const allowPath = ['/development', '/contact'];
+  const allowPath = ['/development', '/contact', '/search'];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});

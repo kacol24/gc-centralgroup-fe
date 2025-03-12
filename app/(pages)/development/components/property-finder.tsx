@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import {use, useEffect, useState} from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { RiBuildingFill } from 'react-icons/ri';
 import { Slider } from '@/components/ui/slider';
@@ -19,6 +19,8 @@ import markerShadowPng from 'leaflet/dist/images/marker-shadow.png';
 import {useQuery} from "@urql/next";
 import PropertyTypesQuery from '@/graphql/PropertyTypesQuery.graphql';
 import LocationsQuery from '@/graphql/LocationsQuery.graphql';
+import FacilitiesQuery from '@/graphql/FacilitiesQuery.graphql';
+import {useRouter, useSearchParams} from "next/navigation";
 
 const defaultIcon = L.icon({
   iconUrl: markerIconPng.src,
@@ -40,9 +42,13 @@ function formatRupiah(value: number) {
   return value >= 1000 ? `Rp ${value / 1000} M` : `Rp ${value} Jt`;
 }
 
-export default function PropertyFinder() {
+export default function PropertyFinder({ compact = false }) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
   const [value, setValue] = useState<[number, number]>([0, 5000]);
+  const [filterLocation, setFilterLocation] = useState();
+  const [filterPropertyType, setFilterPropertyType] = useState();
 
   const toggleFacility = (facility: string) => {
     setSelectedFacilities((prev) =>
@@ -84,8 +90,28 @@ export default function PropertyFinder() {
     }
   });
 
+  const [{data: facilitiesResponse}] = useQuery({
+    query: FacilitiesQuery,
+    variables: {
+        lang: 'en'
+    }
+  });
+  const facilities = facilitiesResponse.facilities;
+
+  const handleFindProperty = () => {
+      const params = new URLSearchParams();
+      if (filterLocation) {
+          params.set('location', filterLocation);
+      }
+      if (filterPropertyType) {
+          params.set('property_type', filterPropertyType);
+      }
+
+      router.push('/search?' + params.toString());
+  };
+
   return (
-      <div className="w-full lg:w-[580px] p-8 lg:p-20 bg-[#2E2E2E] text-white ">
+      <div className={`w-full lg:w-[580px] p-8 lg:p-${compact ? 10 : 20} bg-[#2E2E2E] text-white ${compact ? 'lg:min-w-[405px] lg:max-w-[405px]' : ''}`}>
         <h2 className="text-2xl font-marcellus text-start  mb-10">PROPERTY FINDER</h2>
 
         <div className="mb-[22px]">
@@ -93,6 +119,8 @@ export default function PropertyFinder() {
               dataPropertys={cities}
               placeholder="Location"
               icon={<FaMapMarkerAlt className="text-white"/>}
+              onValueChange={value => setFilterLocation(value)}
+              defaultValue={searchParams.get('location')}
               customClassName={{
                 button: 'bg-black text-white hover:bg-black hover:opacity-80 py-6',
                 popoverContent: 'bg-gray-800 text-white',
@@ -108,6 +136,8 @@ export default function PropertyFinder() {
               dataPropertys={propertyTypes}
               placeholder="Property Types"
               icon={<RiBuildingFill className="text-white"/>}
+              onValueChange={value => setFilterPropertyType(value)}
+              defaultValue={searchParams.get('property_type')}
               customClassName={{
                 button: 'bg-black text-white hover:bg-black hover:opacity-80 py-6',
                 popoverContent: 'bg-gray-800 text-white',
@@ -143,18 +173,19 @@ export default function PropertyFinder() {
                 <div key={facility.id} className="flex items-center space-x-2 ">
                   <Checkbox
                       id={facility.id}
-                      checked={selectedFacilities.includes(facility.value)}
-                      onCheckedChange={() => toggleFacility(facility.value)}
+                      checked={selectedFacilities.includes(facility.title)}
+                      onCheckedChange={() => toggleFacility(facility.id)}
                   />
-                  <Label htmlFor={facility.value} className="text-xs">
-                    {facility.value}
+                  <Label htmlFor={facility.title} className="text-xs">
+                    {facility.title}
                   </Label>
                 </div>
             ))}
           </div>
         </div>
 
-        <button className="w-full bg-primary py-4 px-[92px] rounded-sm mt-0 text-xs font-semibold">
+        <button className="w-full bg-primary py-4 px-[92px] rounded-sm mt-0 text-xs font-semibold"
+                onClick={handleFindProperty}>
           FIND PROPERTY
         </button>
       </div>

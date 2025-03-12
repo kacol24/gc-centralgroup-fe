@@ -16,7 +16,7 @@ interface PropertyCardProps {
   type: string;
 }
 
-const PropertyCard: React.FC<PropertyCardProps> = ({ image, title, location, index }) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({ image, title, location, index , type}) => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -41,7 +41,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ image, title, location, ind
           <div className="flex items-center gap-4  text-[10px]">
             <span className="flex items-center gap-[6px] font-bold uppercase">
               <RiBuildingFill className="text-xs " />
-              Residential
+              {type}
             </span>
             <span className="flex items-center gap-1 font-bold uppercase">
               <MdLocationOn className="text-xs" />

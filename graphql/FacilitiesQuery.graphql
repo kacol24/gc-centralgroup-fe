@@ -1,0 +1,7 @@
+query Q_FACILITIES($lang: String!) {
+    facilities(language: $lang) {
+        id
+        title
+        icon
+    }
+}

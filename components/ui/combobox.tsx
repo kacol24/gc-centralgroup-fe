@@ -19,6 +19,7 @@ interface ComboboxDemoProps {
     itemActive?: string;
   };
   onValueChange?: (value: string) => void;
+  defaultValue?: any
 }
 
 export const ComboboxDemo: React.FC<ComboboxDemoProps> = ({
@@ -26,10 +27,10 @@ export const ComboboxDemo: React.FC<ComboboxDemoProps> = ({
   placeholder = 'Select...',
   icon,
   customClassName = {},
-  onValueChange
+  onValueChange, defaultValue
 }) => {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState(defaultValue);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
