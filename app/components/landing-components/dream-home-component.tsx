@@ -8,8 +8,11 @@ import { Button } from '@/components/ui/button';
 import {Link} from '@/i18n/navigation';
 import {useQuery} from "@urql/next";
 import ProjectsQuery from '@/graphql/ProjectsQuery.graphql';
+import {useLocale} from "next-intl";
 
 export default function DreamHomeComponent() {
+    const locale = useLocale();
+
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -20,7 +23,7 @@ export default function DreamHomeComponent() {
   const [{data: projectsResponse}] = useQuery({
       query: ProjectsQuery,
       variables: {
-          lang: 'en',
+          lang: locale,
           limit: 6
       }
   });
