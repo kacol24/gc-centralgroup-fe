@@ -11,7 +11,6 @@ import {
   aboutPageBannerAttachmentBottomRight,
   principMuljadi,
   backgroundGoalPageAbout,
-  patnerLogoAsArray,
   backgroundWaveTile,
 } from '@/app/lib/utils/image';
 
@@ -35,11 +34,19 @@ export default function About() {
     });
   }, []);
 
-  const [{data: partners}] = useQuery({
+  const [{data: awardsResponse}] = useQuery({
     query: BannersQuery,
     variables: {
       lang: locale,
       type: 'award_banner',
+    }
+  });
+
+  const [{data: partnersResponse}] = useQuery({
+    query: BannersQuery,
+    variables: {
+      lang: locale,
+      type: 'partner_banner',
     }
   });
 
@@ -107,7 +114,7 @@ export default function About() {
         />
       </section>
 
-      <CarouselAwardeComponent slides={partners.banners}/>
+      <CarouselAwardeComponent slides={awardsResponse.banners}/>
 
       <section className="bg-backgroundWhite ">
         <div className="container mx-auto md:p-16 md:pb-24 md:grid md:grid-cols-[5fr_6fr] lg:px-40 lg:grid-cols-[4fr_5fr]">
@@ -189,15 +196,16 @@ export default function About() {
       <section className="bg-backgroundWhite">
         <div className="container mx-auto p-4 pb-10 lg:m-auto lg:pb-16">
           <p className="mb-5 text-xs text-primary font-semibold" data-aos="fade-up">
-            OUR PROJECTS
+            OUR PARTNERS
           </p>
           <div className="grid grid-cols-3 gap-8 md:grid-cols-9">
-            {patnerLogoAsArray?.map((patner, index) => (
+            {partnersResponse?.banners.map((partner, index) => (
               <Image
-                key={index}
-                src={patner.src}
-                alt={patner.alt}
-                width={0}
+                key={partner.id}
+                src={partner.desktop}
+                alt={partner.title}
+                width={218}
+                height={114}
                 className="w-full h-auto object-contain md:w-[70px] lg:w-[100px]"
                 data-aos="zoom-in-up"
                 data-aos-delay={(index + 4) * 100}
