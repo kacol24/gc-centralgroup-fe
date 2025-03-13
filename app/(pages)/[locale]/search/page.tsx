@@ -5,8 +5,11 @@ import CardListDevelopment from "@/app/(pages)/[locale]/development/components/c
 import {use, useMemo} from "react";
 import dynamic from "next/dynamic";
 import {useQuery} from "@urql/next";
+import {useLocale} from "next-intl";
 
 export default function Search({searchParams}) {
+    const locale = useLocale();
+
     const PropertyFinder = useMemo(
         () =>
             dynamic(() => import('../development/components/property-finder'), {
@@ -24,7 +27,7 @@ export default function Search({searchParams}) {
     } = use(searchParams);
 
     const variables = {
-        lang: 'en'
+        lang: locale
     };
     if (locationId) {
         variables['locationId'] = parseInt(locationId);

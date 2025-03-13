@@ -20,6 +20,7 @@ import BlogsQuery from '@/graphql/BlogsQuery.graphql';
 import BlogCategoriesQuery from '@/graphql/BlogCategoriesQuery.graphql';
 import {usePathname, useRouter} from "@/i18n/navigation";
 import {useSearchParams} from 'next/navigation';
+import {useLocale} from "next-intl";
 
 // interface QueryVariables {
 //   lang: string;
@@ -37,9 +38,10 @@ export default function ArticleCore() {
   const router = useRouter();
   const pathname = usePathname()
   const searchParams = useSearchParams()
+  const locale = useLocale();
 
   const [queryVariables, setQueryVariables] = useState({
-    lang: 'en',
+    lang: locale,
     limit: 6,
     page: 1
   });
@@ -74,7 +76,7 @@ export default function ArticleCore() {
   const [{data: blogCategoriesResponse}] = useQuery({
     query: BlogCategoriesQuery,
     variables: {
-      lang: 'en'
+      lang: locale
     }
   });
   const articleDropdown = blogCategoriesResponse.blogcategories.map((category: BlogCategory) => {

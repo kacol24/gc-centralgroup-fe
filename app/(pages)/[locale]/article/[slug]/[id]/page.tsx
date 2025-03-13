@@ -16,6 +16,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import BlogDetailQuery from '@/graphql/BlogDetailQuery.graphql';
 import {useQuery} from "@urql/next";
+import {useLocale} from "next-intl";
 
 interface NewsCategory {
   title: string;
@@ -41,12 +42,13 @@ interface NewsItem {
 export default function ArticleDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const [contents] = useState<ArticleDetailContentModel[]>([]);
+  const locale = useLocale();
 
   const [{data: blogResponse}] = useQuery({
     query: BlogDetailQuery,
     variables: {
-      lang: 'en',
-      id: id
+      lang: locale,
+      id
     }
   });
   const article = blogResponse.blog;

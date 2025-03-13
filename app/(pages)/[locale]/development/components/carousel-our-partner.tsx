@@ -6,12 +6,15 @@ import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carouse
 import Autoplay from 'embla-carousel-autoplay';
 import {useQuery} from "@urql/next";
 import BannersQuery from '@/graphql/BannersQuery.graphql';
+import {useLocale} from "next-intl";
 
 export default function CarouselOurPartner() {
+    const locale = useLocale();
+
     const [{data: partnersResponse}] = useQuery({
         query: BannersQuery,
         variables: {
-            lang: 'en',
+            lang: locale,
             type: 'partner_banner'
         }
     });

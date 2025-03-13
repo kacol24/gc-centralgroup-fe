@@ -9,14 +9,16 @@ import CardListDetailDevelopment from './components/card-list-detail-dev';
 import CoreDetailDevelopment from './components/core-detail-dev';
 import {useQuery} from "@urql/next";
 import ProjectDetailQuery from '@/graphql/ProjectDetailQuery.graphql';
+import {useLocale} from "next-intl";
 
 export default function DevelopmentDetailPage({ params }) {
   const { id } = use(params);
+  const locale = useLocale();
 
     const [{data: projectData}] = useQuery({
         query: ProjectDetailQuery,
         variables: {
-            lang: 'en',
+            lang: locale,
             id
         }
     });

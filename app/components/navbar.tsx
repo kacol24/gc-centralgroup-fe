@@ -17,12 +17,14 @@ import { useSearchParams } from 'next/navigation';
 import { central } from '../lib/utils/cental';
 import {useQuery} from "@urql/next";
 import ProjectListQuery from '@/graphql/ProjectListQuery.graphql';
+import {useLocale} from "next-intl";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
+  const locale = useLocale();
 
   const searchParams = useSearchParams();
 
@@ -137,10 +139,10 @@ export default function Navbar() {
   const [{data: projectListResponse}] = useQuery({
     query: ProjectListQuery,
     variables: {
-      lang: 'en'
+      lang: locale
     }
   });
-  const developments = projectListResponse.projects.datas;
+  const developments = projectListResponse.projects?.datas ?? [];
 
   return (
     <>

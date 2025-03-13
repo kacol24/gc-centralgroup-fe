@@ -10,8 +10,11 @@ import {useQuery} from "@urql/next";
 import ProjectsQuery from "@/graphql/ProjectsQuery.graphql";
 import {imgPropertyFinderMap} from "@/app/lib/utils/image";
 import Image from 'next/image';
+import {useLocale} from "next-intl";
 
 export default function Development() {
+  const locale = useLocale();
+
   const PropertyFinder = useMemo(
     () =>
       dynamic(() => import('./components/property-finder'), {
@@ -31,7 +34,7 @@ export default function Development() {
     const [{data: projectsResponse}] = useQuery({
         query: ProjectsQuery,
         variables: {
-            lang: 'en',
+            lang: locale,
             limit: 6
         }
     });

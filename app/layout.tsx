@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Montserrat, Aboreto, Marcellus } from 'next/font/goo
 import './globals.css';
 import GraphqlProvider from "@/components/GraphqlProvider";
 import {fetchToken} from "@/app/lib/urqlClient";
+import {getLocale} from "next-intl/server";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,9 +30,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
     const accessToken = await fetchToken();
+    const locale = await getLocale();
 
   return (
-    <html lang="en">
+    <html lang={locale}>
         <GraphqlProvider token={accessToken}>
           <body
             className={`${geistSans.className} ${geistMono.variable} ${montserrat.className} ${marcellus.className} ${aboreto.className} antialiased`}
