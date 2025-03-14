@@ -3,11 +3,11 @@ import ArticleHero from './components/hero-article';
 
 import {getClient} from "@/app/lib/urqlClient";
 import BlogsQuery from "@/graphql/BlogsQuery.graphql";
-import {useLocale} from "next-intl";
+import {getLocale} from "next-intl/server";
 
 export default async function Article() {
     const client = await getClient();
-    const locale = useLocale();
+    const locale = getLocale();
 
     const {data: featuredBlog} = await client.query(BlogsQuery, {
         "lang": locale,
