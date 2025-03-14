@@ -19,7 +19,7 @@ export default function CentralNewsComponent({blogs}) {
       <div className=" block border-t border-textPrimary border-opacity-30 my-8" />
 
       <div className="grid grid-cols-1 lg:hidden">
-        {limitedNews.map((news) => (
+        {limitedNews.map((news, index) => (
           <CardArticle
             key={news.id}
             id={news.id}
@@ -29,7 +29,7 @@ export default function CentralNewsComponent({blogs}) {
             category={news.category.title}
             date={news.publish_date}
             image={news.image}
-            index={news.id}
+            index={index}
             slug={news.slug}
           />
         ))}
