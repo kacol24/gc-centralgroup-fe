@@ -72,7 +72,8 @@ export default function HeroComponent({slides}) {
         >
           {slides.map(slide => (
             <SwiperSlide key={slide.id}>
-              <Image src={slide.desktop} alt="logo" className="object-contain w-full h-full" width={1440} height={780} />
+              <Image src={slide.desktop} alt="logo" className="object-contain w-full h-full" width={1440} height={780}
+                     priority/>
               <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
 
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
