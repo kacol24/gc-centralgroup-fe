@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
@@ -19,6 +19,7 @@ import Image from 'next/image';
 import {Link} from '@/i18n/navigation';
 import FormDownloadBrosur from './brochure-form';
 import FormattedPrice from "@/app/components/formatted-price";
+import MortgageCalculator from "./mortgage-calculator";
 
 export default function CoreDetailDevelopment({
   detail,
@@ -237,110 +238,7 @@ export default function CoreDetailDevelopment({
             This calculation is an estimate and not a depiction of actual payment plan
           </p>
 
-          <div className="space-y-6 mb-8 lg:mb-20 lg:flex lg:flex-col lg:gap-6">
-            <div className="block lg:flex lg:gap-6 w-full">
-              {/* Property Price */}
-              <div data-aos="fade-up" data-aos-duration="800" className="space-y-2 lg:flex-[0.4]">
-                <Label htmlFor="property-price" className="text-[10px] font-semibold text-gray-900">
-                  PROPERTY PRICE
-                </Label>
-                <Input
-                  id="property-price"
-                  placeholder="Property price"
-                  style={{
-                    backgroundColor: 'white',
-                    borderColor: '#E1E1E1',
-                    borderRadius: '0px',
-                    fontSize: '12px',
-                    paddingTop: '23px',
-                    paddingBottom: '23px',
-                  }}
-                  className=" text-gray-900"
-                />
-              </div>
-
-              {/* Down Payment */}
-              <div data-aos="fade-up" data-aos-duration="1000" className="space-y-2 lg:flex-[0.6]">
-                <Label htmlFor="down-payment" className="text-[10px] font-semibold text-gray-900">
-                  DOWN PAYMENT
-                </Label>
-                <Input
-                  id="down-payment"
-                  placeholder="Enter down payment amount"
-                  style={{
-                    backgroundColor: 'white',
-                    borderColor: '#E1E1E1',
-                    borderRadius: '0px',
-                    fontSize: '12px',
-                    paddingTop: '23px',
-                    paddingBottom: '23px',
-                  }}
-                  className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
-                />
-              </div>
-            </div>
-
-            <div className="block lg:flex lg:gap-6 items-end !mt-0">
-              {/* Loan Term */}
-              <div data-aos="fade-up" data-aos-duration="1100" className="space-y-2 lg:flex-[0.43]">
-                <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">
-                  LOAN TERM
-                </Label>
-                <div className="relative">
-                  <Input
-                    id="loan-term"
-                    placeholder="Enter loan term"
-                    style={{
-                      backgroundColor: 'white',
-                      borderColor: '#E1E1E1',
-                      borderRadius: '0px',
-                      fontSize: '12px',
-                      paddingRight: '48px',
-                      paddingTop: '23px',
-                      paddingBottom: '23px',
-                    }}
-                    className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
-                  />
-                  <span className="absolute hidden lg:flex inset-y-0 right-3  items-center text-black text-[12px] pointer-events-none">
-                    Years
-                  </span>
-                </div>
-              </div>
-
-              {/* Interest Rate */}
-              <div data-aos="fade-up" data-aos-duration="1200" className="space-y-2 lg:flex-[0.43]">
-                <Label htmlFor="interest-rate" className="text-[10px] font-semibold text-gray-900">
-                  INTEREST RATE
-                </Label>
-                <div className="relative">
-                  <Input
-                    id="interest-rate"
-                    placeholder="Enter interest rate"
-                    style={{
-                      backgroundColor: 'white',
-                      borderColor: '#E1E1E1',
-                      borderRadius: '0px',
-                      paddingRight: '48px',
-                      paddingTop: '23px',
-                      paddingBottom: '23px',
-                    }}
-                    className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
-                  />
-                  <span className="absolute hidden lg:flex inset-y-0 right-3  items-center text-black text-[12px] pointer-events-none">
-                    %
-                  </span>
-                </div>
-              </div>
-              <Button
-                data-aos="fade-up"
-                data-aos-duration="1400"
-                variant="filled"
-                className="w-full rounded-none text-xs py-[24px] hidden lg:flex-[0.14] lg:flex"
-              >
-                CALCULATE
-              </Button>
-            </div>
-          </div>
+          <MortgageCalculator startingPrice={detail?.starting_price}/>
           <Button
             data-aos="fade-up"
             data-aos-duration="1400"
