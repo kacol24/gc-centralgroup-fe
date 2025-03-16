@@ -117,7 +117,7 @@ export default function About() {
       <CarouselAwardeComponent slides={awardsResponse.banners}/>
 
       <section className="bg-backgroundWhite ">
-        <div className="container mx-auto md:p-16 md:pb-24 md:grid md:grid-cols-[5fr_6fr] lg:px-40 lg:grid-cols-[4fr_5fr]">
+        <div className="container mx-auto md:p-16 md:pb-24 md:grid md:grid-cols-[5fr_6fr] lg:px-40 lg:grid-cols-[4fr_5fr] overflow-hidden">
           <Image
             src={principMuljadi}
             alt="Princip Muljadi"
