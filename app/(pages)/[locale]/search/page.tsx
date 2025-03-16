@@ -36,7 +36,7 @@ export default function Search({searchParams}) {
         variables['propertyTypeId'] = parseInt(propertyTypeId);
     }
     if (facilityIds) {
-        let ids = [];
+        const ids = [];
         facilityIds.forEach(value => {
             ids.push(parseInt(value));
         });
