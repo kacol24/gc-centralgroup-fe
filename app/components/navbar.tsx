@@ -18,6 +18,7 @@ import { central } from '../lib/utils/cental';
 import {useQuery} from "@urql/next";
 import ProjectListQuery from '@/graphql/ProjectListQuery.graphql';
 import {useLocale} from "next-intl";
+import LocaleSwitcher from "@/app/components/LocaleSwitcher";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -189,15 +190,7 @@ export default function Navbar() {
 
               <div className="w-px h-6 bg-gray-400"></div>
 
-              <div className="flex items-center gap-1 cursor-pointer">
-                <span>EN</span>
-                <Image
-                  src={isScrolled ? iconCaretDown : variant.iconCaretDown}
-                  alt="Caret Down Icon"
-                  width={12}
-                  height={12}
-                />
-              </div>
+              <LocaleSwitcher isScrolled={isScrolled}/>
 
               <div className="w-px h-6 bg-gray-400"></div>
 

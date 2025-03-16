@@ -46,7 +46,7 @@ export default function CentralNewsComponent({blogs}) {
         {/* Wrapper carousel */}
         <CarouselContent className="hidden lg:flex -ml-4 md:-ml-8">
           {newsCards.map((news, index) => (
-            <CarouselItem key={news.id} className="basis-2/6 pl-4 md:pl-8">
+            <CarouselItem key={index} className="basis-2/6 pl-4 md:pl-8">
               <CardArticle
                 key={news.id}
                 id={news.id}
