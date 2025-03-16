@@ -45,7 +45,7 @@ export default function CentralNewsComponent({blogs}) {
       >
         {/* Wrapper carousel */}
         <CarouselContent className="hidden lg:flex -ml-4 md:-ml-8">
-          {newsCards.map((news) => (
+          {newsCards.map((news, index) => (
             <CarouselItem key={news.id} className="basis-2/6 pl-4 md:pl-8">
               <CardArticle
                 key={news.id}
@@ -56,7 +56,7 @@ export default function CentralNewsComponent({blogs}) {
                 category={news.category.title}
                 date={news.publish_date}
                 image={news.image}
-                index={news.id}
+                index={index}
                 slug={news.slug}
               />
             </CarouselItem>
