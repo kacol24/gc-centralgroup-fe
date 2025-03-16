@@ -95,6 +95,9 @@ export default function PropertyFinder({ compact = false }) {
               params.append('facilities', value);
           })
       }
+      if (value) {
+          params.set('price', `${value[0] * 1000000}-${value[1] * 1000000}`);
+      }
 
       router.push('/search?' + params.toString());
   };
