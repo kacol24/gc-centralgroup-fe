@@ -39,8 +39,10 @@ type AuthPayload {
 
 type Author {
     avatar: String
+    bio: String
     id: ID
     name: String
+    social: String
     title: String
 }
 

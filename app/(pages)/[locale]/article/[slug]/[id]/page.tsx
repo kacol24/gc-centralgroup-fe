@@ -150,18 +150,20 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
             {author && (
               <div className="mb-10 p-8 rounded-md bg-gray-200 lg:mb-0" data-aos="fade-up" data-aos-delay="800">
                 <div className="flex gap-4">
-                  {/*<Image*/}
-                  {/*  src={author.image}*/}
-                  {/*  alt={author.name}*/}
-                  {/*  className="w-14 aspect-square object-cover object-center"*/}
-                  {/*/>*/}
+                  <Image
+                    src={author.avatar}
+                    alt={author.name}
+                    width={56}
+                    height={56}
+                    className="w-14 aspect-square object-cover object-center"
+                  />
                   <div>
                     <p className="mb-1 text-textPrimary font-semibold">{author.name}</p>
-                    {/*<p className="text-sm/6 text-textPrimary">{author.position}</p>*/}
+                    <p className="text-sm/6 text-textPrimary">{author.title}</p>
                   </div>
                 </div>
                 <hr className="my-6 border-[#0000001A]"></hr>
-                {/*<p className="text-xs/5 text-textPrimary font-medium opacity-80">{author.description}</p>*/}
+                <p className="text-xs/5 text-textPrimary font-medium opacity-80">{author.bio}</p>
               </div>
             )}
           </div>

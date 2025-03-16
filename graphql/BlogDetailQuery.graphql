@@ -5,6 +5,7 @@ query Q_BLOG_DETAIL($lang: String!, $id: ID!) {
             name
             title
             avatar
+            bio
         }
         title
         slug
@@ -21,8 +22,6 @@ query Q_BLOG_DETAIL($lang: String!, $id: ID!) {
             id
             author {
                 name
-                title
-                avatar
             }
             title
             slug
