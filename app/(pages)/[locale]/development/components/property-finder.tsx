@@ -26,7 +26,7 @@ function formatRupiah(value: number) {
 }
 
 export default function PropertyFinder({ compact = false }) {
-    const locale = useLocale();
+  const locale = useLocale();
   const searchParams = useSearchParams();
   const router = useRouter();
   const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
@@ -89,6 +89,11 @@ export default function PropertyFinder({ compact = false }) {
       }
       if (filterPropertyType) {
           params.set('property_type', filterPropertyType);
+      }
+      if (selectedFacilities.length) {
+          selectedFacilities.forEach(value => {
+              params.append('facilities', value);
+          })
       }
 
       router.push('/search?' + params.toString());
@@ -157,7 +162,7 @@ export default function PropertyFinder({ compact = false }) {
                 <div key={facility.id} className="flex items-center space-x-2 ">
                   <Checkbox
                       id={facility.id}
-                      checked={selectedFacilities.includes(facility.title)}
+                      checked={selectedFacilities.includes(facility.id)}
                       onCheckedChange={() => toggleFacility(facility.id)}
                   />
                   <Label htmlFor={facility.title} className="text-xs">

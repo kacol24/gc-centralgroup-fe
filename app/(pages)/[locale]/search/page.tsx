@@ -36,7 +36,11 @@ export default function Search({searchParams}) {
         variables['propertyTypeId'] = parseInt(propertyTypeId);
     }
     if (facilityIds) {
-        variables['facilityIds'] = facilityIds;
+        let ids = [];
+        facilityIds.forEach(value => {
+            ids.push(parseInt(value));
+        });
+        variables['facilityIds'] = ids;
     }
     if (price) {
         const [minPrice, maxPrice] = price.split('-')
@@ -64,7 +68,7 @@ export default function Search({searchParams}) {
                     <PropertyFinder compact/>
                     <div className="flex flex-col flex-grow lg:pl-6">
                         {
-                            projectsResponse.projects.datas.length ?
+                            projectsResponse?.projects.datas.length ?
                                 <CardListDevelopment columns="2" properties={projectsResponse.projects}/>
                                 :
                                 <div>
