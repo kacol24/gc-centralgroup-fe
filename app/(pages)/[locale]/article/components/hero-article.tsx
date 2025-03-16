@@ -25,7 +25,7 @@ export default function ArticleHero({blog}) {
           width={547}
           height={369}
           alt="Hero Article"
-          className="w-auto lg:w-[547px] lg:h-[369px]  object-contain"
+          className="w-full lg:w-[547px] lg:h-[369px]  object-contain"
         />
         <div className="w-full h-auto lg:h-[369px] flex flex-col justify-between">
           <div className="w-full flex flex-col items-start justify-start ">

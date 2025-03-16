@@ -19,7 +19,7 @@ export default async function Article() {
     <div className="bg-backgroundWhite">
       <section className="w-full lg:container lg:mx-auto  pb-8">
           {
-              featuredBlog.blogs.datas.length ?
+              featuredBlog?.blogs.datas.length ?
                   <ArticleHero blog={featuredBlog.blogs.datas[0]}/> :
                   ''
           }
