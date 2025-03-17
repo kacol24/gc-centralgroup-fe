@@ -6,14 +6,34 @@ import 'aos/dist/aos.css';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import {Link} from "@/i18n/navigation";
+import {useQuery} from "@urql/next";
+import {useLocale} from "next-intl";
+import BlogsQuery from "@/graphql/BlogsQuery.graphql";
 
-export default function ArticleHero({blog}) {
+export default function ArticleHero() {
   useEffect(() => {
     AOS.init({
       once: false,
       startEvent: 'DOMContentLoaded',
     });
   }, []);
+
+  const locale = useLocale();
+
+  const [{data: featuredBlogResponse}] = useQuery({
+    query: BlogsQuery,
+    variables: {
+      "lang": locale,
+      "limit": 1,
+      "isFeatured": true
+    }
+  });
+
+  if(! featuredBlogResponse.blogs.datas.length) {
+    return;
+  }
+
+  const blog = featuredBlogResponse.blogs.datas[0];
 
   return (
     <section className="w-full  mx-auto  lg:bg-backgroundWhite bg-primary lg:px-4 px-4 pb-8  lg:pt-[145px] pt-[137px]">
