@@ -20,6 +20,7 @@ import FacilitiesQuery from '@/graphql/FacilitiesQuery.graphql';
 import {useSearchParams} from "next/navigation";
 import {useRouter} from '@/i18n/navigation';
 import {useLocale} from "next-intl";
+import {parseAsArrayOf, parseAsInteger, useQueryState} from "nuqs";
 
 function formatRupiah(value: number) {
   return value >= 1000 ? `Rp ${value / 1000} M` : `Rp ${value} Jt`;
@@ -33,6 +34,10 @@ export default function PropertyFinder({ compact = false }) {
   const [value, setValue] = useState<[number, number]>([0, 5000]);
   const [filterLocation, setFilterLocation] = useState();
   const [filterPropertyType, setFilterPropertyType] = useState();
+  const [locationParam, setLocationParam] = useQueryState('location', parseAsInteger);
+  const [propertyTypeParam, setPropertyTypeParam] = useQueryState('property_type', parseAsInteger);
+  const [facilitiesParam, setFacilitiesParam] = useQueryState('facilities', parseAsArrayOf(parseAsInteger));
+  const [priceParam, setPriceParam] = useQueryState('price', parseAsArrayOf(parseAsInteger, '-'));
 
   const toggleFacility = (facility: string) => {
     setSelectedFacilities((prev) =>
@@ -91,9 +96,7 @@ export default function PropertyFinder({ compact = false }) {
           params.set('property_type', filterPropertyType);
       }
       if (selectedFacilities.length) {
-          selectedFacilities.forEach(value => {
-              params.append('facilities', value);
-          })
+          params.set('facilities', selectedFacilities.join(','))
       }
       if (value) {
           params.set('price', `${value[0] * 1000000}-${value[1] * 1000000}`);

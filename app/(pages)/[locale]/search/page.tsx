@@ -6,8 +6,9 @@ import {use, useMemo} from "react";
 import dynamic from "next/dynamic";
 import {useQuery} from "@urql/next";
 import {useLocale} from "next-intl";
+import {parseAsArrayOf, parseAsInteger, useQueryState} from "nuqs";
 
-export default function Search({searchParams}) {
+export default function Search() {
     const locale = useLocale();
 
     const PropertyFinder = useMemo(
@@ -19,33 +20,26 @@ export default function Search({searchParams}) {
         [],
     );
 
-    const {
-        location: locationId,
-        property_type: propertyTypeId,
-        facilities: facilityIds,
-        price
-    } = use(searchParams);
+    const [location, setLocation] = useQueryState('location', parseAsInteger);
+    const [propertyType, setPropertyType] = useQueryState('property_type', parseAsInteger);
+    const [facilities, setFacilities] = useQueryState('facilities', parseAsArrayOf(parseAsInteger, ','));
+    const [price, setPrice] = useQueryState('price', parseAsArrayOf(parseAsInteger, '-'));
 
     const variables = {
         lang: locale
     };
-    if (locationId) {
-        variables['locationId'] = parseInt(locationId);
+    if (location) {
+        variables['locationId'] = location;
     }
-    if (propertyTypeId) {
-        variables['propertyTypeId'] = parseInt(propertyTypeId);
+    if (propertyType) {
+        variables['propertyTypeId'] = propertyType;
     }
-    if (facilityIds) {
-        const ids = [];
-        facilityIds.forEach(value => {
-            ids.push(parseInt(value));
-        });
-        variables['facilityIds'] = ids;
+    if (facilities) {
+        variables['facilityIds'] = facilities;
     }
     if (price) {
-        const [minPrice, maxPrice] = price.split('-')
-        variables['minPrice'] = parseInt(minPrice);
-        variables['maxPrice'] = parseInt(maxPrice);
+        variables['minPrice'] = price[0];
+        variables['maxPrice'] = price[1];
     }
 
     const [{data: projectsResponse}] = useQuery({
