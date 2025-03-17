@@ -18,16 +18,8 @@ import {
 import {useQuery} from "@urql/next";
 import BlogsQuery from '@/graphql/BlogsQuery.graphql';
 import BlogCategoriesQuery from '@/graphql/BlogCategoriesQuery.graphql';
-import {usePathname, useRouter} from "@/i18n/navigation";
-import {useSearchParams} from 'next/navigation';
 import {useLocale} from "next-intl";
-
-// interface QueryVariables {
-//   lang: string;
-//   limit?: number;
-//   page?: number;
-//   category?: number;
-// }
+import {parseAsInteger, useQueryState} from "nuqs";
 
 interface BlogCategory {
     id: number;
@@ -35,26 +27,15 @@ interface BlogCategory {
 }
 
 export default function ArticleCore() {
-  const router = useRouter();
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
   const locale = useLocale();
+  const [pageParam, setPageParam] = useQueryState('page', parseAsInteger.withDefault(1));
+  const [categoryParam, setCategoryParam] = useQueryState('category', parseAsInteger);
 
   const [queryVariables, setQueryVariables] = useState({
     lang: locale,
     limit: 6,
-    page: 1
+    page: pageParam
   });
-
-  const createQueryString = useCallback(
-      (name: string, value: string) => {
-        const params = new URLSearchParams(searchParams.toString())
-        params.set(name, value)
-
-        return params.toString()
-      },
-      [searchParams]
-  )
 
   useEffect(() => {
     AOS.init({
@@ -69,8 +50,6 @@ export default function ArticleCore() {
   });
   const pagination = blogsResponse.blogs?.pagination;
   const newsCards = blogsResponse.blogs?.datas;
-
-  const [currentPage, setCurrentPage] = useState(searchParams.get('page') ?? 1);
   const totalPages = pagination.last_page;
 
   const [{data: blogCategoriesResponse}] = useQuery({
@@ -86,19 +65,18 @@ export default function ArticleCore() {
     };
   });
 
-  const handleCategoryChange = useCallback((value: string) => {
-    router.push(pathname + '?' + createQueryString('category_id', value));
-    setCurrentPage(1);
-    const newVariables = {...queryVariables, page: currentPage, categoryId: parseInt(value)};
-    setQueryVariables(newVariables);
-    reexecuteQuery({requestPolicy: 'network-only'});
-  }, [reexecuteQuery, createQueryString, currentPage, pathname, queryVariables, router]);
+  useEffect(() => {
+      setPageParam(1);
+      const newVariables = {...queryVariables, page: pageParam, categoryId: categoryParam};
+      setQueryVariables(newVariables);
+      reexecuteQuery({requestPolicy: 'network-only'});
+  }, [categoryParam]);
 
   useEffect(() => {
-    const newVariables = {...queryVariables, page: currentPage};
-    setQueryVariables(newVariables);
-    reexecuteQuery({requestPolicy: 'network-only'});
-  }, [currentPage, queryVariables, reexecuteQuery]);
+      const newVariables = {...queryVariables, page: pageParam};
+      setQueryVariables(newVariables);
+      reexecuteQuery({requestPolicy: 'network-only'});
+  }, [pageParam]);
 
   return (
       <section className="w-full lg:container lg:mx-auto px-4 pb-8 pt-12 lg:pt-0">
@@ -114,7 +92,7 @@ export default function ArticleCore() {
           <div data-aos="zoom-in-left" data-aos-duration="1000" className="w-full lg:w-auto lg:pt-0 pt-6">
             <ComboboxDemo
                 dataPropertys={articleDropdown}
-                onValueChange={handleCategoryChange}
+                onValueChange={(value) => setCategoryParam(parseInt(value))}
                 placeholder="Semua Topik"
                 icon={<IoIosArrowDown className="text-textPrimary ml-24"/>}
                 customClassName={{
@@ -130,7 +108,7 @@ export default function ArticleCore() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
-          {newsCards.map((news) => (
+          {newsCards.map((news, index) => (
               <CardArticle
                   key={news.id}
                   id={news.id}
@@ -140,7 +118,7 @@ export default function ArticleCore() {
                   category={news.category.title}
                   date={news.publish_date}
                   image={news.image}
-                  index={news.id}
+                  index={index}
                   slug={news.slug}
               />
           ))}
@@ -152,9 +130,9 @@ export default function ArticleCore() {
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious
-                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                    onClick={() => setPageParam((prev) => Math.max(prev - 1, 1))}
                     className={
-                      currentPage === 1
+                      pageParam === 1
                           ? 'opacity-50 cursor-not-allowed bg-white text-textPrimary border-[#F1F1F1] border-2 hover:bg-primary'
                           : 'bg-white text-textPrimary border-[#F1F1F1] border-2 hover:bg-primary hover:text-white'
                     }
@@ -164,8 +142,8 @@ export default function ArticleCore() {
               {Array.from({length: totalPages}, (_, i) => (
                   <PaginationItem key={i}>
                     <PaginationLink
-                        isActive={currentPage === i + 1}
-                        onClick={() => setCurrentPage(i + 1)}
+                        isActive={pageParam === i + 1}
+                        onClick={() => setPageParam(i + 1)}
                         className="h-11 w-11 rounded-full border-[#F1F1F1] border-2 hover:bg-primary hover:text-white"
                     >
                       {i + 1}
@@ -175,9 +153,9 @@ export default function ArticleCore() {
 
               <PaginationItem>
                 <PaginationNext
-                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                    onClick={() => setPageParam((prev) => Math.min(prev + 1, totalPages))}
                     className={
-                      currentPage === totalPages
+                      pageParam === totalPages
                           ? 'opacity-50 cursor-not-allowed bg-white text-textPrimary border-[#F1F1F1] border-2 hover:bg-primary'
                           : 'bg-white text-textPrimary border-[#F1F1F1] border-2 hover:bg-primary hover:text-white'
                     }

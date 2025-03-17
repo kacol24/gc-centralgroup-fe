@@ -4,6 +4,7 @@ import './globals.css';
 import GraphqlProvider from "@/components/GraphqlProvider";
 import {fetchToken} from "@/app/lib/urqlClient";
 import {getLocale} from "next-intl/server";
+import {NuqsAdapter} from 'nuqs/adapters/next/app'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -38,7 +39,9 @@ export default async function RootLayout({
           <body
             className={`${geistSans.className} ${geistMono.variable} ${montserrat.className} ${marcellus.className} ${aboreto.className} antialiased`}
           >
-            {children}
+            <NuqsAdapter>
+                {children}
+            </NuqsAdapter>
           </body>
         </GraphqlProvider>
     </html>
