@@ -30,8 +30,8 @@ export default function PropertyFinder({ compact = false }) {
   const locale = useLocale();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
-  const [value, setValue] = useState<[number, number]>([0, 5000]);
+  const [selectedFacilities, setSelectedFacilities] = useState<string[]>(searchParams.get('facilities') || []);
+  const [value, setValue] = useState<[number, number]>(searchParams.get('price').split('-') || [0, 5000]);
   const [filterLocation, setFilterLocation] = useState();
   const [filterPropertyType, setFilterPropertyType] = useState();
   const [locationParam, setLocationParam] = useQueryState('location', parseAsInteger);
@@ -99,7 +99,7 @@ export default function PropertyFinder({ compact = false }) {
           params.set('facilities', selectedFacilities.join(','))
       }
       if (value) {
-          params.set('price', `${value[0] * 1000000}-${value[1] * 1000000}`);
+          params.set('price', `${value[0]}-${value[1]}`);
       }
 
       router.push('/search?' + params.toString());

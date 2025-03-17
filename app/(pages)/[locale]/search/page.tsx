@@ -38,8 +38,8 @@ export default function Search() {
         variables['facilityIds'] = facilities;
     }
     if (price) {
-        variables['minPrice'] = price[0];
-        variables['maxPrice'] = price[1];
+        variables['minPrice'] = price[0] * 1000000;
+        variables['maxPrice'] = price[1] * 1000000;
     }
 
     const [{data: projectsResponse}] = useQuery({
