@@ -1,6 +1,6 @@
 'use client';
 
-import {useCallback, useEffect} from 'react';
+import {useEffect} from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { ComboboxDemo } from '@/components/ui/combobox';
@@ -67,16 +67,16 @@ export default function ArticleCore() {
 
   useEffect(() => {
       setPageParam(1);
-      const newVariables = {...queryVariables, page: pageParam, categoryId: categoryParam};
+      const newVariables = {...queryVariables, page: 1, categoryId: categoryParam};
       setQueryVariables(newVariables);
       reexecuteQuery({requestPolicy: 'network-only'});
-  }, [categoryParam]);
+  }, [categoryParam, queryVariables, reexecuteQuery]);
 
   useEffect(() => {
       const newVariables = {...queryVariables, page: pageParam};
       setQueryVariables(newVariables);
       reexecuteQuery({requestPolicy: 'network-only'});
-  }, [pageParam]);
+  }, [pageParam, queryVariables, reexecuteQuery]);
 
   return (
       <section className="w-full lg:container lg:mx-auto px-4 pb-8 pt-12 lg:pt-0">

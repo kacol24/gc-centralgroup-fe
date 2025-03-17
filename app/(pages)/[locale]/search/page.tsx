@@ -2,7 +2,7 @@
 
 import ProjectsQuery from "@/graphql/ProjectsQuery.graphql";
 import CardListDevelopment from "@/app/(pages)/[locale]/development/components/card-list-development";
-import {use, useMemo} from "react";
+import {useMemo} from "react";
 import dynamic from "next/dynamic";
 import {useQuery} from "@urql/next";
 import {useLocale} from "next-intl";
@@ -20,10 +20,10 @@ export default function Search() {
         [],
     );
 
-    const [location, setLocation] = useQueryState('location', parseAsInteger);
-    const [propertyType, setPropertyType] = useQueryState('property_type', parseAsInteger);
-    const [facilities, setFacilities] = useQueryState('facilities', parseAsArrayOf(parseAsInteger, ','));
-    const [price, setPrice] = useQueryState('price', parseAsArrayOf(parseAsInteger, '-'));
+    const [location] = useQueryState('location', parseAsInteger);
+    const [propertyType] = useQueryState('property_type', parseAsInteger);
+    const [facilities] = useQueryState('facilities', parseAsArrayOf(parseAsInteger, ','));
+    const [price] = useQueryState('price', parseAsArrayOf(parseAsInteger, '-'));
 
     const variables = {
         lang: locale
