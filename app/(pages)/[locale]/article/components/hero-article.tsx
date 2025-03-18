@@ -1,36 +1,23 @@
-'use client';
-
-import { useEffect } from 'react';
-import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import {Link} from "@/i18n/navigation";
-import {useQuery} from "@urql/next";
-import {useLocale} from "next-intl";
 import BlogsQuery from "@/graphql/BlogsQuery.graphql";
+import {getLocale} from "next-intl/server";
+import {getClient} from "@/app/lib/urqlClient";
 
-export default function ArticleHero() {
-  useEffect(() => {
-    AOS.init({
-      once: false,
-      startEvent: 'DOMContentLoaded',
-    });
-  }, []);
+export default async function ArticleHero() {
+  const locale = await getLocale();
+  const client = await getClient();
 
-  const locale = useLocale();
-
-  const [{data: featuredBlogResponse}] = useQuery({
-    query: BlogsQuery,
-    variables: {
-      "lang": locale,
-      "limit": 1,
-      "isFeatured": true
-    }
+  const {data: featuredBlogResponse} = await client.query(BlogsQuery, {
+    lang: locale,
+    limit: 1,
+    isFeatured: true
   });
 
   if(! featuredBlogResponse.blogs.datas.length) {
-    return;
+    return <></>;
   }
 
   const blog = featuredBlogResponse.blogs.datas[0];

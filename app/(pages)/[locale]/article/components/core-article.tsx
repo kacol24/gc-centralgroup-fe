@@ -29,12 +29,13 @@ interface BlogCategory {
 export default function ArticleCore() {
   const locale = useLocale();
   const [pageParam, setPageParam] = useQueryState('page', parseAsInteger.withDefault(1));
-  const [categoryParam, setCategoryParam] = useQueryState('category', parseAsInteger);
+  const [categoryParam, setCategoryParam] = useQueryState('category');
 
   const [queryVariables, setQueryVariables] = useState({
-    lang: locale,
-    limit: 6,
-    page: pageParam
+      lang: locale,
+      limit: 6,
+      page: pageParam,
+      categoryId: categoryParam
   });
 
   useEffect(() => {
@@ -48,9 +49,6 @@ export default function ArticleCore() {
     query: BlogsQuery,
     variables: queryVariables
   });
-  const pagination = blogsResponse.blogs?.pagination;
-  const newsCards = blogsResponse.blogs?.datas;
-  const totalPages = pagination.last_page;
 
   const [{data: blogCategoriesResponse}] = useQuery({
     query: BlogCategoriesQuery,
@@ -65,18 +63,59 @@ export default function ArticleCore() {
     };
   });
 
-  useEffect(() => {
-      setPageParam(1);
-      const newVariables = {...queryVariables, page: 1, categoryId: categoryParam};
-      setQueryVariables(newVariables);
-      reexecuteQuery({requestPolicy: 'network-only'});
-  }, [categoryParam, queryVariables, reexecuteQuery]);
+  const handleChangePage = (page) => {
+      setPageParam(page);
+  }
 
-  useEffect(() => {
-      const newVariables = {...queryVariables, page: pageParam};
-      setQueryVariables(newVariables);
-      reexecuteQuery({requestPolicy: 'network-only'});
-  }, [pageParam, queryVariables, reexecuteQuery]);
+    const handleChangeCategory = (categoryId) => {
+        setPageParam(1);
+        setCategoryParam(categoryId || null);
+    }
+
+    useEffect(() => {
+        const newVariables = {
+            ...queryVariables,
+            page: pageParam,
+            categoryId: parseInt(categoryParam) || null
+        };
+        setQueryVariables(newVariables);
+        reexecuteQuery({requestPolicy: 'network-only'});
+    }, [pageParam, categoryParam]);
+
+    if (!blogsResponse) {
+        return (
+            <section className="w-full lg:container lg:mx-auto px-4 pb-8 pt-12 lg:pt-0">
+                {/* Header */}
+                <div className="w-full flex flex-col lg:flex-row lg:justify-between items-center">
+                    <div
+                        className="w-1/2 h-8 bg-gray-300 animate-pulse mb-4 lg:mb-0"
+                    ></div>
+                    <div className="w-full lg:w-1/4 h-12 bg-gray-300 animate-pulse mt-6 lg:mt-0"></div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-8">
+                    {Array.from({length: 3}).map((_, index) => (
+                        <div key={index} className="w-full h-64 bg-gray-300 animate-pulse"></div>
+                    ))}
+                </div>
+
+                {/* Pagination */}
+                <div className="mt-6 flex justify-center">
+                    <div className="flex gap-2">
+                        <div className="w-8 h-8 bg-gray-300 animate-pulse"></div>
+                        {Array.from({length: 5}).map((_, i) => (
+                            <div key={i} className="w-8 h-8 bg-gray-300 animate-pulse"></div>
+                        ))}
+                        <div className="w-8 h-8 bg-gray-300 animate-pulse"></div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    const pagination = blogsResponse.blogs?.pagination;
+    const newsCards = blogsResponse.blogs?.datas;
+    const totalPages = pagination.last_page;
 
   return (
       <section className="w-full lg:container lg:mx-auto px-4 pb-8 pt-12 lg:pt-0">
@@ -92,7 +131,8 @@ export default function ArticleCore() {
           <div data-aos="zoom-in-left" data-aos-duration="1000" className="w-full lg:w-auto lg:pt-0 pt-6">
             <ComboboxDemo
                 dataPropertys={articleDropdown}
-                onValueChange={(value) => setCategoryParam(parseInt(value))}
+                onValueChange={(value) => handleChangeCategory(value)}
+                defaultValue={categoryParam?.toString()}
                 placeholder="Semua Topik"
                 icon={<IoIosArrowDown className="text-textPrimary ml-24"/>}
                 customClassName={{
@@ -130,7 +170,7 @@ export default function ArticleCore() {
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious
-                    onClick={() => setPageParam((prev) => Math.max(prev - 1, 1))}
+                    onClick={() => handleChangePage((prev) => Math.max(prev - 1, 1))}
                     className={
                       pageParam === 1
                           ? 'opacity-50 cursor-not-allowed bg-white text-textPrimary border-[#F1F1F1] border-2 hover:bg-primary'
@@ -143,7 +183,7 @@ export default function ArticleCore() {
                   <PaginationItem key={i}>
                     <PaginationLink
                         isActive={pageParam === i + 1}
-                        onClick={() => setPageParam(i + 1)}
+                        onClick={() => handleChangePage(i + 1)}
                         className="h-11 w-11 rounded-full border-[#F1F1F1] border-2 hover:bg-primary hover:text-white"
                     >
                       {i + 1}
@@ -153,7 +193,7 @@ export default function ArticleCore() {
 
               <PaginationItem>
                 <PaginationNext
-                    onClick={() => setPageParam((prev) => Math.min(prev + 1, totalPages))}
+                    onClick={() => handleChangePage((prev) => Math.min(prev + 1, totalPages))}
                     className={
                       pageParam === totalPages
                           ? 'opacity-50 cursor-not-allowed bg-white text-textPrimary border-[#F1F1F1] border-2 hover:bg-primary'
