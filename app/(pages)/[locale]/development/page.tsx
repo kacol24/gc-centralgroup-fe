@@ -1,43 +1,21 @@
-'use client';
-
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import dynamic from 'next/dynamic';
-import { useMemo, useEffect, Suspense } from 'react';
+import { Suspense } from 'react';
 import CardListDevelopment from './components/card-list-development';
 import CarouselOurPartner from './components/carousel-our-partner';
-import {useQuery} from "@urql/next";
 import ProjectsQuery from "@/graphql/ProjectsQuery.graphql";
 import {imgPropertyFinderMap} from "@/app/lib/utils/image";
 import Image from 'next/image';
-import {useLocale} from "next-intl";
+import PropertyFinder from "./components/property-finder";
+import {getLocale} from "next-intl/server";
+import {getClient} from "@/app/lib/urqlClient";
 
-export default function Development() {
-  const locale = useLocale();
+export default async function Development() {
+  const locale = await getLocale();
+  const client = await getClient();
 
-  const PropertyFinder = useMemo(
-    () =>
-      dynamic(() => import('./components/property-finder'), {
-        loading: () => <p>A map is loading</p>,
-        ssr: false,
-      }),
-    [],
-  );
-
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: false,
-    });
-  }, []);
-
-    const [{data: projectsResponse}] = useQuery({
-        query: ProjectsQuery,
-        variables: {
-            lang: locale,
-            limit: 6
-        }
-    });
+  const {data: projectsResponse} = await client.query(ProjectsQuery, {
+    lang: locale,
+    limit: 6
+  });
 
   return (
     <div className="h-auto  flex flex-col justify-center items-center ">

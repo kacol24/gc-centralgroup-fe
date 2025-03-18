@@ -1,6 +1,6 @@
 'use client';
 
-import {useEffect, useState} from 'react';
+import { useState } from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { RiBuildingFill } from 'react-icons/ri';
 import { Slider } from '@/components/ui/slider';
@@ -8,11 +8,6 @@ import { ComboboxDemo } from '@/components/ui/combobox';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-
-import markerIconPng from 'leaflet/dist/images/marker-icon.png';
-import markerShadowPng from 'leaflet/dist/images/marker-shadow.png';
 import {useQuery} from "@urql/next";
 import PropertyTypesQuery from '@/graphql/PropertyTypesQuery.graphql';
 import LocationsQuery from '@/graphql/LocationsQuery.graphql';
@@ -39,15 +34,6 @@ export default function PropertyFinder({ compact = false }) {
       prev.includes(facility) ? prev.filter((f) => f !== facility) : [...prev, facility],
     );
   };
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    delete (L.Icon.Default.prototype as any)._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconUrl: markerIconPng.src,
-      shadowUrl: markerShadowPng.src,
-    });
-  }, []);
 
   const [{data: propertyTypesResponse}] = useQuery({
     query: PropertyTypesQuery,

@@ -4,9 +4,10 @@ import {useEffect} from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-export default function AosInit() {
+export default function AosInit({ duration = 400 }) {
   useEffect(() => {
     AOS.init({
+      duration,
       once: false,
       startEvent: 'DOMContentLoaded',
     });

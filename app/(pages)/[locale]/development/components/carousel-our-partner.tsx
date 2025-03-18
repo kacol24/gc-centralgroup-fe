@@ -1,24 +1,17 @@
-'use client';
-
 import Image from 'next/image';
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
-
-import Autoplay from 'embla-carousel-autoplay';
-import {useQuery} from "@urql/next";
 import BannersQuery from '@/graphql/BannersQuery.graphql';
-import {useLocale} from "next-intl";
+import PartnerCarousel from "@/app/(pages)/[locale]/development/components/partner-carousel";
+import {getLocale} from "next-intl/server";
+import {getClient} from "@/app/lib/urqlClient";
 
-export default function CarouselOurPartner() {
-    const locale = useLocale();
+export default async function CarouselOurPartner() {
+    const locale = await getLocale();
+    const client = await getClient();
 
-    const [{data: partnersResponse}] = useQuery({
-        query: BannersQuery,
-        variables: {
-            lang: locale,
-            type: 'partner_banner'
-        }
+    const {data: partnersResponse} = await client.query(BannersQuery, {
+        lang: locale,
+        type: 'partner_banner'
     });
-
     const logos = partnersResponse.banners;
 
   return (
@@ -28,29 +21,7 @@ export default function CarouselOurPartner() {
         <h4 className="text-primary text-xs font-semibold lg:text-sm text-start mb-6 uppercase">Our Partners</h4>
 
         <div className="container mx-auto">
-          <Carousel
-            opts={{
-              align: 'start',
-              loop: true,
-              slidesToScroll: 1,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 2000,
-              }),
-            ]}
-          >
-            {/* Wrapper konten carousel */}
-            <CarouselContent className="flex gap-8">
-              {logos.map((banner) => (
-                <CarouselItem key={banner.id} className="md:basis-1/2 lg:basis-[12%]">
-                  <div className="flex items-center justify-center p-1">
-                    <Image src={banner.desktop} alt={banner.title} width={120} height={60} className="object-contain" />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+          <PartnerCarousel slides={logos} />
         </div>
       </div>
 
