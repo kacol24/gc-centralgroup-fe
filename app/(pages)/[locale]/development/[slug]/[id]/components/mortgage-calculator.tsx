@@ -4,7 +4,7 @@ import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {useState} from "react";
-import FormattedPrice from '@/app/components/formatted-price';
+import {number_format} from "@/lib/utils";
 
 const calculateMonthlyInstallment = (price, downPayment, interest, term) => {
     const loanAmount = price - downPayment;
@@ -144,7 +144,7 @@ export default function MortgageCalculator({startingPrice}) {
             {
                 showResult ?
                     <div className="text-3xl">
-                        Your monthly payment: Rp<FormattedPrice value={installment}/>
+                        Your monthly payment: Rp{number_format(installment, 0, ',', '.')}
                     </div>
                     :
                     ''

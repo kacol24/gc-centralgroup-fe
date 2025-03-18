@@ -1,8 +1,3 @@
-'use client';
-
-import {useEffect} from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { RiBuildingFill } from 'react-icons/ri';
 import { MdLocationOn } from 'react-icons/md';
@@ -18,20 +13,13 @@ import {
 import Image from 'next/image';
 import {Link} from '@/i18n/navigation';
 import FormDownloadBrosur from './brochure-form';
-import FormattedPrice from "@/app/components/formatted-price";
 import MortgageCalculator from "./mortgage-calculator";
+import {number_format} from "@/lib/utils";
 
 export default function CoreDetailDevelopment({
   detail,
   nextSectionId,
 }) {
-  useEffect(() => {
-    AOS.init({
-      once: false,
-      startEvent: 'DOMContentLoaded',
-    });
-  }, []);
-
   return (
     <div className="relative container mx-auto flex px-4 p-0 lg:pt-20">
       <div className="flex flex-col flex-grow">
@@ -78,7 +66,7 @@ export default function CoreDetailDevelopment({
             </span>
             <div className="hidden lg:flex items-center text-textPrimary gap-1 text-[10px] font-bold uppercase ">
               <FaWallet className="text-xs" />
-              Starts from Rp <FormattedPrice value={detail?.starting_price} />
+              Starts from Rp {number_format(detail?.starting_price, 0, ',', '.')}
             </div>
           </div>
 
@@ -90,7 +78,7 @@ export default function CoreDetailDevelopment({
             className="lg:hidden flex items-center text-textPrimary gap-1 text-[10px] font-bold uppercase "
           >
             <FaWallet className="text-xs" />
-            Starts from Rp <FormattedPrice value={detail?.starting_price}/>
+            Starts from Rp {number_format(detail?.starting_price, 0, ',', '.')}
           </div>
 
           <p

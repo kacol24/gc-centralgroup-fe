@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState, useRef } from 'react';
 import { PiDownloadSimpleFill } from 'react-icons/pi';
 import { Label } from '@/components/ui/label';

@@ -1,27 +1,20 @@
-'use client';
-
-import { use } from 'react';
-// import { useParams } from 'next/navigation';
 import HeroDetailDevelopment from './components/hero-detail-dev';
-// import dynamic from 'next/dynamic';
 import CarouselDetailDevelopment from './components/slider-detail-dev';
 import CardListDetailDevelopment from './components/card-list-detail-dev';
 import CoreDetailDevelopment from './components/core-detail-dev';
-import {useQuery} from "@urql/next";
 import ProjectDetailQuery from '@/graphql/ProjectDetailQuery.graphql';
-import {useLocale} from "next-intl";
+import {getLocale} from "next-intl/server";
+import {getClient} from "@/app/lib/urqlClient";
 
-export default function DevelopmentDetailPage({ params }) {
-  const { id } = use(params);
-  const locale = useLocale();
+export default async function DevelopmentDetailPage({ params }) {
+  const { id } = await params;
+  const locale = await getLocale();
 
-    const [{data: projectData}] = useQuery({
-        query: ProjectDetailQuery,
-        variables: {
-            lang: locale,
-            id
-        }
-    });
+  const client = await getClient();
+  const {data: projectData} = await client.query(ProjectDetailQuery, {
+      lang: locale,
+      id
+  });
 
   const nextSectionId = 'next-section';
 
