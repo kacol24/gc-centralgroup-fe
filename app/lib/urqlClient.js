@@ -1,31 +1,36 @@
 import {cacheExchange, createClient, fetchExchange} from '@urql/next';
 import {registerUrql} from '@urql/next/rsc';
 import {devtoolsExchange} from '@urql/devtools';
+import {cache} from 'react';
 
-export const fetchToken = async () => {
-  const response = await fetch(process.env.OAUTH_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      'grant_type': 'client_credentials',
-      'client_id': process.env.OAUTH_CLIENT_ID,
-      'client_secret': process.env.OAUTH_CLIENT_SECRET,
-      'scope': '*'
-    })
-  });
+export const fetchToken = cache(
+    async () => {
+      const response = await fetch(process.env.OAUTH_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'grant_type': 'client_credentials',
+          'client_id': process.env.OAUTH_CLIENT_ID,
+          'client_secret': process.env.OAUTH_CLIENT_SECRET,
+          'scope': '*'
+        }),
+        cache: 'force-cache'
+      });
 
-  if (!response.ok) {
-    console.log(response);
-    
-    throw new Error('oauth error, failed to fetch access_token.');
-  }
+      if (!response.ok) {
+        console.log(response);
 
-  const data = await response.json();
+        throw new Error('oauth error, failed to fetch access_token.');
+      }
 
-  return data.access_token;
-};
+      const data = await response.json();
+      console.log(data);
+
+      return data.access_token;
+    }
+);
 
 export const {getClient} = registerUrql(async () => {
   const token = await fetchToken();
