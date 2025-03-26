@@ -8,7 +8,8 @@ import { Suspense } from 'react';
 import {routing} from "@/i18n/routing";
 import {notFound} from "next/navigation";
 import {hasLocale, Locale, NextIntlClientProvider} from "next-intl";
-import {getCta} from "@/data/banners";
+import {getCta, getPopup} from "@/data/banners";
+import PromotionPopupModal from "@/app/components/promotion-popup-modal";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -42,6 +43,7 @@ export default async function RootLayout({
   }
 
   const ctaBanner = await getCta(locale);
+  const popupBanner = await getPopup(locale);
 
   return (
     <html lang={locale}>
@@ -55,6 +57,7 @@ export default async function RootLayout({
           {children}
           { ctaBanner.length ? <ContactUs banner={ctaBanner[0]}/> : ''}
           <Footer/>
+          { popupBanner.length ? <PromotionPopupModal banner={popupBanner[0]} /> : '' }
         </NextIntlClientProvider>
       </body>
     </html>
