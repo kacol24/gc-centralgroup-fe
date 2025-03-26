@@ -48,6 +48,8 @@ export default function PromotionPopupModal ({ banner }: { banner: Banner}) {
 
         const timer = setTimeout(() => {
             setIsModalOpen(true);
+            const now = new Date().getTime().toString();
+            setCookie(PROMOTION_MODAL_KEY, now, 1); // Expires in 1 day
         }, 5000);
 
         return () => clearTimeout(timer);
@@ -55,14 +57,13 @@ export default function PromotionPopupModal ({ banner }: { banner: Banner}) {
 
     const closeModal = () => {
         setIsModalOpen(false);
-        const now = new Date().getTime().toString();
-        setCookie(PROMOTION_MODAL_KEY, now, 1); // Expires in 1 day
     };
 
     return (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
             <a href={banner.url} target="_blank">
-                <Image src={banner.desktop} alt={banner.cta} width={0} height={0}/>
+                <Image src={banner.mobile} alt={banner.cta} style={{objectFit: 'cover'}} width={1600} height={900} className="w-full block md:hidden"/>
+                <Image src={banner.desktop} alt={banner.cta} style={{objectFit: 'cover'}} width={900} height={1600} className="w-full hidden md:block"/>
             </a>
         </Modal>
     );
