@@ -1,8 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import {useEffect, useState} from 'react';
-import {imgProperty1} from '@/app/lib/utils/image';
+import {useEffect} from 'react';
 import CustomPopup from './custom-popup';
 
 const MapContainer = dynamic(() => import('react-leaflet').then((mod) => mod.MapContainer), {ssr: false});
@@ -25,34 +24,6 @@ const defaultIcon = L.icon({
     iconSize: [25, 41],
     iconAnchor: [12, 41],
 });
-// const citiesData: { name: string; image: string | StaticImageData; coords: [number, number] }[] = [
-//     {
-//         name: 'Jakarta',
-//         image: imgProperty1,
-//
-//         coords: [-6.2, 106.816666],
-//     },
-//     {
-//         name: 'Bandung',
-//         image: imgProperty1,
-//         coords: [-6.914744, 107.60981],
-//     },
-//     {
-//         name: 'Banten',
-//         image: imgProperty1,
-//         coords: [-6.405817, 106.064018],
-//     },
-//     {
-//         name: 'Yogyakarta',
-//         image: imgProperty1,
-//         coords: [-7.79558, 110.36949],
-//     },
-//     {
-//         name: 'Solo',
-//         image: imgProperty1,
-//         coords: [-7.575489, 110.824327],
-//     },
-// ];
 
 interface City {
     name: string

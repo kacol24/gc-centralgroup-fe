@@ -80,7 +80,7 @@ export default function ArticleCore() {
         };
         setQueryVariables(newVariables);
         reexecuteQuery({requestPolicy: 'network-only'});
-    }, [pageParam, categoryParam]);
+    }, [pageParam, categoryParam, queryVariables, reexecuteQuery]);
 
     if (!blogsResponse) {
         return (

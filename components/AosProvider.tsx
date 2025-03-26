@@ -11,7 +11,7 @@ export default function AosProvider ({ children, duration = 400 }) {
             once: false,
             startEvent: 'DOMContentLoaded',
         });
-    }, []);
+    }, [duration]);
 
     return <>{children}</>;
 }

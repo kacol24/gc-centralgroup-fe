@@ -2,6 +2,7 @@
 
 import {useEffect, useState} from "react";
 import Modal from "@/components/ui/modal";
+import Image from 'next/image';
 
 interface Banner {
     cta: string
@@ -61,7 +62,7 @@ export default function PromotionPopupModal ({ banner }: { banner: Banner}) {
     return (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
             <a href={banner.url} target="_blank">
-                <img src={banner.desktop} alt=""/>
+                <Image src={banner.desktop} alt={banner.cta} width={0} height={0}/>
             </a>
         </Modal>
     );
