@@ -21,6 +21,7 @@ query Q_PROJECTS(
             header_image
             logo
             description
+            maps_marker
             location {
                 id
                 title
