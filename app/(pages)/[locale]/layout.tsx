@@ -8,6 +8,7 @@ import { Suspense } from 'react';
 import {routing} from "@/i18n/routing";
 import {notFound} from "next/navigation";
 import {hasLocale, Locale, NextIntlClientProvider} from "next-intl";
+import {getCta} from "@/data/banners";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -40,6 +41,8 @@ export default async function RootLayout({
     notFound();
   }
 
+  const ctaBanner = await getCta(locale);
+
   return (
     <html lang={locale}>
       <body
@@ -50,7 +53,7 @@ export default async function RootLayout({
             <Navbar/>
           </Suspense>
           {children}
-          <ContactUs/>
+          { ctaBanner.length ? <ContactUs banner={ctaBanner[0]}/> : ''}
           <Footer/>
         </NextIntlClientProvider>
       </body>

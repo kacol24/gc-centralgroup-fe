@@ -539,6 +539,7 @@ type Project {
     images: [String]
     location: Location
     logo: String
+    maps_marker: String
     maps_url: String
     property_type: PropertyType
     related_projects: [Project]

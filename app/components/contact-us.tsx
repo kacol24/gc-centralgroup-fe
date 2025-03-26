@@ -1,12 +1,20 @@
 'use client';
 
-import { imgBgContactUs } from '@/app/lib/utils/image';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { RiWhatsappFill } from 'react-icons/ri';
 import { usePathname } from '@/i18n/navigation';
 
-export default function ContactUs() {
+interface Banner {
+  cta: string
+  desktop: string
+  id: number
+  mobile: string
+  title: string
+  url: string
+}
+
+export default function ContactUs({banner}: { banner: Banner }) {
   const pathname = usePathname();
   const allowPath = ['/contact', '/article'];
 
@@ -19,7 +27,8 @@ export default function ContactUs() {
 
   return (
     <div className={`relative w-full h-[380px] ${contactUsHidden()}`}>
-      <Image src={imgBgContactUs} alt="Hero Detail Development" unoptimized className="w-full h-full object-cover" />
+      <Image src={banner.mobile} width={780} height={780} alt="Hero Detail Development" unoptimized className="w-full h-full object-cover md:hidden" />
+      <Image src={banner.desktop} width={2880} height={764} alt="Hero Detail Development" unoptimized className="w-full h-full object-cover hidden md:block" />
 
       <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
 
@@ -30,7 +39,9 @@ export default function ContactUs() {
           <span>
             <RiWhatsappFill className="text-textPrimary text-xl" />
           </span>
-          CHAT VIA WHATSAPP
+          <a href={banner.url} target="_blank">
+            {banner.cta}
+          </a>
         </Button>
       </div>
     </div>
