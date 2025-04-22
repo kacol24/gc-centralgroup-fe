@@ -145,6 +145,11 @@ export default function Navbar() {
   });
   const developments = projectListResponse.projects?.datas ?? [];
 
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 1024);
+  });
+
   return (
     <>
       {/* Navbar */}
@@ -220,7 +225,7 @@ export default function Navbar() {
         {/* Menu List */}
         <ul className="pl-16 pt-4 text-textPrimary">
           {/* HOME */}
-          <li className={window.innerWidth <= 1024 ? '' : 'hidden'}>
+          <li className={isMobile ? '' : 'hidden'}>
             <Link href="/" className={menuStyle('/')} onClick={() => setIsOpen(false)}>
               <div className="my-3 font-marcellus text-textPrimary cursor-pointer text-[18px]">HOME</div>
             </Link>

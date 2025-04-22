@@ -1,0 +1,10 @@
+query Q_CAREER_CATEGORIES (
+    $lang: String!
+) {
+    careercategories (
+        language: $lang
+    ) {
+        id
+        title
+    }
+}

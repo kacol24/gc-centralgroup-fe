@@ -1,0 +1,17 @@
+query Q_CAREERS (
+    $lang: String!
+    $category_id: Int
+) {
+    careers (
+        language: $lang
+        category_id: $category_id
+    ) {
+        id
+        title
+        content
+        category {
+            id
+            title
+        }
+    }
+}
