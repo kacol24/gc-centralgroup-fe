@@ -4,7 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import {Link} from '@/i18n/navigation';
+import { Link } from '@/i18n/navigation';
 const stats = [
   { value: '35+', label: 'YEARS OF EXPERIENCE' },
   { value: '250+', label: 'HECTARE AREAS' },
@@ -40,7 +40,7 @@ export default function IntroductionComponent() {
             data-aos="fade-right"
             className="font-medium font-mon lg:text-sm text-start text-textSecondary mb-10 lg:mb-12 leading-6 tracking-wide"
           >
-            The Best Developer in Batam by Property & Bank Award, dengan pengalaman lebih dari 34 Tahun sejak tahun 1989
+            The Best Developer in Batam by Property & Bank Award, dengan pengalaman lebih dari 35 Tahun sejak tahun 1989
             dalam membangun 3889 rumah impian Anda. Central Group telah berhasil mengembangkan beberapa proyek ternama
             dengan total lahan lebih dari 200 Ha di Kota Batam, beberapa diantaranya bekerjasama dengan developer
             bertaraf nasional seperti afiliasi Alam Sutera dan TDW Property. Central Group berpegang pada nilai dan

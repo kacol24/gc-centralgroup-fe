@@ -80,7 +80,7 @@ export default function Contact() {
               </div>
               <div className="flex items-center gap-3">
                 <FaEnvelope className="text-base text-textTertiary" />
-                <span>info@centralgroup.com</span>
+                <span>info@centralgroup.id</span>
               </div>
             </div>
 

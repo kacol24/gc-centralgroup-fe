@@ -46,7 +46,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-3">
               <FaEnvelope size="14" className="text-xl opacity-60" />
-              <span>info@centralgroup.com</span>
+              <span>info@centralgroup.id</span>
             </div>
           </div>
 

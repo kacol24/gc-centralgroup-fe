@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import {Link, usePathname} from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
 import {
   iconWhatsApp,
   iconCaretDown,
@@ -15,10 +15,10 @@ import { useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useSearchParams } from 'next/navigation';
 import { central } from '../lib/utils/cental';
-import {useQuery} from "@urql/next";
+import { useQuery } from '@urql/next';
 import ProjectListQuery from '@/graphql/ProjectListQuery.graphql';
-import {useLocale} from "next-intl";
-import LocaleSwitcher from "@/app/components/LocaleSwitcher";
+import { useLocale } from 'next-intl';
+import LocaleSwitcher from '@/app/components/LocaleSwitcher';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -137,11 +137,11 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-  const [{data: projectListResponse}] = useQuery({
+  const [{ data: projectListResponse }] = useQuery({
     query: ProjectListQuery,
     variables: {
-      lang: locale
-    }
+      lang: locale,
+    },
   });
   const developments = projectListResponse.projects?.datas ?? [];
 
@@ -190,7 +190,7 @@ export default function Navbar() {
 
               <div className="w-px h-6 bg-gray-400"></div>
 
-              <LocaleSwitcher isScrolled={isScrolled}/>
+              <LocaleSwitcher isScrolled={isScrolled} />
 
               <div className="w-px h-6 bg-gray-400"></div>
 
@@ -219,6 +219,13 @@ export default function Navbar() {
 
         {/* Menu List */}
         <ul className="pl-16 pt-4 text-textPrimary">
+          {/* HOME */}
+          <li className={window.innerWidth <= 1024 ? '' : 'hidden'}>
+            <Link href="/" className={menuStyle('/')} onClick={() => setIsOpen(false)}>
+              <div className="my-3 font-marcellus text-textPrimary cursor-pointer text-[18px]">HOME</div>
+            </Link>
+          </li>
+
           {/* DEVELOPMENT */}
           <li>
             <div

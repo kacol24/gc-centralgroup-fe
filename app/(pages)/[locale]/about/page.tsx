@@ -17,9 +17,9 @@ import {
 import CarouselAwardeComponent from '@/app/components/landing-components/carousel-awarde-component';
 import { useEffect } from 'react';
 import { useWindowSize } from '@/app/hooks/use-window-size';
-import BannersQuery from "@/graphql/BannersQuery.graphql";
-import {useLocale} from "next-intl";
-import {useQuery} from "@urql/next";
+import BannersQuery from '@/graphql/BannersQuery.graphql';
+import { useLocale } from 'next-intl';
+import { useQuery } from '@urql/next';
 
 export default function About() {
   const { width } = useWindowSize();
@@ -34,20 +34,20 @@ export default function About() {
     });
   }, []);
 
-  const [{data: awardsResponse}] = useQuery({
+  const [{ data: awardsResponse }] = useQuery({
     query: BannersQuery,
     variables: {
       lang: locale,
       type: 'award_banner',
-    }
+    },
   });
 
-  const [{data: partnersResponse}] = useQuery({
+  const [{ data: partnersResponse }] = useQuery({
     query: BannersQuery,
     variables: {
       lang: locale,
       type: 'partner_banner',
-    }
+    },
   });
 
   return (
@@ -67,7 +67,7 @@ export default function About() {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            The Best Developer in Batam by Property & Bank Award, dengan pengalaman lebih dari 34 Tahun sejak tahun 1989
+            The Best Developer in Batam by Property & Bank Award, dengan pengalaman lebih dari 35 Tahun sejak tahun 1989
             dalam membangun 3889 rumah impian Anda. Central Group telah berhasil mengembangkan beberapa proyek ternama
             dengan total lahan lebih dari 200 Ha di Kota Batam, beberapa diantaranya bekerjasama dengan developer
             bertaraf nasional seperti afiliasi Alam Sutera dan TDW Property.
@@ -114,7 +114,7 @@ export default function About() {
         />
       </section>
 
-      <CarouselAwardeComponent slides={awardsResponse.banners}/>
+      <CarouselAwardeComponent slides={awardsResponse.banners} />
 
       <section className="bg-backgroundWhite ">
         <div className="container mx-auto md:p-16 md:pb-24 md:grid md:grid-cols-[5fr_6fr] lg:px-40 lg:grid-cols-[4fr_5fr] overflow-hidden">

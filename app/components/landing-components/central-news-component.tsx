@@ -1,13 +1,16 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import {Link} from '@/i18n/navigation';
+import { Link } from '@/i18n/navigation';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
 import CardArticle from '../card-article';
 
-export default function CentralNewsComponent({blogs}) {
-  const newsCards = blogs.datas;
+export default function CentralNewsComponent({ blogs }) {
+  const newsCards = blogs.datas.map((news) => ({
+    ...news,
+    publish_date: new Date(news.publish_date).toISOString().split('T')[0],
+  }));
   const limitedNews = newsCards.slice(0, 3);
   return (
     <section className="w-full mt-14 lg:mt-[100px] lg:container lg:mx-auto bg-backgroundWhite px-4 pb-0 pt-12 lg:pt-0">
