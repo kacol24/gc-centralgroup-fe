@@ -6,7 +6,6 @@ import DreamHomeComponent from '../../components/landing-components/dream-home-c
 import CentralNewsComponent from '../../components/landing-components/central-news-component';
 import CommunityEcosystemComponent from '../../components/landing-components/comuunity-ecosystem-component';
 import { Suspense } from 'react';
-import PropertyFinderSection from './development/components/property-finder-section';
 
 import {getClient} from '@/app/lib/urqlClient';
 import BannersQuery from '@/graphql/BannersQuery.graphql';
@@ -69,7 +68,6 @@ export default async function Home() {
       <Suspense fallback={<AwardsSkeleton/>}>
           <SectionAwards/>
       </Suspense>
-      <PropertyFinderSection />
       <CentralNewsComponent blogs={blogs?.blogs}/>
       <CommunityEcosystemComponent />
     </div>
