@@ -7,9 +7,31 @@ import CentralCommunityGoal from '@/app/(pages)/[locale]/central/[slug]/componen
 import CentralCommunityActivity from '@/app/(pages)/[locale]/central/[slug]/components/central-community-activity';
 import { central, CentralModel } from '@/app/lib/utils/cental';
 
+import { useLocale } from 'next-intl';
+import { useQuery } from '@urql/next';
+import BannerQuery from '@/graphql/BannersQuery.graphql';
+
 export default function CentralDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const [detailCentral, setDetailCentral] = useState<CentralModel | undefined>();
+
+  const locale = useLocale();
+
+  const type = slug === 'property-academy' ? 'activity_academy_banner' : `activity_${slug}_banner`;
+
+  const [{ data: activityBannersResponse }] = useQuery({
+    query: BannerQuery,
+    variables: {
+      lang: locale,
+      type: type,
+    },
+  });
+
+  const activityBanners =
+    activityBannersResponse?.banners?.map((banner) => ({
+      src: banner.desktop,
+      alt: banner.title,
+    })) ?? [];
 
   const getData = () => {
     const data: CentralModel | undefined = central.find((item) => item.slug === slug);
@@ -36,7 +58,10 @@ export default function CentralDetail({ params }: { params: Promise<{ slug: stri
 
       <CentralCommunityGoal goals={detailCentral?.goals} />
 
-      <CentralCommunityActivity activityImages={detailCentral?.activityImages || []} />
+      <CentralCommunityActivity
+        // activityImages={detailCentral?.activityImages || []}
+        activityImages={activityBanners || []}
+      />
     </>
   );
 }

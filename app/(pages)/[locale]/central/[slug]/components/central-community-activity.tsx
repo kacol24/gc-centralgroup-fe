@@ -52,6 +52,10 @@ export default function CentralCommunityActivity({
               className="break-inside-avoid"
               data-aos="zoom-in-up"
               data-aos-delay={(index + 3) * 100}
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: '100%', height: 'auto' }}
             />
           ))}
           {visibleCount < activityImages.length && (
