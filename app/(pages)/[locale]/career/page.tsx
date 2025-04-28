@@ -2,30 +2,71 @@
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { CareerModel, careers } from '@/app/lib/utils/career';
+// import { CareerModel, careers } from '@/app/lib/utils/career';
 import { careerPageBanner } from '@/app/lib/utils/image';
-import {Link} from '@/i18n/navigation';
+// import {Link} from '@/i18n/navigation';
 import { useEffect, useState } from 'react';
 import { TbGridDots } from 'react-icons/tb';
 import { IoMdArrowDropdown } from 'react-icons/io';
 
+import { useLocale } from 'next-intl';
+import { useQuery } from '@urql/next';
+import CareerQuery from '@/graphql/CareersQuery.graphql';
+import CareerCategoryQuery from '@/graphql/CareerCategoriesQuery.graphql';
+
 export default function Career() {
-  const [careersData, setCareersData] = useState<CareerModel[]>([]);
+  //   const [careersData, setCareersData] = useState<CareerModel[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const categories = ['All', ...new Set(careersData.map((career) => career.category))];
+  const locale = useLocale();
+
+  const [{ data: careerResponse }] = useQuery({
+    query: CareerQuery,
+    variables: {
+      lang: locale,
+    },
+  });
+
+  const [{ data: categoryResponse }] = useQuery({
+    query: CareerCategoryQuery,
+    variables: {
+      lang: locale,
+    },
+  });
+
+  const categories = [
+    'All',
+    ...new Set(categoryResponse?.careercategories.map((category: { title: string }) => category.title) || []),
+  ];
+
+  const careers =
+    careerResponse?.careers.map(
+      (career: {
+        id: string;
+        title: string;
+        content: string;
+        category: {
+          id: string;
+          title: string;
+        };
+      }) => ({
+        id: career.id,
+        title: career.title,
+        category: career.category.title,
+        content: career.content,
+      }),
+    ) || [];
 
   const filteredCareers =
-    selectedCategory === 'All' ? careersData : careersData.filter((career) => career.category === selectedCategory);
+    selectedCategory === 'All' ? careers : careers.filter((career) => career.category === selectedCategory);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   const getData = () => {
-    const data: CareerModel[] = careers;
-
-    setCareersData(data);
+    // const data: CareerModel[] = careers;
+    // setCareersData(data);
   };
 
   useEffect(() => {
@@ -83,7 +124,7 @@ export default function Career() {
                 className="w-full text-left p-4 font-semibold text-textPrimary flex justify-between items-center md:px-8 md:grid md:grid-cols-[3fr_1fr_1fr] lg:py-6"
                 onClick={() => toggleAccordion(index)}
               >
-                {item.name}
+                {item.title}
 
                 <span className="md:hidden">
                   {openIndex === index ? (
@@ -138,7 +179,11 @@ export default function Career() {
                   openIndex === index ? 'max-h-[1000vh]' : 'max-h-0'
                 }`}
               >
-                <p className="p-4 pb-8 text-textPrimary font-medium md:pt-8 md:px-20 lg:pt-12 lg:px-40">
+                <div className="px-8 py-8 mb-3">
+                  <div dangerouslySetInnerHTML={{ __html: item.content }} />
+                </div>
+
+                {/* <p className="p-4 pb-8 text-textPrimary font-medium md:pt-8 md:px-20 lg:pt-12 lg:px-40">
                   {item.detail}
                 </p>
                 <h4 className="px-4 text-primary font-semibold md:px-20 lg:px-40">Job Descriptions</h4>
@@ -147,7 +192,7 @@ export default function Career() {
                 <p className="p-4 pb-8 text-textPrimary font-medium md:px-20 md:pb-12 lg:px-40">{item.requirement}</p>
                 <Link href="#" className="w-fit mx-auto mb-8 px-12 py-4 block text-white bg-primary md:mb-12 lg:mb-20">
                   APPLY JOB
-                </Link>
+                </Link> */}
               </div>
             </div>
           ))}
