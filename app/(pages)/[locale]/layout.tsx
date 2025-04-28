@@ -5,11 +5,11 @@ import Navbar from '../../components/navbar';
 import Footer from '../../components/footer';
 import ContactUs from '../../components/contact-us';
 import { Suspense } from 'react';
-import {routing} from "@/i18n/routing";
-import {notFound} from "next/navigation";
-import {hasLocale, Locale, NextIntlClientProvider} from "next-intl";
-import {getCta, getPopup} from "@/data/banners";
-import PromotionPopupModal from "@/app/components/promotion-popup-modal";
+import { routing } from '@/i18n/routing';
+import { notFound } from 'next/navigation';
+import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl';
+import { getCta, getPopup } from '@/data/banners';
+import PromotionPopupModal from '@/app/components/promotion-popup-modal';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,7 +37,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ locale: Locale }>;
 }>) {
-  const {locale} = await params;
+  const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -52,12 +52,12 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider>
           <Suspense>
-            <Navbar/>
+            <Navbar />
           </Suspense>
           {children}
-          { ctaBanner.length ? <ContactUs banner={ctaBanner[0]}/> : ''}
-          <Footer/>
-          { popupBanner.length ? <PromotionPopupModal banner={popupBanner[0]} /> : '' }
+          {ctaBanner.length > 0 && <ContactUs banner={ctaBanner[0]} />}
+          <Footer />
+          {popupBanner.length ? <PromotionPopupModal banner={popupBanner[0]} /> : ''}
         </NextIntlClientProvider>
       </body>
     </html>
