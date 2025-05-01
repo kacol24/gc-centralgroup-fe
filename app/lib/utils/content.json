@@ -1,0 +1,95 @@
+{
+  "id": {
+    "vision": {
+      "title": "VISION",
+      "content": "Menjadi Developer Properti Terpercaya dan Inovatif di Indonesia"
+    },
+    "mission": {
+      "title": "MISSION",
+      "content": "Untuk memenuhi impian masyarakat dalam pengembangan real estate"
+    },
+    "purpose": {
+      "title": "PURPOSE",
+      "content": "Membawa warisan untuk generasi mendatang"
+    },
+    "central": {
+      "berbagi": {
+        "content": "Didirikan pada 2022, Central Group Melalui Yayasan CENTRAL BERBAGI berkomitmen untuk menciptakan dampak positif dimasyarakat melalui berbagai program sosial dan lingkungan. Organisasi ini lahir dan akan terus berkontribusi saat ini dan dimasa mendatang. Sebagai bentuk tanggung jawab Central Group terhadap lingkungan & Masyarakat.<br>Central Group membentuk suatu wadah yang Bernama Central Berbagi dengan empat  pilar utama yaitu pilar pendidikan, pilar sosial, pilar rumah layak dan juga pilar lingkungan yang menjadi dasar pergerakan Yayasan Central Berbagi. Dengan tagline Give, Care & Love kami berjalan untuk kebaikan bersama.",
+        "pillars": [
+          {
+            "title": "RUMAH LAYAK HUNI",
+            "content": "Pilar Pertama dari Central Berbagi adalah merenovasi rumah agar layak dihuni. Seiring dengan Misi perusahaan real estate developer, Central Berbagi akan berkontribusi dalam membantu merenovasi rumah layak huni bagi masyarakat kurang mampu."
+          },
+          {
+            "title": "PENDIDIKAN",
+            "content": "Pilar kedua Central Berbagi yaitu Pendidikan. Dengan tujuan untuk menciptakan sumber daya yang unggul, kami berkomitmen untuk turut serta dalam memajukan SDM bagi mereka yang terkendala biaya Pendidikan."
+          },
+          {
+            "title": "SOSIAL",
+            "content": "Pilar Sosial menjadi pilar ketiga dari Central Berbagi. Pilar ini menekankan pentingnya kontribusi perusahaan dalam ikut serta membantu meningkatkan kesejahteraan sosial. "
+          },
+          {
+            "title": "LINGKUNGAN",
+            "content": "Pilar Lingkungan menjadi pilar keempat dari Central Berbagi. Pilar ini menekankan pentingnya kontribusi perusahaan dalam ikut serta membantu menjaga ekosistem lingkungan yang berkelanjutan "
+          }
+        ]
+      },
+      "property_academy": {
+        "content": "Central Group, sebagai developer properti dengan visi \"The Most Trusted & Innovative National Property Developer\", meyakini pentingnya membentuk tim sales yang profesional, kredibel, dan adaptif terhadap perkembangan pasar. Untuk itu, Central Property Academy (CPA) hadir sebagai inisiatif strategis dalam mengembangkan SDM berkualitas melalui pelatihan terstruktur dan praktik terbaik industri. Dengan pengalaman lebih dari 34 tahun, Central Group berkomitment untuk membangun sales team yang memiliki knowledge & skill, kemampuan komunikasi yang baik, kecerdasan emosional yang baik, serta mampu menganalis perkembangan market."
+      },
+      "connect": {
+        "content": "Central Connect adalah aplikasi pintar dari Central Group yang dirancang untuk mengelola dan mengoptimalkan berbagai aspek kehidupan kawasan hunian melalui teknologi terkini. Aplikasi ini mengintegrasikan layanan dan infrastruktur untuk menciptakan lingkungan yang efisien, berkelanjutan, dan nyaman. Dengan fitur seperti Smart Home, sistem keamanan terintegrasi, serta konektivitas yang memudahkan komunikasi antara penghuni dan pengembang, Central Connect meningkatkan efisiensi energi, kenyamanan, keamanan, dan kualitas hidup. Selain itu, aplikasi ini mendorong inovasi, mempercepat respon terhadap masalah, serta turut meningkatkan nilai investasi properti di kawasan Central Group."
+      },
+      "home": {
+        "content": "Layanan Properti komprehensif dari Central Group. Central Homes menawarkan berbagai layanan seperti titip jual, titip sewa dan pengelolaan property menjadi kost. Tidak hanya dalam pelayanan penjualan dan persewaan property, Central Homes juga unggul dalam mentransformasi property menjadi fasilitas kost yang menguntungkan, sehingga pemilik property Central Group dapat memaksimalkan potensi asset mereka.<br>Central Homes meningkatkan pengalaman property, kepada anda pemilik property yang mencari optimalisasi atau penyewa yang mencari kehidupan premium. Central Homes adalah mitra pilihan anda, tingkatkan pengalaman prioperti anda bersama kami, Dimana komitmen dipadukan dengan keunggulan."
+      }
+    }
+  },
+
+  "en": {
+    "vision": {
+      "title": "VISION",
+      "content": "Be the Most Trusted & Innovative National Property Developer"
+    },
+    "mission": {
+      "title": "MISSION",
+      "content": "To fulfill people’s dream in real estate development"
+    },
+    "purpose": {
+      "title": "PURPOSE",
+      "content": "To Bring legacy for more generation to come"
+    },
+    "central": {
+      "berbagi": {
+        "content": "Established in 2022, Central Group, through the CENTRAL BERBAGI Foundation, is committed to creating a positive impact in society through various social and environmental programs. This organization was founded and will continue to contribute both now and in the future, as a form of Central Group’s responsibility to the community and the environment. Central Group created a platform named Central Berbagi with four main pillars: Education, Social, Decent Housing, and Environment. These pillars form the foundation of the Central Berbagi Foundation’s activities. With the tagline “Give, Care & Love”, we move forward for the greater good.",
+        "pillars": {
+          "1": {
+            "title": "RUMAH LAYAK HUN",
+            "content": "Pilar Pertama dari Central Berbagi adalah merenovasi rumah agar layak dihuni. Seiring dengan Misi perusahaan real estate developer, Central Berbagi akan berkontribusi dalam membantu merenovasi rumah layak huni bagi masyarakat kurang mampu."
+          },
+          "2": {
+            "title": "PENDIDIKAN",
+            "content": "Pilar kedua Central Berbagi yaitu Pendidikan. Dengan tujuan untuk menciptakan sumber daya yang unggul, kami berkomitmen untuk turut serta dalam memajukan SDM bagi mereka yang terkendala biaya Pendidikan."
+          },
+          "3": {
+            "title": "SOSIAL",
+            "content": "Pilar Sosial menjadi pilar ketiga dari Central Berbagi. Pilar ini menekankan pentingnya kontribusi perusahaan dalam ikut serta membantu meningkatkan kesejahteraan sosial. "
+          },
+          "4": {
+            "title": "LINGKUNGAN",
+            "content": "Pilar Lingkungan menjadi pilar keempat dari Central Berbagi. Pilar ini menekankan pentingnya kontribusi perusahaan dalam ikut serta membantu menjaga ekosistem lingkungan yang berkelanjutan "
+          }
+        }
+      },
+      "property_academy": {
+        "content": "Central Group, as a property developer with the vision of \"The Most Trusted & Innovative National Property Developer\", believes in the importance of building a professional, credible, and market-adaptive sales team. To achieve this, Central Property Academy (CPA) was established as a strategic initiative to develop high-quality human resources through structured training and industry best practices. With over 34 years of experience, Central Group is committed to building a sales team that possesses strong knowledge and skills, effective communication abilities, emotional intelligence, and the capability to analyze market developments."
+      },
+      "connect": {
+        "content": "Central Connect is a smart application from Central Group designed to manage and optimize various aspects of residential life through the latest technology. This app integrates services and infrastructure to create an efficient, sustainable, and comfortable environment. With features such as Smart Home, integrated security systems, and connectivity that facilitates communication between residents and developers, Central Connect improves energy efficiency, comfort, safety, and quality of life. Additionally, the app encourages innovation, accelerates problem resolution, and helps increase the property investment value within Central Group areas. We make things simple."
+      },
+      "home": {
+        "content": "Everyone Deserves the Opportunity of Home A comprehensive property service from Central Group. Central Homes offers various services such as property sales consignment, rental consignment, and transforming properties into boarding houses (kost). Beyond property sales and rentals, Central Homes specializes in converting properties into profitable kost facilities, allowing Central Group property owners to maximize their asset potential. Central Homes enhances the property experience—whether you're a property owner seeking optimization or a tenant looking for premium living. Central Homes is your trusted partner. Elevate your property experience with us, where commitment meets excellence."
+      }
+    }
+  }
+}

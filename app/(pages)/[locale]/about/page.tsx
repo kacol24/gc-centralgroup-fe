@@ -20,6 +20,7 @@ import { useWindowSize } from '@/app/hooks/use-window-size';
 import BannersQuery from '@/graphql/BannersQuery.graphql';
 import { useLocale } from 'next-intl';
 import { useQuery } from '@urql/next';
+import content from '@/app/lib/utils/content.json';
 
 export default function About() {
   const { width } = useWindowSize();
@@ -162,33 +163,24 @@ export default function About() {
           data-aos-delay="100"
         >
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-textPrimary font-marcellus">VISION</h3>
-            <p className="text-sm/6 text-textSecondary font-medium">
-              Aliquam malesuada enim ut risus vulputate pretium morbi molestie. Sit non morbi libero nibh morbi in
-              aliquet. Auctor quis nisl pretium leo mauris aliquet enim quis.
-            </p>
+            <h3 className="mb-6 text-2xl text-textPrimary font-marcellus">{content[locale].vision.title}</h3>
+            <p className="text-sm/6 text-textSecondary font-medium">{content[locale].vision.content}</p>
           </div>
 
           <hr className="my-[40px] md:hidden"></hr>
           <div className="hidden md:block w-[1px] bg-gray-300 h-100"></div>
 
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-textPrimary font-marcellus">MISSION</h3>
-            <p className="text-sm/6 text-textSecondary font-medium">
-              Cursus at pellentesque viverra convallis. Tincidunt turpis tincidunt purus luctus commodo pellentesque.
-              Sit pellentesque sit molestie ultrices lefensa indanese.
-            </p>
+            <h3 className="mb-6 text-2xl text-textPrimary font-marcellus">{content[locale].mission.title}</h3>
+            <p className="text-sm/6 text-textSecondary font-medium">{content[locale].mission.content}</p>
           </div>
 
           <hr className="my-[40px] md:hidden"></hr>
           <div className="hidden md:block w-[1px] bg-gray-300 h-100"></div>
 
           <div className="text-center">
-            <h3 className="mb-6 text-2xl text-textPrimary font-marcellus">PURPOSE</h3>
-            <p className="text-sm/6 text-textSecondary font-medium">
-              Turpis eu accumsan platea malesuada aliquet sed egestas posuere vestibulum. Consectetur risus nascetur at
-              id nibh ullamcorper. Euismod semper diam lacinia ut placerat massa.
-            </p>
+            <h3 className="mb-6 text-2xl text-textPrimary font-marcellus">{content[locale].purpose.title}</h3>
+            <p className="text-sm/6 text-textSecondary font-medium">{content[locale].purpose.content}</p>
           </div>
         </div>
       </section>

@@ -17,7 +17,7 @@ import { FaPlay } from 'react-icons/fa6';
 
 export default function IntroductionComponent() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const videoUrl = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&showinfo=0';
+  const videoUrl = 'https://www.youtube.com/embed/M-o6MFpM9ko?autoplay=1&rel=0&showinfo=0';
 
   useEffect(() => {
     AOS.init({

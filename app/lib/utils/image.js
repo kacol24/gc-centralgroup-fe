@@ -11,6 +11,8 @@ import logoPartner6 from '@/public/assets/image/logo-partner-6.png';
 import logoPartner7 from '@/public/assets/image/logo-partner-7.png';
 import logoPartner8 from '@/public/assets/image/logo-partner-8.png';
 import logoPartner9 from '@/public/assets/image/logo-partner-9.png';
+import logo35white from '@/public/assets/image/logo-35-white.png';
+import logo35color from '@/public/assets/image/logo-35-color.png';
 
 import logoProperty from '@/public/assets/image/logo-property.png';
 import imgSliderProperty1 from '@/public/assets/image/img-slider-property-1.png';
@@ -165,6 +167,8 @@ export {
   logoPartner7,
   logoPartner8,
   logoPartner9,
+  logo35white,
+  logo35color,
   logoProperty,
   imgSliderProperty1,
   imgSliderProperty2,
@@ -188,5 +192,5 @@ export {
   imgBgCommunityEcosystem,
   imgLoadingMaps,
   imgThumbVideo,
-  imgPropertyFinderMap
+  imgPropertyFinderMap,
 };

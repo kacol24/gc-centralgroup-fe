@@ -22,7 +22,7 @@ export default function CentralCommunityGoal({ goals }: CentralCommunityGoalProp
     });
   }, []);
   return (
-    <section className="bg-white">
+    <section className="bg-white hidden">
       <div className="container mx-auto px-4 py-12 md:flex md:gap-12 md:items-stretch  lg:py-20 lg:gap-24">
         {goals &&
           goals.map((goal, index) => (

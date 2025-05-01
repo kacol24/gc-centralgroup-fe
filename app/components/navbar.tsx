@@ -10,7 +10,7 @@ import {
   iconCaretDownWhite,
   iconMenuWhite,
 } from '@/app/lib/utils/svg';
-import { logoColGreen, logoColWhite, logoRowGreen } from '@/app/lib/utils/image';
+import { logoColGreen, logoColWhite, logoRowGreen, logo35white, logo35color } from '@/app/lib/utils/image';
 import { useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useSearchParams } from 'next/navigation';
@@ -164,11 +164,21 @@ export default function Navbar() {
             </div>
 
             {/* Center Side (Logo) */}
-            <div>
+            <div className="flex items-center space-x-2">
               <Link href={'/'}>
                 <Image
-                  className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px'} `}
+                  className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
                   src={isScrolled ? logoRowGreen : variant.logo}
+                  alt="CG Logo"
+                  height={1000}
+                  width={1000}
+                  unoptimized={true}
+                />
+              </Link>
+              <Link href={'/'}>
+                <Image
+                  className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
+                  src={isScrolled ? logo35color : logo35white}
                   alt="CG Logo"
                   height={1000}
                   width={1000}
@@ -179,7 +189,7 @@ export default function Navbar() {
 
             {/* Right Side */}
             <div className="md:flex-1 hidden md:flex justify-end items-center gap-6 px-4 py-2 pr-0">
-              <a href="https://wa.me/6287835712129" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/628117038868" target="_blank" rel="noopener noreferrer">
                 <Image
                   src={isScrolled ? iconWhatsApp : variant.iconWhatsApp}
                   alt="WhatsApp Icon"
@@ -287,7 +297,7 @@ export default function Navbar() {
           </li>
           {openMenus['community'] && (
             <ul className="pl-4">
-              {central.map((item) => (
+              {central(locale).map((item) => (
                 <li key={item.slug}>
                   <Link
                     href={`/central/${item.slug}`}

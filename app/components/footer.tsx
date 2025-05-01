@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { logoRowWhite, logoColWhite } from '../lib/utils/image';
+import { logoRowWhite, logoColWhite, logo35white } from '../lib/utils/image';
 import { HiOutlineArrowUp, HiOutlineArrowRight } from 'react-icons/hi';
 import { FaEnvelope, FaMapMarkerAlt, FaYoutube, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { IoLogoWhatsapp } from 'react-icons/io';
@@ -21,20 +21,41 @@ export default function Footer() {
             <Image
               src={logoRowWhite}
               alt="Logo"
-              width={1000}
-              height={1000}
+              width={100}
+              height={100}
               unoptimized={true}
-              className="object-contain md:hidden w-[160px]"
+              className="object-contain md:hidden w-[120px]"
             />
-            {/* Logo for Desktop */}
             <Image
-              src={logoColWhite}
+              src={logo35white}
               alt="Logo"
-              width={1000}
-              height={1000}
-              className="object-contain hidden md:block w-[130px]"
+              width={100}
+              height={100}
               unoptimized={true}
-            />{' '}
+              className="object-contain md:hidden w-[120px]"
+            />
+
+            {/* Desktop logos (stacked vertically) */}
+            <div className="hidden md:flex flex-col items-center">
+              <Image
+                src={logoColWhite}
+                alt="Logo"
+                width={1000}
+                height={1000}
+                className="object-contain w-[130px] mb-5"
+                unoptimized={true}
+              />
+              <Image
+                src={logo35white}
+                alt="Logo"
+                width={1000}
+                height={1000}
+                className="object-contain w-[130px]"
+                unoptimized={true}
+              />
+            </div>
+
+            {/* Scroll icon for mobile */}
             <HiOutlineArrowUp onClick={scrollToTop} className="text-white text-3xl cursor-pointer mt-2 md:hidden" />
           </div>
 
