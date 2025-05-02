@@ -57,9 +57,8 @@ export default function CentralCommunityBanner({
             className="mb-40 text-sm/6 text-center md:w-[80%] md:mx-auto text-white"
             data-aos="fade-up"
             data-aos-delay="200"
-          >
-            {bannerDescription}
-          </p>
+            dangerouslySetInnerHTML={{ __html: bannerDescription }}
+          />
         </div>
       </div>
 
@@ -101,7 +100,10 @@ export default function CentralCommunityBanner({
                       />
                     </div>
                     <h3 className="mb-6 text-2xl text-center text-textPrimary font-marcellus">{pillar.title}</h3>
-                    <p className="text-sm/6 text-center text-textSecondary font-medium">{pillar.description}</p>
+                    <p
+                      className="text-sm/6 text-center text-textSecondary font-medium"
+                      dangerouslySetInnerHTML={{ __html: pillar.description }}
+                    />
                   </div>
                 ))}
             </div>

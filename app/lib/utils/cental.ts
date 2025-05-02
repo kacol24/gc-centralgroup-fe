@@ -58,32 +58,32 @@ const centralBerbagiGoals = [
   },
 ];
 
-const centralConnectPillars = [
-  {
-    title: 'SUSPERNDISE',
-    description:
-      'Turpis eu accumsan platea malesuada aliquet sed egestas posuere vestibulum. Consectetur risus nascetur at id nibh ullamcorper. Euismod semper diam lacinia ut placerat massa.',
-    icon: iconHome,
-  },
-  {
-    title: 'ADIPISCING',
-    description:
-      'Aliquam malesuada enim ut risus vulputate pretium morbi molestie. Sit non morbi libero nibh morbi in aliquet. Auctor quis nisl pretium leo mauris aliquet enim quis.',
-    icon: iconBook,
-  },
-  {
-    title: 'SOLLICITUDIN',
-    description:
-      'Cursus at pellentesque viverra convallis. Tincidunt turpis tincidunt purus luctus commodo pellentesque. Sit pellentesque sit molestie ultrices lefensa.',
-    icon: iconFish,
-  },
-  {
-    title: 'ULTRICIES',
-    description:
-      'Pulvinar a molestie lorem amet faucibus pellentesque. Sed amet velit nulla vitae pellentesque ornare urna lacinia libero. Elit feugiat ut lorem at accumsan integer vulputate augue.',
-    icon: iconPlus,
-  },
-];
+// const centralConnectPillars = [
+//   {
+//     title: 'SUSPERNDISE',
+//     description:
+//       'Turpis eu accumsan platea malesuada aliquet sed egestas posuere vestibulum. Consectetur risus nascetur at id nibh ullamcorper. Euismod semper diam lacinia ut placerat massa.',
+//     icon: iconHome,
+//   },
+//   {
+//     title: 'ADIPISCING',
+//     description:
+//       'Aliquam malesuada enim ut risus vulputate pretium morbi molestie. Sit non morbi libero nibh morbi in aliquet. Auctor quis nisl pretium leo mauris aliquet enim quis.',
+//     icon: iconBook,
+//   },
+//   {
+//     title: 'SOLLICITUDIN',
+//     description:
+//       'Cursus at pellentesque viverra convallis. Tincidunt turpis tincidunt purus luctus commodo pellentesque. Sit pellentesque sit molestie ultrices lefensa.',
+//     icon: iconFish,
+//   },
+//   {
+//     title: 'ULTRICIES',
+//     description:
+//       'Pulvinar a molestie lorem amet faucibus pellentesque. Sed amet velit nulla vitae pellentesque ornare urna lacinia libero. Elit feugiat ut lorem at accumsan integer vulputate augue.',
+//     icon: iconPlus,
+//   },
+// ];
 
 const centralConnectSGoals = [
   {
@@ -113,6 +113,12 @@ export const central = (locale: string = 'en'): CentralModel[] => {
   };
 
   const centralBerbagiPillars = content[locale].central.berbagi.pillars.map((pillar, index) => ({
+    title: pillar.title,
+    description: pillar.content,
+    icon: getIcon(index),
+  }));
+
+  const centralConnectPillars = content[locale].central.connect.pillars.map((pillar, index) => ({
     title: pillar.title,
     description: pillar.content,
     icon: getIcon(index),

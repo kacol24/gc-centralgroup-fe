@@ -38,7 +38,21 @@
         "content": "Central Group, sebagai developer properti dengan visi \"The Most Trusted & Innovative National Property Developer\", meyakini pentingnya membentuk tim sales yang profesional, kredibel, dan adaptif terhadap perkembangan pasar. Untuk itu, Central Property Academy (CPA) hadir sebagai inisiatif strategis dalam mengembangkan SDM berkualitas melalui pelatihan terstruktur dan praktik terbaik industri. Dengan pengalaman lebih dari 34 tahun, Central Group berkomitment untuk membangun sales team yang memiliki knowledge & skill, kemampuan komunikasi yang baik, kecerdasan emosional yang baik, serta mampu menganalis perkembangan market."
       },
       "connect": {
-        "content": "Central Connect adalah aplikasi pintar dari Central Group yang dirancang untuk mengelola dan mengoptimalkan berbagai aspek kehidupan kawasan hunian melalui teknologi terkini. Aplikasi ini mengintegrasikan layanan dan infrastruktur untuk menciptakan lingkungan yang efisien, berkelanjutan, dan nyaman. Dengan fitur seperti Smart Home, sistem keamanan terintegrasi, serta konektivitas yang memudahkan komunikasi antara penghuni dan pengembang, Central Connect meningkatkan efisiensi energi, kenyamanan, keamanan, dan kualitas hidup. Selain itu, aplikasi ini mendorong inovasi, mempercepat respon terhadap masalah, serta turut meningkatkan nilai investasi properti di kawasan Central Group."
+        "content": "Central Connect adalah aplikasi pintar dari Central Group yang dirancang untuk mengelola dan mengoptimalkan berbagai aspek kehidupan kawasan hunian melalui teknologi terkini. Aplikasi ini mengintegrasikan layanan dan infrastruktur untuk menciptakan lingkungan yang efisien, berkelanjutan, dan nyaman. Dengan fitur seperti Smart Home, sistem keamanan terintegrasi, serta konektivitas yang memudahkan komunikasi antara penghuni dan pengembang, Central Connect meningkatkan efisiensi energi, kenyamanan, keamanan, dan kualitas hidup. Selain itu, aplikasi ini mendorong inovasi, mempercepat respon terhadap masalah, serta turut meningkatkan nilai investasi properti di kawasan Central Group.",
+        "pillars": [
+          {
+            "title": "Smart Cluster",
+            "content": "Connecting Estate Community<br>Kami Memberikan perlindungan lebih untuk anda dan keluarga mulai dari Langkah pertama ke dalam cluster kami."
+          },
+          {
+            "title": "Smart Home",
+            "content": "Mengendalikan perangkat rumah kapanpun dan dimanapun sesuai kebutuhan anda."
+          },
+          {
+            "title": "Smart Community",
+            "content": "Dapatkan peringatan keamanan dan info kegiatan yang terjadi di lingkungan anda."
+          }
+        ]
       },
       "home": {
         "content": "Layanan Properti komprehensif dari Central Group. Central Homes menawarkan berbagai layanan seperti titip jual, titip sewa dan pengelolaan property menjadi kost. Tidak hanya dalam pelayanan penjualan dan persewaan property, Central Homes juga unggul dalam mentransformasi property menjadi fasilitas kost yang menguntungkan, sehingga pemilik property Central Group dapat memaksimalkan potensi asset mereka.<br>Central Homes meningkatkan pengalaman property, kepada anda pemilik property yang mencari optimalisasi atau penyewa yang mencari kehidupan premium. Central Homes adalah mitra pilihan anda, tingkatkan pengalaman prioperti anda bersama kami, Dimana komitmen dipadukan dengan keunggulan."
@@ -85,7 +99,21 @@
         "content": "Central Group, as a property developer with the vision of \"The Most Trusted & Innovative National Property Developer\", believes in the importance of building a professional, credible, and market-adaptive sales team. To achieve this, Central Property Academy (CPA) was established as a strategic initiative to develop high-quality human resources through structured training and industry best practices. With over 34 years of experience, Central Group is committed to building a sales team that possesses strong knowledge and skills, effective communication abilities, emotional intelligence, and the capability to analyze market developments."
       },
       "connect": {
-        "content": "Central Connect is a smart application from Central Group designed to manage and optimize various aspects of residential life through the latest technology. This app integrates services and infrastructure to create an efficient, sustainable, and comfortable environment. With features such as Smart Home, integrated security systems, and connectivity that facilitates communication between residents and developers, Central Connect improves energy efficiency, comfort, safety, and quality of life. Additionally, the app encourages innovation, accelerates problem resolution, and helps increase the property investment value within Central Group areas. We make things simple."
+        "content": "Central Connect is a smart application from Central Group designed to manage and optimize various aspects of residential life through the latest technology. This app integrates services and infrastructure to create an efficient, sustainable, and comfortable environment. With features such as Smart Home, integrated security systems, and connectivity that facilitates communication between residents and developers, Central Connect improves energy efficiency, comfort, safety, and quality of life. Additionally, the app encourages innovation, accelerates problem resolution, and helps increase the property investment value within Central Group areas. We make things simple.",
+        "pillars": [
+          {
+            "title": "Smart Cluster",
+            "content": "Connecting Estate Community<br>Kami Memberikan perlindungan lebih untuk anda dan keluarga mulai dari Langkah pertama ke dalam cluster kami."
+          },
+          {
+            "title": "Smart Home",
+            "content": "Mengendalikan perangkat rumah kapanpun dan dimanapun sesuai kebutuhan anda."
+          },
+          {
+            "title": "Smart Community",
+            "content": "Dapatkan peringatan keamanan dan info kegiatan yang terjadi di lingkungan anda."
+          }
+        ]
       },
       "home": {
         "content": "Everyone Deserves the Opportunity of Home A comprehensive property service from Central Group. Central Homes offers various services such as property sales consignment, rental consignment, and transforming properties into boarding houses (kost). Beyond property sales and rentals, Central Homes specializes in converting properties into profitable kost facilities, allowing Central Group property owners to maximize their asset potential. Central Homes enhances the property experience—whether you're a property owner seeking optimization or a tenant looking for premium living. Central Homes is your trusted partner. Elevate your property experience with us, where commitment meets excellence."
