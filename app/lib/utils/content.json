@@ -62,24 +62,24 @@
     "central": {
       "berbagi": {
         "content": "Established in 2022, Central Group, through the CENTRAL BERBAGI Foundation, is committed to creating a positive impact in society through various social and environmental programs. This organization was founded and will continue to contribute both now and in the future, as a form of Central Group’s responsibility to the community and the environment. Central Group created a platform named Central Berbagi with four main pillars: Education, Social, Decent Housing, and Environment. These pillars form the foundation of the Central Berbagi Foundation’s activities. With the tagline “Give, Care & Love”, we move forward for the greater good.",
-        "pillars": {
-          "1": {
+        "pillars": [
+          {
             "title": "RUMAH LAYAK HUN",
             "content": "Pilar Pertama dari Central Berbagi adalah merenovasi rumah agar layak dihuni. Seiring dengan Misi perusahaan real estate developer, Central Berbagi akan berkontribusi dalam membantu merenovasi rumah layak huni bagi masyarakat kurang mampu."
           },
-          "2": {
+          {
             "title": "PENDIDIKAN",
             "content": "Pilar kedua Central Berbagi yaitu Pendidikan. Dengan tujuan untuk menciptakan sumber daya yang unggul, kami berkomitmen untuk turut serta dalam memajukan SDM bagi mereka yang terkendala biaya Pendidikan."
           },
-          "3": {
+          {
             "title": "SOSIAL",
             "content": "Pilar Sosial menjadi pilar ketiga dari Central Berbagi. Pilar ini menekankan pentingnya kontribusi perusahaan dalam ikut serta membantu meningkatkan kesejahteraan sosial. "
           },
-          "4": {
+          {
             "title": "LINGKUNGAN",
             "content": "Pilar Lingkungan menjadi pilar keempat dari Central Berbagi. Pilar ini menekankan pentingnya kontribusi perusahaan dalam ikut serta membantu menjaga ekosistem lingkungan yang berkelanjutan "
           }
-        }
+        ]
       },
       "property_academy": {
         "content": "Central Group, as a property developer with the vision of \"The Most Trusted & Innovative National Property Developer\", believes in the importance of building a professional, credible, and market-adaptive sales team. To achieve this, Central Property Academy (CPA) was established as a strategic initiative to develop high-quality human resources through structured training and industry best practices. With over 34 years of experience, Central Group is committed to building a sales team that possesses strong knowledge and skills, effective communication abilities, emotional intelligence, and the capability to analyze market developments."

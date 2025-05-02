@@ -15,7 +15,6 @@ export default function CentralDetail({ params }: { params: Promise<{ slug: stri
   const { slug } = use(params);
   const [detailCentral, setDetailCentral] = useState<CentralModel | undefined>();
   const locale = useLocale();
-  const centralData = central(locale);
 
   const type = slug === 'property-academy' ? 'activity_academy_banner' : `activity_${slug}_banner`;
 
@@ -33,16 +32,10 @@ export default function CentralDetail({ params }: { params: Promise<{ slug: stri
       alt: banner.title,
     })) ?? [];
 
-  const getData = () => {
-    // const data: CentralModel | undefined = central.find((item) => item.slug === slug);
-    const data: CentralModel | undefined = centralData.find((item) => item.slug === slug);
-
-    setDetailCentral(data);
-  };
-
   useEffect(() => {
-    getData();
-  }, [getData]);
+    const data: CentralModel | undefined = central(locale).find((item) => item.slug === slug);
+    setDetailCentral(data);
+  }, [locale, slug]);
 
   return (
     <>
