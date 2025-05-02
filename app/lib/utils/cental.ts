@@ -125,8 +125,7 @@ export const central = (locale: string = 'en'): CentralModel[] => {
       bannerImageTop: backgroundTopBannerPageCentralBerbagi,
       bannerImageBottom: backgroundBottomBannerPageCentralBerbagi,
       bannerTitle: 'CENTRAL BERBAGI',
-      bannerDescription:
-        'Program CSR (Corporate Social Responsibility) ini bermula ketika Central Group bergabung di komunitas Synergy (Komunitas Developer dan Agent Property se-Indonesia), yang bersama-sama melakukan program pembagian sembako untuk masyarakat yang terkena dampak Covid-19. Bermula dari kegiatan tersebut, timbul ide untuk melanjutkan kegitan berbagi kasih menjadi kegiatan rutin bulanan.',
+      bannerDescription: content[locale].central.berbagi.content,
       pillarTitle: 'FOUR PILLARS OF CENTRAL BERBAGI',
       pillarItems: centralBerbagiPillars,
       pillarsIconBackground: 'bg-textTertiary',
@@ -139,8 +138,7 @@ export const central = (locale: string = 'en'): CentralModel[] => {
       bannerImageTop: backgroundTopBannerPageCentralConnect,
       bannerImageBottom: backgroundBottomBannerPageCentralConnect,
       bannerTitle: 'CENTRAL CONNECT',
-      bannerDescription:
-        'In a tristique mi parturient et dictum facilisis donec. Gravida enim mauris laoreet et tellus nulla imperdiet mauris turpis. Pellentesque porttitor egestas adipiscing tincidunt ac morbi mattis at. Non nunc convallis convallis integer risus neque molestie lectus lorem. Maecenas nullam sollicitudin sit amet eu duis sapien quam scelerisque. Nisi adipiscing proin cras quis. Odio at risus nisl gravida tortor lectus sit quis posuere.',
+      bannerDescription: content[locale].central.connect.content,
       pillarTitle: 'HOW IT WORKS',
       pillarItems: centralConnectPillars,
       pillarsIconBackground: 'bg-textTertiary',
@@ -153,8 +151,7 @@ export const central = (locale: string = 'en'): CentralModel[] => {
       bannerImageTop: backgroundBottomBannerPageCentralHome,
       bannerImageBottom: backgroundTopBannerPageCentralHome,
       bannerTitle: 'CENTRAL HOME',
-      bannerDescription:
-        'In a tristique mi parturient et dictum facilisis donec. Gravida enim mauris laoreet et tellus nulla imperdiet mauris turpis. Pellentesque porttitor egestas adipiscing tincidunt ac morbi mattis at. Non nunc convallis convallis integer risus neque molestie lectus lorem. Maecenas nullam sollicitudin sit amet eu duis sapien quam scelerisque. Nisi adipiscing proin cras quis. Odio at risus nisl gravida tortor lectus sit quis posuere.',
+      bannerDescription: content[locale].central.home.content,
       pillarTitle: 'HOW IT WORKS',
       pillarItems: centralConnectPillars,
       pillarsIconBackground: 'bg-primary',
