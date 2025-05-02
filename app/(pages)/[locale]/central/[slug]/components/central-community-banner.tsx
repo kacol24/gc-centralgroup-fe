@@ -50,7 +50,10 @@ export default function CentralCommunityBanner({
         <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent opacity-20" />
 
         <div className="z-20 container w-[80%] m-auto text-center">
-          <h1 className="mb-12 text-4xl text-center uppercase lg:text-6xl text-white font-marcellus" data-aos="fade-up">
+          <h1
+            className="mb-12 mt-[10rem] md:mt-0 text-4xl text-center uppercase lg:text-6xl text-white font-marcellus"
+            data-aos="fade-up"
+          >
             {bannerTitle}
           </h1>
           <p
@@ -64,7 +67,7 @@ export default function CentralCommunityBanner({
 
       <div className="bg-cover bg-center" style={{ backgroundImage: `url(${bannerImageBottom?.src})` }}>
         <div className="container mx-auto relative px-4 py-12 md:py-8 ">
-          <div className="relative -top-72 -mb-72 md:-top-80 md:-mb-80 lg:-top-64 lg:-mb-24">
+          <div className="relative -top-32 -mb-32 md:-top-80 md:-mb-80 lg:-top-64 lg:-mb-24">
             <div className="flex items-center gap-2 md:justify-between">
               <div className="w-[20%] h-[1px] bg-white opacity-40 lg:w-[25%]" />
               <h2
