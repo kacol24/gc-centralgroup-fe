@@ -1,0 +1,17 @@
+mutation M_DOWNLOAD_BROCHURE(
+  $project_id: ID!
+  $name: String!
+  $phone: String!
+  $email: String!
+) {
+  downloadBrochure(
+    project_id: $project_id
+    name: $name
+    phone: $phone
+    email: $email
+  ) {
+    status
+    message
+    data
+  }
+}
