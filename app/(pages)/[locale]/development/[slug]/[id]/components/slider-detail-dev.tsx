@@ -7,7 +7,7 @@ import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 
 export default function CarouselDetailDevelopment({ images }) {
   return (
-    <section className="relative w-full mb-14 mt-8">
+    <section className="relative w-full mb-16 mt-8">
       <div className="w-full  mx-auto relative">
         <Carousel
           opts={{
@@ -27,7 +27,13 @@ export default function CarouselDetailDevelopment({ images }) {
             {images.map((image, index) => (
               <CarouselItem key={index} className="basis-3/4 md:basis-2/3 lg:basis-3/4 pl-4 md:pl-8">
                 <div className="relative w-full h-[184px] lg:h-[600px] overflow-hidden rounded-none shadow-md">
-                  <Image src={image} width={1062} height={600} className="object-cover" alt={'project image' + (index + 1)} />
+                  <Image
+                    src={image}
+                    width={1062}
+                    height={600}
+                    className="object-cover"
+                    alt={'project image' + (index + 1)}
+                  />
                 </div>
               </CarouselItem>
             ))}
