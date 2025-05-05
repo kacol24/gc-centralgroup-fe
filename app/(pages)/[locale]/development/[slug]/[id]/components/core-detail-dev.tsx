@@ -147,87 +147,89 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
               ''
             )}
           </div>
-          <form onSubmit={handleDownloadBrochure}>
-            <div className="w-full block lg:hidden">
-              <h1
-                data-aos="zoom-in"
-                data-aos-duration="1500"
-                className="font-marcellus text-textPrimary text-[22px] uppercase mb-8"
-              >
-                Download Brochure
-              </h1>
+          {detail?.brochure_url && (
+            <form onSubmit={handleDownloadBrochure}>
+              <div className="w-full block lg:hidden">
+                <h1
+                  data-aos="zoom-in"
+                  data-aos-duration="1500"
+                  className="font-marcellus text-textPrimary text-[22px] uppercase mb-8"
+                >
+                  Download Brochure
+                </h1>
 
-              <div className="space-y-4 mb-6">
-                {/* Property Price */}
-                <div data-aos="zoom-in" data-aos-duration="1500" className="space-y-2">
-                  <Label htmlFor="property-price" className="text-[10px] font-semibold text-gray-900">
-                    YOUR NAME
-                  </Label>
-                  <Input
-                    id="name"
-                    placeholder="Your Name"
-                    style={{
-                      backgroundColor: 'white',
-                      borderColor: '#E1E1E1',
-                      borderRadius: '0px',
-                      fontSize: '12px',
-                    }}
-                    className=" text-gray-900"
-                    required
-                  />
+                <div className="space-y-4 mb-6">
+                  {/* Property Price */}
+                  <div data-aos="zoom-in" data-aos-duration="1500" className="space-y-2">
+                    <Label htmlFor="property-price" className="text-[10px] font-semibold text-gray-900">
+                      YOUR NAME
+                    </Label>
+                    <Input
+                      id="name"
+                      placeholder="Your Name"
+                      style={{
+                        backgroundColor: 'white',
+                        borderColor: '#E1E1E1',
+                        borderRadius: '0px',
+                        fontSize: '12px',
+                      }}
+                      className=" text-gray-900"
+                      required
+                    />
+                  </div>
+
+                  <div data-aos="zoom-in" data-aos-duration="1500" className="space-y-2">
+                    <Label htmlFor="down-payment" className="text-[10px] font-semibold text-gray-900">
+                      NOMOR HANDPHONE
+                    </Label>
+                    <Input
+                      id="phone"
+                      placeholder="+62"
+                      style={{
+                        backgroundColor: 'white',
+                        borderColor: '#E1E1E1',
+                        borderRadius: '0px',
+                        fontSize: '12px',
+                      }}
+                      className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
+                      required
+                    />
+                  </div>
+
+                  <div data-aos="zoom-in" data-aos-duration="1500" className="space-y-2">
+                    <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">
+                      YOUR EMAIL
+                    </Label>
+                    <Input
+                      id="email"
+                      placeholder="Your Email"
+                      style={{
+                        backgroundColor: 'white',
+                        borderColor: '#E1E1E1',
+                        borderRadius: '0px',
+                        fontSize: '12px',
+                      }}
+                      className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
+                      required
+                    />
+                  </div>
                 </div>
 
-                <div data-aos="zoom-in" data-aos-duration="1500" className="space-y-2">
-                  <Label htmlFor="down-payment" className="text-[10px] font-semibold text-gray-900">
-                    NOMOR HANDPHONE
-                  </Label>
-                  <Input
-                    id="phone"
-                    placeholder="+62"
-                    style={{
-                      backgroundColor: 'white',
-                      borderColor: '#E1E1E1',
-                      borderRadius: '0px',
-                      fontSize: '12px',
-                    }}
-                    className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
-                    required
-                  />
-                </div>
-
-                <div data-aos="zoom-in" data-aos-duration="1500" className="space-y-2">
-                  <Label htmlFor="loan-term" className="text-[10px] font-semibold text-gray-900">
-                    YOUR EMAIL
-                  </Label>
-                  <Input
-                    id="email"
-                    placeholder="Your Email"
-                    style={{
-                      backgroundColor: 'white',
-                      borderColor: '#E1E1E1',
-                      borderRadius: '0px',
-                      fontSize: '12px',
-                    }}
-                    className=" text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
-                    required
-                  />
-                </div>
+                <Button
+                  data-aos="zoom-in"
+                  data-aos-duration="1500"
+                  variant="filled"
+                  className="w-full rounded-none text-xs py-[24px] uppercase"
+                  type="submit"
+                >
+                  Download Brochure
+                  <span>
+                    <PiDownloadSimpleFill className="text-white text-xl" />
+                  </span>
+                </Button>
               </div>
-
-              <Button
-                data-aos="zoom-in"
-                data-aos-duration="1500"
-                variant="filled"
-                className="w-full rounded-none text-xs py-[24px] uppercase"
-                type="submit"
-              >
-                Download Brochure
-                <span>
-                  <PiDownloadSimpleFill className="text-white text-xl" />
-                </span>
-              </Button>
-            </div>
-          </form>
+            </form>
+          )}
 
           <div className="border-t border-textPrimary border-opacity-10 mt-10 mb-8 lg:mb-12" />
 

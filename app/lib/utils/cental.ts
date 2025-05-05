@@ -124,6 +124,12 @@ export const central = (locale: string = 'en'): CentralModel[] => {
     icon: getIcon(index),
   }));
 
+  const centralPropertyAcademyPillars = content[locale].central.property_academy.pillars.map((pillar, index) => ({
+    title: pillar.title,
+    description: pillar.content,
+    icon: getIcon(index),
+  }));
+
   return [
     {
       slug: 'berbagi',
@@ -172,7 +178,7 @@ export const central = (locale: string = 'en'): CentralModel[] => {
       bannerTitle: 'CENTRAL PROPERTY ACADEMY',
       bannerDescription: content[locale].central.property_academy.content,
       pillarTitle: 'HOW IT WORKS',
-      pillarItems: centralConnectPillars,
+      pillarItems: centralPropertyAcademyPillars,
       pillarsIconBackground: 'bg-primary',
       goals: centralConnectSGoals,
       activityImages: [...centralAcitivityAsArray, ...centralAcitivityAsArray],
