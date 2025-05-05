@@ -20,7 +20,7 @@ import { useMemo } from 'react';
 type PropertyFinderProps = {
   compact?: boolean;
 
-  propertyTypes: {
+  propertyTypes?: {
     id: string;
     title: string;
   }[];
@@ -156,7 +156,8 @@ export default function PropertyFinder({ compact = false }: PropertyFinderProps)
       {/* Facilities Section */}
       <div className="mb-8 ">
         <label className="block text-[10px] uppercase font-semibold mb-4">Facilities</label>
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-2 gap-4">
+          {/* <div className="flex flex-col gap-4"> */}
           {facilities.map((facility) => (
             <div key={facility.id} className="flex items-center space-x-2 ">
               <Checkbox
@@ -169,6 +170,7 @@ export default function PropertyFinder({ compact = false }: PropertyFinderProps)
               </Label>
             </div>
           ))}
+          {/* </div> */}
         </div>
       </div>
 
