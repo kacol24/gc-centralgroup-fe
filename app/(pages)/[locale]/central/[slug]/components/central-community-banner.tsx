@@ -80,35 +80,46 @@ export default function CentralCommunityBanner({
               <div className="w-[20%] h-[1px] bg-white opacity-40 lg:w-[25%]" />
             </div>
 
+            {/* <div className="md:grid md:grid-cols-2 md:gap-x-8 lg:grid-cols-4"> */}
+
+            {/* <div className='md:grid md:grid-cols-2 md:gap-x-8 lg:grid-cols-4'>
+            <div className={`lg:col-span-4 lg:grid lg:grid-flow-col lg:auto-cols-[25%] lg:justify-center lg:gap-4`}> */}
+
             <div className="md:grid md:grid-cols-2 md:gap-x-8 lg:grid-cols-4">
-              {pillarItems &&
-                pillarItems.map((pillar, index) => (
-                  <div
-                    key={index}
-                    className={`
-                    ${index == 0 ? 'mt-20' : 'mt-16'}
-                    ${index < 2 ? 'md:mt-20' : ''}
-                    relative lg:mt-24 pt-20 pb-16 px-10 bg-white
-                  `}
-                    data-aos="fade-up"
-                    data-aos-delay={(index + 5) * 100}
-                  >
+              <div className="md:col-span-2 lg:col-span-4 grid md:grid-cols-2 lg:grid-cols-none lg:grid-flow-col lg:auto-cols-[25%] justify-center gap-4">
+                {pillarItems &&
+                  pillarItems.map((pillar, index) => (
                     <div
-                      className={`absolute -top-10 left-[50%] transform -translate-x-1/2 w-fit p-6 rounded-full ${pillarsIconBackground} border-4 border-white`}
+                      key={index}
+                      className={`
+                      ${index == 0 ? 'mt-20' : 'mt-16'}
+                      ${index < 2 ? 'md:mt-20' : ''}
+                      relative lg:mt-24 pt-20 pb-16 px-10 bg-white
+                    `}
+                      data-aos="fade-up"
+                      data-aos-delay={(index + 5) * 100}
                     >
-                      <Image
-                        src={pillar?.icon}
-                        alt="Icon Home"
-                        className="w-6 object-contain object-center aspect-square"
+                      <div
+                        className={`absolute -top-10 left-[50%] transform -translate-x-1/2 w-fit p-6 rounded-full ${pillarsIconBackground} border-4 border-white`}
+                      >
+                        <Image
+                          src={pillar?.icon}
+                          alt="Icon Home"
+                          className="w-6 object-contain object-center aspect-square"
+                        />
+                      </div>
+                      <h3 className="mb-6 text-2xl text-center text-textPrimary font-marcellus">{pillar.title}</h3>
+                      <p
+                        className="text-sm/6 text-center text-textSecondary font-medium"
+                        dangerouslySetInnerHTML={{ __html: pillar.description }}
                       />
                     </div>
-                    <h3 className="mb-6 text-2xl text-center text-textPrimary font-marcellus">{pillar.title}</h3>
-                    <p
-                      className="text-sm/6 text-center text-textSecondary font-medium"
-                      dangerouslySetInnerHTML={{ __html: pillar.description }}
-                    />
-                  </div>
-                ))}
+                  ))}
+                {/* {pillarItems && pillarItems.length < 4 &&
+                  Array.from({ length: 4 - pillarItems.length }).map((_, fillerIndex) => (
+                    <div key={`filler-${fillerIndex}`}></div>
+                  ))} */}
+              </div>
             </div>
           </div>
         </div>

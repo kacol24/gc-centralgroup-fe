@@ -69,17 +69,16 @@ export default function About() {
             data-aos-delay="200"
           >
             The Best Developer in Batam by Property & Bank Award, dengan pengalaman lebih dari 35 Tahun sejak tahun 1989
-            dalam membangun 3889 rumah impian Anda. Central Group telah berhasil mengembangkan beberapa proyek ternama
-            dengan total lahan lebih dari 200 Ha di Kota Batam, beberapa diantaranya bekerjasama dengan developer
-            bertaraf nasional seperti afiliasi Alam Sutera dan TDW Property.
+            dalam membangun 6600 rumah impian Anda dalam 5 tahun ke belakang. Central Group telah berhasil mengembangkan
+            beberapa proyek ternama dengan total lahan lebih dari 250 Ha di Kota Batam, beberapa diantaranya bekerjasama
+            dengan developer bertaraf nasional seperti afiliasi Alam Sutera dan The Ascott Limited Singapura.
           </p>
           <p
             className="mb-[25%] text-sm/6 text-center md:w-[80%] md:mx-auto text-white"
             data-aos="fade-up"
             data-aos-delay="400"
           >
-            Central Group berpegang pada nilai dan tanggung jawab terhadap pemilik properti, investor, management,
-            masyarakat, lingkungan sekitar dan seluruh jajaran staff.
+            Central Group berpegang pada nilai dan tanggung jawab terhadap seluruh shareholder dan stakeholder.
           </p>
         </div>
 
