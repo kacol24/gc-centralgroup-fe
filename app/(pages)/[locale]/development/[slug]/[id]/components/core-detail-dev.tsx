@@ -51,6 +51,7 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
 
       const link = document.createElement('a');
       link.href = brochure_url;
+      link.target = '_blank';
       link.setAttribute('download', 'Central Brochure.pdf');
       document.body.appendChild(link);
       link.click();
