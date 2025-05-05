@@ -28,6 +28,13 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
     const phone = form.phone.value;
     const email = form.email.value;
 
+    const submitButton = form.querySelector('button[type="submit"]');
+    console.log('submitButton', submitButton);
+    if (submitButton && name && phone && email) {
+      submitButton.setAttribute('disabled', 'true');
+      submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+    }
+
     try {
       const res = await downloadBrochure({
         project_id: '1',
@@ -40,14 +47,19 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
         console.error('Error downloading brochure:', res.error);
         return;
       }
+      alert('Your brochure is being downloaded successfully. Please hold on for a moment!');
+
       const link = document.createElement('a');
       link.href = brochure_url;
-      link.setAttribute('download', 'brochure.pdf');
+      link.setAttribute('download', 'Central Brochure.pdf');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      alert('Your brochure is being downloaded successfully. Please hold on for a moment!');
       console.log(downloadBrochureResult);
+      if (submitButton) {
+        submitButton.removeAttribute('disabled');
+        submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
     } catch (error) {
       console.error('Error downloading brochure:', error);
     }
@@ -166,6 +178,8 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
                     </Label>
                     <Input
                       id="name"
+                      name="name"
+                      type="text"
                       placeholder="Your Name"
                       style={{
                         backgroundColor: 'white',
@@ -185,6 +199,8 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
                     <Input
                       id="phone"
                       placeholder="+62"
+                      name="phone"
+                      type="text"
                       style={{
                         backgroundColor: 'white',
                         borderColor: '#E1E1E1',
@@ -202,6 +218,8 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
                     </Label>
                     <Input
                       id="email"
+                      name="email"
+                      type="email"
                       placeholder="Your Email"
                       style={{
                         backgroundColor: 'white',
@@ -221,6 +239,7 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
                   variant="filled"
                   className="w-full rounded-none text-xs py-[24px] uppercase"
                   type="submit"
+                  disabled={false}
                 >
                   Download Brochure
                   <span>
@@ -285,7 +304,7 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
         </div>
       </div>
       <div data-aos="zoom-in" data-aos-duration="1000" className="hidden lg:block w-[405px] flex-shrink-0">
-        <FormDownloadBrosur nextSectionId={nextSectionId} />
+        {detail?.brochure_url && <FormDownloadBrosur nextSectionId={nextSectionId} />}
       </div>
     </div>
   );
