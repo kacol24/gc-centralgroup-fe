@@ -38,6 +38,7 @@ export default function PropertyFinder({ compact = false }: PropertyFinderProps)
   const [value, setValue] = useState<[number, number]>(searchParams.get('price')?.split('-') || [0, 5000]);
   const [filterLocation, setFilterLocation] = useState();
   const [filterPropertyType, setFilterPropertyType] = useState();
+  const isClient = typeof window !== 'undefined';
 
   const toggleFacility = (facility: string) => {
     setSelectedFacilities((prev) =>
@@ -51,6 +52,7 @@ export default function PropertyFinder({ compact = false }: PropertyFinderProps)
     query: PropertyTypesQuery,
     variables: queryVariables,
     requestPolicy: 'cache-first',
+    pause: !isClient,
   });
   const propertyTypes = useMemo(() => {
     return (
