@@ -50,6 +50,7 @@ export default function PropertyFinder({ compact = false }: PropertyFinderProps)
   const [{ data: propertyTypesResponse }] = useQuery({
     query: PropertyTypesQuery,
     variables: queryVariables,
+    requestPolicy: 'cache-first',
   });
   const propertyTypes = useMemo(() => {
     return (
