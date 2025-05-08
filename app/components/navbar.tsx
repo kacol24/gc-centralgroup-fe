@@ -86,7 +86,14 @@ export default function Navbar() {
       const isArticleDetailPath = pathname.includes('/article/');
       const isArticlePath = pathname.includes('/article');
 
-      if (allowPath.includes(pathname) || (isArticleDetailPath && isMobile) || (isArticlePath && !isMobile)) {
+      console.log(isArticlePath, isMobile);
+
+      if (
+        allowPath.includes(pathname) ||
+        (isArticleDetailPath && isMobile) ||
+        (isArticlePath && !isMobile) ||
+        (isArticlePath && isMobile)
+      ) {
         setVariant({
           text: 'text-black',
           logo: logoColGreen,
@@ -154,7 +161,7 @@ export default function Navbar() {
       <nav className={`w-full fixed z-50 transition-all duration-300 text-xs ${isScrolled ? navbarStyle() : ''}`}>
         <div
           className={`w-full container mx-auto px-4 ${
-            isScrolled ? navbarContainerStyle() : ` py-2 lg:py-6 bg-transparent ${variant.text}`
+            isScrolled ? navbarContainerStyle() : ` py-2 my-3 lg:py-6 bg-transparent ${variant.text}`
           }`}
         >
           <div className="flex items-center">
@@ -171,7 +178,8 @@ export default function Navbar() {
               <Link href={'/'}>
                 <div className={isScrolled ? '' : 'md:relative md:-top-6'}>
                   <Image
-                    className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
+                    // className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
+                    className="w-[80px]"
                     src={isScrolled ? logoRowGreen : variant.logo}
                     alt="CG Logo"
                     height={1000}
@@ -183,7 +191,8 @@ export default function Navbar() {
               <Link href={'/'}>
                 <div className={isScrolled ? '' : 'md:relative md:-top-6'}>
                   <Image
-                    className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
+                    // className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
+                    className="w-[80px]"
                     src={isScrolled ? logo35color : variant.logo2}
                     alt="CG Logo"
                     height={1000}
