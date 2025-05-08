@@ -72,6 +72,7 @@ export default function Navbar() {
   const [variant, setVariant] = useState({
     text: 'text-white',
     logo: logoColWhite,
+    logo2: logo35white,
     iconMenu: iconMenuWhite,
     iconWhatsApp: iconWhatsAppWhite,
     iconCaretDown: iconCaretDownWhite,
@@ -89,6 +90,7 @@ export default function Navbar() {
         setVariant({
           text: 'text-black',
           logo: logoColGreen,
+          logo2: logo35color,
           iconMenu,
           iconWhatsApp,
           iconCaretDown,
@@ -97,6 +99,7 @@ export default function Navbar() {
         setVariant({
           text: 'text-white',
           logo: logoColWhite,
+          logo2: logo35white,
           iconMenu: iconMenuWhite,
           iconWhatsApp: iconWhatsAppWhite,
           iconCaretDown: iconCaretDownWhite,
@@ -150,7 +153,7 @@ export default function Navbar() {
       {/* Navbar */}
       <nav className={`w-full fixed z-50 transition-all duration-300 text-xs ${isScrolled ? navbarStyle() : ''}`}>
         <div
-          className={` w-full container mx-auto px-4   ${
+          className={`w-full container mx-auto px-4 ${
             isScrolled ? navbarContainerStyle() : ` py-2 lg:py-6 bg-transparent ${variant.text}`
           }`}
         >
@@ -166,24 +169,28 @@ export default function Navbar() {
             {/* Center Side (Logo) */}
             <div className="flex items-center space-x-2">
               <Link href={'/'}>
-                <Image
-                  className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
-                  src={isScrolled ? logoRowGreen : variant.logo}
-                  alt="CG Logo"
-                  height={1000}
-                  width={1000}
-                  unoptimized={true}
-                />
+                <div className={isScrolled ? '' : 'relative -top-6'}>
+                  <Image
+                    className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
+                    src={isScrolled ? logoRowGreen : variant.logo}
+                    alt="CG Logo"
+                    height={1000}
+                    width={1000}
+                    unoptimized={true}
+                  />
+                </div>
               </Link>
               <Link href={'/'}>
-                <Image
-                  className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
-                  src={isScrolled ? logo35color : logo35white}
-                  alt="CG Logo"
-                  height={1000}
-                  width={1000}
-                  unoptimized={true}
-                />
+                <div className={isScrolled ? '' : 'relative -top-6'}>
+                  <Image
+                    className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
+                    src={isScrolled ? logo35color : variant.logo2}
+                    alt="CG Logo"
+                    height={1000}
+                    width={1000}
+                    unoptimized={true}
+                  />
+                </div>
               </Link>
             </div>
 

@@ -49,13 +49,15 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
       }
       alert('Your brochure is being downloaded successfully. Please hold on for a moment!');
 
-      const link = document.createElement('a');
-      link.href = brochure_url;
-      link.target = '_blank';
-      link.setAttribute('download', 'Central Brochure.pdf');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      window.open(brochure_url, '_blank');
+
+      // const link = document.createElement('a');
+      // link.href = brochure_url;
+      // link.target = '_blank';
+      // link.setAttribute('download', 'Central Brochure.pdf');
+      // document.body.appendChild(link);
+      // link.click();
+      // document.body.removeChild(link);
       console.log(downloadBrochureResult);
       if (submitButton) {
         submitButton.removeAttribute('disabled');
