@@ -1,4 +1,4 @@
-import CarouselBankPartnerComponent from '@/app/components/landing-components/carousel-bank-partner-component';
+import Image from 'next/image';
 
 export default async function SectionBankPartners() {
   const slides = [
@@ -123,8 +123,33 @@ export default async function SectionBankPartners() {
 
   return (
     <section className="bg-backgroundWhite">
-      <div className="w-full pb-8 pt-0 lg:pb-20 lg:pt-[16px]">
-        <CarouselBankPartnerComponent slides={slides} />
+      <h1
+        data-aos="fade-up"
+        className="text-[28px] lg:text-4xl text-center  mb-6 lg:mb-16 font-marcellus text-textPrimary uppercase"
+      >
+        Bank Partners
+      </h1>
+      <div className="w-full">
+        <div className="container mx-auto px-8">
+          <div className="flex justify-center">
+            <div className="flex flex-wrap gap-3 md:gap-8 justify-start items-center">
+              {slides?.map((slide, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center justify-center p-1 w-[72px] flex-shrink-0 relative"
+                >
+                  <Image
+                    src={slide.desktop}
+                    alt={slide.title}
+                    width={72}
+                    height={72}
+                    className="w-full h-auto object-contain aspect-square"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
