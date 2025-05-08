@@ -165,7 +165,7 @@ export const central = (locale: string = 'en'): CentralModel[] => {
       bannerTitle: 'CENTRAL HOME',
       bannerDescription: content[locale].central.home.content,
       pillarTitle: 'HOW IT WORKS',
-      pillarItems: centralConnectPillars,
+      pillarItems: [],
       pillarsIconBackground: 'bg-primary',
       goals: centralConnectSGoals,
       activityImages: [...centralAcitivityAsArray, ...centralAcitivityAsArray],

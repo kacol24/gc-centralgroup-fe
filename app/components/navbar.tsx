@@ -86,8 +86,6 @@ export default function Navbar() {
       const isArticleDetailPath = pathname.includes('/article/');
       const isArticlePath = pathname.includes('/article');
 
-      console.log(isArticlePath, isMobile);
-
       if (
         allowPath.includes(pathname) ||
         (isArticleDetailPath && isMobile) ||
