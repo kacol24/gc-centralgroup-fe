@@ -74,9 +74,9 @@ export default function FormDownloadBrosur({ nextSectionId }: { nextSectionId: s
         console.error('Error downloading brochure:', res.error);
         return;
       }
-      alert('Your brochure is being downloaded successfully. Please hold on for a moment!');
+      alert('Your brochure has been sent to your email');
 
-      window.open(brochure_url, '_blank');
+      // window.open(brochure_url, '_blank');
 
       // const link = document.createElement('a');
       // link.href = brochure_url;
