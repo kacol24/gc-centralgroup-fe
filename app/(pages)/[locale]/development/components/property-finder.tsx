@@ -16,7 +16,7 @@ function formatRupiah(value: number) {
 export default function PropertyFinder({compact = false}) {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const [selectedFacilities, setSelectedFacilities] = useState<string[]>(searchParams.get('facilities') || []);
+    const [selectedFacilities, setSelectedFacilities] = useState<string[]>(searchParams.get('facilities')?.split(',') || []);
     const [value, setValue] = useState<[number, number]>(searchParams.get('price')?.split('-') || [0, 5000]);
     const [filterLocation, setFilterLocation] = useState();
     const [filterPropertyType, setFilterPropertyType] = useState();
