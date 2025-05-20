@@ -2,23 +2,18 @@
 
 import {useState} from 'react';
 import {Slider} from '@/components/ui/slider';
-import {Label} from '@/components/ui/label';
-import {Checkbox} from '@/components/ui/checkbox';
 
-import {useQuery} from "@urql/next";
-import FacilitiesQuery from '@/graphql/FacilitiesQuery.graphql';
 import {useSearchParams} from "next/navigation";
 import {useRouter} from '@/i18n/navigation';
-import {useLocale} from "next-intl";
 import FinderPropertyType from "@/app/(pages)/[locale]/development/components/finder-property-type";
 import FinderLocations from "@/app/(pages)/[locale]/development/components/finder-locations";
+import FinderFacilities from "@/app/(pages)/[locale]/development/components/finder-facilities";
 
 function formatRupiah(value: number) {
     return value >= 1000 ? `Rp ${value / 1000} M` : `Rp ${value} Jt`;
 }
 
 export default function PropertyFinder({compact = false}) {
-    const locale = useLocale();
     const searchParams = useSearchParams();
     const router = useRouter();
     const [selectedFacilities, setSelectedFacilities] = useState<string[]>(searchParams.get('facilities') || []);
@@ -32,29 +27,23 @@ export default function PropertyFinder({compact = false}) {
         );
     };
 
-    const [{data: facilitiesResponse}] = useQuery({
-        query: FacilitiesQuery,
-        variables: {
-            lang: locale
-        }
-    });
-    const facilities = facilitiesResponse.facilities;
-
     const handleFindProperty = () => {
-        const params = new URLSearchParams();
+        const variables = {};
+
         if (filterLocation) {
-            params.set('location', filterLocation);
+            variables['location'] = filterLocation;
         }
         if (filterPropertyType) {
-            params.set('property_type', filterPropertyType);
+            variables['property_type'] = filterPropertyType;
         }
         if (selectedFacilities.length) {
-            params.set('facilities', selectedFacilities.join(','))
+            variables['facilities'] = selectedFacilities.join(',');
         }
         if (value) {
-            params.set('price', `${value[0]}-${value[1]}`);
+            variables['price'] = `${value[0]}-${value[1]}`;
         }
 
+        const params = new URLSearchParams(variables);
         router.push('/search?' + params.toString());
     };
 
@@ -91,20 +80,7 @@ export default function PropertyFinder({compact = false}) {
             {/* Facilities Section */}
             <div className="mb-8 ">
                 <label className="block text-[10px] uppercase font-semibold mb-4">Facilities</label>
-                <div className="grid grid-cols-2 gap-4">
-                    {facilities.map((facility) => (
-                        <div key={facility.id} className="flex items-center space-x-2 ">
-                            <Checkbox
-                                id={facility.id}
-                                checked={selectedFacilities.includes(facility.id)}
-                                onCheckedChange={() => toggleFacility(facility.id)}
-                            />
-                            <Label htmlFor={facility.title} className="text-xs">
-                                {facility.title}
-                            </Label>
-                        </div>
-                    ))}
-                </div>
+                <FinderFacilities selectedFacilities={selectedFacilities} handleValueChange={toggleFacility}/>
             </div>
             <button className="w-full bg-primary py-4 px-[92px] rounded-sm mt-0 text-xs font-semibold"
                     onClick={handleFindProperty}>
