@@ -2,19 +2,18 @@
 
 import {useState} from 'react';
 import {FaMapMarkerAlt} from 'react-icons/fa';
-import {RiBuildingFill} from 'react-icons/ri';
 import {Slider} from '@/components/ui/slider';
 import {ComboboxDemo} from '@/components/ui/combobox';
 import {Label} from '@/components/ui/label';
 import {Checkbox} from '@/components/ui/checkbox';
 
 import {useQuery} from "@urql/next";
-import PropertyTypesQuery from '@/graphql/PropertyTypesQuery.graphql';
 import LocationsQuery from '@/graphql/LocationsQuery.graphql';
 import FacilitiesQuery from '@/graphql/FacilitiesQuery.graphql';
 import {useSearchParams} from "next/navigation";
 import {useRouter} from '@/i18n/navigation';
 import {useLocale} from "next-intl";
+import FinderPropertyType from "@/app/(pages)/[locale]/development/components/finder-property-type";
 
 function formatRupiah(value: number) {
     return value >= 1000 ? `Rp ${value / 1000} M` : `Rp ${value} Jt`;
@@ -34,20 +33,6 @@ export default function PropertyFinder({compact = false}) {
             prev.includes(facility) ? prev.filter((f) => f !== facility) : [...prev, facility],
         );
     };
-
-    const [{data: propertyTypesResponse}] = useQuery({
-        query: PropertyTypesQuery,
-        variables: {
-            lang: locale
-        }
-    });
-
-    const propertyTypes = propertyTypesResponse.propertytypes.map(propertyType => {
-        return {
-            value: propertyType.id,
-            label: propertyType.title
-        }
-    })
 
     const [{data: locationsResponse}] = useQuery({
         query: LocationsQuery
@@ -109,20 +94,7 @@ export default function PropertyFinder({compact = false}) {
             </div>
 
             <div className="mb-6">
-                <ComboboxDemo
-                    dataPropertys={propertyTypes}
-                    placeholder="Property Types"
-                    icon={<RiBuildingFill className="text-white"/>}
-                    onValueChange={value => setFilterPropertyType(value)}
-                    defaultValue={searchParams.get('property_type')}
-                    customClassName={{
-                        button: 'bg-black text-white hover:bg-black hover:opacity-80 py-6',
-                        popoverContent: 'bg-gray-800 text-white',
-                        input: 'border-gray-400',
-                        item: 'text-gray-700',
-                        itemActive: 'bg-blue-300 text-black',
-                    }}
-                />
+                <FinderPropertyType handleValueChange={value => setFilterPropertyType(value)}/>
             </div>
 
             <div className="mb-6">
