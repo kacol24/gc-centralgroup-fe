@@ -28,6 +28,7 @@ export default function PropertyFinder({compact = false}) {
     const [value, setValue] = useState<[number, number]>(searchParams.get('price')?.split('-') || [0, 5000]);
     const [filterLocation, setFilterLocation] = useState();
     const [filterPropertyType, setFilterPropertyType] = useState();
+    const [isLoading, setIsLoading] = useState(false);
 
     const toggleFacility = (facility: string) => {
         setSelectedFacilities((prev) =>
@@ -69,6 +70,7 @@ export default function PropertyFinder({compact = false}) {
     const facilities = facilitiesResponse.facilities;
 
     const handleFindProperty = () => {
+        setIsLoading(true);
         const params = new URLSearchParams();
         if (filterLocation) {
             params.set('location', filterLocation);
@@ -84,11 +86,12 @@ export default function PropertyFinder({compact = false}) {
         }
 
         router.push('/search?' + params.toString());
+        setIsLoading(false);
     };
 
     return (
         <div
-            className={`w-full lg:w-[580px] p-8 lg:p-${compact ? 10 : 20} bg-[#2E2E2E] text-white ${compact ? 'lg:min-w-[405px] lg:max-w-[405px]' : ''}`}>
+            className={`relative w-full lg:w-[580px] p-8 lg:p-${compact ? 10 : 20} bg-[#2E2E2E] text-white ${compact ? 'lg:min-w-[405px] lg:max-w-[405px]' : ''}`}>
             <h2 className="text-2xl font-marcellus text-start  mb-10">PROPERTY FINDER</h2>
 
             <div className="mb-[22px]">
@@ -161,10 +164,21 @@ export default function PropertyFinder({compact = false}) {
                 </div>
             </div>
 
-            <button className="w-full bg-primary py-4 px-[92px] rounded-sm mt-0 text-xs font-semibold"
-                    onClick={handleFindProperty}>
-                FIND PROPERTY
-            </button>
+            {
+                isLoading ?
+                    <div>
+                        <button className="w-full bg-primary py-4 px-[92px] rounded-sm mt-0 text-xs font-semibold"
+                                disabled>
+                            SEARCHING...
+                        </button>
+                        <div className="absolute top-0 left-0 w-full h-full bg-white/70"></div>
+                    </div>
+                    :
+                    <button className="w-full bg-primary py-4 px-[92px] rounded-sm mt-0 text-xs font-semibold"
+                            onClick={handleFindProperty}>
+                        FIND PROPERTY
+                    </button>
+            }
         </div>
     );
 }
