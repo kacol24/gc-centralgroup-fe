@@ -14,7 +14,6 @@ import CarouselAwardeComponent from '@/app/components/landing-components/carouse
 import BannersQuery from '@/graphql/BannersQuery.graphql';
 import content from '@/app/lib/utils/content.json';
 import {Metadata} from "next";
-import AosInit from "@/components/aos";
 import {getLocale} from "next-intl/server";
 import {getClient} from "@/app/lib/urqlClient";
 
