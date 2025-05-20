@@ -1,19 +1,17 @@
 'use client';
 
 import {useState} from 'react';
-import {FaMapMarkerAlt} from 'react-icons/fa';
 import {Slider} from '@/components/ui/slider';
-import {ComboboxDemo} from '@/components/ui/combobox';
 import {Label} from '@/components/ui/label';
 import {Checkbox} from '@/components/ui/checkbox';
 
 import {useQuery} from "@urql/next";
-import LocationsQuery from '@/graphql/LocationsQuery.graphql';
 import FacilitiesQuery from '@/graphql/FacilitiesQuery.graphql';
 import {useSearchParams} from "next/navigation";
 import {useRouter} from '@/i18n/navigation';
 import {useLocale} from "next-intl";
 import FinderPropertyType from "@/app/(pages)/[locale]/development/components/finder-property-type";
+import FinderLocations from "@/app/(pages)/[locale]/development/components/finder-locations";
 
 function formatRupiah(value: number) {
     return value >= 1000 ? `Rp ${value / 1000} M` : `Rp ${value} Jt`;
@@ -33,17 +31,6 @@ export default function PropertyFinder({compact = false}) {
             prev.includes(facility) ? prev.filter((f) => f !== facility) : [...prev, facility],
         );
     };
-
-    const [{data: locationsResponse}] = useQuery({
-        query: LocationsQuery
-    });
-
-    const cities = locationsResponse.locations.map(location => {
-        return {
-            value: location.id,
-            label: location.title
-        }
-    });
 
     const [{data: facilitiesResponse}] = useQuery({
         query: FacilitiesQuery,
@@ -77,20 +64,7 @@ export default function PropertyFinder({compact = false}) {
             <h2 className="text-2xl font-marcellus text-start  mb-10">PROPERTY FINDER</h2>
 
             <div className="mb-[22px]">
-                <ComboboxDemo
-                    dataPropertys={cities}
-                    placeholder="Location"
-                    icon={<FaMapMarkerAlt className="text-white"/>}
-                    onValueChange={value => setFilterLocation(value)}
-                    defaultValue={searchParams.get('location')}
-                    customClassName={{
-                        button: 'bg-black text-white hover:bg-black hover:opacity-80 py-6',
-                        popoverContent: 'bg-gray-800 text-white',
-                        input: 'border-gray-400',
-                        item: 'text-gray-700',
-                        itemActive: 'bg-blue-300 text-black',
-                    }}
-                />
+                <FinderLocations handleValueChange={value => setFilterLocation(value)}/>
             </div>
 
             <div className="mb-6">
