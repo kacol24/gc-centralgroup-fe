@@ -16,6 +16,7 @@ import content from '@/app/lib/utils/content.json';
 import {Metadata} from "next";
 import {getLocale} from "next-intl/server";
 import {getClient} from "@/app/lib/urqlClient";
+import AosProvider from "@/components/AosProvider";
 
 export const metadata: Metadata = {
   title: 'About Us | Central Group',
@@ -37,7 +38,7 @@ export default async function About() {
   });
 
   return (
-    <>
+    <AosProvider>
       <section
         className={`min-h-[1140px] md:min-h-[1000px] h-[120vh] relative flex flex-col justify-start bg-cover bg-center md:justify-center`}
         style={{ backgroundImage: `url(${backgroundBannerPageAbout.src})` }}
@@ -188,6 +189,6 @@ export default async function About() {
           </div>
         </div>
       </section>
-    </>
+    </AosProvider>
   );
 }
