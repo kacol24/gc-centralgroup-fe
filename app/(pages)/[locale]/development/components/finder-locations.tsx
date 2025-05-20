@@ -3,12 +3,14 @@ import {ComboboxDemo} from "@/components/ui/combobox";
 import {useQuery} from "@urql/next";
 import LocationsQuery from "@/graphql/LocationsQuery.graphql";
 import {useSearchParams} from "next/navigation";
+import React from "react";
 
 export default function FinderLocations({ handleValueChange }) {
     const searchParams = useSearchParams();
 
     const [{data: locationsResponse}] = useQuery({
-        query: LocationsQuery
+        query: LocationsQuery,
+        context: React.useMemo(() => ({}), [])
     });
 
     const cities = locationsResponse.locations.map(location => {

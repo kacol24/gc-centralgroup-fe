@@ -1,11 +1,10 @@
-'use client';
-
 import {RiBuildingFill} from "react-icons/ri";
 import {ComboboxDemo} from "@/components/ui/combobox";
 import {useQuery} from "@urql/next";
 import PropertyTypesQuery from "@/graphql/PropertyTypesQuery.graphql";
 import {useLocale} from "next-intl";
 import {useSearchParams} from "next/navigation";
+import React from "react";
 
 export default function FinderPropertyType({ handleValueChange }) {
     const locale = useLocale();
@@ -15,7 +14,8 @@ export default function FinderPropertyType({ handleValueChange }) {
         query: PropertyTypesQuery,
         variables: {
             lang: locale
-        }
+        },
+        context: React.useMemo(() => ({}), [])
     });
 
     const propertyTypes = propertyTypesResponse.propertytypes.map(propertyType => {

@@ -3,6 +3,7 @@ import {Label} from "@/components/ui/label";
 import {useQuery} from "@urql/next";
 import FacilitiesQuery from "@/graphql/FacilitiesQuery.graphql";
 import {useLocale} from "next-intl";
+import React from "react";
 
 export default function FinderFacilities({selectedFacilities, handleValueChange}) {
     const locale = useLocale();
@@ -11,7 +12,8 @@ export default function FinderFacilities({selectedFacilities, handleValueChange}
         query: FacilitiesQuery,
         variables: {
             lang: locale
-        }
+        },
+        context: React.useMemo(() => ({}), [])
     });
     const facilities = facilitiesResponse.facilities;
 
