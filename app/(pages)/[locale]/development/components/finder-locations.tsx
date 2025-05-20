@@ -3,26 +3,30 @@ import {ComboboxDemo} from "@/components/ui/combobox";
 import {useQuery} from "@urql/next";
 import LocationsQuery from "@/graphql/LocationsQuery.graphql";
 import {useSearchParams} from "next/navigation";
-import React from "react";
+import React, {useEffect} from "react";
 
 export default function FinderLocations({ handleValueChange }) {
     const searchParams = useSearchParams();
 
-    const [{data: locationsResponse}] = useQuery({
+    const [{data: locationsResponse}, reexecuteQuery] = useQuery({
         query: LocationsQuery,
-        context: React.useMemo(() => ({}), [])
+        pause: true,
     });
 
-    const cities = locationsResponse.locations.map(location => {
+    const cities = locationsResponse?.locations.map(location => {
         return {
             value: location.id,
             label: location.title
         }
     });
 
+    useEffect(function (){
+        reexecuteQuery();
+    }, [reexecuteQuery]);
+
     return (
         <ComboboxDemo
-            dataPropertys={cities}
+            dataPropertys={cities ?? []}
             placeholder="Location"
             icon={<FaMapMarkerAlt className="text-white"/>}
             onValueChange={value => handleValueChange(value)}

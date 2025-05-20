@@ -4,30 +4,34 @@ import {useQuery} from "@urql/next";
 import PropertyTypesQuery from "@/graphql/PropertyTypesQuery.graphql";
 import {useLocale} from "next-intl";
 import {useSearchParams} from "next/navigation";
-import React from "react";
+import React, {useEffect} from "react";
 
 export default function FinderPropertyType({ handleValueChange }) {
     const locale = useLocale();
     const searchParams = useSearchParams();
 
-    const [{data: propertyTypesResponse}] = useQuery({
+    const [{data: propertyTypesResponse}, reexecuteQuery] = useQuery({
         query: PropertyTypesQuery,
         variables: {
             lang: locale
         },
-        context: React.useMemo(() => ({}), [])
+        pause: true,
     });
 
-    const propertyTypes = propertyTypesResponse.propertytypes.map(propertyType => {
+    const propertyTypes = propertyTypesResponse?.propertytypes.map(propertyType => {
         return {
             value: propertyType.id,
             label: propertyType.title
         }
     });
 
+    useEffect(function () {
+        reexecuteQuery();
+    }, [reexecuteQuery]);
+
     return (
         <ComboboxDemo
-            dataPropertys={propertyTypes}
+            dataPropertys={propertyTypes ?? []}
             placeholder="Property Types"
             icon={<RiBuildingFill className="text-white"/>}
             onValueChange={value => handleValueChange(value)}
