@@ -59,7 +59,9 @@ export default function Search() {
             </h1>
             <div className="container mx-auto px-4">
                 <div className="pb-10 lg:pb-20 flex flex-col md:flex-row">
-                    <PropertyFinder compact/>
+                    <div>
+                        <PropertyFinder compact/>
+                    </div>
                     <div className="flex flex-col flex-grow lg:pl-6">
                         {
                             projectsResponse?.projects.datas.length ?

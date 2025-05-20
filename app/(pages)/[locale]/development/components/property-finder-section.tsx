@@ -15,11 +15,11 @@ export default function PropertyFinderSection() {
   );
 
   return (
-    <section className="w-full h-auto lg:h-[1080px] lg:flex">
-      <div className="w-full h-[295px] lg:h-[1080px] lg:flex-grow relative">
+    <section className="w-full h-auto lg:flex">
+      <div className="w-full h-[295px] lg:h-auto lg:flex-grow relative">
         <PropertyMap />
       </div>
-      <PropertyFinder />
+      <PropertyFinder compact/>
     </section>
   );
 }
