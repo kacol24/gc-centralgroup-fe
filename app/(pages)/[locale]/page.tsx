@@ -13,7 +13,8 @@ import BlogsQuery from '@/graphql/BlogsQuery.graphql';
 import { getLocale } from 'next-intl/server';
 import SectionAwards from '@/app/components/landing-components/section-awards';
 import SectionBankPartners from '../../components/landing-components/section-bank-partners';
-import PropertyFinderSection from './development/components/property-finder-section';
+// import PropertyFinderSection from './development/components/property-finder-section';
+import PropertyFinder from "@/app/(pages)/[locale]/development/components/property-finder";
 
 async function getHomepageBanners(locale, client) {
   const { data: heroBanners } = await client.query(BannersQuery, {
@@ -74,7 +75,7 @@ export default async function Home() {
         <SectionAwards />
       </Suspense>
       <SectionBankPartners />
-      <PropertyFinderSection />
+      <PropertyFinder/>
       <CentralNewsComponent blogs={blogs?.blogs} />
       <CommunityEcosystemComponent />
     </div>
