@@ -32,6 +32,7 @@ interface NewsItem {
   title: string;
   excerpt: string;
   publish_date: string;
+  formatted_publish_date: string;
   image: string;
   category: NewsCategory;
   author: Author;
@@ -187,7 +188,7 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
                 description={news.excerpt}
                 author={news.author.name}
                 category={news.category.title}
-                date={news.publish_date}
+                date={news.formatted_publish_date}
                 image={news.image}
                 index={index}
                 slug={news.slug}
@@ -214,7 +215,7 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
                     description={news.excerpt}
                     author={news.author.name}
                     category={news.category.title}
-                    date={news.publish_date}
+                    date={news.formatted_publish_date}
                     image={news.image}
                     index={index}
                     slug={news.slug}

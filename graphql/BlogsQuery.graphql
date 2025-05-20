@@ -34,6 +34,7 @@ query Q_BLOGS (
 #                }
             }
             publish_date
+            formatted_publish_date
 #            related_products
             related_blogs {
                 id

@@ -15,11 +15,7 @@ export default async function ArticleCore({ page, category }) {
     categoryId: category,
   });
 
-  const newsCards = blogResponse.blogs.datas.map((news) => ({
-    ...news,
-    publish_date: new Date(news.publish_date).toISOString().split('T')[0],
-  }));
-  // const newsCards = blogResponse.blogs.datas;
+  const newsCards = blogResponse.blogs.datas;
   const totalPages = blogResponse.blogs.pagination.last_page;
 
   return (
@@ -46,7 +42,7 @@ export default async function ArticleCore({ page, category }) {
             description={news.excerpt}
             author={news.author.name}
             category={news.category.title}
-            date={news.publish_date}
+            date={news.formatted_publish_date}
             image={news.image}
             index={index}
             slug={news.slug}

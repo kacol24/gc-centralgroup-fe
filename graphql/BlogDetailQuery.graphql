@@ -17,6 +17,7 @@ query Q_BLOG_DETAIL($lang: String!, $id: ID!) {
             slug
         }
         publish_date
+        formatted_publish_date
         content
         related_blogs {
             id

@@ -7,10 +7,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext
 import CardArticle from '../card-article';
 
 export default function CentralNewsComponent({ blogs }) {
-  const newsCards = blogs.datas.map((news) => ({
-    ...news,
-    publish_date: new Date(news.publish_date).toISOString().split('T')[0],
-  }));
+  const newsCards = blogs.datas;
   const limitedNews = newsCards.slice(0, 3);
   return (
     <section className="w-full mt-14 lg:mt-[100px] lg:container lg:mx-auto bg-backgroundWhite px-4 pb-0 pt-12 lg:pt-0">
@@ -30,7 +27,7 @@ export default function CentralNewsComponent({ blogs }) {
             description={news.excerpt}
             author={news.author.name}
             category={news.category.title}
-            date={news.publish_date}
+            date={news.formatted_publish_date}
             image={news.image}
             index={index}
             slug={news.slug}
@@ -57,7 +54,7 @@ export default function CentralNewsComponent({ blogs }) {
                 description={news.excerpt}
                 author={news.author.name}
                 category={news.category.title}
-                date={news.publish_date}
+                date={news.formatted_publish_date}
                 image={news.image}
                 index={index}
                 slug={news.slug}
