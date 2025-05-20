@@ -28,7 +28,6 @@ export default function PropertyFinder({compact = false}) {
     const [value, setValue] = useState<[number, number]>(searchParams.get('price')?.split('-') || [0, 5000]);
     const [filterLocation, setFilterLocation] = useState();
     const [filterPropertyType, setFilterPropertyType] = useState();
-    const [isLoading, setIsLoading] = useState(false);
 
     const toggleFacility = (facility: string) => {
         setSelectedFacilities((prev) =>
@@ -70,7 +69,6 @@ export default function PropertyFinder({compact = false}) {
     const facilities = facilitiesResponse.facilities;
 
     const handleFindProperty = () => {
-        setIsLoading(true);
         const params = new URLSearchParams();
         if (filterLocation) {
             params.set('location', filterLocation);
@@ -162,22 +160,10 @@ export default function PropertyFinder({compact = false}) {
                     ))}
                 </div>
             </div>
-
-            {
-                isLoading ?
-                    <div>
-                        <button className="w-full bg-primary py-4 px-[92px] rounded-sm mt-0 text-xs font-semibold"
-                                disabled>
-                            SEARCHING...
-                        </button>
-                        <div className="absolute top-0 left-0 w-full h-full bg-white/70"></div>
-                    </div>
-                    :
-                    <button className="w-full bg-primary py-4 px-[92px] rounded-sm mt-0 text-xs font-semibold"
-                            onClick={handleFindProperty}>
-                        FIND PROPERTY
-                    </button>
-            }
+            <button className="w-full bg-primary py-4 px-[92px] rounded-sm mt-0 text-xs font-semibold"
+                    onClick={handleFindProperty}>
+                FIND PROPERTY
+            </button>
         </div>
     );
 }
