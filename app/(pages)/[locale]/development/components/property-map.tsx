@@ -50,7 +50,7 @@ function ResizeMapOnMount() {
   return null;
 }
 
-export default function PropertyFinder() {
+export default function PropertyMap() {
   const locale = useLocale();
 
   useEffect(() => {
