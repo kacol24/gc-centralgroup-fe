@@ -30,7 +30,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-    const accessToken = await fetchToken();
+    const accessToken = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
     const locale = await getLocale();
 
   return (

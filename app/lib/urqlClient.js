@@ -2,6 +2,7 @@ import {cacheExchange, createClient, fetchExchange} from '@urql/next';
 import {registerUrql} from '@urql/next/rsc';
 import {devtoolsExchange} from '@urql/devtools';
 import {cache} from 'react';
+import {authExchange} from '@urql/exchange-auth';
 
 export const fetchToken = cache(
     async () => {
@@ -33,15 +34,29 @@ export const fetchToken = cache(
 );
 
 export const {getClient} = registerUrql(async () => {
-  const token = await fetchToken();
+  let token = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
 
   return createClient({
     url: process.env.NEXT_PUBLIC_GRAPHQL_API,
-    fetchOptions: {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    },
-    exchanges: [devtoolsExchange, cacheExchange, fetchExchange]
+    exchanges: [
+      devtoolsExchange,
+      cacheExchange,
+      authExchange(async utils => {
+        return {
+          addAuthToOperation(operation) {
+            return utils.appendHeaders(operation, {
+              Authorization: `Bearer ${token}`
+            });
+          },
+          didAuthError(error, _operation) {
+            return error.response?.status === 401;
+          },
+          async refreshAuth() {
+            token = await fetchToken();
+          },
+        };
+      }),
+      fetchExchange
+    ]
   });
 });
