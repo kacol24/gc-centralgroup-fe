@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Montserrat, Aboreto, Marcellus } from 'next/font/google';
 import './globals.css';
 import GraphqlProvider from "@/components/GraphqlProvider";
-import {fetchToken} from "@/app/lib/urqlClient";
 import {getLocale} from "next-intl/server";
 import {NuqsAdapter} from 'nuqs/adapters/next/app'
 

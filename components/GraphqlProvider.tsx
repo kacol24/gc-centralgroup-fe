@@ -26,7 +26,7 @@ export default function GraphqlProvider({children, token}) {
                                 Authorization: `Bearer ${accessToken}`
                             });
                         },
-                        didAuthError(error, _operation) {
+                        didAuthError(error) {
                             return error.response?.status === 401;
                         },
                         async refreshAuth() {

@@ -27,7 +27,6 @@ export const fetchToken = cache(
       }
 
       const data = await response.json();
-      console.log(data);
 
       return data.access_token;
     }
@@ -48,7 +47,7 @@ export const {getClient} = registerUrql(async () => {
               Authorization: `Bearer ${token}`
             });
           },
-          didAuthError(error, _operation) {
+          didAuthError(error) {
             return error.response?.status === 401;
           },
           async refreshAuth() {
