@@ -25,11 +25,6 @@ const marcellus = Marcellus({ subsets: ['latin'], weight: '400' });
 const aboreto = Aboreto({ subsets: ['latin'], weight: '400' });
 const montserrat = Montserrat({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: 'Central Group',
-  description: 'Building Your Dream Home',
-};
-
 export default async function RootLayout({
   children,
   params,

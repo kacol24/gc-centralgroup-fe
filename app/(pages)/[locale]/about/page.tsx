@@ -21,6 +21,12 @@ import BannersQuery from '@/graphql/BannersQuery.graphql';
 import { useLocale } from 'next-intl';
 import { useQuery } from '@urql/next';
 import content from '@/app/lib/utils/content.json';
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: 'About Us | Central Group',
+  description: 'Central Group is the leading property developer in Batam, Indonesia, with over 35 years of experience and prestigious awards. Discover our innovative projects, trusted partnerships, and commitment to building dream homes and communities. Contact us today to learn more!',
+};
 
 export default function About() {
   const { width } = useWindowSize();
