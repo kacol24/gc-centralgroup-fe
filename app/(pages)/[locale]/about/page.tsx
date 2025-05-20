@@ -38,7 +38,7 @@ export default async function About() {
   });
 
   return (
-    <AosInit>
+    <>
       <section
         className={`min-h-[1140px] md:min-h-[1000px] h-[120vh] relative flex flex-col justify-start bg-cover bg-center md:justify-center`}
         style={{ backgroundImage: `url(${backgroundBannerPageAbout.src})` }}
@@ -189,6 +189,6 @@ export default async function About() {
           </div>
         </div>
       </section>
-    </AosInit>
+    </>
   );
 }
