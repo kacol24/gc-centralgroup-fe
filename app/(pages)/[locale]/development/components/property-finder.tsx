@@ -86,7 +86,6 @@ export default function PropertyFinder({compact = false}) {
         }
 
         router.push('/search?' + params.toString());
-        setIsLoading(false);
     };
 
     return (

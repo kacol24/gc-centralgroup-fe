@@ -1,51 +1,22 @@
-'use client'
+import PropertyFinder from "@/app/(pages)/[locale]/development/components/property-finder";
+import SearchResult from "@/app/(pages)/[locale]/search/components/search-result";
+import {createLoader, parseAsArrayOf, parseAsInteger, SearchParams} from "nuqs/server";
 
-import ProjectsQuery from "@/graphql/ProjectsQuery.graphql";
-import CardListDevelopment from "@/app/(pages)/[locale]/development/components/card-list-development";
-import {useMemo} from "react";
-import dynamic from "next/dynamic";
-import {useQuery} from "@urql/next";
-import {useLocale} from "next-intl";
-import {parseAsArrayOf, parseAsInteger, useQueryState} from "nuqs";
+const filterSearchParams = {
+    location: parseAsInteger,
+    propertyType: parseAsInteger,
+    facilities: parseAsArrayOf(parseAsInteger, ','),
+    price: parseAsArrayOf(parseAsInteger, '-')
+};
 
-export default function Search() {
-    const locale = useLocale();
+const loadSearchParams = createLoader(filterSearchParams);
 
-    const PropertyFinder = useMemo(
-        () =>
-            dynamic(() => import('../development/components/property-finder'), {
-                loading: () => <p>A map is loading</p>,
-                ssr: false,
-            }),
-        [],
-    );
+type PageProps = {
+    searchParams: Promise<SearchParams>
+}
 
-    const [location] = useQueryState('location', parseAsInteger);
-    const [propertyType] = useQueryState('property_type', parseAsInteger);
-    const [facilities] = useQueryState('facilities', parseAsArrayOf(parseAsInteger, ','));
-    const [price] = useQueryState('price', parseAsArrayOf(parseAsInteger, '-'));
-
-    const variables = {
-        lang: locale
-    };
-    if (location) {
-        variables['locationId'] = location;
-    }
-    if (propertyType) {
-        variables['propertyTypeId'] = propertyType;
-    }
-    if (facilities) {
-        variables['facilityIds'] = facilities;
-    }
-    if (price) {
-        variables['minPrice'] = price[0] * 1000000;
-        variables['maxPrice'] = price[1] * 1000000;
-    }
-
-    const [{data: projectsResponse}] = useQuery({
-        query: ProjectsQuery,
-        variables
-    });
+export default async function Search({searchParams}: PageProps) {
+    const params = await loadSearchParams(searchParams);
 
     return (
         <div className="h-auto flex flex-col justify-center items-center">
@@ -63,14 +34,7 @@ export default function Search() {
                         <PropertyFinder compact/>
                     </div>
                     <div className="flex flex-col flex-grow lg:pl-6">
-                        {
-                            projectsResponse?.projects.datas.length ?
-                                <CardListDevelopment columns="2" properties={projectsResponse.projects}/>
-                                :
-                                <div>
-                                    We’ve found 0 matches for you search.. Try searching a different combination.
-                                </div>
-                        }
+                        <SearchResult params={params}/>
                     </div>
                 </div>
             </div>
