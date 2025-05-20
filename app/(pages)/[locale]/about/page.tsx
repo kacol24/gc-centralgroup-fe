@@ -1,7 +1,3 @@
-'use client';
-
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import Image from 'next/image';
 import {
   backgroundBannerPageAbout,
@@ -15,54 +11,36 @@ import {
 } from '@/app/lib/utils/image';
 
 import CarouselAwardeComponent from '@/app/components/landing-components/carousel-awarde-component';
-import { useEffect } from 'react';
-import { useWindowSize } from '@/app/hooks/use-window-size';
 import BannersQuery from '@/graphql/BannersQuery.graphql';
-import { useLocale } from 'next-intl';
-import { useQuery } from '@urql/next';
 import content from '@/app/lib/utils/content.json';
 import {Metadata} from "next";
+import AosInit from "@/components/aos";
+import {getLocale} from "next-intl/server";
+import {getClient} from "@/app/lib/urqlClient";
 
 export const metadata: Metadata = {
   title: 'About Us | Central Group',
   description: 'Central Group is the leading property developer in Batam, Indonesia, with over 35 years of experience and prestigious awards. Discover our innovative projects, trusted partnerships, and commitment to building dream homes and communities. Contact us today to learn more!',
 };
 
-export default function About() {
-  const { width } = useWindowSize();
-  const isXsView = width < 450;
-  const locale = useLocale();
+export default async function About() {
+  const locale = await getLocale();
+  const client = await getClient();
 
-  useEffect(() => {
-    AOS.init({
-      duration: 500,
-      once: false,
-      startEvent: 'DOMContentLoaded',
-    });
-  }, []);
-
-  const [{ data: awardsResponse }] = useQuery({
-    query: BannersQuery,
-    variables: {
-      lang: locale,
-      type: 'award_banner',
-    },
+  const {data: awardsResponse} = await client.query(BannersQuery, {
+    lang: locale,
+    type: 'award_banner',
   });
 
-  const [{ data: partnersResponse }] = useQuery({
-    query: BannersQuery,
-    variables: {
-      lang: locale,
-      type: 'partner_banner',
-    },
+  const {data: partnersResponse} = await client.query(BannersQuery, {
+    lang: locale,
+    type: 'partner_banner',
   });
 
   return (
-    <>
+    <AosInit>
       <section
-        className={`${
-          isXsView ? 'min-h-[1140px]' : 'min-h-[1000px]'
-        } h-[120vh] relative flex flex-col justify-start bg-cover bg-center md:justify-center`}
+        className={`min-h-[1140px] md:min-h-[1000px] h-[120vh] relative flex flex-col justify-start bg-cover bg-center md:justify-center`}
         style={{ backgroundImage: `url(${backgroundBannerPageAbout.src})` }}
       >
         <div className="z-10 container w-[80%] mt-36 mx-auto md:w-[60%] md:mt-0 lg:w-[50%] text-white">
@@ -211,6 +189,6 @@ export default function About() {
           </div>
         </div>
       </section>
-    </>
+    </AosInit>
   );
 }
