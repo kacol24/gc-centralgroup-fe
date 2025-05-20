@@ -6,6 +6,7 @@ import ProjectDetailQuery from '@/graphql/ProjectDetailQuery.graphql';
 import { getLocale } from 'next-intl/server';
 import { getClient } from '@/app/lib/urqlClient';
 import {cache} from "react";
+import {Metadata, ResolvingMetadata} from "next";
 
 const getProject = cache(async (id) => {
     const locale = await getLocale();
@@ -18,7 +19,14 @@ const getProject = cache(async (id) => {
     return projectData;
 });
 
-export async function generateMetadata({ params }) {
+type Props = {
+    params: Promise<{ id: string }>
+}
+
+export async function generateMetadata(
+    {params}: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
     const {id} = await params;
     const projectData = await getProject(id);
 
