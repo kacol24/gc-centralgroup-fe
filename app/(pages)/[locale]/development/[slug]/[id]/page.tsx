@@ -5,16 +5,32 @@ import CoreDetailDevelopment from './components/core-detail-dev';
 import ProjectDetailQuery from '@/graphql/ProjectDetailQuery.graphql';
 import { getLocale } from 'next-intl/server';
 import { getClient } from '@/app/lib/urqlClient';
+import {cache} from "react";
+
+const getProject = cache(async (id) => {
+    const locale = await getLocale();
+    const client = await getClient();
+    const {data: projectData} = await client.query(ProjectDetailQuery, {
+        lang: locale,
+        id,
+    });
+
+    return projectData;
+});
+
+export async function generateMetadata({ params }) {
+    const {id} = await params;
+    const projectData = await getProject(id);
+
+    return {
+        title: projectData.title,
+        description: projectData.description,
+    }
+}
 
 export default async function DevelopmentDetailPage({ params }) {
   const { id } = await params;
-  const locale = await getLocale();
-
-  const client = await getClient();
-  const { data: projectData } = await client.query(ProjectDetailQuery, {
-    lang: locale,
-    id,
-  });
+  const projectData = await getProject(id);
 
   const nextSectionId = 'next-section';
 
