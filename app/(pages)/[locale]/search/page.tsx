@@ -4,7 +4,7 @@ import {createLoader, parseAsArrayOf, parseAsInteger, SearchParams} from "nuqs/s
 
 const filterSearchParams = {
     location: parseAsInteger,
-    propertyType: parseAsInteger,
+    property_type: parseAsInteger,
     facilities: parseAsArrayOf(parseAsInteger, ','),
     price: parseAsArrayOf(parseAsInteger, '-')
 };

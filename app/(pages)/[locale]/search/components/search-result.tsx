@@ -3,7 +3,7 @@ import CardListDevelopment from "@/app/(pages)/[locale]/development/components/c
 import {getLocale} from "next-intl/server";
 import {getClient} from "@/app/lib/urqlClient";
 
-export default async function SearchResult({location, propertyType, facilities, price}) {
+export default async function SearchResult({params: {location, property_type, facilities, price}}) {
     const locale = await getLocale();
     const client = await getClient();
 
@@ -13,8 +13,8 @@ export default async function SearchResult({location, propertyType, facilities, 
     if (location) {
         variables['locationId'] = location;
     }
-    if (propertyType) {
-        variables['propertyTypeId'] = propertyType;
+    if (property_type) {
+        variables['propertyTypeId'] = property_type;
     }
     if (facilities) {
         variables['facilityIds'] = facilities;
