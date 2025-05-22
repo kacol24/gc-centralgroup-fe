@@ -30,7 +30,7 @@ const nextConfig: NextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'centralgroup.goodcommerce.co',
+                hostname: 'api.centralgroup.id',
                 port: '',
                 pathname: '**',
                 search: '',
