@@ -3,10 +3,35 @@
 import Image from 'next/image';
 import { logoRowWhite, logoColWhite, logo35white } from '../lib/utils/image';
 import { HiOutlineArrowUp, HiOutlineArrowRight } from 'react-icons/hi';
-import { FaEnvelope, FaMapMarkerAlt, FaYoutube, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaYoutube, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { IoLogoWhatsapp } from 'react-icons/io';
+import { findStore } from '../../data/store';
+import { useEffect, useState } from 'react';
+// import Link from 'next/link';
+import { FaXTwitter } from 'react-icons/fa6';
+
+type Store = {
+  id: string;
+  name: string;
+  contact_email: string;
+  forward_order: boolean;
+  fb_account: string;
+  tw_account: string;
+  ig_account: string;
+  gplus_account: string;
+  pinterest_account: string;
+  youtube_account: string;
+};
 
 export default function Footer() {
+  const [store, setStore] = useState<Store | null>(null);
+
+  useEffect(() => {
+    findStore().then((data) => {
+      setStore(data);
+    });
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -63,11 +88,21 @@ export default function Footer() {
           <div className="text-white space-y-4 md:flex-[0.9] ">
             <div className="flex items-center gap-3">
               <IoLogoWhatsapp size="14" className="text-xl opacity-60" />
-              <span>+62 811 703 8868</span>
+              <span>
+                <a href={`https://wa.me/628117038868`} target="_blank">
+                  +62 811 703 8868
+                </a>
+              </span>
             </div>
             <div className="flex items-center gap-3">
               <FaEnvelope size="14" className="text-xl opacity-60" />
-              <span>info@centralgroup.id</span>
+              <span>
+                {store?.contact_email && (
+                  <a href={`mailto:${store.contact_email}`} target="_blank">
+                    {store.contact_email}
+                  </a>
+                )}
+              </span>
             </div>
           </div>
 
@@ -116,9 +151,26 @@ export default function Footer() {
         <div className="flex flex-col pb-6 md:flex-row md:flex-wrap md:items-center w-full">
           {/* Social Media */}
           <div className="flex justify-center gap-8 text-white text-2xl md:order-3 md:ml-auto">
-            <FaYoutube />
-            <FaLinkedinIn />
-            <FaInstagram />
+            {store?.fb_account && (
+              <a href={store.fb_account} target="_blank" rel="noopener noreferrer">
+                <FaFacebook />
+              </a>
+            )}
+            {store?.tw_account && (
+              <a href={store.tw_account} target="_blank" rel="noopener noreferrer">
+                <FaXTwitter />
+              </a>
+            )}
+            {store?.ig_account && (
+              <a href={store.ig_account} target="_blank" rel="noopener noreferrer">
+                <FaInstagram />
+              </a>
+            )}
+            {store?.youtube_account && (
+              <a href={store.youtube_account} target="_blank" rel="noopener noreferrer">
+                <FaYoutube />
+              </a>
+            )}
           </div>
 
           {/* Divider */}

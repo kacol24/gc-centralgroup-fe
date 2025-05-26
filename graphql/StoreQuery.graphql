@@ -1,0 +1,14 @@
+query Q_STORE {
+    store {
+        id
+        name
+        contact_email
+        forward_order
+        fb_account
+        tw_account
+        ig_account
+        gplus_account
+        pinterest_account
+        youtube_account
+    }
+}
