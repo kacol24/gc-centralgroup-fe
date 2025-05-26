@@ -43,7 +43,7 @@ export default function CentralCommunityActivity({
         >
           Our Activities
         </h2>
-        <div className="relative columns-2 gap-4 space-y-4 md:columns-4">
+        <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4">
           {activityImages.slice(0, visibleCount).map((activity, index) => (
             <Image
               key={index}
@@ -51,8 +51,8 @@ export default function CentralCommunityActivity({
               alt={activity.alt}
               className="break-inside-avoid"
               data-aos="zoom-in-up"
-              data-aos-delay={(index + 3) * 100}
-              width={0}
+              data-aos-delay={index * 100}
+              width={296}
               height={0}
               sizes="100vw"
               style={{ width: '100%', height: 'auto' }}
