@@ -13,26 +13,27 @@ import {
 import CarouselAwardeComponent from '@/app/components/landing-components/carousel-awarde-component';
 import BannersQuery from '@/graphql/BannersQuery.graphql';
 import content from '@/app/lib/utils/content.json';
-import {Metadata} from "next";
-import {getLocale} from "next-intl/server";
-import {getClient} from "@/app/lib/urqlClient";
-import AosProvider from "@/components/AosProvider";
+import { Metadata } from 'next';
+import { getLocale } from 'next-intl/server';
+import { getClient } from '@/app/lib/urqlClient';
+import AosProvider from '@/components/AosProvider';
 
 export const metadata: Metadata = {
   title: 'About Us | Central Group',
-  description: 'Central Group is the leading property developer in Batam, Indonesia, with over 35 years of experience and prestigious awards. Discover our innovative projects, trusted partnerships, and commitment to building dream homes and communities. Contact us today to learn more!',
+  description:
+    'Central Group is the leading property developer in Batam, Indonesia, with over 35 years of experience and prestigious awards. Discover our innovative projects, trusted partnerships, and commitment to building dream homes and communities. Contact us today to learn more!',
 };
 
 export default async function About() {
   const locale = await getLocale();
   const client = await getClient();
 
-  const {data: awardsResponse} = await client.query(BannersQuery, {
+  const { data: awardsResponse } = await client.query(BannersQuery, {
     lang: locale,
     type: 'award_banner',
   });
 
-  const {data: partnersResponse} = await client.query(BannersQuery, {
+  const { data: partnersResponse } = await client.query(BannersQuery, {
     lang: locale,
     type: 'partner_banner',
   });
@@ -55,7 +56,8 @@ export default async function About() {
             The Best Developer in Batam by Property & Bank Award, dengan pengalaman lebih dari 35 Tahun sejak tahun 1989
             dalam membangun 6600 rumah impian Anda dalam 5 tahun ke belakang. Central Group telah berhasil mengembangkan
             beberapa proyek ternama dengan total lahan lebih dari 250 Ha di Kota Batam, beberapa diantaranya bekerjasama
-            dengan developer bertaraf nasional seperti afiliasi Alam Sutera dan The Ascott Limited Singapura.
+            dengan developer bertaraf nasional seperti afiliasi Alam Sutera dan The Ascott Limited Singapura. Central
+            Group berpegang pada nilai dan tanggung jawab terhadap seluruh shareholder dan stakeholder.
           </p>
           <p
             className="mb-[25%] text-sm/6 text-center md:w-[80%] md:mx-auto text-white"
