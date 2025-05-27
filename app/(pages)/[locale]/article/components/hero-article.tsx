@@ -1,21 +1,21 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import {Link} from "@/i18n/navigation";
-import BlogsQuery from "@/graphql/BlogsQuery.graphql";
-import {getLocale} from "next-intl/server";
-import {getClient} from "@/app/lib/urqlClient";
+import { Link } from '@/i18n/navigation';
+import BlogsQuery from '@/graphql/BlogsQuery.graphql';
+import { getLocale } from 'next-intl/server';
+import { getClient } from '@/app/lib/urqlClient';
 
 export default async function ArticleHero() {
   const locale = await getLocale();
   const client = await getClient();
 
-  const {data: featuredBlogResponse} = await client.query(BlogsQuery, {
+  const { data: featuredBlogResponse } = await client.query(BlogsQuery, {
     lang: locale,
     limit: 1,
-    isFeatured: true
+    isFeatured: true,
   });
 
-  if(! featuredBlogResponse.blogs.datas.length) {
+  if (!featuredBlogResponse.blogs.datas.length) {
     return <></>;
   }
 
@@ -62,7 +62,7 @@ export default async function ArticleHero() {
           <div className="">
             <div className="border-t lg:flex hidden  w-full flex-none  border-white mb-7 md:mt-0 opacity-20 " />
             <div className=" w-full block items-center lg:flex lg:flex-row">
-              <div data-aos="zoom-in-right" data-aos-duration="1200" className="w-full flex gap-4 items-start">
+              {/* <div data-aos="zoom-in-right" data-aos-duration="1200" className="w-full flex gap-4 items-start">
                 <div className="w-14 h-14  ">
                   <Image src={blog.author.avatar} alt="Hero Article" className="w-full h-full object-cover rounded-full" width={56} height={56}/>
                 </div>
@@ -74,7 +74,7 @@ export default async function ArticleHero() {
                     {blog.author.title}
                   </p>
                 </div>
-              </div>
+              </div> */}
 
               <div className="border-t lg:hidden flex  w-full flex-none  border-white my-6 md:mt-0 opacity-20 md:order-1" />
 
@@ -84,9 +84,7 @@ export default async function ArticleHero() {
                 variant="filled"
                 className="rounded-none bg w-full !bg-white !text-primary lg:w-auto   font-medium text-xs px-0 lg:px-11 py-[24px] uppercase"
               >
-                <Link href={`/article/${blog.slug}/${blog.id}`}>
-                  Learn More
-                </Link>
+                <Link href={`/article/${blog.slug}/${blog.id}`}>Learn More</Link>
               </Button>
             </div>
           </div>
