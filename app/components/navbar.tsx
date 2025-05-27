@@ -218,7 +218,9 @@ export default function Navbar() {
 
               <div className="w-px h-6 bg-gray-400"></div>
 
-              <button className="uppercase font-medium tracking-wide ">Enquire</button>
+              <Link href="/contact">
+                <button className="uppercase font-medium tracking-wide ">Enquire</button>
+              </Link>
             </div>
 
             <div className="flex-1 md:hidden justify-end items-center gap-6"></div>
