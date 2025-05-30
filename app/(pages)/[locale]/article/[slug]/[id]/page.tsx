@@ -9,7 +9,8 @@ import { use, useEffect, useState } from 'react';
 import { FaFacebookF, FaWhatsapp } from 'react-icons/fa6';
 import { RiLinksFill } from 'react-icons/ri';
 import CardArticle from '@/app/components/card-article';
-import { Link } from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
+import { useSearchParams } from 'next/navigation';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import BlogDetailQuery from '@/graphql/BlogDetailQuery.graphql';
@@ -42,6 +43,8 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
   const { id } = use(params);
   const [contents] = useState<ArticleDetailContentModel[]>([]);
   const locale = useLocale();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const [{ data: blogResponse }] = useQuery({
     query: BlogDetailQuery,
@@ -61,6 +64,24 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
       startEvent: 'DOMContentLoaded',
     });
   }, [id]);
+
+  const [currentUrl, setCurrentUrl] = useState('');
+
+  useEffect(() => {
+    const url = `${window.location.origin}${pathname}${searchParams.toString() ? '?' + searchParams.toString() : ''}`;
+    setCurrentUrl(url);
+  }, [pathname, searchParams]);
+
+  const copyToClipboard = () => {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        alert('URL copied to clipboard!');
+      })
+      .catch((err) => {
+        console.error('Failed to copy URL: ', err);
+      });
+  };
 
   return (
     <>
@@ -88,9 +109,24 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
               </h1>
             </div>
             <div className="flex justify-center gap-8 lg:mt-auto lg:justify-end">
-              <FaFacebookF className="w-5 h-5 text-textPrimary" data-aos="fade-left" data-aos-delay="1000" />
-              <FaWhatsapp className="w-5 h-5 text-textPrimary" data-aos="fade-left" data-aos-delay="1100" />
-              <RiLinksFill className="w-5 h-5 text-textPrimary" data-aos="fade-left" data-aos-delay="1200" />
+              <Link
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`}
+                target="_blank"
+              >
+                <FaFacebookF className="w-5 h-5 text-textPrimary" data-aos="fade-left" data-aos-delay="1000" />
+              </Link>
+              <Link href={`https://wa.me/?text=${encodeURIComponent(currentUrl)}`} target="_blank">
+                <FaWhatsapp className="w-5 h-5 text-textPrimary" data-aos="fade-left" data-aos-delay="1100" />
+              </Link>
+              <a
+                href=""
+                onClick={(e) => {
+                  e.preventDefault();
+                  copyToClipboard();
+                }}
+              >
+                <RiLinksFill className="w-5 h-5 text-textPrimary" data-aos="fade-left" data-aos-delay="1200" />
+              </a>
             </div>
           </div>
         </div>
@@ -143,9 +179,24 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ id: st
             <div className="pb-8 flex justify-start items-center gap-4" data-aos="fade-up" data-aos-delay="500">
               <span className="text-xs text-primary font-semibold">SHARE:</span>
               <div className="flex items-center gap-6">
-                <FaFacebookF className="w-5 h-5 text-textPrimary" />
-                <FaWhatsapp className="w-5 h-5 text-textPrimary" />
-                <RiLinksFill className="w-5 h-5 text-textPrimary" />
+                <Link
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`}
+                  target="_blank"
+                >
+                  <FaFacebookF className="w-5 h-5 text-textPrimary" />
+                </Link>
+                <Link href={`https://wa.me/?text=${encodeURIComponent(currentUrl)}`} target="_blank">
+                  <FaWhatsapp className="w-5 h-5 text-textPrimary" />
+                </Link>
+                <a
+                  href=""
+                  onClick={(e) => {
+                    e.preventDefault();
+                    copyToClipboard();
+                  }}
+                >
+                  <RiLinksFill className="w-5 h-5 text-textPrimary" />
+                </a>
               </div>
             </div>
 
