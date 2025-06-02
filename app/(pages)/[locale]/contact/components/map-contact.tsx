@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { imgProperty1 } from '@/app/lib/utils/image';
+import { imageHQ } from '@/app/lib/utils/image';
 import CustomPopup from '../../development/components/custom-popup';
 
 const MapContainer = dynamic(() => import('react-leaflet').then((mod) => mod.MapContainer), { ssr: false });
@@ -26,31 +26,31 @@ const defaultIcon = L.icon({
 
 const citiesData: { name: string; image: string | StaticImageData; coords: [number, number] }[] = [
   {
-    name: 'Jakarta',
-    image: imgProperty1,
+    name: 'Head Office Central Group',
+    image: imageHQ,
 
-    coords: [-6.2, 106.816666],
+    coords: [1.102643, 104.034408],
   },
-  {
-    name: 'Bandung',
-    image: imgProperty1,
-    coords: [-6.914744, 107.60981],
-  },
-  {
-    name: 'Banten',
-    image: imgProperty1,
-    coords: [-6.405817, 106.064018],
-  },
-  {
-    name: 'Yogyakarta',
-    image: imgProperty1,
-    coords: [-7.79558, 110.36949],
-  },
-  {
-    name: 'Solo',
-    image: imgProperty1,
-    coords: [-7.575489, 110.824327],
-  },
+  // {
+  //   name: 'Bandung',
+  //   image: imgProperty1,
+  //   coords: [-6.914744, 107.60981],
+  // },
+  // {
+  //   name: 'Banten',
+  //   image: imgProperty1,
+  //   coords: [-6.405817, 106.064018],
+  // },
+  // {
+  //   name: 'Yogyakarta',
+  //   image: imgProperty1,
+  //   coords: [-7.79558, 110.36949],
+  // },
+  // {
+  //   name: 'Solo',
+  //   image: imgProperty1,
+  //   coords: [-7.575489, 110.824327],
+  // },
 ];
 
 export default function MapContact() {
@@ -65,7 +65,7 @@ export default function MapContact() {
   return (
     <div className="w-full h-[300px] lg:h-[437px] p-0 lg:flex-grow mb-0">
       <MapContainer
-        center={[-6.914744, 107.60981]}
+        center={[1.102643, 104.034408]}
         zoom={7}
         scrollWheelZoom={false}
         style={{ height: '100%', width: '100%', zIndex: 0 }}
@@ -77,7 +77,7 @@ export default function MapContact() {
         {citiesData.map((city, index) => (
           <Marker key={index} position={city.coords} icon={defaultIcon}>
             <Popup className="custom-popup bg-transparent">
-              <CustomPopup imageSrc={imgProperty1} />
+              <CustomPopup imageSrc={imageHQ} />
             </Popup>
           </Marker>
         ))}

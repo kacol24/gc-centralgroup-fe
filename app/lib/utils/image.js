@@ -30,6 +30,7 @@ import imgBgCommunityEcosystem from '@/public/assets/image/img-comunity-ecosyste
 import imgLoadingMaps from '@/public/assets/image/img-loading-maps.png';
 import imgPropertyFinderMap from '@/public/assets/image/property-finder-map.jpeg';
 import imgThumbVideo from '@/public/assets/image/img-thumbnail-video.png';
+import imageHQ from '@/public/assets/image/centralgroup_hq.webp';
 
 import backgroundGoalPageAbout from '@/public/assets/image/bg-goal-page-about.png';
 import aboutPageBannerAttachmentTopLeft from '@/public/assets/image/about-page-banner-attachment-top-left.png';
@@ -193,4 +194,5 @@ export {
   imgLoadingMaps,
   imgThumbVideo,
   imgPropertyFinderMap,
+  imageHQ,
 };
