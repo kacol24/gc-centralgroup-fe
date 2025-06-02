@@ -1,0 +1,18 @@
+mutation M_CONTACT_FORM(
+  $name: String!
+  $phone: String!
+  $email: String!
+  $message: String!
+) {
+  contactForm(
+    input: {
+      name: $name
+      phone: $phone
+      email: $email
+      message: $message
+    }
+  ) {
+    status
+    message
+  }
+}
