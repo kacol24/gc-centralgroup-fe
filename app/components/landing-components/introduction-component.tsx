@@ -14,6 +14,8 @@ const stats = [
 import Image from 'next/image';
 import { imgThumbVideo, development3 } from '@/app/lib/utils/image';
 import { FaPlay } from 'react-icons/fa6';
+import content from '@/app/lib/utils/content.json';
+import { useLocale } from 'next-intl';
 
 export default function IntroductionComponent() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -26,6 +28,8 @@ export default function IntroductionComponent() {
     });
   }, []);
 
+  const locale = useLocale();
+
   return (
     <section className="w-full mx-auto container px-4 md:px-8 xl:px-4 mt-10">
       <div className="lg:flex">
@@ -34,18 +38,28 @@ export default function IntroductionComponent() {
             data-aos="fade-right"
             className="lg:text-[36px] text-[28px] font-marcellus text-start text-textPrimary mb-6 lg:mb-10 uppercase tracking-wider"
           >
-            The Best Developer <br /> in Batam
+            {content?.[locale].home.introduction.title}
           </h1>
           <p
             data-aos="fade-right"
             className="font-medium font-mon lg:text-sm text-start text-textSecondary mb-10 lg:mb-12 leading-6 tracking-wide"
           >
-            The Best Developer in Batam by Property & Bank Award, dengan pengalaman lebih dari 35 Tahun sejak tahun 1989
-            dalam membangun 6600 rumah impian Anda dalam 5 tahun ke belakang. Central Group telah berhasil mengembangkan
-            beberapa proyek ternama dengan total lahan lebih dari 250 Ha di Kota Batam, beberapa diantaranya bekerjasama
-            dengan developer bertaraf nasional seperti afiliasi Alam Sutera dan The Ascott Limited Singapura. Central
-            Group berpegang pada nilai dan tanggung jawab terhadap seluruh shareholder dan stakeholder.
+            {content?.[locale].home.introduction.content}
           </p>
+
+          <h1
+            data-aos="fade-right"
+            className="lg:text-[36px] text-[28px] font-marcellus text-start text-textPrimary mb-6 lg:mb-10 uppercase tracking-wider"
+          >
+            {content?.[locale].home.investwithus.title}
+          </h1>
+          <p
+            data-aos="fade-right"
+            className="font-medium font-mon lg:text-sm text-start text-textSecondary mb-10 lg:mb-12 leading-6 tracking-wide"
+            dangerouslySetInnerHTML={{
+              __html: content?.[locale].home.investwithus.content,
+            }}
+          ></p>
 
           <Button
             data-aos="fade-right"
