@@ -69,6 +69,12 @@ export default function Navbar() {
     }
   };
 
+  const navbarElseStyle = () => {
+    if (pathname.includes('/article')) {
+      return 'bg-white shadow';
+    }
+  };
+
   const [variant, setVariant] = useState({
     text: 'text-white',
     logo: logoColWhite,
@@ -156,10 +162,16 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <nav className={`w-full fixed z-50 transition-all duration-300 text-xs ${isScrolled ? navbarStyle() : ''}`}>
+      <nav
+        className={`w-full fixed z-50 transition-all duration-300 text-xs ${isScrolled ? navbarStyle() : navbarElseStyle()}`}
+      >
         <div
           className={`w-full container mx-auto px-4 ${
-            isScrolled ? navbarContainerStyle() : ` py-2 my-3 lg:py-6 bg-transparent ${variant.text}`
+            isScrolled
+              ? navbarContainerStyle()
+              : pathname.includes('/article')
+                ? `py-2`
+                : ` py-2 my-3 lg:py-6 bg-transparent ${variant.text}`
           }`}
         >
           <div className="flex items-center">
@@ -174,7 +186,7 @@ export default function Navbar() {
             {/* Center Side (Logo) */}
             <div className="flex items-center space-x-2">
               <Link href={'/'}>
-                <div className={isScrolled ? '' : 'md:relative md:-top-6'}>
+                <div className={isScrolled ? '' : 'md:relative md:-top-1'}>
                   <Image
                     // className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
                     className="w-[80px]"
@@ -187,7 +199,7 @@ export default function Navbar() {
                 </div>
               </Link>
               <Link href={'/'}>
-                <div className={isScrolled ? '' : 'md:relative md:-top-6'}>
+                <div className={isScrolled ? '' : 'md:relative md:-top-1'}>
                   <Image
                     // className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
                     className="w-[80px]"
