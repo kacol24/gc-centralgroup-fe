@@ -1,0 +1,10 @@
+mutation M_SUBSCRIBE(
+  $email: String!
+) {
+  subscribe(
+    email: $email
+  ) {
+    status
+    message
+  }
+}

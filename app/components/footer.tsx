@@ -9,6 +9,8 @@ import { findStore } from '../../data/store';
 import { useEffect, useState } from 'react';
 // import Link from 'next/link';
 import { FaXTwitter } from 'react-icons/fa6';
+import Subscribe from '@/graphql/Subscribe.graphql';
+import { useMutation } from '@urql/next';
 
 type Store = {
   id: string;
@@ -34,6 +36,31 @@ export default function Footer() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const [, subscribe] = useMutation(Subscribe);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+
+    try {
+      const res = await subscribe({
+        email: email,
+      });
+
+      if (res?.data?.subscribe?.status === 'error') {
+        alert(res?.data?.subscribe?.message || 'Error subscribing. Please try again.');
+      }
+
+      if (res?.data?.subscribe?.status === 'success') {
+        alert(res?.data?.subscribe?.message || 'Thank you for subscribing.');
+        form.reset();
+      }
+    } catch (error) {
+      console.error('Error submitting subscribe:', error);
+    }
   };
 
   return (
@@ -134,19 +161,27 @@ export default function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div className="mt-8 md:mt-0 w-full md:flex-1 ">
-            <h3 className="text-white text-lg font-marcellus mb-4 tracking-wider">NEWSLETTER</h3>
-            <div className="flex  rounded-lg overflow-hidden border border-[rgba(0,0,0,0.04)]">
-              <input
-                type="email"
-                placeholder="Type your email"
-                className="w-full px-4 py-4  bg-black/10  text-[#FAFAFA80] outline-none"
-              />
-              <button className="bg-black/10 text-sm tracking-wider  text-white px-5 py-4 flex items-center gap-2">
-                SUBMIT <HiOutlineArrowRight />
-              </button>
+          <form onSubmit={handleSubscribe}>
+            <div className="mt-8 md:mt-0 w-full md:flex-1 ">
+              <h3 className="text-white text-lg font-marcellus mb-4 tracking-wider">NEWSLETTER</h3>
+              <div className="flex  rounded-lg overflow-hidden border border-[rgba(0,0,0,0.04)]">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Type your email"
+                  className="w-full px-4 py-4  bg-black/10  text-[#FAFAFA80] outline-none"
+                  required
+                />
+                <button
+                  className="bg-black/10 text-sm tracking-wider  text-white px-5 py-4 flex items-center gap-2"
+                  type="submit"
+                >
+                  SUBMIT <HiOutlineArrowRight />
+                </button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
         <div className="flex flex-col pb-6 md:flex-row md:flex-wrap md:items-center w-full">
           {/* Social Media */}
