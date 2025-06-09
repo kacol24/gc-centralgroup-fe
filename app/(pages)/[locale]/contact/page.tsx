@@ -17,8 +17,12 @@ import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import ContactForm from '@/graphql/ContactForm.graphql';
 import { useMutation } from '@urql/next';
+import { useLocale } from 'next-intl';
+import content from '@/app/lib/utils/content.json';
 
 export default function Contact() {
+  const locale = useLocale();
+
   const MapContact = useMemo(
     () =>
       dynamic(() => import('./components/map-contact'), {
@@ -87,21 +91,15 @@ export default function Contact() {
           data-aos="zoom-in"
           data-aos-duration="1000"
           className="text-4xl lg:px-0 px-6 lg:text-[64px] lg:leading-[70px] items-center justify-center text-center lg:mb-12 mb-8 font-marcellus text-textPrimary uppercase"
-        >
-          The Trusted Real <br className="block lg:hidden" /> Estate <br className="hidden lg:block" /> Authority{' '}
-          <br className="block lg:hidden" /> For Those <br /> Seeking The Best.
-        </h1>
+          dangerouslySetInnerHTML={{ __html: content[locale].contact.title }}
+        ></h1>
+
         <p
           data-aos="zoom-in"
           data-aos-duration="1200"
           className="text-sm px-6 font-medium text-center text-textPrimary mb-[60px] lg:mb-20"
-        >
-          Thank you for visiting our site. As a dynamic digital platform, it will continuously update with new property{' '}
-          <br className="hidden lg:block" />
-          listings, sales outcomes, news articles, market trends and special Forbes event notifications. We encourage
-          you to <br className="hidden lg:block" /> visit regularly to ensure you remain up to date with our ever
-          changing sphere of influence.
-        </p>
+          dangerouslySetInnerHTML={{ __html: content[locale].contact.subtitle }}
+        ></p>
       </div>
 
       <div className="w-full relative lg:container lg:mx-auto lg:px-4 ">
