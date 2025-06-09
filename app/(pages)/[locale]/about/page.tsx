@@ -175,7 +175,8 @@ export default async function About() {
           <p className="mb-5 text-xs text-primary font-semibold" data-aos="fade-up">
             OUR PARTNERS
           </p>
-          <div className="grid grid-cols-3 gap-8 md:grid-cols-9">
+          {/* <div className="grid grid-cols-3 gap-8 md:grid-cols-9"> */}
+          <div className="flex flex-wrap justify-center gap-8 md:gap-4 lg:gap-6">
             {partnersResponse?.banners.map((partner, index) => (
               <Image
                 key={partner.id}
@@ -183,7 +184,8 @@ export default async function About() {
                 alt={partner.title}
                 width={218}
                 height={114}
-                className="w-full h-auto object-contain md:w-[70px] lg:w-[100px]"
+                // className="w-full h-auto object-contain md:w-[70px] lg:w-[100px]"
+                className="w-[70px] lg:w-[100px] h-auto object-contain"
                 data-aos="zoom-in-up"
                 data-aos-delay={(index + 4) * 100}
               />

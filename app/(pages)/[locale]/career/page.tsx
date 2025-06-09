@@ -14,6 +14,8 @@ import { useQuery } from '@urql/next';
 import CareerQuery from '@/graphql/CareersQuery.graphql';
 import CareerCategoryQuery from '@/graphql/CareerCategoriesQuery.graphql';
 
+import content from '@/app/lib/utils/content.json';
+
 export default function Career() {
   //   const [careersData, setCareersData] = useState<CareerModel[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -90,11 +92,10 @@ export default function Career() {
 
         <div className="z-10 container mx-auto px-4 text-center md:w-[80%] lg:w-[40%]">
           <h1 className="mb-8 text-4xl text-backgroundWhite font-marcellus" data-aos="fade-up">
-            WORK WITH US
+            {content?.[locale].work_with_us}
           </h1>
           <p className="text-sm/6 text-white font-medium" data-aos="fade-up" data-aos-delay="200">
-            Saat ini Central Group membutuhkan beberapa posisi sebagai berikut. Kunjungi secara berkala halaman ini,
-            untuk mendapatkan informasi karir di Central Group
+            {content?.[locale].currently_hiring}
           </p>
           <div className="relative md:w-[50%] w-full mt-8 mx-auto">
             <select

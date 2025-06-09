@@ -9,6 +9,8 @@ import { useLocale } from 'next-intl';
 import { useQuery } from '@urql/next';
 import BannerQuery from '@/graphql/BannersQuery.graphql';
 
+import content from '@/app/lib/utils/content.json';
+
 // interface Banner {
 //   cta: string
 //   desktop: string
@@ -64,8 +66,10 @@ export default function ContactUs() {
           <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-            <h1 className="text-[36px] font-marcellus mb-6 uppercase tracking-wide">Have a question?</h1>
-            <p className="text-sm uppercase tracking-widest mb-10">Feel free to contact us and let our team help you</p>
+            <h1 className="text-[36px] font-marcellus mb-6 uppercase tracking-wide">
+              {content?.[locale].have_a_question}
+            </h1>
+            <p className="text-sm uppercase tracking-widest mb-10">{content?.[locale].feel_free_to_contact_us}</p>
             <Button
               variant="filled"
               className="rounded-sm text-textPrimary bg-white text-xs py-[24px] px-[15px] lg:px-6"

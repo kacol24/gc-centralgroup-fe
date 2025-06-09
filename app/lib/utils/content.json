@@ -81,11 +81,17 @@
         "title": "MEMPERKENALKAN CENTRAL GROUP",
         "content": "Selama lebih dari 35 tahun, Central Group telah menjadi pelopor dalam pengembangan properti di Batam, mengubah kota ini menjadi pusat pertumbuhan hunian dan komersial yang berkembang pesat. Terletak di salah satu wilayah paling menjanjikan di Indonesia, Batam merupakan pasar properti yang sedang bersinar dengan potensi besar untuk keuntungan jangka panjang."
       },
-      "investwithus" : {
+      "investwithus": {
         "title": "Mengapa Berinvestasi Bersama Kami?",
         "content": "- Rekam Jejak Terbukti: Saat ini kami tengah merencanakan dan mengembangkan 6.600 unit rumah dan vila di lebih dari 20 lokasi strategis dalam 5 tahun terakhir.<br>- Visi Strategis: Kami tidak hanya membangun proyek hunian dan komersial, tetapi juga menciptakan destinasi bernilai tinggi seperti vila, resor, dan kawasan terpadu untuk menarik investasi domestik dan internasional.<br>- Lokasi Premium: Proyek-proyek kami tersebar di area-area utama Batam, memanfaatkan konektivitas, daya tarik pariwisata, dan pertumbuhan ekonominya.<br><br>Dengan memilih Central Group, Anda berinvestasi bersama mitra tepercaya yang menggabungkan inovasi, pengalaman, dan komitmen terhadap keunggulan dalam setiap proyek.<br>Bersama-sama, mari kita maksimalkan potensi penuh pasar properti Batam."
       }
-    }
+    },
+    "our_activities": "Aktifitas Kami",
+    "how_it_works": "Bagaimana Cara Kerjanya",
+    "have_a_question": "Ada pertanyaan?",
+    "feel_free_to_contact_us": "Jangan ragu untuk menghubungi kami dan biarkan tim kami membantu Anda",
+    "work_with_us": "Bergabunglah Bersama Kami",
+    "currently_hiring": "Saat ini Central Group membutuhkan beberapa posisi sebagai berikut. Kunjungi secara berkala halaman ini, untuk mendapatkan informasi karir di Central Group"
   },
 
   "en": {
@@ -106,20 +112,20 @@
         "content": "Established in 2022, Central Group, through the CENTRAL BERBAGI Foundation, is committed to creating a positive impact in society through various social and environmental programs. This organization was founded and will continue to contribute both now and in the future, as a form of Central Group’s responsibility to the community and the environment. Central Group created a platform named Central Berbagi with four main pillars: Education, Social, Decent Housing, and Environment. These pillars form the foundation of the Central Berbagi Foundation’s activities. With the tagline “Give, Care & Love”, we move forward for the greater good.",
         "pillars": [
           {
-            "title": "RUMAH LAYAK HUNI",
-            "content": "Pilar Pertama dari Central Berbagi adalah merenovasi rumah agar layak dihuni. Seiring dengan Misi perusahaan real estate developer, Central Berbagi akan berkontribusi dalam membantu merenovasi rumah layak huni bagi masyarakat kurang mampu."
+            "title": "DECENT HOUSING",
+            "content": "The first pillar of Central Berbagi is renovating homes to be suitable for living. In line with the mission of the real estate development company, Central Berbagi aims to contribute by helping renovate decent homes for underprivileged communities."
           },
           {
-            "title": "PENDIDIKAN",
-            "content": "Pilar kedua Central Berbagi yaitu Pendidikan. Dengan tujuan untuk menciptakan sumber daya yang unggul, kami berkomitmen untuk turut serta dalam memajukan SDM bagi mereka yang terkendala biaya Pendidikan."
+            "title": "EDUCATION",
+            "content": "The second pillar of Central Berbagi is Education. With the goal of creating high-quality human resources, we are committed to participating in the advancement of human capital for those who face financial barriers to education."
           },
           {
-            "title": "SOSIAL",
-            "content": "Pilar Sosial menjadi pilar ketiga dari Central Berbagi. Pilar ini menekankan pentingnya kontribusi perusahaan dalam ikut serta membantu meningkatkan kesejahteraan sosial. "
+            "title": "SOCIAL",
+            "content": "The Social pillar is the third pillar of Central Berbagi. This pillar emphasizes the importance of the company’s contribution in helping to improve social welfare."
           },
           {
-            "title": "LINGKUNGAN",
-            "content": "Pilar Lingkungan menjadi pilar keempat dari Central Berbagi. Pilar ini menekankan pentingnya kontribusi perusahaan dalam ikut serta membantu menjaga ekosistem lingkungan yang berkelanjutan "
+            "title": "ENVIRONMENT",
+            "content": "The Environment pillar is the fourth pillar of Central Berbagi. This pillar highlights the importance of the company’s role in helping to maintain a sustainable environmental ecosystem."
           }
         ]
       },
@@ -149,15 +155,15 @@
         "pillars": [
           {
             "title": "Smart Cluster",
-            "content": "Connecting Estate Community<br>Kami Memberikan perlindungan lebih untuk anda dan keluarga mulai dari Langkah pertama ke dalam cluster kami."
+            "content": "Connecting Estate Community<br>We provide extra protection for you and your family starting from the very first step into our cluster."
           },
           {
             "title": "Smart Home",
-            "content": "Mengendalikan perangkat rumah kapanpun dan dimanapun sesuai kebutuhan anda."
+            "content": "Control your home devices anytime and anywhere according to your needs."
           },
           {
             "title": "Smart Community",
-            "content": "Dapatkan peringatan keamanan dan info kegiatan yang terjadi di lingkungan anda."
+            "content": "Receive security alerts and activity updates happening in your neighborhood."
           }
         ]
       },
@@ -170,10 +176,16 @@
         "title": "INTRODUCING CENTRAL GROUP",
         "content": "For over 35 years, Central Group has been a pioneer in Batam’s property development, transforming the city into a thriving hub for both residential and commercial growth. Positioned in one of Indonesia’s most promising regions, Batam is a sunrise property market with immense potential for long-term returns."
       },
-      "investwithus" : {
+      "investwithus": {
         "title": "Why Invest with Us?",
         "content": "- Proven Track Record: On going 6,600 housing and villa units planning & development across 20+ strategic locations currently in 5 years.<br>- Strategic Vision: We go beyond residential and commercial projects, creating high-value destinations like villas, resorts, and mixed-use developments to attract international and domestic investments.<br>- Prime Locations: Our projects span key areas across Batam, leveraging its connectivity, tourism appeal, and growing economy.<br><br>By choosing Central Group, you are investing in a trusted partner that combines innovation, experience, and a commitment to excellence in every project.<br>Together, let’s unlock the full potential of Batam’s property market."
       }
-    }
+    },
+    "our_activities": "Our Activities",
+    "how_it_works": "How It Works",
+    "have_a_question": "Have a Question?",
+    "feel_free_to_contact_us": "Feel free to contact us and let our team help you",
+    "work_with_us": "Work with Us",
+    "currently_hiring": "Central Group is currently hiring for the following positions. Please visit this page regularly to stay updated on career opportunities at Central Group."
   }
 }
