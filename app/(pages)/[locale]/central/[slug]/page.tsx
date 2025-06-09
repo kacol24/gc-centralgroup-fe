@@ -52,10 +52,12 @@ export default function CentralDetail({ params }: { params: Promise<{ slug: stri
 
       <CentralCommunityGoal goals={detailCentral?.goals} />
 
-      <CentralCommunityActivity
-        // activityImages={detailCentral?.activityImages || []}
-        activityImages={activityBanners || []}
-      />
+      {activityBanners.length > 0 && (
+        <CentralCommunityActivity
+          // activityImages={detailCentral?.activityImages || []}
+          activityImages={activityBanners || []}
+        />
+      )}
     </>
   );
 }

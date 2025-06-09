@@ -4,6 +4,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Image, { StaticImageData } from 'next/image';
 import { useEffect, useState } from 'react';
+import content from '@/app/lib/utils/content.json';
+import { useLocale } from 'next-intl';
 
 interface CentralCommunityActivityProps {
   activityImages: ActivityImage[];
@@ -34,6 +36,8 @@ export default function CentralCommunityActivity({
     });
   }, []);
 
+  const locale = useLocale();
+
   return (
     <section className="bg-backgroundWhite">
       <div className="container mx-auto px-4 pt-[3.5rem] pb-10  md:pt-20 md:pb-12 lg:mx-auto lg:pt-28 lg:pb-20">
@@ -41,7 +45,7 @@ export default function CentralCommunityActivity({
           className="mb-8 text-xl text-center text-textPrimary md:mb-12 md:text-2xl lg:mb-20 lg:text-4xl font-marcellus"
           data-aos="zoom-in"
         >
-          Our Activities
+          {content?.[locale].our_activities}
         </h2>
         <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4">
           {activityImages.slice(0, visibleCount).map((activity, index) => (

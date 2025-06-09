@@ -147,8 +147,7 @@ export default function Contact() {
 
               <div>
                 <div className="flex items-center gap-3">
-                  <div className="w-[18px]"></div>
-                  {/* <FaMapMarkerAlt className="text-xl opacity-60" /> */}
+                  <RiMapPin2Fill className="text-base text-textTertiary" />
                   <span className="font-bold">Representative Office</span>
                 </div>
                 <p className="ml-8 opacity-80">
