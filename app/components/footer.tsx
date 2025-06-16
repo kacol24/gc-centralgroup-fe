@@ -5,35 +5,11 @@ import { logoRowWhite, logoColWhite, logo35white } from '../lib/utils/image';
 import { HiOutlineArrowUp, HiOutlineArrowRight } from 'react-icons/hi';
 import { FaEnvelope, FaMapMarkerAlt, FaYoutube, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { IoLogoWhatsapp } from 'react-icons/io';
-import { findStore } from '../../data/store';
-import { useEffect, useState } from 'react';
-// import Link from 'next/link';
 import { FaXTwitter } from 'react-icons/fa6';
 import Subscribe from '@/graphql/Subscribe.graphql';
 import { useMutation } from '@urql/next';
 
-type Store = {
-  id: string;
-  name: string;
-  contact_email: string;
-  forward_order: boolean;
-  fb_account: string;
-  tw_account: string;
-  ig_account: string;
-  gplus_account: string;
-  pinterest_account: string;
-  youtube_account: string;
-};
-
-export default function Footer() {
-  const [store, setStore] = useState<Store | null>(null);
-
-  useEffect(() => {
-    findStore().then((data) => {
-      setStore(data);
-    });
-  }, []);
-
+export default function Footer({store}) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

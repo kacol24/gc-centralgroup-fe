@@ -8,6 +8,7 @@ import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl';
 import PromotionPopupModal from '@/app/components/promotion-popup-modal';
+import {findStore} from "@/data/store";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -35,6 +36,8 @@ export default async function RootLayout({
     notFound();
   }
 
+  const storeInfo = await findStore();
+
   return (
     <html lang={locale}>
       <body
@@ -46,7 +49,7 @@ export default async function RootLayout({
           </Suspense>
           {children}
           <ContactUs />
-          <Footer />
+          <Footer store={storeInfo}/>
           <PromotionPopupModal/>
         </NextIntlClientProvider>
       </body>
