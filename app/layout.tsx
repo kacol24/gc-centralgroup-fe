@@ -4,7 +4,6 @@ import './globals.css';
 import GraphqlProvider from '@/components/GraphqlProvider';
 import { getLocale } from 'next-intl/server';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import Head from 'next/head';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -23,6 +22,12 @@ const montserrat = Montserrat({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Central Group',
   description: 'Building Your Dream Home',
+  icons: [
+    {rel: 'apple-touch-icon', sizes: '180x180', url: '/apple-touch-icon.png?v=202506021107'},
+    {rel: 'icon', type: 'image/png', sizes: '32x32', url: '/favicon-32x32.png?v=202506021107'},
+    {rel: 'icon', type: 'image/png', sizes: '16x16', url: '/favicon-16x16.png?v=202506021107'},
+  ],
+  manifest: '/site.webmanifest?v=202506021107',
 };
 
 export default async function RootLayout({
@@ -35,12 +40,6 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <Head>
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=202506021107" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=202506021107" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=202506021107" />
-        <link rel="manifest" href="/site.webmanifest?v=202506021107" />
-      </Head>
       <GraphqlProvider token={accessToken}>
         <body
           className={`${geistSans.className} ${geistMono.variable} ${montserrat.className} ${marcellus.className} ${aboreto.className} antialiased`}
