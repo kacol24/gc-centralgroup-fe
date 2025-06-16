@@ -1,8 +1,6 @@
 import {getClient} from "@/app/lib/urqlClient";
 import BannersQuery from "@/graphql/BannersQuery.graphql";
 
-const client = await getClient();
-
 export interface Banner {
     cta: string
     desktop: string
@@ -13,6 +11,8 @@ export interface Banner {
 }
 
 export async function getCta(locale): Promise<Banner[]> {
+    const client = await getClient();
+
     const {data: response} = await client.query(BannersQuery, {
         lang: locale,
         type: 'footer_banner',
@@ -23,6 +23,8 @@ export async function getCta(locale): Promise<Banner[]> {
 }
 
 export async function getPopup(locale): Promise<Banner[]> {
+    const client = await getClient();
+
     const {data: response} = await client.query(BannersQuery, {
         lang: locale,
         type: 'popup_banner',
