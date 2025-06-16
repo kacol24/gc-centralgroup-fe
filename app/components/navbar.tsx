@@ -185,7 +185,7 @@ export default function Navbar() {
 
             {/* Center Side (Logo) */}
             <div className="flex items-center space-x-2">
-              <Link href={'/'}>
+              <a href={'/'}>
                 <div className={isScrolled ? '' : 'md:relative md:-top-1'}>
                   <Image
                     // className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
@@ -197,8 +197,8 @@ export default function Navbar() {
                     unoptimized={true}
                   />
                 </div>
-              </Link>
-              <Link href={'/'}>
+              </a>
+              <a href={'/'}>
                 <div className={isScrolled ? '' : 'md:relative md:-top-1'}>
                   <Image
                     // className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
@@ -210,7 +210,7 @@ export default function Navbar() {
                     unoptimized={true}
                   />
                 </div>
-              </Link>
+              </a>
             </div>
 
             {/* Right Side */}
