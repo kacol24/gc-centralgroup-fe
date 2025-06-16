@@ -3,15 +3,9 @@
 import {useEffect, useState} from "react";
 import Modal from "@/components/ui/modal";
 import Image from 'next/image';
-
-interface Banner {
-    cta: string
-    desktop: string
-    id: number
-    mobile: string
-    title: string
-    url: string
-}
+import BannersQuery from "@/graphql/BannersQuery.graphql";
+import {useQuery} from "@urql/next";
+import {useLocale} from "next-intl";
 
 const PROMOTION_MODAL_KEY = 'modalLastClosed';
 
@@ -33,7 +27,7 @@ const getCookie = (name: string) => {
     return null;
 };
 
-export default function PromotionPopupModal ({ banner }: { banner: Banner}) {
+export default function PromotionPopupModal() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
@@ -59,11 +53,34 @@ export default function PromotionPopupModal ({ banner }: { banner: Banner}) {
         setIsModalOpen(false);
     };
 
+    const locale = useLocale();
+    
+    const [{data: bannerResponse}] = useQuery({
+        query: BannersQuery,
+        variables: {
+            lang: locale,
+            type: 'popup_banner',
+            limit: 1,
+        }
+    });
+
+    const banner = bannerResponse.banners;
+
+    if (! banner.length) {
+        return;
+    }
+
     return (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <a href={banner.url} target="_blank">
-                <Image src={banner.mobile} alt={banner.cta} style={{objectFit: 'cover'}} width={1600} height={900} className="w-full block md:hidden"/>
-                <Image src={banner.desktop} alt={banner.cta} style={{objectFit: 'cover'}} width={900} height={1600} className="w-full hidden md:block"/>
+            <a href={banner[0].url} target="_blank">
+                <Image src={banner[0].mobile} alt={banner[0].cta} style={{objectFit: 'cover'}}
+                       width={1600}
+                       height={900}
+                       className="w-full block md:hidden"/>
+                <Image src={banner[0].desktop} alt={banner[0].cta} style={{objectFit: 'cover'}}
+                       width={900}
+                       height={1600}
+                       className="w-full hidden md:block"/>
             </a>
         </Modal>
     );

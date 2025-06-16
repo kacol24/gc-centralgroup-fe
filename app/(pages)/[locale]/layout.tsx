@@ -7,7 +7,6 @@ import { Suspense } from 'react';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl';
-import { getPopup } from '@/data/banners';
 import PromotionPopupModal from '@/app/components/promotion-popup-modal';
 
 const geistSans = Geist({
@@ -36,8 +35,6 @@ export default async function RootLayout({
     notFound();
   }
 
-  const popupBanner = await getPopup(locale);
-
   return (
     <html lang={locale}>
       <body
@@ -50,7 +47,7 @@ export default async function RootLayout({
           {children}
           <ContactUs />
           <Footer />
-          {popupBanner.length ? <PromotionPopupModal banner={popupBanner[0]} /> : ''}
+          <PromotionPopupModal/>
         </NextIntlClientProvider>
       </body>
     </html>
