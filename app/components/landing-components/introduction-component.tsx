@@ -31,7 +31,7 @@ export default function IntroductionComponent() {
   const locale = useLocale();
 
   return (
-    <section className="w-full mx-auto container px-4 md:px-8 xl:px-8 mt-10">
+    <section className="w-full mx-auto container px-4 md:px-8 lg:px-10 xl:px-8 mt-10">
       <div className="lg:flex">
         <div className="flex flex-col lg:flex-[0.45] justify-start items-start w-full h-full lg:pr-[100px] mb-12 lg:mb-0 ">
           <h1
