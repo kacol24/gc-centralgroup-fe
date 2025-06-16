@@ -142,7 +142,7 @@ export default async function SectionBankPartners() {
   ];
 
   return (
-    <section className="bg-backgroundWhite">
+    <section className="bg-backgroundWhite mb-6 lg:mb-16">
       <h1
         data-aos="fade-up"
         className="text-[28px] lg:text-4xl text-center  mb-6 lg:mb-16 font-marcellus text-textPrimary uppercase"
