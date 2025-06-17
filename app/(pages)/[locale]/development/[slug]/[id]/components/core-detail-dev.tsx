@@ -37,7 +37,7 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
 
     try {
       const res = await downloadBrochure({
-        project_id: '1',
+        project_id: detail?.id,
         name: name,
         phone: phone,
         email: email,
@@ -307,7 +307,7 @@ export default function CoreDetailDevelopment({ detail, nextSectionId }) {
         </div>
       </div>
       <div data-aos="zoom-in" data-aos-duration="1000" className="hidden lg:block w-[405px] flex-shrink-0">
-        {detail?.brochure_url && <FormDownloadBrosur nextSectionId={nextSectionId} />}
+        {detail?.brochure_url && <FormDownloadBrosur nextSectionId={nextSectionId} detail={detail} />}
       </div>
     </div>
   );
