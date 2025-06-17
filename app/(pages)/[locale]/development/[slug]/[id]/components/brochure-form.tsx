@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { useMutation } from '@urql/next';
 import DownloadBrochureMutation from '@/graphql/DownloadBrochure.graphql';
 
-export default function FormDownloadBrosur({ nextSectionId }: { nextSectionId: string }) {
+export default function FormDownloadBrosur({ detail, nextSectionId }) {
   const formRef = useRef<HTMLDivElement>(null);
   const [isFixed, setIsFixed] = useState(false);
 
@@ -64,7 +64,7 @@ export default function FormDownloadBrosur({ nextSectionId }: { nextSectionId: s
 
     try {
       const res = await downloadBrochure({
-        project_id: '1',
+        project_id: detail?.id,
         name: name,
         phone: phone,
         email: email,
