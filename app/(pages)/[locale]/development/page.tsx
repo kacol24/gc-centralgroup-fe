@@ -1,18 +1,18 @@
 import { Suspense } from 'react';
 import CardListDevelopment from './components/card-list-development';
 import CarouselOurPartner from './components/carousel-our-partner';
-import ProjectsQuery from "@/graphql/ProjectsQuery.graphql";
-import {getLocale} from "next-intl/server";
-import {getClient} from "@/app/lib/urqlClient";
-import PropertyFinderSection from "@/app/(pages)/[locale]/development/components/property-finder-section";
+import ProjectsQuery from '@/graphql/ProjectsQuery.graphql';
+import { getLocale } from 'next-intl/server';
+import { getClient } from '@/app/lib/urqlClient';
+import PropertyFinderSection from '@/app/(pages)/[locale]/development/components/property-finder-section';
 
 export default async function Development() {
   const locale = await getLocale();
   const client = await getClient();
 
-  const {data: projectsResponse} = await client.query(ProjectsQuery, {
+  const { data: projectsResponse } = await client.query(ProjectsQuery, {
     lang: locale,
-    limit: 6
+    limit: 9,
   });
 
   return (
@@ -30,12 +30,12 @@ export default async function Development() {
         Find tHe Perfect <br /> Property for <br /> your lifestyle
       </h1>
       <div className="container mx-auto md:px-4">
-        <CardListDevelopment properties={projectsResponse.projects}/>
+        <CardListDevelopment properties={projectsResponse.projects} />
       </div>
-        <Suspense>
-            <CarouselOurPartner/>
-        </Suspense>
-        <PropertyFinderSection />
+      <Suspense>
+        <CarouselOurPartner />
+      </Suspense>
+      <PropertyFinderSection />
     </div>
   );
 }
