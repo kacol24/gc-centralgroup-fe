@@ -12,7 +12,6 @@ export default async function Development() {
 
   const { data: projectsResponse } = await client.query(ProjectsQuery, {
     lang: locale,
-    limit: 9,
   });
 
   return (
