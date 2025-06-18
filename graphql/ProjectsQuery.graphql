@@ -5,6 +5,7 @@ query Q_PROJECTS(
     $facilityIds: [Int]
     $minPrice: Float
     $maxPrice: Float
+    $limit: Int
 ) {
     projects(
         language: $lang
@@ -13,6 +14,7 @@ query Q_PROJECTS(
         facility_ids: $facilityIds
         min_price: $minPrice
         max_price: $maxPrice
+        limit: $limit
     ) {
         datas {
             id

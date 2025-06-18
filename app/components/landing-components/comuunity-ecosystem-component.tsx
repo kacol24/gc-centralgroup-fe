@@ -22,7 +22,7 @@ export default function CommunityEcosystemComponent() {
 
   return (
     <>
-      {!banner && <div className="mt-10"></div>}
+      {!banner && <div className="pb-10"></div>}
       <div className={`mt-[50px] lg:mt-[100px] relative w-full h-[580px] ${!banner ? 'hidden' : ''}`}>
         {banner && (
           <Image
