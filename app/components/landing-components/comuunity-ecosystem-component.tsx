@@ -49,7 +49,7 @@ export default function CommunityEcosystemComponent() {
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-          <h1 className="text-[36px] font-marcellus mb-10 uppercase tracking-wide">Community Ecosystem</h1>
+          <h1 className="text-[36px] font-marcellus mb-10 uppercase tracking-wide">CSR & Community Development</h1>
           <Button variant="filled" className="rounded-sm  text-xs py-[24px] px-[15px] lg:px-6">
             <Link href={'central/berbagi'}>LEARN MORE</Link>
           </Button>

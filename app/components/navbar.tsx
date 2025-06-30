@@ -311,7 +311,7 @@ export default function Navbar() {
               className="my-3 font-marcellus text-textPrimary flex justify-start items-center gap-2 cursor-pointer text-[18px]"
               onClick={() => toggleMenu('community')}
             >
-              COMMUNITY ECOSYSTEM
+              CSR & COMMUNITY DEVELOPMENT
               <span>
                 <Image
                   src={iconCaretDown}

@@ -14,7 +14,7 @@ import { getLocale } from 'next-intl/server';
 import SectionAwards from '@/app/components/landing-components/section-awards';
 import SectionBankPartners from '../../components/landing-components/section-bank-partners';
 import PropertyFinderSection from './development/components/property-finder-section';
-import {Metadata} from "next";
+import { Metadata } from 'next';
 
 async function getHomepageBanners(locale, client) {
   const { data: heroBanners } = await client.query(BannersQuery, {
@@ -55,8 +55,8 @@ const AwardsSkeleton = () => {
 };
 
 export const metadata: Metadata = {
-    title: 'Central Group',
-    description: 'Building Your Dream Home',
+  title: 'Central Group',
+  description: 'We Build Your Dream Home',
 };
 
 export default async function Home() {
