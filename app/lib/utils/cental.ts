@@ -162,7 +162,7 @@ export const central = (locale: string = 'en'): CentralModel[] => {
       bannerColor: 'bg-backgroundGray',
       bannerImageTop: backgroundBottomBannerPageCentralHome,
       bannerImageBottom: backgroundTopBannerPageCentralHome,
-      bannerTitle: 'CENTRAL HOME',
+      bannerTitle: 'CENTRAL HOMES',
       bannerDescription: content[locale].central.home.content,
       pillarTitle: content[locale].how_it_works,
       pillarItems: [],
