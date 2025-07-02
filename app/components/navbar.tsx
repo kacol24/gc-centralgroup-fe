@@ -256,7 +256,7 @@ export default function Navbar() {
         </div>
 
         {/* Menu List */}
-        <ul className="pl-16 pt-4 text-textPrimary">
+        <ul className="pl-8 pt-4 text-textPrimary">
           {/* HOME */}
           <li className={'block md:hidden'}>
             <Link href="/" className={menuStyle('/')} onClick={() => setIsOpen(false)}>
