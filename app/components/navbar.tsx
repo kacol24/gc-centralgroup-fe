@@ -85,7 +85,7 @@ export default function Navbar() {
   });
 
   useEffect(() => {
-    const allowPath = ['/development', '/contact', '/search'];
+    const allowPath = ['/development', '/contact', '/search', '/kpr-is-me-roadshow', '/kpr-is-me-roadshow/thankyou'];
 
     const handleResize = () => {
       const isMobile = window.innerWidth <= 1024;
