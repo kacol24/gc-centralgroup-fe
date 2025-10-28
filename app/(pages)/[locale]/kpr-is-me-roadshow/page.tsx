@@ -9,7 +9,8 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import Image from 'next/image';
 import { iconFacebookFill, iconWhatsAppLine, iconLinksLine } from '@/app/lib/utils/svg';
-import { useRouter } from '@/i18n/routing';
+import { useRouter } from '@/i18n/navigation';
+import { requestOtp, verifyOtp, submitRaffle } from '@/lib/kpr-api-client';
 
 export default function KprIsMeRoadshow() {
   const router = useRouter();
@@ -19,6 +20,10 @@ export default function KprIsMeRoadshow() {
     email: '',
   });
   const [otpData, setOtpData] = useState(['', '', '', '', '', '']);
+  const [isLoadingOtp, setIsLoadingOtp] = useState(false);
+  const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [isSubmittingRaffle, setIsSubmittingRaffle] = useState(false);
+  const [otpError, setOtpError] = useState<string | null>(null);
   const [finalFormData, setFinalFormData] = useState({
     nik: '',
     nomorHandphone: '',
@@ -92,32 +97,122 @@ export default function KprIsMeRoadshow() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (currentStep === 1) {
-      // Proceed to OTP step
-      setCurrentStep(2);
-      console.log('Form data:', formData);
-      alert('OTP telah dikirim ke email Anda!');
-    } else if (currentStep === 2) {
-      // Verify OTP and proceed to final form
-      const otpCode = otpData.join('');
-      console.log('OTP Code:', otpCode);
-      setCurrentStep(3);
-      alert('OTP berhasil diverifikasi!');
-    } else {
-      // Final submission - redirect to thank you page
-      console.log('Final form data:', finalFormData);
-      console.log('All form data:', { ...formData, ...finalFormData });
 
-      // Redirect to thank you page
-      router.push('/kpr-is-me-roadshow/thankyou');
+    if (currentStep === 1) {
+      // Request OTP
+      setIsLoadingOtp(true);
+      setOtpError(null);
+
+      try {
+        const response = await requestOtp(formData.email);
+        console.log('OTP Request Response:', response);
+
+        // Proceed to OTP step
+        setCurrentStep(2);
+        alert('OTP telah dikirim ke email Anda!');
+      } catch (error) {
+        console.error('Failed to request OTP:', error);
+        setOtpError('Gagal mengirim OTP. Silakan coba lagi.');
+        alert('Gagal mengirim OTP. Silakan coba lagi.');
+      } finally {
+        setIsLoadingOtp(false);
+      }
+    } else if (currentStep === 2) {
+      // Verify OTP
+      setIsVerifyingOtp(true);
+      setOtpError(null);
+
+      try {
+        const otpCode = otpData.join('');
+        if (otpCode.length !== 6) {
+          throw new Error('Kode OTP harus 6 digit');
+        }
+
+        const response = await verifyOtp(otpCode, formData.email);
+        console.log('OTP Verify Response:', response);
+
+        if (response.verifyOtp.status) {
+          setCurrentStep(3);
+          alert('OTP berhasil diverifikasi!');
+        } else {
+          throw new Error(response.verifyOtp.message || 'OTP tidak valid');
+        }
+      } catch (error) {
+        console.error('Failed to verify OTP:', error);
+        const errorMessage = error instanceof Error ? error.message : 'Gagal memverifikasi OTP. Silakan coba lagi.';
+        setOtpError(errorMessage);
+        alert(errorMessage);
+      } finally {
+        setIsVerifyingOtp(false);
+      }
+    } else {
+      // Final submission - submit to raffle API
+      setIsSubmittingRaffle(true);
+
+      try {
+        // Prepare submission data according to API schema
+        const submissionData = {
+          name: formData.nama,
+          email: formData.email,
+          phone: finalFormData.nomorHandphone.startsWith('62')
+            ? `+${finalFormData.nomorHandphone}`
+            : `+62${finalFormData.nomorHandphone}`,
+          nik: finalFormData.nik,
+          source: finalFormData.mengetahuiDari,
+          friends: finalFormData.temanTeman.map((teman) => ({
+            name: teman.nama,
+            phone: teman.nomor.startsWith('62') ? `+${teman.nomor}` : `+62${teman.nomor}`,
+          })),
+        };
+
+        console.log('Submitting raffle data:', submissionData);
+
+        const response = await submitRaffle(submissionData);
+        console.log('Raffle submission response:', response);
+
+        if (response.submitRaffle.status) {
+          // Store submission data for thank you page if needed
+          sessionStorage.setItem(
+            'raffleSubmission',
+            JSON.stringify({
+              serialNumber: response.submitRaffle.serialNumber,
+              submitAt: response.submitRaffle.submitAt,
+            }),
+          );
+
+          // Redirect to thank you page
+          router.push('/kpr-is-me-roadshow/thankyou');
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (error) {
+        console.error('Failed to submit raffle:', error);
+        const errorMessage = error instanceof Error ? error.message : 'Gagal mengirim formulir. Silakan coba lagi.';
+        alert(errorMessage);
+      } finally {
+        setIsSubmittingRaffle(false);
+      }
     }
   };
 
-  const resendOtp = () => {
+  const resendOtp = async () => {
     setOtpData(['', '', '', '', '', '']);
-    alert('OTP baru telah dikirim ke email Anda!');
+    setOtpError(null);
+    setIsLoadingOtp(true);
+
+    try {
+      const response = await requestOtp(formData.email);
+      console.log('OTP Resend Response:', response);
+      alert('OTP baru telah dikirim ke email Anda!');
+    } catch (error) {
+      console.error('Failed to resend OTP:', error);
+      setOtpError('Gagal mengirim ulang OTP. Silakan coba lagi.');
+      alert('Gagal mengirim ulang OTP. Silakan coba lagi.');
+    } finally {
+      setIsLoadingOtp(false);
+    }
   };
 
   const shareToFacebook = () => {
@@ -531,6 +626,14 @@ export default function KprIsMeRoadshow() {
                       <Label className="text-[10px] font-semibold text-gray-900">
                         MASUKKAN OTP YANG DIKIRIM KE EMAIL ANDA
                       </Label>
+
+                      {/* Error Message */}
+                      {otpError && (
+                        <div className="text-red-600 text-xs mb-2 px-2 py-1 bg-red-50 border border-red-200 rounded">
+                          {otpError}
+                        </div>
+                      )}
+
                       {/* Desktop Layout - OTP fields and button on same line */}
                       <div className="hidden md:flex justify-between items-end">
                         {/* OTP Input Fields */}
@@ -547,8 +650,9 @@ export default function KprIsMeRoadshow() {
                                 value={digit}
                                 onChange={(e) => handleOtpChange(index, e.target.value)}
                                 onKeyDown={(e) => handleOtpKeyDown(index, e)}
+                                disabled={isVerifyingOtp}
                                 style={{
-                                  backgroundColor: 'white',
+                                  backgroundColor: isVerifyingOtp ? '#f5f5f5' : 'white',
                                   borderColor: '#E1E1E1',
                                   borderRadius: '0px',
                                   fontSize: '12px',
@@ -573,8 +677,9 @@ export default function KprIsMeRoadshow() {
                                 value={digit}
                                 onChange={(e) => handleOtpChange(index + 3, e.target.value)}
                                 onKeyDown={(e) => handleOtpKeyDown(index + 3, e)}
+                                disabled={isVerifyingOtp}
                                 style={{
-                                  backgroundColor: 'white',
+                                  backgroundColor: isVerifyingOtp ? '#f5f5f5' : 'white',
                                   borderColor: '#E1E1E1',
                                   borderRadius: '0px',
                                   fontSize: '12px',
@@ -592,10 +697,11 @@ export default function KprIsMeRoadshow() {
                         <button
                           type="button"
                           onClick={resendOtp}
-                          className="text-[10px] font-semibold underline whitespace-nowrap self-end"
+                          disabled={isLoadingOtp}
+                          className="text-[10px] font-semibold underline whitespace-nowrap self-end disabled:opacity-50"
                           style={{ color: 'hsla(180, 29%, 19%, 1)' }}
                         >
-                          Kirim Ulang OTP
+                          {isLoadingOtp ? 'Mengirim...' : 'Kirim Ulang OTP'}
                         </button>
                       </div>
 
@@ -615,8 +721,9 @@ export default function KprIsMeRoadshow() {
                                 value={digit}
                                 onChange={(e) => handleOtpChange(index, e.target.value)}
                                 onKeyDown={(e) => handleOtpKeyDown(index, e)}
+                                disabled={isVerifyingOtp}
                                 style={{
-                                  backgroundColor: 'white',
+                                  backgroundColor: isVerifyingOtp ? '#f5f5f5' : 'white',
                                   borderColor: '#E1E1E1',
                                   borderRadius: '0px',
                                   fontSize: '12px',
@@ -641,8 +748,9 @@ export default function KprIsMeRoadshow() {
                                 value={digit}
                                 onChange={(e) => handleOtpChange(index + 3, e.target.value)}
                                 onKeyDown={(e) => handleOtpKeyDown(index + 3, e)}
+                                disabled={isVerifyingOtp}
                                 style={{
-                                  backgroundColor: 'white',
+                                  backgroundColor: isVerifyingOtp ? '#f5f5f5' : 'white',
                                   borderColor: '#E1E1E1',
                                   borderRadius: '0px',
                                   fontSize: '12px',
@@ -661,10 +769,11 @@ export default function KprIsMeRoadshow() {
                           <button
                             type="button"
                             onClick={resendOtp}
-                            className="text-[10px] font-semibold underline whitespace-nowrap"
+                            disabled={isLoadingOtp}
+                            className="text-[10px] font-semibold underline whitespace-nowrap disabled:opacity-50"
                             style={{ color: 'hsla(180, 29%, 19%, 1)' }}
                           >
-                            Kirim Ulang OTP
+                            {isLoadingOtp ? 'Mengirim...' : 'Kirim Ulang OTP'}
                           </button>
                         </div>
                       </div>
@@ -675,7 +784,8 @@ export default function KprIsMeRoadshow() {
                     <Button
                       type="submit"
                       variant="filled"
-                      className="w-full font-medium text-xs py-[24px] uppercase"
+                      disabled={isLoadingOtp || isVerifyingOtp || isSubmittingRaffle}
+                      className="w-full font-medium text-xs py-[24px] uppercase disabled:opacity-50"
                       style={{
                         borderRadius: '0px',
                         backgroundColor: '#016241',
@@ -684,10 +794,16 @@ export default function KprIsMeRoadshow() {
                       }}
                     >
                       {currentStep === 1
-                        ? 'LANJUT VERIFIKASI EMAIL'
+                        ? isLoadingOtp
+                          ? 'MENGIRIM OTP...'
+                          : 'LANJUT VERIFIKASI EMAIL'
                         : currentStep === 2
-                          ? 'VERIFIKASI OTP'
-                          : 'SAYA MAU IKUT!'}
+                          ? isVerifyingOtp
+                            ? 'MEMVERIFIKASI...'
+                            : 'VERIFIKASI OTP'
+                          : isSubmittingRaffle
+                            ? 'MENGIRIM FORMULIR...'
+                            : 'SAYA MAU IKUT!'}
                     </Button>
                   </div>
                 </form>

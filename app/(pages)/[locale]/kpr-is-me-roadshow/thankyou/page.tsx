@@ -6,7 +6,7 @@ import 'aos/dist/aos.css';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { iconFacebookFill, iconWhatsAppLine, iconLinksLine } from '@/app/lib/utils/svg';
-import { useRouter } from '@/i18n/routing';
+import { useRouter } from '@/i18n/navigation';
 
 export default function KprIsMeRoadshowThankYou() {
   const router = useRouter();
