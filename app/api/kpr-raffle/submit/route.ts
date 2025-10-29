@@ -47,7 +47,6 @@ async function getAccessToken(): Promise<string> {
     });
 
     console.log(`[TOKEN-${tokenRequestId}] Token response status: ${response.status} ${response.statusText}`);
-    console.log(`[TOKEN-${tokenRequestId}] Token response headers:`, Object.fromEntries(response.headers.entries()));
 
     const responseText = await response.text();
     console.log(`[TOKEN-${tokenRequestId}] Raw token response:`, responseText);
@@ -114,26 +113,58 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Validate NIK length (must be 16 characters)
+    if (submission.nik.length !== 16) {
+      console.log(`[RAFFLE-SUBMIT-${requestId}] Error: NIK must be 16 characters, got ${submission.nik.length}`);
+      return NextResponse.json(
+        { error: `NIK must be exactly 16 characters. Current length: ${submission.nik.length}` },
+        { status: 400 },
+      );
+    }
+
+    // Validate NIK contains only numbers
+    if (!/^\d{16}$/.test(submission.nik)) {
+      console.log(`[RAFFLE-SUBMIT-${requestId}] Error: NIK must contain only numbers`);
+      return NextResponse.json({ error: 'NIK must contain only 16 digits' }, { status: 400 });
+    }
+
     // Get access token
     console.log(`[RAFFLE-SUBMIT-${requestId}] Getting access token...`);
     const token = await getAccessToken();
     console.log(`[RAFFLE-SUBMIT-${requestId}] Access token obtained successfully`);
 
-    // Prepare GraphQL request
+    // Escape function for GraphQL strings
+    const escapeGraphQLString = (str: string) => {
+      return str.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
+    };
+
+    // Prepare GraphQL request - using exact structure from backend documentation
     const graphqlPayload = {
       query: `
-        mutation SubmitRaffle($raffleId: ID!, $submission: RaffleSubmissionInput!) {
-          submitRaffle(raffleId: $raffleId, submission: $submission) {
+        mutation SUBMIT {
+          submitRaffle(
+            raffleId: "UmFmZmxlOjE="
+            submission: {
+              name: "${escapeGraphQLString(submission.name)}"
+              email: "${escapeGraphQLString(submission.email)}"
+              phone: "${escapeGraphQLString(submission.phone)}"
+              nik: "${escapeGraphQLString(submission.nik)}"
+              source: "${escapeGraphQLString(submission.source)}"
+              friends: [
+                { name: "${escapeGraphQLString(submission.friends[0]?.name || '')}", phone: "${escapeGraphQLString(submission.friends[0]?.phone || '')}" }
+                { name: "${escapeGraphQLString(submission.friends[1]?.name || '')}", phone: "${escapeGraphQLString(submission.friends[1]?.phone || '')}" }
+                { name: "${escapeGraphQLString(submission.friends[2]?.name || '')}", phone: "${escapeGraphQLString(submission.friends[2]?.phone || '')}" }
+                { name: "${escapeGraphQLString(submission.friends[3]?.name || '')}", phone: "${escapeGraphQLString(submission.friends[3]?.phone || '')}" }
+                { name: "${escapeGraphQLString(submission.friends[4]?.name || '')}", phone: "${escapeGraphQLString(submission.friends[4]?.phone || '')}" }
+              ]
+            }
+          ) {
             status
             serialNumber
             submitAt
           }
         }
       `,
-      variables: {
-        raffleId: 'UmFmZmxlOjE=', // Static raffle ID as provided by backend
-        submission: submission,
-      },
     };
 
     console.log(`[RAFFLE-SUBMIT-${requestId}] Making GraphQL request to: ${OAUTH_CONFIG.graphqlUrl}`);
@@ -151,10 +182,6 @@ export async function POST(request: NextRequest) {
 
     console.log(
       `[RAFFLE-SUBMIT-${requestId}] GraphQL response status: ${graphqlResponse.status} ${graphqlResponse.statusText}`,
-    );
-    console.log(
-      `[RAFFLE-SUBMIT-${requestId}] GraphQL response headers:`,
-      Object.fromEntries(graphqlResponse.headers.entries()),
     );
 
     const responseText = await graphqlResponse.text();

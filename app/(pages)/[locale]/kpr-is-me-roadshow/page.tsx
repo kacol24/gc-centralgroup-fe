@@ -23,6 +23,7 @@ export default function KprIsMeRoadshow() {
   const [isLoadingOtp, setIsLoadingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
   const [isSubmittingRaffle, setIsSubmittingRaffle] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const [otpError, setOtpError] = useState<string | null>(null);
   const [finalFormData, setFinalFormData] = useState({
     nik: '',
@@ -43,7 +44,64 @@ export default function KprIsMeRoadshow() {
       once: false,
       startEvent: 'DOMContentLoaded',
     });
-  }, []);
+
+    // Preload thank you page for faster navigation
+    router.prefetch('/kpr-is-me-roadshow/thankyou');
+
+    // Add paste event listeners to all OTP inputs
+    const addPasteListeners = () => {
+      for (let i = 0; i < 6; i++) {
+        const input = document.getElementById(`otp-${i}`);
+        if (input) {
+          input.addEventListener('paste', (e) => {
+            e.preventDefault();
+            const pastedData = (e as ClipboardEvent).clipboardData?.getData('text') || '';
+
+            // Extract only numbers from pasted text
+            const numbers = pastedData.replace(/\D/g, '');
+
+            if (numbers.length >= 6) {
+              // Take first 6 digits
+              const otpDigits = numbers.slice(0, 6).split('');
+              setOtpData(otpDigits);
+
+              // Focus on the last input field
+              const lastInput = document.getElementById(`otp-5`);
+              lastInput?.focus();
+            } else if (numbers.length > 0) {
+              // If less than 6 digits, fill what we can
+              setOtpData((prevData) => {
+                const newOtpData = [...prevData];
+                for (let j = 0; j < Math.min(numbers.length, 6); j++) {
+                  newOtpData[j] = numbers[j];
+                }
+                return newOtpData;
+              });
+
+              // Focus on the next empty field or last filled field
+              const nextIndex = Math.min(numbers.length, 5);
+              const nextInput = document.getElementById(`otp-${nextIndex}`);
+              nextInput?.focus();
+            }
+          });
+        }
+      }
+    };
+
+    // Add listeners initially and when component updates
+    const timer = setTimeout(addPasteListeners, 100);
+
+    return () => {
+      clearTimeout(timer);
+      // Clean up event listeners
+      for (let i = 0; i < 6; i++) {
+        const input = document.getElementById(`otp-${i}`);
+        if (input) {
+          input.removeEventListener('paste', () => {});
+        }
+      }
+    };
+  }, [router, currentStep]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -152,6 +210,15 @@ export default function KprIsMeRoadshow() {
       setIsSubmittingRaffle(true);
 
       try {
+        // Validate NIK before submission
+        if (finalFormData.nik.length !== 16) {
+          throw new Error(`NIK harus 16 digit. Saat ini: ${finalFormData.nik.length} digit`);
+        }
+
+        if (!/^\d{16}$/.test(finalFormData.nik)) {
+          throw new Error('NIK harus berisi 16 angka saja');
+        }
+
         // Prepare submission data according to API schema
         const submissionData = {
           name: formData.nama,
@@ -172,18 +239,29 @@ export default function KprIsMeRoadshow() {
         const response = await submitRaffle(submissionData);
         console.log('Raffle submission response:', response);
 
-        if (response.submitRaffle.status) {
-          // Store submission data for thank you page if needed
-          sessionStorage.setItem(
-            'raffleSubmission',
-            JSON.stringify({
-              serialNumber: response.submitRaffle.serialNumber,
-              submitAt: response.submitRaffle.submitAt,
-            }),
-          );
+        // Stop loading immediately after getting response
+        setIsSubmittingRaffle(false);
 
-          // Redirect to thank you page
+        if (response.submitRaffle.status) {
+          // Set redirecting state for immediate UI feedback
+          setIsRedirecting(true);
+
+          // Immediate redirect - don't wait for sessionStorage
           router.push('/kpr-is-me-roadshow/thankyou');
+
+          // Store submission data asynchronously (non-blocking)
+          try {
+            sessionStorage.setItem(
+              'raffleSubmission',
+              JSON.stringify({
+                serialNumber: response.submitRaffle.serialNumber,
+                submitAt: response.submitRaffle.submitAt,
+              }),
+            );
+          } catch (storageError) {
+            // Ignore storage errors - don't block navigation
+            console.warn('Failed to store submission data:', storageError);
+          }
         } else {
           throw new Error('Submission failed');
         }
@@ -191,9 +269,9 @@ export default function KprIsMeRoadshow() {
         console.error('Failed to submit raffle:', error);
         const errorMessage = error instanceof Error ? error.message : 'Gagal mengirim formulir. Silakan coba lagi.';
         alert(errorMessage);
-      } finally {
-        setIsSubmittingRaffle(false);
+        setIsSubmittingRaffle(false); // Only set false on error since we already set it false on success
       }
+      // Remove finally block since we handle loading state manually
     }
   };
 
@@ -417,15 +495,24 @@ export default function KprIsMeRoadshow() {
                       <div className="space-y-3">
                         <div className="space-y-2">
                           <Label htmlFor="nik" className="text-[10px] font-semibold text-gray-900">
-                            NIK
+                            NIK (16 DIGIT)
                           </Label>
                           <Input
                             id="nik"
                             name="nik"
                             type="text"
-                            placeholder="Masukkan NIK Anda"
+                            inputMode="numeric"
+                            maxLength={16}
+                            placeholder="Masukkan 16 digit NIK Anda"
                             value={finalFormData.nik}
-                            onChange={handleFinalFormChange}
+                            onChange={(e) => {
+                              // Only allow numbers
+                              const value = e.target.value.replace(/\D/g, '');
+                              handleFinalFormChange({
+                                ...e,
+                                target: { ...e.target, name: 'nik', value },
+                              } as React.ChangeEvent<HTMLInputElement>);
+                            }}
                             required
                             style={{
                               backgroundColor: 'white',
@@ -437,6 +524,11 @@ export default function KprIsMeRoadshow() {
                             }}
                             className="text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
                           />
+                          {finalFormData.nik && finalFormData.nik.length !== 16 && (
+                            <p className="text-red-600 text-xs mt-1">
+                              NIK harus 16 digit ({finalFormData.nik.length}/16)
+                            </p>
+                          )}
                         </div>
 
                         <div className="space-y-2">
@@ -784,7 +876,13 @@ export default function KprIsMeRoadshow() {
                     <Button
                       type="submit"
                       variant="filled"
-                      disabled={isLoadingOtp || isVerifyingOtp || isSubmittingRaffle}
+                      disabled={
+                        isLoadingOtp ||
+                        isVerifyingOtp ||
+                        isSubmittingRaffle ||
+                        isRedirecting ||
+                        (currentStep === 3 && finalFormData.nik.length !== 16)
+                      }
                       className="w-full font-medium text-xs py-[24px] uppercase disabled:opacity-50"
                       style={{
                         borderRadius: '0px',
@@ -803,7 +901,9 @@ export default function KprIsMeRoadshow() {
                             : 'VERIFIKASI OTP'
                           : isSubmittingRaffle
                             ? 'MENGIRIM FORMULIR...'
-                            : 'SAYA MAU IKUT!'}
+                            : isRedirecting
+                              ? 'BERHASIL! MENGARAHKAN...'
+                              : 'SAYA MAU IKUT!'}
                     </Button>
                   </div>
                 </form>
