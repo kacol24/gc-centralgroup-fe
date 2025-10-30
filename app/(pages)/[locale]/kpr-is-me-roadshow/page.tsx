@@ -11,6 +11,7 @@ import Image from 'next/image';
 import { iconFacebookFill, iconWhatsAppLine, iconLinksLine } from '@/app/lib/utils/svg';
 import { useRouter } from '@/i18n/navigation';
 import { requestOtp, verifyOtp, submitRaffle } from '@/lib/kpr-api-client';
+import CustomAlert from '@/components/ui/custom-alert';
 
 export default function KprIsMeRoadshow() {
   const router = useRouter();
@@ -25,6 +26,28 @@ export default function KprIsMeRoadshow() {
   const [isSubmittingRaffle, setIsSubmittingRaffle] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [otpError, setOtpError] = useState<string | null>(null);
+
+  // Alert state
+  const [alert, setAlert] = useState({
+    isOpen: false,
+    message: '',
+    type: 'info' as 'success' | 'error' | 'info',
+    title: '',
+  });
+
+  // Helper function untuk menampilkan alert
+  const showAlert = (message: string, type: 'success' | 'error' | 'info' = 'info', title?: string) => {
+    setAlert({
+      isOpen: true,
+      message,
+      type,
+      title: title || '',
+    });
+  };
+
+  const hideAlert = () => {
+    setAlert((prev) => ({ ...prev, isOpen: false }));
+  };
   const [finalFormData, setFinalFormData] = useState({
     nik: '',
     nomorHandphone: '',
@@ -169,11 +192,11 @@ export default function KprIsMeRoadshow() {
 
         // Proceed to OTP step
         setCurrentStep(2);
-        alert('OTP telah dikirim ke email Anda!');
+        showAlert('OTP telah dikirim ke email Anda!', 'success');
       } catch (error) {
         console.error('Failed to request OTP:', error);
         setOtpError('Gagal mengirim OTP. Silakan coba lagi.');
-        alert('Gagal mengirim OTP. Silakan coba lagi.');
+        showAlert('Gagal mengirim OTP. Silakan coba lagi.', 'error');
       } finally {
         setIsLoadingOtp(false);
       }
@@ -193,7 +216,7 @@ export default function KprIsMeRoadshow() {
 
         if (response.verifyOtp.status) {
           setCurrentStep(3);
-          alert('OTP berhasil diverifikasi!');
+          showAlert('OTP berhasil diverifikasi!', 'success');
         } else {
           throw new Error(response.verifyOtp.message || 'OTP tidak valid');
         }
@@ -201,7 +224,7 @@ export default function KprIsMeRoadshow() {
         console.error('Failed to verify OTP:', error);
         const errorMessage = error instanceof Error ? error.message : 'Gagal memverifikasi OTP. Silakan coba lagi.';
         setOtpError(errorMessage);
-        alert(errorMessage);
+        showAlert(errorMessage, 'error');
       } finally {
         setIsVerifyingOtp(false);
       }
@@ -268,7 +291,7 @@ export default function KprIsMeRoadshow() {
       } catch (error) {
         console.error('Failed to submit raffle:', error);
         const errorMessage = error instanceof Error ? error.message : 'Gagal mengirim formulir. Silakan coba lagi.';
-        alert(errorMessage);
+        showAlert(errorMessage, 'error');
         setIsSubmittingRaffle(false); // Only set false on error since we already set it false on success
       }
       // Remove finally block since we handle loading state manually
@@ -283,11 +306,11 @@ export default function KprIsMeRoadshow() {
     try {
       const response = await requestOtp(formData.email);
       console.log('OTP Resend Response:', response);
-      alert('OTP baru telah dikirim ke email Anda!');
+      showAlert('OTP baru telah dikirim ke email Anda!', 'success');
     } catch (error) {
       console.error('Failed to resend OTP:', error);
       setOtpError('Gagal mengirim ulang OTP. Silakan coba lagi.');
-      alert('Gagal mengirim ulang OTP. Silakan coba lagi.');
+      showAlert('Gagal mengirim ulang OTP. Silakan coba lagi.', 'error');
     } finally {
       setIsLoadingOtp(false);
     }
@@ -306,7 +329,7 @@ export default function KprIsMeRoadshow() {
 
   const copyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    alert('Link berhasil disalin!');
+    showAlert('Link berhasil disalin!', 'success');
   };
 
   return (
@@ -912,6 +935,15 @@ export default function KprIsMeRoadshow() {
           </div>
         </div>
       </div>
+
+      {/* Custom Alert */}
+      <CustomAlert
+        isOpen={alert.isOpen}
+        onClose={hideAlert}
+        message={alert.message}
+        type={alert.type}
+        title={alert.title}
+      />
     </section>
   );
 }
