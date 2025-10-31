@@ -318,13 +318,27 @@ export default function KprIsMeRoadshow() {
 
   const shareToFacebook = () => {
     const url = window.location.href;
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+    const text = `Rayakan ulang tahun Central Group bersama KPR is Me Roadshow 2025!
+
+Isi data dirimu dan menangkan iPhone 17 Air!
+
+#KPRisMe #CentralGroup #Roadshow2025`;
+
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`,
+      '_blank',
+    );
   };
 
   const shareToWhatsapp = () => {
     const url = window.location.href;
-    const text = 'KPR IS ME Roadshow - Raih kesempatan menang!';
-    window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+    const text = `Rayakan ulang tahun Central Group bersama KPR is Me Roadshow 2025!
+
+Isi data dirimu dan menangkan iPhone 17 Air!
+
+#KPRisMe #CentralGroup #Roadshow2025`;
+
+    window.open(`https://wa.me/?text=${encodeURIComponent(text + '\n\n' + url)}`, '_blank');
   };
 
   const copyLink = () => {
@@ -342,7 +356,7 @@ export default function KprIsMeRoadshow() {
           className="text-2xl md:text-4xl lg:text-[64px] lg:leading-[70px] text-center mb-8 md:mb-12 lg:mb-16 font-marcellus text-textPrimary uppercase"
           style={{ fontSize: 'clamp(32px, 5vw, 64px)' }}
         >
-          KPR IS ME ROADSHOW
+          KPR IS ME ROADSHOW – Rayakan Bersama Central Group & Menangkan iPhone 17 Air!
         </h1>
 
         {/* Hero Image */}
@@ -376,22 +390,19 @@ export default function KprIsMeRoadshow() {
           >
             <div className="text-sm leading-relaxed text-textPrimary space-y-4">
               <p>
-                Interdum malesuada pretium id morbi dolor. In et tincidunt vitae auctor mi cras. Sed lacus malesuada
-                lacinia ac adipiscing massa vitae ultrices. Fermentum donec donec aenean congue non pellentesque nulla
-                neque. Eleifend fringilla tempor laoreet eget.
+                Selama <strong>36 tahun</strong>, Central Group telah menjadi bagian penting dalam perjalanan
+                pertumbuhan Batam dengan membangun hunian, menghadirkan harapan, dan menata masa depan.
               </p>
               <p>
-                Semper enim lobortis faucibus sodales facilisis et viverra justo. Eget tristique nunc quis tellus diam.
-                Libero egestas pellentesque ac tellus cras mattis egestas rhoncus ultrices. Sit aliquam id sit eleifend
-                sit. Consectetur ac fermentum est egestas. Hac dictum mattis eu dui. Lectus pretium integer est leo
-                rutrum adipiscing dignissim dignissim. Sodales pellentesque mi euismod egestas.
+                Tahun ini, kami merayakan perjalanan tersebut lewat <strong>KPR is Me Roadshow 2025</strong>, sebuah
+                kampanye yang membawa kami lebih dekat, lebih nyata, dan lebih relevan untuk membantu masyarakat
+                mewujudkan rumah impian dengan cara yang lebih mudah dan menyenangkan.
               </p>
               <p>
-                Ut egestas natoque risus tortor duis auctor commodo eget vel. Eu pulvinar molestie dui integer egestas
-                enim urna. Nulla vulputate viverra a integer nulla cursus vitae arcu. Eget blandit est pretium ac tempus
-                eu amet dui proin. Pellentesque dignissim massa commodo amet. In sagittis tristique facilisis urna
-                eleifend.
+                ✨ Rayakan momen spesial ini dan menangkan <strong>iPhone 17 Air terbaru</strong> serta berbagai hadiah
+                menarik lainnya dari Central Group!
               </p>
+              <p>Cukup isi data diri kamu dan jadilah bagian dari perayaan ulang tahun kami yang ke-36.</p>
             </div>
 
             {/* Social Share Icons */}
