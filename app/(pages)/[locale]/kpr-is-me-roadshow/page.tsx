@@ -12,6 +12,7 @@ import { iconFacebookFill, iconWhatsAppLine, iconLinksLine } from '@/app/lib/uti
 import { useRouter } from '@/i18n/navigation';
 import { requestOtp, verifyOtp, submitRaffle } from '@/lib/kpr-api-client';
 import CustomAlert from '@/components/ui/custom-alert';
+import PhoneInputComponent from '@/components/ui/phone-input';
 
 export default function KprIsMeRoadshow() {
   const router = useRouter();
@@ -171,10 +172,24 @@ export default function KprIsMeRoadshow() {
     }
   };
 
+  const handlePhoneChange = (value: string | undefined) => {
+    setFinalFormData((prev) => ({
+      ...prev,
+      nomorHandphone: value || '',
+    }));
+  };
+
   const handleTemanChange = (index: number, field: 'nama' | 'nomor', value: string) => {
     setFinalFormData((prev) => ({
       ...prev,
       temanTeman: prev.temanTeman.map((teman, i) => (i === index ? { ...teman, [field]: value } : teman)),
+    }));
+  };
+
+  const handleTemanPhoneChange = (index: number, value: string | undefined) => {
+    setFinalFormData((prev) => ({
+      ...prev,
+      temanTeman: prev.temanTeman.map((teman, i) => (i === index ? { ...teman, nomor: value || '' } : teman)),
     }));
   };
 
@@ -246,14 +261,12 @@ export default function KprIsMeRoadshow() {
         const submissionData = {
           name: formData.nama,
           email: formData.email,
-          phone: finalFormData.nomorHandphone.startsWith('62')
-            ? `+${finalFormData.nomorHandphone}`
-            : `+62${finalFormData.nomorHandphone}`,
+          phone: finalFormData.nomorHandphone || '',
           nik: finalFormData.nik,
           source: finalFormData.mengetahuiDari,
           friends: finalFormData.temanTeman.map((teman) => ({
             name: teman.nama,
-            phone: teman.nomor.startsWith('62') ? `+${teman.nomor}` : `+62${teman.nomor}`,
+            phone: teman.nomor || '',
           })),
         };
 
@@ -569,31 +582,23 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                           <Label htmlFor="nomorHandphone" className="text-[10px] font-semibold text-gray-900">
                             NOMOR HANDPHONE
                           </Label>
-                          <div className="relative w-full">
-                            <span className="absolute flex inset-y-0 left-3 items-center text-black text-xs pointer-events-none">
-                              +62
-                            </span>
-                            <Input
-                              id="nomorHandphone"
-                              name="nomorHandphone"
-                              type="text"
-                              placeholder="87654321"
-                              value={finalFormData.nomorHandphone}
-                              onChange={handleFinalFormChange}
-                              required
-                              style={{
-                                backgroundColor: 'white',
-                                borderColor: '#E1E1E1',
-                                borderRadius: '0px',
-                                fontSize: '12px',
-                                paddingLeft: '40px',
-                                paddingTop: '23px',
-                                paddingBottom: '23px',
-                                width: '100%',
-                              }}
-                              className="text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400 w-full"
-                            />
-                          </div>
+                          <PhoneInputComponent
+                            id="nomorHandphone"
+                            value={finalFormData.nomorHandphone}
+                            onChange={handlePhoneChange}
+                            placeholder="87654321"
+                            required
+                            style={{
+                              backgroundColor: 'white',
+                              borderColor: '#E1E1E1',
+                              borderRadius: '0px',
+                              fontSize: '12px',
+                              paddingTop: '23px',
+                              paddingBottom: '23px',
+                              width: '100%',
+                            }}
+                            className="text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400 w-full"
+                          />
                         </div>
 
                         <div className="space-y-2">
@@ -691,28 +696,21 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                               <Label className="text-[10px] font-semibold text-gray-900">
                                 NOMOR HANDPHONE {index + 1}
                               </Label>
-                              <div className="relative">
-                                <span className="absolute flex inset-y-0 left-3 items-center text-black text-xs pointer-events-none">
-                                  +62
-                                </span>
-                                <Input
-                                  type="text"
-                                  placeholder="87654321"
-                                  value={teman.nomor}
-                                  onChange={(e) => handleTemanChange(index, 'nomor', e.target.value)}
-                                  required
-                                  style={{
-                                    backgroundColor: 'white',
-                                    borderColor: '#E1E1E1',
-                                    borderRadius: '0px',
-                                    fontSize: '12px',
-                                    paddingLeft: '40px',
-                                    paddingTop: '23px',
-                                    paddingBottom: '23px',
-                                  }}
-                                  className="text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
-                                />
-                              </div>
+                              <PhoneInputComponent
+                                value={teman.nomor}
+                                onChange={(value) => handleTemanPhoneChange(index, value)}
+                                placeholder="87654321"
+                                required
+                                style={{
+                                  backgroundColor: 'white',
+                                  borderColor: '#E1E1E1',
+                                  borderRadius: '0px',
+                                  fontSize: '12px',
+                                  paddingTop: '23px',
+                                  paddingBottom: '23px',
+                                }}
+                                className="text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
+                              />
                             </div>
                           </div>
                         ))}
