@@ -6,6 +6,7 @@ const OAUTH_CONFIG = {
   clientId: process.env.OAUTH_CLIENT_ID!,
   clientSecret: process.env.OAUTH_CLIENT_SECRET!,
   graphqlUrl: process.env.NEXT_PUBLIC_GRAPHQL_API!,
+  raffleId: process.env.NEXT_PUBLIC_RAFFLE_ID!,
 };
 
 // OAuth token management
@@ -143,7 +144,7 @@ export async function POST(request: NextRequest) {
       query: `
         mutation SUBMIT {
           submitRaffle(
-            raffleId: "UmFmZmxlOjE="
+            raffleId: "${OAUTH_CONFIG.raffleId}"
             submission: {
               name: "${escapeGraphQLString(submission.name)}"
               email: "${escapeGraphQLString(submission.email)}"
