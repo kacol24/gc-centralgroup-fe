@@ -70,7 +70,7 @@ export default function KprIsMeRoadshow() {
     });
 
     // Preload thank you page for faster navigation
-    router.prefetch('/kpr-is-me-roadshow/thankyou');
+    router.prefetch('/kprismeroadshow/thankyou');
 
     // Add paste event listeners to all OTP inputs
     const addPasteListeners = () => {
@@ -283,7 +283,7 @@ export default function KprIsMeRoadshow() {
           setIsRedirecting(true);
 
           // Immediate redirect - don't wait for sessionStorage
-          router.push('/kpr-is-me-roadshow/thankyou');
+          router.push('/kprismeroadshow/thankyou');
 
           // Store submission data asynchronously (non-blocking)
           try {
