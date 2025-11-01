@@ -86,7 +86,7 @@ export default async function SectionBankPartners() {
     {
       id: 11,
       title: 'CCB',
-      desktop: '/assets/image/bank-partners/CCB.webp',
+      desktop: '/assets/image/bank-partners/ccb2.png',
     },
     // PERMATA BANK
     {
