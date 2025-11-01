@@ -14,6 +14,7 @@ interface CentralCommunityBannerProps {
   pillarTitle?: string;
   pillarItems?: Pillar[];
   pillarsIconBackground?: string;
+  slug?: string;
 }
 
 interface Pillar {
@@ -31,6 +32,7 @@ export default function CentralCommunityBanner({
   pillarTitle,
   pillarItems,
   pillarsIconBackground,
+  slug,
 }: CentralCommunityBannerProps) {
   useEffect(() => {
     AOS.init({
@@ -46,8 +48,8 @@ export default function CentralCommunityBanner({
         className="min-h-[50rem] h-screen relative flex flex-col justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${bannerImageTop?.src})` }}
       >
-        <div className={`absolute top-0 bottom-0 left-0 right-0 opacity-95 ${bannerColor}`} />
-        <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent opacity-20" />
+        <div className={`absolute inset-0 opacity-95 ${bannerColor}`} />
+        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-20" />
 
         <div className="z-20 container w-[80%] m-auto text-center">
           <h1
@@ -57,18 +59,46 @@ export default function CentralCommunityBanner({
             {bannerTitle}
           </h1>
           <p
-            className="mb-40 text-sm/6 text-center md:w-[80%] md:mx-auto text-white"
+            className="mb-8 sm:mb-12 md:mb-16 text-sm/6 text-center md:w-[80%] md:mx-auto text-white"
             data-aos="fade-up"
             data-aos-delay="200"
             dangerouslySetInnerHTML={{ __html: bannerDescription }}
           />
+          {slug && slug === 'connect' && (
+            <div className="flex flex-row justify-center items-center gap-4 sm:gap-6 mb-8 sm:mb-12 md:mb-16">
+              <a
+                href="https://play.google.com/store/apps/details?id=id.central.connect"
+                target="_blank"
+                className="block"
+              >
+                <Image
+                  src="/assets/image/googleplay.svg"
+                  alt="Get it on Google Play"
+                  width={150}
+                  height={50}
+                  className="w-32 sm:w-36 md:w-40 h-auto hover:scale-105 transition-transform duration-200"
+                />
+              </a>
+              <a href="https://apps.apple.com/id/app/central-connect/id1644669683" target="_blank" className="block">
+                <Image
+                  src="/assets/image/appstore.svg"
+                  alt="Download on the App Store"
+                  width={150}
+                  height={50}
+                  className="w-32 sm:w-36 md:w-40 h-auto hover:scale-105 transition-transform duration-200"
+                />
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
       {pillarItems && pillarItems.length > 1 && (
         <div className="bg-cover bg-center" style={{ backgroundImage: `url(${bannerImageBottom?.src})` }}>
           <div className="container mx-auto relative px-4 py-12 md:py-8 ">
-            <div className="relative -top-32 -mb-32 md:-top-80 md:-mb-80 lg:-top-64 lg:-mb-24">
+            <div
+              className={`relative -top-32 -mb-32 md:-top-80 md:-mb-80 lg:-top-64 lg:-mb-24 ${slug === 'connect' ? 'mt-[6rem]' : ''}`}
+            >
               <div className="flex items-center gap-2 md:justify-between">
                 <div className="w-[20%] h-[1px] bg-white opacity-40 lg:w-[25%]" />
                 <h2

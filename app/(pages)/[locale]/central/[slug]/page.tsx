@@ -48,6 +48,7 @@ export default function CentralDetail({ params }: { params: Promise<{ slug: stri
         pillarTitle={detailCentral?.pillarTitle}
         pillarItems={detailCentral?.pillarItems}
         pillarsIconBackground={detailCentral?.pillarsIconBackground}
+        slug={slug}
       />
 
       <CentralCommunityGoal goals={detailCentral?.goals} />
