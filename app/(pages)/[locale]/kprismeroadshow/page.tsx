@@ -53,6 +53,7 @@ export default function KprIsMeRoadshow() {
     nik: '',
     nomorHandphone: '',
     mengetahuiDari: '',
+    mengetahuiDariLainnya: '', // Custom field untuk opsi "Lainnya"
     temanTeman: [
       { nama: '', nomor: '' },
       { nama: '', nomor: '' },
@@ -74,42 +75,46 @@ export default function KprIsMeRoadshow() {
 
     // Add paste event listeners to all OTP inputs
     const addPasteListeners = () => {
-      for (let i = 0; i < 6; i++) {
-        const input = document.getElementById(`otp-${i}`);
-        if (input) {
-          input.addEventListener('paste', (e) => {
-            e.preventDefault();
-            const pastedData = (e as ClipboardEvent).clipboardData?.getData('text') || '';
+      const prefixes = ['otp-', 'otp-mobile-']; // Support both desktop and mobile
 
-            // Extract only numbers from pasted text
-            const numbers = pastedData.replace(/\D/g, '');
+      prefixes.forEach((prefix) => {
+        for (let i = 0; i < 6; i++) {
+          const input = document.getElementById(`${prefix}${i}`);
+          if (input) {
+            input.addEventListener('paste', (e) => {
+              e.preventDefault();
+              const pastedData = (e as ClipboardEvent).clipboardData?.getData('text') || '';
 
-            if (numbers.length >= 6) {
-              // Take first 6 digits
-              const otpDigits = numbers.slice(0, 6).split('');
-              setOtpData(otpDigits);
+              // Extract only numbers from pasted text
+              const numbers = pastedData.replace(/\D/g, '');
 
-              // Focus on the last input field
-              const lastInput = document.getElementById(`otp-5`);
-              lastInput?.focus();
-            } else if (numbers.length > 0) {
-              // If less than 6 digits, fill what we can
-              setOtpData((prevData) => {
-                const newOtpData = [...prevData];
-                for (let j = 0; j < Math.min(numbers.length, 6); j++) {
-                  newOtpData[j] = numbers[j];
-                }
-                return newOtpData;
-              });
+              if (numbers.length >= 6) {
+                // Take first 6 digits
+                const otpDigits = numbers.slice(0, 6).split('');
+                setOtpData(otpDigits);
 
-              // Focus on the next empty field or last filled field
-              const nextIndex = Math.min(numbers.length, 5);
-              const nextInput = document.getElementById(`otp-${nextIndex}`);
-              nextInput?.focus();
-            }
-          });
+                // Focus on the last input field with appropriate prefix
+                const lastInput = document.getElementById(`${prefix}5`);
+                lastInput?.focus();
+              } else if (numbers.length > 0) {
+                // If less than 6 digits, fill what we can
+                setOtpData((prevData) => {
+                  const newOtpData = [...prevData];
+                  for (let j = 0; j < Math.min(numbers.length, 6); j++) {
+                    newOtpData[j] = numbers[j];
+                  }
+                  return newOtpData;
+                });
+
+                // Focus on the next empty field or last filled field with appropriate prefix
+                const nextIndex = Math.min(numbers.length, 5);
+                const nextInput = document.getElementById(`${prefix}${nextIndex}`);
+                nextInput?.focus();
+              }
+            });
+          }
         }
-      }
+      });
     };
 
     // Add listeners initially and when component updates
@@ -117,13 +122,16 @@ export default function KprIsMeRoadshow() {
 
     return () => {
       clearTimeout(timer);
-      // Clean up event listeners
-      for (let i = 0; i < 6; i++) {
-        const input = document.getElementById(`otp-${i}`);
-        if (input) {
-          input.removeEventListener('paste', () => {});
+      // Clean up event listeners for both desktop and mobile
+      const prefixes = ['otp-', 'otp-mobile-'];
+      prefixes.forEach((prefix) => {
+        for (let i = 0; i < 6; i++) {
+          const input = document.getElementById(`${prefix}${i}`);
+          if (input) {
+            input.removeEventListener('paste', () => {});
+          }
         }
-      }
+      });
     };
   }, [router, currentStep]);
 
@@ -141,18 +149,61 @@ export default function KprIsMeRoadshow() {
       newOtpData[index] = value;
       setOtpData(newOtpData);
 
-      // Auto focus next input
+      // Auto focus next input with mobile-friendly approach
       if (value && index < 5) {
-        const nextInput = document.getElementById(`otp-${index + 1}`);
-        nextInput?.focus();
+        // Use setTimeout to ensure the state update is complete before focusing
+        setTimeout(() => {
+          // Check actual viewport and visible elements to determine layout
+          const mobileElement = document.getElementById(`otp-mobile-${index + 1}`);
+          const desktopElement = document.getElementById(`otp-${index + 1}`);
+
+          // Use the element that's actually visible/available
+          const nextInput = mobileElement && mobileElement.offsetParent !== null ? mobileElement : desktopElement;
+          const currentInput =
+            mobileElement && mobileElement.offsetParent !== null
+              ? document.getElementById(`otp-mobile-${index}`)
+              : document.getElementById(`otp-${index}`);
+
+          if (nextInput) {
+            // For mobile compatibility, also blur current input first
+            if (currentInput) {
+              currentInput.blur();
+            }
+
+            // Focus next input
+            nextInput.focus();
+
+            // For mobile browsers, also set cursor position
+            const inputElement = nextInput as HTMLInputElement;
+            if (inputElement.setSelectionRange) {
+              inputElement.setSelectionRange(0, 0);
+            }
+          }
+        }, 10);
       }
     }
   };
 
   const handleOtpKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Backspace' && !otpData[index] && index > 0) {
-      const prevInput = document.getElementById(`otp-${index - 1}`);
-      prevInput?.focus();
+      setTimeout(() => {
+        // Check actual viewport and visible elements to determine layout
+        const mobilePrevInput = document.getElementById(`otp-mobile-${index - 1}`);
+        const desktopPrevInput = document.getElementById(`otp-${index - 1}`);
+
+        // Use the element that's actually visible/available
+        const prevInput = mobilePrevInput && mobilePrevInput.offsetParent !== null ? mobilePrevInput : desktopPrevInput;
+
+        if (prevInput) {
+          prevInput.focus();
+          // Set cursor at end for mobile
+          const inputElement = prevInput as HTMLInputElement;
+          if (inputElement.setSelectionRange) {
+            const len = inputElement.value.length;
+            inputElement.setSelectionRange(len, len);
+          }
+        }
+      }, 10);
     }
   };
 
@@ -263,7 +314,10 @@ export default function KprIsMeRoadshow() {
           email: formData.email,
           phone: finalFormData.nomorHandphone || '',
           nik: finalFormData.nik,
-          source: finalFormData.mengetahuiDari,
+          source:
+            finalFormData.mengetahuiDari === 'Lainnya'
+              ? `Lainnya: ${finalFormData.mengetahuiDariLainnya}`
+              : finalFormData.mengetahuiDari,
           friends: finalFormData.temanTeman.map((teman) => ({
             name: teman.nama,
             phone: teman.nomor || '',
@@ -588,15 +642,6 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                             onChange={handlePhoneChange}
                             placeholder="87654321"
                             required
-                            style={{
-                              backgroundColor: 'white',
-                              borderColor: '#E1E1E1',
-                              borderRadius: '0px',
-                              fontSize: '12px',
-                              paddingTop: '23px',
-                              paddingBottom: '23px',
-                              width: '100%',
-                            }}
                             className="text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400 w-full"
                           />
                         </div>
@@ -660,6 +705,33 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                             </div>
                           </div>
                         </div>
+
+                        {/* Conditional Text Field for "Lainnya" option */}
+                        {finalFormData.mengetahuiDari === 'Lainnya' && (
+                          <div className="space-y-2">
+                            <Label htmlFor="mengetahuiDariLainnya" className="text-[10px] font-semibold text-gray-900">
+                              SEBUTKAN LAINNYA
+                            </Label>
+                            <Input
+                              id="mengetahuiDariLainnya"
+                              name="mengetahuiDariLainnya"
+                              type="text"
+                              placeholder="Sebutkan dari mana Anda tahu tentang kami"
+                              value={finalFormData.mengetahuiDariLainnya}
+                              onChange={handleFinalFormChange}
+                              required
+                              style={{
+                                backgroundColor: 'white',
+                                borderColor: '#E1E1E1',
+                                borderRadius: '0px',
+                                fontSize: '12px',
+                                paddingTop: '23px',
+                                paddingBottom: '23px',
+                              }}
+                              className="text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
+                            />
+                          </div>
+                        )}
                       </div>
 
                       {/* Separator */}
@@ -701,14 +773,6 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                                 onChange={(value) => handleTemanPhoneChange(index, value)}
                                 placeholder="87654321"
                                 required
-                                style={{
-                                  backgroundColor: 'white',
-                                  borderColor: '#E1E1E1',
-                                  borderRadius: '0px',
-                                  fontSize: '12px',
-                                  paddingTop: '23px',
-                                  paddingBottom: '23px',
-                                }}
                                 className="text-gray-900 border border-gray-300 focus:ring-2 focus:ring-gray-400"
                               />
                             </div>
@@ -770,11 +834,14 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                                 id={`otp-${index}`}
                                 type="text"
                                 inputMode="numeric"
+                                pattern="[0-9]*"
+                                autoComplete="one-time-code"
                                 maxLength={1}
                                 value={digit}
                                 onChange={(e) => handleOtpChange(index, e.target.value)}
                                 onKeyDown={(e) => handleOtpKeyDown(index, e)}
                                 disabled={isVerifyingOtp}
+                                autoFocus={index === 0}
                                 style={{
                                   backgroundColor: isVerifyingOtp ? '#f5f5f5' : 'white',
                                   borderColor: '#E1E1E1',
@@ -797,6 +864,8 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                                 id={`otp-${index + 3}`}
                                 type="text"
                                 inputMode="numeric"
+                                pattern="[0-9]*"
+                                autoComplete="one-time-code"
                                 maxLength={1}
                                 value={digit}
                                 onChange={(e) => handleOtpChange(index + 3, e.target.value)}
@@ -837,15 +906,18 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                           <div className="flex gap-2">
                             {otpData.slice(0, 3).map((digit, index) => (
                               <Input
-                                key={index}
-                                id={`otp-${index}`}
+                                key={`mobile-${index}`}
+                                id={`otp-mobile-${index}`}
                                 type="text"
                                 inputMode="numeric"
+                                pattern="[0-9]*"
+                                autoComplete="one-time-code"
                                 maxLength={1}
                                 value={digit}
                                 onChange={(e) => handleOtpChange(index, e.target.value)}
                                 onKeyDown={(e) => handleOtpKeyDown(index, e)}
                                 disabled={isVerifyingOtp}
+                                autoFocus={index === 0}
                                 style={{
                                   backgroundColor: isVerifyingOtp ? '#f5f5f5' : 'white',
                                   borderColor: '#E1E1E1',
@@ -864,10 +936,12 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                           <div className="flex gap-2">
                             {otpData.slice(3, 6).map((digit, index) => (
                               <Input
-                                key={index + 3}
-                                id={`otp-${index + 3}`}
+                                key={`mobile-${index + 3}`}
+                                id={`otp-mobile-${index + 3}`}
                                 type="text"
                                 inputMode="numeric"
+                                pattern="[0-9]*"
+                                autoComplete="one-time-code"
                                 maxLength={1}
                                 value={digit}
                                 onChange={(e) => handleOtpChange(index + 3, e.target.value)}
@@ -913,7 +987,10 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                         isVerifyingOtp ||
                         isSubmittingRaffle ||
                         isRedirecting ||
-                        (currentStep === 3 && finalFormData.nik.length !== 16)
+                        (currentStep === 3 && finalFormData.nik.length !== 16) ||
+                        (currentStep === 3 &&
+                          finalFormData.mengetahuiDari === 'Lainnya' &&
+                          !finalFormData.mengetahuiDariLainnya.trim())
                       }
                       className="w-full font-medium text-xs py-[24px] uppercase disabled:opacity-50"
                       style={{
