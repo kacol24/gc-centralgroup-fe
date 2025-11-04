@@ -414,7 +414,7 @@ Isi data dirimu dan menangkan iPhone 17 Air!
   };
 
   return (
-    <section className="w-full h-auto pt-[120px] md:pt-[150px] lg:pt-[170px] xl:pt-[223px] bg-backgroundWhite min-h-screen pb-20 md:pb-28 lg:pb-36">
+    <section className="w-full h-auto pt-[120px] md:pt-[150px] lg:pt-[170px] xl:pt-[223px] bg-backgroundWhite min-h-screen pb-20 md:pb-28 lg:pb-36 overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Title */}
         <h1
@@ -978,7 +978,7 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                     </div>
                   )}
 
-                  <div className="pt-2 md:pt-4">
+                  <div className="pt-2 md:pt-4" style={{ transform: 'none' }}>
                     <Button
                       type="submit"
                       variant="filled"
@@ -998,6 +998,7 @@ Isi data dirimu dan menangkan iPhone 17 Air!
                         backgroundColor: '#016241',
                         fontSize: '14px',
                         fontWeight: '600',
+                        transform: 'none',
                       }}
                     >
                       {currentStep === 1
