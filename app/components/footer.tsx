@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { logoRowWhite, logoColWhite, logo35white } from '../lib/utils/image';
+import { logoRowWhite, logoColWhite, logo36white } from '../lib/utils/image';
 import { HiOutlineArrowUp, HiOutlineArrowRight } from 'react-icons/hi';
 import { FaEnvelope, FaMapMarkerAlt, FaYoutube, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { IoLogoWhatsapp } from 'react-icons/io';
@@ -9,7 +9,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 import Subscribe from '@/graphql/Subscribe.graphql';
 import { useMutation } from '@urql/next';
 
-export default function Footer({store}) {
+export default function Footer({ store }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -55,7 +55,7 @@ export default function Footer({store}) {
               className="object-contain md:hidden w-[120px]"
             />
             <Image
-              src={logo35white}
+              src={logo36white}
               alt="Logo"
               width={100}
               height={100}
@@ -74,7 +74,7 @@ export default function Footer({store}) {
                 unoptimized={true}
               />
               <Image
-                src={logo35white}
+                src={logo36white}
                 alt="Logo"
                 width={1000}
                 height={1000}

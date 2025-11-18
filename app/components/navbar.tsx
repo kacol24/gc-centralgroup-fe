@@ -10,7 +10,7 @@ import {
   iconCaretDownWhite,
   iconMenuWhite,
 } from '@/app/lib/utils/svg';
-import { logoColGreen, logoColWhite, logoRowGreen, logo35white, logo35color } from '@/app/lib/utils/image';
+import { logoColGreen, logoColWhite, logoRowGreen, logo36white, logo36color } from '@/app/lib/utils/image';
 import { useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useSearchParams } from 'next/navigation';
@@ -78,7 +78,7 @@ export default function Navbar() {
   const [variant, setVariant] = useState({
     text: 'text-white',
     logo: logoColWhite,
-    logo2: logo35white,
+    logo2: logo36white,
     iconMenu: iconMenuWhite,
     iconWhatsApp: iconWhatsAppWhite,
     iconCaretDown: iconCaretDownWhite,
@@ -101,7 +101,7 @@ export default function Navbar() {
         setVariant({
           text: 'text-black',
           logo: logoColGreen,
-          logo2: logo35color,
+          logo2: logo36color,
           iconMenu,
           iconWhatsApp,
           iconCaretDown,
@@ -110,7 +110,7 @@ export default function Navbar() {
         setVariant({
           text: 'text-white',
           logo: logoColWhite,
-          logo2: logo35white,
+          logo2: logo36white,
           iconMenu: iconMenuWhite,
           iconWhatsApp: iconWhatsAppWhite,
           iconCaretDown: iconCaretDownWhite,
@@ -157,21 +157,23 @@ export default function Navbar() {
       lang: locale,
     },
   });
-  const developments = projectListResponse.projects?.datas ?? [];
+  const developments = projectListResponse?.projects?.datas ?? [];
 
   return (
     <>
       {/* Navbar */}
       <nav
-        className={`w-full fixed z-50 transition-all duration-300 text-xs ${isScrolled ? navbarStyle() : navbarElseStyle()}`}
+        className={`w-full fixed z-50 transition-all duration-300 text-xs ${
+          isScrolled ? navbarStyle() : navbarElseStyle()
+        }`}
       >
         <div
           className={`w-full container mx-auto px-4 ${
             isScrolled
               ? navbarContainerStyle()
               : pathname.includes('/article')
-                ? `py-2`
-                : ` py-2 my-3 lg:py-6 bg-transparent ${variant.text}`
+              ? `py-2`
+              : ` py-2 my-3 lg:py-6 bg-transparent ${variant.text}`
           }`}
         >
           <div className="flex items-center">
@@ -203,7 +205,7 @@ export default function Navbar() {
                   <Image
                     // className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
                     className="w-[80px]"
-                    src={isScrolled ? logo35color : variant.logo2}
+                    src={isScrolled ? logo36color : variant.logo2}
                     alt="CG Logo"
                     height={1000}
                     width={1000}

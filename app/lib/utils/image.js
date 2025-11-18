@@ -13,6 +13,8 @@ import logoPartner8 from '@/public/assets/image/logo-partner-8.png';
 import logoPartner9 from '@/public/assets/image/logo-partner-9.png';
 import logo35white from '@/public/assets/image/logo-35-white.png';
 import logo35color from '@/public/assets/image/logo-35-color.png';
+import logo36white from '@/public/assets/image/logo-36-white.png';
+import logo36color from '@/public/assets/image/logo-36-color.png';
 
 import logoProperty from '@/public/assets/image/logo-property.png';
 import imgSliderProperty1 from '@/public/assets/image/img-slider-property-1.png';
@@ -195,4 +197,6 @@ export {
   imgThumbVideo,
   imgPropertyFinderMap,
   imageHQ,
+  logo36white,
+  logo36color
 };
