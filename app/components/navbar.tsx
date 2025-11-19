@@ -172,8 +172,8 @@ export default function Navbar() {
             isScrolled
               ? navbarContainerStyle()
               : pathname.includes('/article')
-              ? `py-2`
-              : ` py-2 my-3 lg:py-6 bg-transparent ${variant.text}`
+                ? `py-2`
+                : ` py-2 my-3 lg:py-6 bg-transparent ${variant.text}`
           }`}
         >
           <div className="flex items-center">
@@ -191,7 +191,7 @@ export default function Navbar() {
                 <div className={isScrolled ? '' : 'md:relative md:-top-1'}>
                   <Image
                     // className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
-                    className="w-[80px]"
+                    className="h-[64px] w-auto"
                     src={isScrolled ? logoRowGreen : variant.logo}
                     alt="CG Logo"
                     height={1000}
@@ -204,7 +204,7 @@ export default function Navbar() {
                 <div className={isScrolled ? '' : 'md:relative md:-top-1'}>
                   <Image
                     // className={`w-[90px] ${isScrolled ? 'md:w-[138px]' : 'md:w-[112px]'}`}
-                    className="w-[80px]"
+                    className="h-[64px] w-auto"
                     src={isScrolled ? logo36color : variant.logo2}
                     alt="CG Logo"
                     height={1000}
