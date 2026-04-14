@@ -21,7 +21,7 @@ import AosProvider from '@/components/AosProvider';
 export const metadata: Metadata = {
   title: 'About Us | Central Group',
   description:
-    'Central Group is the leading property developer in Batam, Indonesia, with over 35 years of experience and prestigious awards. Discover our innovative projects, trusted partnerships, and commitment to building dream homes and communities. Contact us today to learn more!',
+    'Central Group is the leading property developer in Batam, Indonesia, with over 36 years of experience and prestigious awards. Discover our innovative projects, trusted partnerships, and commitment to building dream homes and communities. Contact us today to learn more!',
 };
 
 export default async function About() {
@@ -53,7 +53,7 @@ export default async function About() {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            The Best Developer in Batam by Property & Bank Award, dengan pengalaman lebih dari 35 Tahun sejak tahun 1989
+            The Best Developer in Batam by Property & Bank Award, dengan pengalaman lebih dari 36 Tahun sejak tahun 1989
             dalam membangun 6600 rumah impian Anda dalam 5 tahun ke belakang. Central Group telah berhasil mengembangkan
             beberapa proyek ternama dengan total lahan lebih dari 250 Ha di Kota Batam, beberapa diantaranya bekerjasama
             dengan developer bertaraf nasional seperti afiliasi Alam Sutera dan The Ascott Limited Singapura. Central
