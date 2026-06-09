@@ -85,7 +85,17 @@ export default function Navbar() {
   });
 
   useEffect(() => {
-    const allowPath = ['/development', '/contact', '/search', '/kprismeroadshow', '/kprismeroadshow/thankyou'];
+    const allowPath = [
+      '/development',
+      '/contact',
+      '/search',
+      '/kprismeroadshow',
+      '/kprismeroadshow/thankyou',
+      '/open-house',
+      '/open-house/thankyou',
+      '/customer-gathering',
+      '/customer-gathering/thankyou',
+    ];
 
     const handleResize = () => {
       const isMobile = window.innerWidth <= 1024;
