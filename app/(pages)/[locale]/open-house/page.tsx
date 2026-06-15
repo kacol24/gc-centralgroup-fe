@@ -230,19 +230,20 @@ export default function OpenHouse() {
     }));
   };
 
-  const handleTemanChange = (index: number, field: 'nama' | 'nomor', value: string) => {
-    setFinalFormData((prev) => ({
-      ...prev,
-      temanTeman: prev.temanTeman.map((teman, i) => (i === index ? { ...teman, [field]: value } : teman)),
-    }));
-  };
+  // [HIDDEN] Used by Friends Section
+  // const handleTemanChange = (index: number, field: 'nama' | 'nomor', value: string) => {
+  //   setFinalFormData((prev) => ({
+  //     ...prev,
+  //     temanTeman: prev.temanTeman.map((teman, i) => (i === index ? { ...teman, [field]: value } : teman)),
+  //   }));
+  // };
 
-  const handleTemanPhoneChange = (index: number, value: string | undefined) => {
-    setFinalFormData((prev) => ({
-      ...prev,
-      temanTeman: prev.temanTeman.map((teman, i) => (i === index ? { ...teman, nomor: value || '' } : teman)),
-    }));
-  };
+  // const handleTemanPhoneChange = (index: number, value: string | undefined) => {
+  //   setFinalFormData((prev) => ({
+  //     ...prev,
+  //     temanTeman: prev.temanTeman.map((teman, i) => (i === index ? { ...teman, nomor: value || '' } : teman)),
+  //   }));
+  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -299,14 +300,13 @@ export default function OpenHouse() {
       setIsSubmittingRaffle(true);
 
       try {
-        // Validate NIK before submission
-        if (finalFormData.nik.length !== 16) {
-          throw new Error(`NIK harus 16 digit. Saat ini: ${finalFormData.nik.length} digit`);
-        }
-
-        if (!/^\d{16}$/.test(finalFormData.nik)) {
-          throw new Error('NIK harus berisi 16 angka saja');
-        }
+        // [HIDDEN] Validate NIK before submission
+        // if (finalFormData.nik.length !== 16) {
+        //   throw new Error(`NIK harus 16 digit. Saat ini: ${finalFormData.nik.length} digit`);
+        // }
+        // if (!/^\d{16}$/.test(finalFormData.nik)) {
+        //   throw new Error('NIK harus berisi 16 angka saja');
+        // }
 
         // Prepare submission data according to API schema
         const submissionData = {
@@ -606,6 +606,7 @@ Kunjungi open house kami dan dapatkan promo spesial, konsultasi KPR gratis, sert
 
                       {/* Personal Info Fields */}
                       <div className="space-y-3">
+                        {/* [HIDDEN] NIK Field
                         <div className="space-y-2">
                           <Label htmlFor="nik" className="text-[10px] font-semibold text-gray-900">
                             NIK (16 DIGIT)
@@ -619,7 +620,6 @@ Kunjungi open house kami dan dapatkan promo spesial, konsultasi KPR gratis, sert
                             placeholder="Masukkan 16 digit NIK Anda"
                             value={finalFormData.nik}
                             onChange={(e) => {
-                              // Only allow numbers
                               const value = e.target.value.replace(/\D/g, '');
                               handleFinalFormChange({
                                 ...e,
@@ -643,6 +643,7 @@ Kunjungi open house kami dan dapatkan promo spesial, konsultasi KPR gratis, sert
                             </p>
                           )}
                         </div>
+                        */}
 
                         <div className="space-y-2">
                           <Label htmlFor="nomorHandphone" className="text-[10px] font-semibold text-gray-900">
@@ -746,10 +747,9 @@ Kunjungi open house kami dan dapatkan promo spesial, konsultasi KPR gratis, sert
                         )}
                       </div>
 
-                      {/* Separator */}
+                      {/* [HIDDEN] Friends Section + surrounding separators
                       <div className="h-px bg-gray-300" style={{ backgroundColor: 'hsla(0, 0%, 88%, 1)' }}></div>
 
-                      {/* Friends Section */}
                       <div className="space-y-4">
                         <h3 className="text-xs font-semibold text-gray-900 mb-6 lg:mb-10">
                           ISI LIMA (5) NOMOR HANDPHONE AKTIF TEMAN.
@@ -792,8 +792,8 @@ Kunjungi open house kami dan dapatkan promo spesial, konsultasi KPR gratis, sert
                         ))}
                       </div>
 
-                      {/* Separator */}
                       <div className="h-px bg-gray-300" style={{ backgroundColor: 'hsla(0, 0%, 88%, 1)' }}></div>
+                      */}
 
                       {/* Terms Checkbox */}
                       <div className="flex items-start space-x-3">
@@ -999,7 +999,7 @@ Kunjungi open house kami dan dapatkan promo spesial, konsultasi KPR gratis, sert
                         isVerifyingOtp ||
                         isSubmittingRaffle ||
                         isRedirecting ||
-                        (currentStep === 3 && finalFormData.nik.length !== 16) ||
+                        // [HIDDEN] (currentStep === 3 && finalFormData.nik.length !== 16) ||
                         (currentStep === 3 &&
                           finalFormData.mengetahuiDari === 'Lainnya' &&
                           !finalFormData.mengetahuiDariLainnya.trim())
