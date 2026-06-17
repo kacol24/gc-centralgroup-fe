@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate required fields
-    const requiredFields = ['name', 'email', 'phone', 'nik', 'source', 'friends'];
+    const requiredFields = ['name', 'email', 'phone', 'source', 'friends'];
     for (const field of requiredFields) {
       if (!submission[field]) {
         console.log(`[RAFFLE-SUBMIT-${requestId}] Error: Missing required field: ${field}`);
