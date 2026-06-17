@@ -114,21 +114,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Validate NIK length (must be 16 characters)
-    if (submission.nik.length !== 16) {
-      console.log(`[RAFFLE-SUBMIT-${requestId}] Error: NIK must be 16 characters, got ${submission.nik.length}`);
-      return NextResponse.json(
-        { error: `NIK must be exactly 16 characters. Current length: ${submission.nik.length}` },
-        { status: 400 },
-      );
-    }
-
-    // Validate NIK contains only numbers
-    if (!/^\d{16}$/.test(submission.nik)) {
-      console.log(`[RAFFLE-SUBMIT-${requestId}] Error: NIK must contain only numbers`);
-      return NextResponse.json({ error: 'NIK must contain only 16 digits' }, { status: 400 });
-    }
-
     // Get access token
     console.log(`[RAFFLE-SUBMIT-${requestId}] Getting access token...`);
     const token = await getAccessToken();
