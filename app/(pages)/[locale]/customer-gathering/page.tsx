@@ -318,6 +318,7 @@ export default function CustomerGathering() {
             finalFormData.mengetahuiDari === 'Lainnya'
               ? `Lainnya: ${finalFormData.mengetahuiDariLainnya}`
               : finalFormData.mengetahuiDari,
+          eventName: 'Customer Gathering',
           friends: finalFormData.temanTeman.map((teman) => ({
             name: teman.nama,
             phone: teman.nomor || '',

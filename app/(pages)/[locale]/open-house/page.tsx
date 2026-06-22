@@ -318,6 +318,7 @@ export default function OpenHouse() {
             finalFormData.mengetahuiDari === 'Lainnya'
               ? `Lainnya: ${finalFormData.mengetahuiDariLainnya}`
               : finalFormData.mengetahuiDari,
+          eventName: 'Open House Central Group',
           friends: finalFormData.temanTeman.map((teman) => ({
             name: teman.nama,
             phone: teman.nomor || '',

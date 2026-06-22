@@ -27,6 +27,7 @@ export interface RaffleSubmissionInput {
   phone: string;
   nik: string;
   source: string;
+  eventName: string;
   friends: Array<{
     name: string;
     phone: string;

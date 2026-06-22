@@ -318,6 +318,7 @@ export default function KprIsMeRoadshow() {
             finalFormData.mengetahuiDari === 'Lainnya'
               ? `Lainnya: ${finalFormData.mengetahuiDariLainnya}`
               : finalFormData.mengetahuiDari,
+          eventName: 'KPR Is Me Roadshow',
           friends: finalFormData.temanTeman.map((teman) => ({
             name: teman.nama,
             phone: teman.nomor || '',

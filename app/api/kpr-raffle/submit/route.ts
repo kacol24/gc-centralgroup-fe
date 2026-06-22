@@ -136,6 +136,7 @@ export async function POST(request: NextRequest) {
               phone: "${escapeGraphQLString(submission.phone)}"
               nik: "${escapeGraphQLString(submission.nik)}"
               source: "${escapeGraphQLString(submission.source)}"
+              eventName: "${escapeGraphQLString(submission.eventName || '')}"
               friends: [
                 { name: "${escapeGraphQLString(submission.friends[0]?.name || '')}", phone: "${escapeGraphQLString(submission.friends[0]?.phone || '')}" }
                 { name: "${escapeGraphQLString(submission.friends[1]?.name || '')}", phone: "${escapeGraphQLString(submission.friends[1]?.phone || '')}" }
