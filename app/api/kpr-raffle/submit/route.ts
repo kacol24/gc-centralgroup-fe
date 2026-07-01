@@ -9,6 +9,15 @@ const OAUTH_CONFIG = {
   raffleId: process.env.NEXT_PUBLIC_RAFFLE_ID!,
 };
 
+// Each registration form submits with a distinct eventName, but they all hit this
+// same route - map eventName to its own raffleId so submissions land on the right
+// raffle instead of always falling back to the KPR Roadshow id.
+const RAFFLE_ID_BY_EVENT_NAME: Record<string, string> = {
+  'KPR Is Me Roadshow': process.env.NEXT_PUBLIC_RAFFLE_ID!,
+  'Customer Gathering': process.env.RAFFLE_ID_CUSTOMER_GATHERING!,
+  'Open House Central Group': process.env.RAFFLE_ID_OPEN_HOUSE!,
+};
+
 // OAuth token management
 let cachedToken: string | null = null;
 let tokenExpiry: number | null = null;
@@ -124,12 +133,15 @@ export async function POST(request: NextRequest) {
       return str.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
     };
 
+    const raffleId = RAFFLE_ID_BY_EVENT_NAME[submission.eventName] || OAUTH_CONFIG.raffleId;
+    console.log(`[RAFFLE-SUBMIT-${requestId}] Resolved raffleId for eventName "${submission.eventName}": ${raffleId}`);
+
     // Prepare GraphQL request - using exact structure from backend documentation
     const graphqlPayload = {
       query: `
         mutation SUBMIT {
           submitRaffle(
-            raffleId: "${OAUTH_CONFIG.raffleId}"
+            raffleId: "${raffleId}"
             submission: {
               name: "${escapeGraphQLString(submission.name)}"
               email: "${escapeGraphQLString(submission.email)}"
